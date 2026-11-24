@@ -4,6 +4,8 @@
 
 [CQRS application interfaces](cqrs.md) · [LiteDB repository design](persistence.md) · [Code structure and implementation order](code-structure.md)
 
+[ViewModel contracts](presentation.md) · [UI command catalog](ui-commands.md)
+
 [Desktop LiteDB entities](views.md#desktoplitedbentities) · [Host LiteDB entities](views.md#hostlitedbentities)
 
 [Structurizr workspace](workspace.dsl) is the canonical draft for system context, containers, desktop and host component views, deployment, and dynamic flows. Reconcile this file, diagram exports, code views, and decisions in each architectural change. Use the pinned `structurizr/structurizr:2026.09.19-noble` validator and exporter. The implementation gate must validate the DSL, regenerate exports in scratch space, and compare expected view keys and exported bytes. This is a Stage 0 design, so code names below describe intended boundaries.

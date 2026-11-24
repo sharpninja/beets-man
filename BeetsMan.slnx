@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/BeetsMan.Desktop.Application/BeetsMan.Desktop.Application.csproj" />
+    <Project Path="src/BeetsMan.Desktop/BeetsMan.Desktop.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/BeetsMan.Desktop.Tests/BeetsMan.Desktop.Tests.csproj" />
+  </Folder>
+</Solution>

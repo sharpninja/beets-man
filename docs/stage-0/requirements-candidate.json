@@ -79,6 +79,11 @@
           "id": "ac-responsive",
           "text": "A long import does not block commands for UI navigation. Commands writing the same state do not expose partially applied changes.",
           "isSatisfied": false
+        },
+        {
+          "id": "ac-wait-pointer",
+          "text": "While a background operation makes its owning UI scope logically noninteractive, that scope displays the operating system wait pointer. Completion, failure, or cancellation clears the override. Background work that leaves the scope interactive does not request the wait pointer.",
+          "isSatisfied": false
         }
       ]
     },
@@ -95,7 +100,7 @@
       "kind": "test",
       "id": "TEST-DISPATCH-001",
       "title": "Isolated acceptance tests: Execute a desktop action",
-      "description": "xUnit v3, FR only. Use recording handlers and a queued fake dispatcher. Deliver query revision 2 before revision 1 and hold a fake import open while navigating.\nDISPATCHAcceptanceTests.Routing_MatchesContract (FR-DISPATCH-001#ac-routing): Each app action submits exactly one typed Unit of Work to its handler; real validation failures and cancellation produce a typed result.\nDISPATCHAcceptanceTests.Update_MatchesContract (FR-DISPATCH-001#ac-update): A result does not change bound UI state until a dispatcher callback applies it; a stale result cannot replace a newer view.\nDISPATCHAcceptanceTests.Responsive_MatchesContract (FR-DISPATCH-001#ac-responsive): A long import does not block commands for UI navigation. Commands writing the same state do not expose partially applied changes.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "description": "xUnit v3, FR only. Use recording handlers and a queued fake dispatcher. Deliver query revision 2 before revision 1 and hold a fake import open while navigating.\nDISPATCHAcceptanceTests.Routing_MatchesContract (FR-DISPATCH-001#ac-routing): Each app action submits exactly one typed Unit of Work to its handler; real validation failures and cancellation produce a typed result.\nDISPATCHAcceptanceTests.Update_MatchesContract (FR-DISPATCH-001#ac-update): A result does not change bound UI state until a dispatcher callback applies it; a stale result cannot replace a newer view.\nDISPATCHAcceptanceTests.Responsive_MatchesContract (FR-DISPATCH-001#ac-responsive): A long import does not block commands for UI navigation. Commands writing the same state do not expose partially applied changes.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.\nPlanned presentation verification (FR-DISPATCH-001#ac-wait-pointer): Hold startup with a controlled task, check the interaction-blocked state while waiting, and clear it on success, failure, or cancellation. A concurrent import or transfer leaves the logical cursor state clear. Reject inverted blocking and a stale completion that affects a new scope.",
       "priority": "high",
       "area": "DISPATCH"
     },
@@ -103,7 +108,7 @@
       "kind": "test",
       "id": "TEST-DISPATCH-002",
       "title": "Windows/Linux integration: Execute a desktop action",
-      "description": "Exercise an actual Avalonia window, dispatcher, focus, modal draft and bound collection changes with background callbacks.",
+      "description": "Exercise an actual Avalonia window, dispatcher, focus, modal draft and bound collection changes with background callbacks.\nPlanned pointer verification (FR-DISPATCH-001#ac-wait-pointer): Bind the owning Avalonia control to the system wait cursor while its action logically blocks interaction. Verify default cursor restoration and usable controls during independent background work on Windows and Linux.",
       "priority": "high",
       "area": "DISPATCH"
     },
@@ -561,7 +566,7 @@
         "TEST-DISPATCH-001",
         "TEST-DISPATCH-002"
       ],
-      "notes": "UC-DISPATCH-001 • STB02 • FR-DISPATCH-001#ac-routing, FR-DISPATCH-001#ac-update, FR-DISPATCH-001#ac-responsive"
+      "notes": "UC-DISPATCH-001 • STB02 • FR-DISPATCH-001#ac-routing, FR-DISPATCH-001#ac-update, FR-DISPATCH-001#ac-responsive, FR-DISPATCH-001#ac-wait-pointer"
     },
     {
       "frId": "FR-LIBRARY-001",
@@ -685,7 +690,8 @@
       "checks": [
         "FR-DISPATCH-001#ac-routing",
         "FR-DISPATCH-001#ac-update",
-        "FR-DISPATCH-001#ac-responsive"
+        "FR-DISPATCH-001#ac-responsive",
+        "FR-DISPATCH-001#ac-wait-pointer"
       ]
     },
     {

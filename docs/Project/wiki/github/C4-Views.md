@@ -97,7 +97,7 @@ graph LR
       subgraph 7 ["Desktop app"]
         style 7 fill:#ffffff,stroke:#444444,color:#444444
 
-        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies scoped revisions and<br />discards stale results for<br />pages, dialogs, and playback<br />sessions.</div>"]
+        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Guards owner scope and<br />revision, shares playback<br />state, and exposes logical<br />interaction blocking<br />independently of background<br />progress.</div>"]
         style 10 fill:#ffffff,stroke:#444444,color:#444444
         11["<div style='font-weight: bold'>CQRS and Unit of Work</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Dispatches typed commands and<br />queries to exactly one<br />handler and returns a typed<br />outcome. Coordinates writes<br />by state owner.</div>"]
         style 11 fill:#ffffff,stroke:#444444,color:#444444
@@ -125,7 +125,7 @@ graph LR
         style 22 fill:#ffffff,stroke:#444444,color:#444444
         23["<div style='font-weight: bold'>Logging adapter</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>ILogger scopes, local<br />filters, rolling retention,<br />and redaction.</div>"]
         style 23 fill:#ffffff,stroke:#444444,color:#444444
-        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Binds application state to<br />Avalonia views through<br />ViewModels and maps UI<br />commands to typed CQRS<br />requests.</div>"]
+        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Avalonia binds MVVM Toolkit<br />ViewModels, typed CQRS<br />commands, and system wait<br />cursor state for logically<br />blocked scopes.</div>"]
         style 8 fill:#ffffff,stroke:#444444,color:#444444
         9["<div style='font-weight: bold'>Avalonia dispatcher adapter</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies all<br />application-driven<br />presentation updates on<br />UIThread.</div>"]
         style 9 fill:#ffffff,stroke:#444444,color:#444444
@@ -428,7 +428,7 @@ graph LR
       subgraph 7 ["Desktop app"]
         style 7 fill:#ffffff,stroke:#444444,color:#444444
 
-        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies scoped revisions and<br />discards stale results for<br />pages, dialogs, and playback<br />sessions.</div>"]
+        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Guards owner scope and<br />revision, shares playback<br />state, and exposes logical<br />interaction blocking<br />independently of background<br />progress.</div>"]
         style 10 fill:#ffffff,stroke:#444444,color:#444444
         11["<div style='font-weight: bold'>CQRS and Unit of Work</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Dispatches typed commands and<br />queries to exactly one<br />handler and returns a typed<br />outcome. Coordinates writes<br />by state owner.</div>"]
         style 11 fill:#ffffff,stroke:#444444,color:#444444
@@ -438,7 +438,7 @@ graph LR
         style 13 fill:#ffffff,stroke:#444444,color:#444444
         22["<div style='font-weight: bold'>Desktop repositories</div><div style='font-size: 70%; margin-top: 0px'>[Component: LiteDB adapter]</div><div style='font-size: 80%; margin-top:10px'>Maps owned desktop state and<br />materialized catalog queries<br />to local LiteDB collections.<br />Runs atomic local writes.</div>"]
         style 22 fill:#ffffff,stroke:#444444,color:#444444
-        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Binds application state to<br />Avalonia views through<br />ViewModels and maps UI<br />commands to typed CQRS<br />requests.</div>"]
+        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Avalonia binds MVVM Toolkit<br />ViewModels, typed CQRS<br />commands, and system wait<br />cursor state for logically<br />blocked scopes.</div>"]
         style 8 fill:#ffffff,stroke:#444444,color:#444444
         9["<div style='font-weight: bold'>Avalonia dispatcher adapter</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies all<br />application-driven<br />presentation updates on<br />UIThread.</div>"]
         style 9 fill:#ffffff,stroke:#444444,color:#444444
@@ -478,7 +478,7 @@ graph LR
       subgraph 7 ["Desktop app"]
         style 7 fill:#ffffff,stroke:#444444,color:#444444
 
-        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies scoped revisions and<br />discards stale results for<br />pages, dialogs, and playback<br />sessions.</div>"]
+        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Guards owner scope and<br />revision, shares playback<br />state, and exposes logical<br />interaction blocking<br />independently of background<br />progress.</div>"]
         style 10 fill:#ffffff,stroke:#444444,color:#444444
         11["<div style='font-weight: bold'>CQRS and Unit of Work</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Dispatches typed commands and<br />queries to exactly one<br />handler and returns a typed<br />outcome. Coordinates writes<br />by state owner.</div>"]
         style 11 fill:#ffffff,stroke:#444444,color:#444444
@@ -488,7 +488,7 @@ graph LR
         style 15 fill:#ffffff,stroke:#444444,color:#444444
         22["<div style='font-weight: bold'>Desktop repositories</div><div style='font-size: 70%; margin-top: 0px'>[Component: LiteDB adapter]</div><div style='font-size: 80%; margin-top:10px'>Maps owned desktop state and<br />materialized catalog queries<br />to local LiteDB collections.<br />Runs atomic local writes.</div>"]
         style 22 fill:#ffffff,stroke:#444444,color:#444444
-        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Binds application state to<br />Avalonia views through<br />ViewModels and maps UI<br />commands to typed CQRS<br />requests.</div>"]
+        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Avalonia binds MVVM Toolkit<br />ViewModels, typed CQRS<br />commands, and system wait<br />cursor state for logically<br />blocked scopes.</div>"]
         style 8 fill:#ffffff,stroke:#444444,color:#444444
         9["<div style='font-weight: bold'>Avalonia dispatcher adapter</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies all<br />application-driven<br />presentation updates on<br />UIThread.</div>"]
         style 9 fill:#ffffff,stroke:#444444,color:#444444
@@ -532,13 +532,13 @@ graph LR
       subgraph 7 ["Desktop app"]
         style 7 fill:#ffffff,stroke:#444444,color:#444444
 
-        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies scoped revisions and<br />discards stale results for<br />pages, dialogs, and playback<br />sessions.</div>"]
+        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Guards owner scope and<br />revision, shares playback<br />state, and exposes logical<br />interaction blocking<br />independently of background<br />progress.</div>"]
         style 10 fill:#ffffff,stroke:#444444,color:#444444
         11["<div style='font-weight: bold'>CQRS and Unit of Work</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Dispatches typed commands and<br />queries to exactly one<br />handler and returns a typed<br />outcome. Coordinates writes<br />by state owner.</div>"]
         style 11 fill:#ffffff,stroke:#444444,color:#444444
         20["<div style='font-weight: bold'>Host library client</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Submits authenticated import<br />and tag commands, preserves<br />edit drafts, and observes<br />asynchronous job status.</div>"]
         style 20 fill:#ffffff,stroke:#444444,color:#444444
-        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Binds application state to<br />Avalonia views through<br />ViewModels and maps UI<br />commands to typed CQRS<br />requests.</div>"]
+        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Avalonia binds MVVM Toolkit<br />ViewModels, typed CQRS<br />commands, and system wait<br />cursor state for logically<br />blocked scopes.</div>"]
         style 8 fill:#ffffff,stroke:#444444,color:#444444
         9["<div style='font-weight: bold'>Avalonia dispatcher adapter</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies all<br />application-driven<br />presentation updates on<br />UIThread.</div>"]
         style 9 fill:#ffffff,stroke:#444444,color:#444444
@@ -575,7 +575,7 @@ graph LR
       subgraph 7 ["Desktop app"]
         style 7 fill:#ffffff,stroke:#444444,color:#444444
 
-        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies scoped revisions and<br />discards stale results for<br />pages, dialogs, and playback<br />sessions.</div>"]
+        10["<div style='font-weight: bold'>Presentation projection</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Guards owner scope and<br />revision, shares playback<br />state, and exposes logical<br />interaction blocking<br />independently of background<br />progress.</div>"]
         style 10 fill:#ffffff,stroke:#444444,color:#444444
         11["<div style='font-weight: bold'>CQRS and Unit of Work</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Dispatches typed commands and<br />queries to exactly one<br />handler and returns a typed<br />outcome. Coordinates writes<br />by state owner.</div>"]
         style 11 fill:#ffffff,stroke:#444444,color:#444444
@@ -583,7 +583,7 @@ graph LR
         style 16 fill:#ffffff,stroke:#444444,color:#444444
         17["<div style='font-weight: bold'>SoundFlow strategy</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Mixes decks, applies EQ, and<br />produces audio telemetry.</div>"]
         style 17 fill:#ffffff,stroke:#444444,color:#444444
-        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Binds application state to<br />Avalonia views through<br />ViewModels and maps UI<br />commands to typed CQRS<br />requests.</div>"]
+        8["<div style='font-weight: bold'>Presentation boundary</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Avalonia binds MVVM Toolkit<br />ViewModels, typed CQRS<br />commands, and system wait<br />cursor state for logically<br />blocked scopes.</div>"]
         style 8 fill:#ffffff,stroke:#444444,color:#444444
         9["<div style='font-weight: bold'>Avalonia dispatcher adapter</div><div style='font-size: 70%; margin-top: 0px'>[Component]</div><div style='font-size: 80%; margin-top:10px'>Applies all<br />application-driven<br />presentation updates on<br />UIThread.</div>"]
         style 9 fill:#ffffff,stroke:#444444,color:#444444

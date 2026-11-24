@@ -61,11 +61,13 @@ DISPATCHAcceptanceTests.Routing_MatchesContract (FR-DISPATCH-001#ac-routing): Ea
 DISPATCHAcceptanceTests.Update_MatchesContract (FR-DISPATCH-001#ac-update): A result does not change bound UI state until a dispatcher callback applies it; a stale result cannot replace a newer view.
 DISPATCHAcceptanceTests.Responsive_MatchesContract (FR-DISPATCH-001#ac-responsive): A long import does not block commands for UI navigation. Commands writing the same state do not expose partially applied changes.
 Run with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.
+Planned presentation verification (FR-DISPATCH-001#ac-wait-pointer): Hold startup with a controlled task, check the interaction-blocked state while waiting, and clear it on success, failure, or cancellation. A concurrent import or transfer leaves the logical cursor state clear. Reject inverted blocking and a stale completion that affects a new scope.
 
 
 ### TEST-DISPATCH-002
 
 Exercise an actual Avalonia window, dispatcher, focus, modal draft and bound collection changes with background callbacks.
+Planned pointer verification (FR-DISPATCH-001#ac-wait-pointer): Bind the owning Avalonia control to the system wait cursor while its action logically blocks interaction. Verify default cursor restoration and usable controls during independent background work on Windows and Linux.
 
 
 

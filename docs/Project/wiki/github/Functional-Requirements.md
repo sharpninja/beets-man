@@ -36,6 +36,7 @@ Scope: layer-1+
 - [ ] Each app action submits exactly one typed Unit of Work to its handler; real validation failures and cancellation produce a typed result.
 - [ ] A result does not change bound UI state until a dispatcher callback applies it; a stale result cannot replace a newer view.
 - [ ] A long import does not block commands for UI navigation. Commands writing the same state do not expose partially applied changes.
+- [ ] While a background operation makes its owning UI scope logically noninteractive, that scope displays the operating system wait pointer. Completion, failure, or cancellation clears the override. Background work that leaves the scope interactive does not request the wait pointer.
 
 ## FR-FILESYNC-001 Mirror media to PCs and Android
 

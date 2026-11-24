@@ -1,6 +1,6 @@
 # Beets Man v1 Stage 0
 
-This workspace contains the current requirements and design for Beets Man v1. The desktop application and library host are planned. Asset Review approval applies to the individual wireframe states under review.
+This workspace contains the current requirements and design for Beets Man v1. The first headless .NET projects define the typed application boundary and begin the desktop presentation implementation. The desktop executable and library host are planned. Asset Review approval applies to the individual wireframe states under review.
 
 - [QBrain requirements payload and proposed mappings](requirements-candidate.json)
 - [Structurizr workspace and architecture decisions](../architecture/README.md)
@@ -38,7 +38,7 @@ The stage remains open until branch-specific coverage is accepted, the proposed 
 
 ## Implementation gate sequence
 
-Start with [C4 and CQRS interfaces](../architecture/cqrs.md). Define ViewModels and UI commands against those contracts next. Implement screens last, using the approved Asset Review states for screen acceptance. The [code structure](../architecture/code-structure.md) assigns the corresponding project and state boundaries.
+Start with [C4 and CQRS interfaces](../architecture/cqrs.md). Define [ViewModels](../architecture/presentation.md) and [UI commands](../architecture/ui-commands.md) against those contracts next. Implement screens last, using the approved Asset Review states for screen acceptance. The [code structure](../architecture/code-structure.md) assigns the corresponding project and state boundaries.
 
 ### Application capability order
 

@@ -2,4 +2,6 @@ Architecture-Overview
 C4-Views
 Code-Structure
 CQRS-Interfaces
+ViewModels-and-Presentation
+UI-Command-Catalog
 LiteDB-Repositories

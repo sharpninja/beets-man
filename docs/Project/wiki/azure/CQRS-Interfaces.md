@@ -1,6 +1,6 @@
 # CQRS application interfaces
 
-These interfaces define the application boundary for `FR-DISPATCH-001` and `TR-DISPATCH-ARCH-001`. The [C4 workspace](workspace.dsl) shows the owners and dependencies. The next design stage maps ViewModels and UI commands to these contracts.
+These interfaces define the application boundary for `FR-DISPATCH-001` and `TR-DISPATCH-ARCH-001`. The [C4 workspace](workspace.dsl) shows the owners and dependencies. The [ViewModel contracts](presentation.md) and [UI command catalog](ui-commands.md) specify how those interfaces bind to desktop intents.
 
 ## Requests, handlers, and results
 
@@ -49,7 +49,7 @@ public abstract record Outcome<TResult>
 - Register exactly one handler per concrete request type and result type. Validate registration at composition time. Configuration and diagnostics can run with the bootstrap registrations before opening the normal stores and services.
 - The entry point creates a new correlation ID for each dispatch. Retried commands carry the original operation ID for the same intent. The host binds origin identity to the authenticated instance. Commands replacing durable state carry the relevant expected revision in the command payload.
 - Return typed validation, conflict, cancellation, and dependency outcomes. Validation codes remain stable for their callers. A durable commit or accepted job retains its receipt even if the caller cancels after that point. Check the recorded operation or job identity before retrying an uncertain external effect.
-- Queries read immutable snapshots within the relevant owner scope. Versioned query results include that owner's revision when needed. The presentation layer will separately track the current request and owner to reject stale or out-of-scope results. Route application-driven presentation updates through the Avalonia scheduler.
+- Queries read immutable snapshots within the relevant owner scope. Versioned query results include that owner's revision when needed. The presentation owner and request stamp govern projection into the current ViewModel. Route application-driven presentation updates through the Avalonia scheduler.
 
 ## Ownership, mutation, and recovery
 
@@ -72,7 +72,9 @@ The names and fields below specify application intents and results. The feature 
 | Playback | `GetPlaybackState` takes playback session ID and returns queue, active track, deck state, and capabilities. | `EnqueueTracks`, `Transport`, `Seek`, and `ChangePlaybackStrategy` take the session ID and return current playback state. Playback keeps its session identity through presentation changes. |
 | Extensions | `GetPluginState` returns local trust, active worker status, and validated contribution metadata. | `SetPluginTrust` and `SetPluginEnabled` take plugin ID and version, returning the updated local state. A contributed action enters the same dispatcher as an application action. |
 | Host library | `GetLibraryJob` takes a job ID and returns the current status, review choices, recovery state, or publication revision. | `StartImport` takes a completed upload ID. `ChooseImportAction` takes the job ID, choice and expected revision. Both return a job receipt. `EditTrackTags` targets a stable track ID and expected catalog revision. |
-| Device export | `GetDeviceExportPlan` returns ordered playlist entries, the resolved playlist format and paths, and distinct missing audio grouped by destination. | `StagePlaylistForDevice` takes playlist ID, device ID and profile revision. `PublishDeviceExport` takes a plan ID and expected plan revision and returns a publication receipt. |
+| Device export | `GetDeviceExportPlan` returns ordered playlist entries, the resolved playlist format and paths, and distinct missing audio grouped by destination. | `StagePlaylistForDevice` takes playlist ID, device ID, profile ID and revision, and the optional existing plan ID and revision. `PublishDeviceExport` takes a plan ID, expected plan revision and optional scoped approval, and returns `DeviceExportSubmission`. Its alternatives are `Published(ExportPublicationReceipt)` and `ConfirmationRequired(OwnedRemovalProposal)`. |
+
+The [UI command catalog](ui-commands.md) specifies how MVVM Toolkit commands dispatch these application requests and project the corresponding typed results. Shell handlers own process-local navigation state. Host and persistence boundaries retain the ownership defined above.
 
 ## Verification seams
 

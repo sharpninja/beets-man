@@ -12,6 +12,8 @@
   - [C4 views](C4-Views)
   - [Code structure](Code-Structure)
   - [CQRS interfaces](CQRS-Interfaces)
+  - [ViewModels and presentation](ViewModels-and-Presentation)
+  - [UI command catalog](UI-Command-Catalog)
   - [LiteDB repositories](LiteDB-Repositories)
 - Stage 0
   - [Stage 0 scope and status](Stage-Zero)

@@ -1,6 +1,6 @@
 # Stage 0 test specifications
 
-Candidate mapping and test specifications. See [Stage 0 status](../../stage-0/README.md) for QBrain and review evidence. No application tests have been executed. macOS is an authored-only validation lane.
+Candidate mapping and test specifications. See [Stage 0 status](../../stage-0/README.md) for QBrain and review evidence. The first isolated presentation gate exercises independent mock fixtures and deliberate negative controls. macOS is an authored-only validation lane.
 
 ## TEST-CONFIG-001 · Configure this desktop
 
@@ -24,6 +24,7 @@ Candidate mapping and test specifications. See [Stage 0 status](../../stage-0/RE
   - `DISPATCHAcceptanceTests.Routing_MatchesContract` (`FR-DISPATCH-001#ac-routing`): Each app action submits exactly one typed Unit of Work to its handler; real validation failures and cancellation produce a typed result.
   - `DISPATCHAcceptanceTests.Update_MatchesContract` (`FR-DISPATCH-001#ac-update`): A result does not change bound UI state until a dispatcher callback applies it; a stale result cannot replace a newer view.
   - `DISPATCHAcceptanceTests.Responsive_MatchesContract` (`FR-DISPATCH-001#ac-responsive`): A long import does not block commands for UI navigation. Commands writing the same state do not expose partially applied changes.
+  - Planned logical blocking test (`FR-DISPATCH-001#ac-wait-pointer`): Hold startup on a controlled operation, verify the owning scope requests the system wait pointer, and verify that completion, failure, cancellation, and owner replacement clear the override. Independent background work keeps the scope interactive.
 - Timing: await the typed outcome or run the queued dispatcher callback; use a controllable clock for time-dependent cases.
 - Negative control: replace the relevant fake response with an incorrect outcome and require this case's assertion to reject it.
 - Integration `TEST-DISPATCH-002`: Exercise an actual Avalonia window, dispatcher, focus, modal draft and bound collection changes with background callbacks. Clean up only case-owned files, workers, and shares.

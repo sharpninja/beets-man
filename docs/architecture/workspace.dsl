@@ -7,9 +7,9 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
         os = softwareSystem "Desktop OS" "Provides preferences paths, credential storage, hotkeys, windows, and audio output."
         app = softwareSystem "Beets Man" "Desktop music playback, library management, and peer synchronization." {
             desktop = container "Desktop app" "Local browsing, playback, configuration, and user actions." "Avalonia 12 and .NET 10" {
-                views = component "Presentation boundary" "Binds application state to Avalonia views through ViewModels and maps UI commands to typed CQRS requests."
+                views = component "Presentation boundary" "Avalonia binds MVVM Toolkit ViewModels, typed CQRS commands, and system wait cursor state for logically blocked scopes."
                 dispatcher = component "Avalonia dispatcher adapter" "Applies all application-driven presentation updates on UIThread."
-                projection = component "Presentation projection" "Applies scoped revisions and discards stale results for pages, dialogs, and playback sessions."
+                projection = component "Presentation projection" "Guards owner scope and revision, shares playback state, and exposes logical interaction blocking independently of background progress."
                 cqrs = component "CQRS and Unit of Work" "Dispatches typed commands and queries to exactly one handler and returns a typed outcome. Coordinates writes by state owner."
                 bootstrap = component "Desktop bootstrap" "Validates local configuration and resolves paths before opening desktop state. Reports initialization, repair, or ready state."
                 config = component "Local configuration and settings" "Loads appsettings.json and resolves preference precedence."

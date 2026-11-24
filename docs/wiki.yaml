@@ -79,6 +79,20 @@ documents:
     platforms:
       - github
       - azure
+  - id: architecture-presentation
+    title: ViewModels and presentation
+    source: docs/architecture/presentation.md
+    target: ViewModels-and-Presentation.md
+    platforms:
+      - github
+      - azure
+  - id: architecture-ui-commands
+    title: UI command catalog
+    source: docs/architecture/ui-commands.md
+    target: UI-Command-Catalog.md
+    platforms:
+      - github
+      - azure
   - id: architecture-persistence
     title: LiteDB repositories
     source: docs/architecture/persistence.md
@@ -150,6 +164,8 @@ navigation:
       - document: architecture-c4
       - document: architecture-code
       - document: architecture-cqrs
+      - document: architecture-presentation
+      - document: architecture-ui-commands
       - document: architecture-persistence
   - title: Stage 0
     path: Stage-Zero

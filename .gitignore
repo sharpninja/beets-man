@@ -1,3 +1,7 @@
 AGENTS-README-FIRST.yaml
 .mcpServer/
 cache/
+**/bin/
+**/obj/
+.nuke/temp/
+TestResults/

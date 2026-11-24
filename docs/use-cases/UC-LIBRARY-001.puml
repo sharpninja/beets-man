@@ -1,0 +1,8 @@
+@startuml UC-LIBRARY-001
+left to right direction
+actor "Listener" as Primary
+rectangle "Beets Man" {
+    usecase "UC-LIBRARY-001\nBrowse or search the catalog" as Goal
+}
+Primary -- Goal
+@enduml

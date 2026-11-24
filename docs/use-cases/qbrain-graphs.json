@@ -1,0 +1,506 @@
+[
+  {
+    "id": "UC-CONFIG-001",
+    "title": "Configure this desktop",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Desktop operator",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Configure this desktop",
+          "x": 390,
+          "y": 148
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "UC-DISPATCH-001",
+    "title": "Execute a desktop action",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Desktop operator",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Execute a desktop action",
+          "x": 390,
+          "y": 148
+        },
+        {
+          "id": "secondary",
+          "type": "actor",
+          "label": "Plugin worker",
+          "x": 800,
+          "y": 138
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        },
+        {
+          "id": "secondary-goal",
+          "type": "association",
+          "source": "secondary",
+          "target": "goal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "UC-LIBRARY-001",
+    "title": "Browse the music catalog",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Listener",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Browse the music catalog",
+          "x": 390,
+          "y": 148
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "UC-PLAYER-001",
+    "title": "Play and mix music",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Listener",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Play and mix music",
+          "x": 390,
+          "y": 148
+        },
+        {
+          "id": "secondary",
+          "type": "actor",
+          "label": "Audio output",
+          "x": 800,
+          "y": 138
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        },
+        {
+          "id": "secondary-goal",
+          "type": "association",
+          "source": "secondary",
+          "target": "goal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "UC-CLI-001",
+    "title": "Use an external playback strategy",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Desktop operator",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Use an external playback strategy",
+          "x": 390,
+          "y": 148
+        },
+        {
+          "id": "secondary",
+          "type": "actor",
+          "label": "Playback CLI",
+          "x": 800,
+          "y": 138
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        },
+        {
+          "id": "secondary-goal",
+          "type": "association",
+          "source": "secondary",
+          "target": "goal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "UC-PLUGINS-001",
+    "title": "Install and run extensions",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Desktop operator",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Install and run extensions",
+          "x": 390,
+          "y": 148
+        },
+        {
+          "id": "secondary",
+          "type": "actor",
+          "label": "Plugin worker",
+          "x": 800,
+          "y": 138
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        },
+        {
+          "id": "secondary-goal",
+          "type": "association",
+          "source": "secondary",
+          "target": "goal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "UC-SETTINGS-001",
+    "title": "Set shared and local preferences",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Desktop operator",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Set shared and local preferences",
+          "x": 390,
+          "y": 148
+        },
+        {
+          "id": "secondary",
+          "type": "actor",
+          "label": "Desktop OS",
+          "x": 800,
+          "y": 138
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        },
+        {
+          "id": "secondary-goal",
+          "type": "association",
+          "source": "secondary",
+          "target": "goal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "UC-BEETS-001",
+    "title": "Manage the host music library",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Library operator",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Manage the host music library",
+          "x": 390,
+          "y": 148
+        },
+        {
+          "id": "secondary",
+          "type": "actor",
+          "label": "beets",
+          "x": 800,
+          "y": 138
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        },
+        {
+          "id": "secondary-goal",
+          "type": "association",
+          "source": "secondary",
+          "target": "goal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "UC-RECORDS-001",
+    "title": "Sync catalog, listening records and defaults",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Registered desktop operator",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Sync catalog, listening records and defaults",
+          "x": 390,
+          "y": 148
+        },
+        {
+          "id": "secondary",
+          "type": "actor",
+          "label": "Registered peer",
+          "x": 800,
+          "y": 138
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        },
+        {
+          "id": "secondary-goal",
+          "type": "association",
+          "source": "secondary",
+          "target": "goal"
+        }
+      ]
+    }
+  },
+  {
+    "id": "UC-FILESYNC-001",
+    "title": "Mirror media to PCs and Android",
+    "graph": {
+      "schemaVersion": 1,
+      "kind": "uml-usecase",
+      "systemBoundary": {
+        "id": "beets-man",
+        "label": "Beets Man",
+        "x": 190,
+        "y": 45,
+        "width": 560,
+        "height": 225
+      },
+      "nodes": [
+        {
+          "id": "primary",
+          "type": "actor",
+          "label": "Library operator",
+          "x": 44,
+          "y": 138
+        },
+        {
+          "id": "goal",
+          "type": "usecase",
+          "label": "Mirror media to PCs and Android",
+          "x": 390,
+          "y": 148
+        },
+        {
+          "id": "secondary",
+          "type": "actor",
+          "label": "Syncthing-Fork",
+          "x": 800,
+          "y": 138
+        }
+      ],
+      "edges": [
+        {
+          "id": "primary-goal",
+          "type": "association",
+          "source": "primary",
+          "target": "goal"
+        },
+        {
+          "id": "secondary-goal",
+          "type": "association",
+          "source": "secondary",
+          "target": "goal"
+        }
+      ]
+    }
+  }
+]

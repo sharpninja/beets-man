@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR39" data-state-id="SCR39.S0">
+  <title id="title">Edit Tags</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/dialogs.svg#tracks-backdrop" />
+    <rect x="0" y="0" width="1120" height="690" fill="rgba(19,33,27,0.57)" stroke="none" rx="0" />
+    <g transform="translate(220 83)" role="group" aria-label="Edit Tags">
+      <rect x="0" y="0" width="680" height="524" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Edit Tags</text>
+      <text x="656" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Harbor Lights · Editing catalog revision 184.</text>
+      <line x1="0" y1="76" x2="680" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <text x="24" y="105" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Track title</text>
+      <rect x="24" y="115" width="632" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="138" font-size="13" fill="#202724" text-anchor="start">Harbor Lights</text>
+      <text x="24" y="174" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Artist</text>
+      <rect x="24" y="184" width="306" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="207" font-size="13" fill="#202724" text-anchor="start">Lena Vale</text>
+      <text x="350" y="174" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Album artist</text>
+      <rect x="350" y="184" width="306" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="361" y="207" font-size="13" fill="#202724" text-anchor="start">Lena Vale</text>
+      <text x="24" y="243" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Album</text>
+      <rect x="24" y="253" width="416" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="276" font-size="13" fill="#202724" text-anchor="start">Northern Lines</text>
+      <text x="460" y="243" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Year</text>
+      <rect x="460" y="253" width="196" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="471" y="276" font-size="13" fill="#202724" text-anchor="start">2023</text>
+      <text x="24" y="312" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Disc</text>
+      <rect x="24" y="322" width="154" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="345" font-size="13" fill="#202724" text-anchor="start">1</text>
+      <text x="195" y="312" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Track</text>
+      <rect x="195" y="322" width="154" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="206" y="345" font-size="13" fill="#202724" text-anchor="start">1</text>
+      <text x="366" y="312" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Genre</text>
+      <rect x="366" y="322" width="290" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="377" y="345" font-size="13" fill="#202724" text-anchor="start">Ambient</text>
+      <rect x="24" y="381" width="632" height="58" rx="5" fill="#e0ede4" />
+      <rect x="24" y="381" width="3" height="58" rx="1" fill="#235943" />
+      <text x="37" y="401" font-size="13" fill="#235943" text-anchor="start" font-weight="700">Draft ready to save</text>
+      <text x="37" y="421" font-size="12" fill="#235943" text-anchor="start">Save checks that revision 184 is still current on the host.</text>
+      <line x1="0" y1="458" x2="680" y2="458" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="574" y="473" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="615.0" y="496.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR39.C01">Save</text>
+      <rect x="482" y="473" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="523.0" y="496.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR39.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

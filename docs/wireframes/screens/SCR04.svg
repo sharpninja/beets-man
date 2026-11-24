@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR04" data-state-id="SCR04.S0">
+  <title id="title">Action Error</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/dialogs.svg#playlist-backdrop" />
+    <rect x="0" y="0" width="1120" height="690" fill="rgba(19,33,27,0.57)" stroke="none" rx="0" />
+    <g transform="translate(295 174)" role="group" aria-label="Action Error">
+      <rect x="0" y="0" width="530" height="342" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Action Error</text>
+      <text x="506" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <line x1="0" y1="57" x2="530" y2="57" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="78" width="482" height="62" rx="5" fill="#f8e9e7" />
+      <rect x="24" y="78" width="3" height="62" rx="1" fill="#8e3431" />
+      <text x="37" y="98" font-size="13" fill="#8e3431" text-anchor="start" font-weight="700">Playlist could not be saved</text>
+      <text x="37" y="118" font-size="12" fill="#8e3431" text-anchor="start">A playlist name is required.</text>
+      <text x="24" y="176" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Operation</text>
+      <text x="171" y="176" font-size="14" fill="#202724" text-anchor="start">Save playlist</text>
+      <text x="24" y="213" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Result</text>
+      <text x="171" y="213" font-size="14" fill="#202724" text-anchor="start">Validation failed</text>
+      <text x="24" y="250" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Correlation ID</text>
+      <text x="171" y="250" font-size="14" fill="#202724" text-anchor="start">save-2a9c</text>
+      <line x1="0" y1="276" x2="530" y2="276" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="424" y="291" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="465.0" y="314.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR04.C02">Retry</text>
+      <rect x="331" y="291" width="83" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="372.5" y="314.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR04.C01">Dismiss</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,34 @@
+@startuml
+left to right direction
+actor "Desktop operator" as operator
+actor "Listener" as listener
+actor "Library operator" as librarian
+actor "Syncthing-Fork" as phone
+actor "Registered peer" as peer
+actor "beets" as beets
+rectangle "Beets Man" {
+    usecase "UC-CONFIG-001\nConfigure and repair this desktop" as U1
+    usecase "UC-DISPATCH-001\nIssue a desktop action" as U2
+    usecase "UC-LIBRARY-001\nBrowse or search the catalog" as U3
+    usecase "UC-PLAYER-001\nPlay, mix, and visualize music" as U4
+    usecase "UC-CLI-001\nConfigure external playback" as U5
+    usecase "UC-PLUGINS-001\nInstall and run extensions" as U6
+    usecase "UC-SETTINGS-001\nSet and inherit preferences" as U7
+    usecase "UC-BEETS-001\nManage the host library" as U8
+    usecase "UC-RECORDS-001\nSync catalog and listening records" as U9
+    usecase "UC-FILESYNC-001\nMirror media and open Sync on arrival" as U10
+}
+operator -- U1
+operator -- U2
+listener -- U3
+listener -- U4
+operator -- U5
+operator -- U6
+operator -- U7
+librarian -- U8
+operator -- U9
+librarian -- U10
+beets -- U8
+peer -- U9
+phone -- U10
+@enduml

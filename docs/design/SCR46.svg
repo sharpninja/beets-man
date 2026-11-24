@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR46" data-state-id="SCR46.S0">
+  <title id="title">Resolve Offline Edit</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="#f4f5f2" />
+    <rect x="0" y="0" width="1120" height="65" rx="0" fill="#1e312a" />
+    <circle cx="35" cy="32" r="13" fill="#9ec9ab" />
+    <circle cx="35" cy="32" r="5" fill="#1e312a" />
+    <text x="58" y="39" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <text x="236" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Library</text>
+    <text x="357" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Now Playing</text>
+    <rect x="502" y="17" width="59" height="32" rx="5" fill="#365447" />
+    <text x="514" y="38" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Sync</text>
+    <text x="609" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Settings</text>
+    <circle cx="948" cy="32" r="4" fill="#a9dabc" />
+    <text x="960" y="37" font-size="12" fill="#dbe7df" text-anchor="start">Studio desktop</text>
+    <rect x="0" y="65" width="1120" height="49" rx="0" fill="#ffffff" />
+    <line x1="0" y1="114" x2="1120" y2="114" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">Overview</text>
+    <text x="127" y="95" font-size="14" fill="#4c5953" text-anchor="start">PC Mirrors</text>
+    <text x="226" y="95" font-size="14" fill="#4c5953" text-anchor="start">Android Devices</text>
+    <text x="367" y="95" font-size="14" fill="#4c5953" text-anchor="start">Instances</text>
+    <text x="462" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Records</text>
+    <rect x="462" y="111" width="57" height="3" rx="1" fill="#235943" />
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Record sync</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Catalog and listening changes from studio-host</text>
+    <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+    <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="674" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="164" y="674" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale</text>
+    <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="539.0" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Previous</text>
+    <g transform="translate(531 660) scale(0.666667)" data-button-icon="previous" role="img" aria-label="Previous">
+      <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" stroke="#235943" />
+    <text x="618.0" y="673.0" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Ⅱ</text>
+    <g transform="translate(610 660) scale(0.666667)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="689.5" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Next</text>
+    <g transform="translate(681.5 660) scale(0.666667)" data-button-icon="next" role="img" aria-label="Next">
+      <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="102" aria-valuetext="1:42 of 4:26" data-seek-slider="track">
+      <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">1:42</text>
+      <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+      <rect x="780" y="665" width="101.233" height="6" rx="3" fill="#235943" data-seek-part="played" />
+      <circle cx="881.233" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+      <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+    </g>
+    <rect x="1002" y="138" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="1043.0" y="161.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Retry</text>
+    <g transform="translate(1034 147.5) scale(0.75)" data-button-icon="refresh" role="img" aria-label="Retry">
+      <path d="M20 10a8 8 0 1 0 0 6M20 4v6h-6" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="910" y="138" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="951.0" y="161.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Refresh</text>
+    <g transform="translate(942 147.5) scale(0.75)" data-button-icon="refresh" role="img" aria-label="Refresh">
+      <path d="M20 10a8 8 0 1 0 0 6M20 4v6h-6" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="36" y="210" width="340" height="119" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="50" y="235" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Committed cursor</text>
+    <text x="50" y="272" font-size="23" fill="#202724" text-anchor="start" font-weight="700">r184</text>
+    <text x="50" y="304" font-size="12" fill="#4c5953" text-anchor="start">Host is at r189</text>
+    <rect x="390" y="210" width="340" height="119" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="404" y="235" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Pending edits</text>
+    <text x="404" y="272" font-size="23" fill="#202724" text-anchor="start" font-weight="700">2</text>
+    <text x="404" y="304" font-size="12" fill="#4c5953" text-anchor="start">1 playlist · 1 favorite</text>
+    <rect x="744" y="210" width="340" height="119" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="758" y="235" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Delivery acknowledgment</text>
+    <text x="758" y="272" font-size="23" fill="#202724" text-anchor="start" font-weight="700">r184</text>
+    <text x="758" y="304" font-size="12" fill="#4c5953" text-anchor="start">Acknowledged by this desktop</text>
+    <rect x="36" y="356" width="1048" height="206" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <rect x="37" y="357" width="1046" height="32" rx="4" fill="#e9eeea" />
+    <text x="48" y="378" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Records</text>
+    <text x="278" y="378" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Applied</text>
+    <text x="488" y="378" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Latest known</text>
+    <text x="708" y="378" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Delivery</text>
+    <rect x="37" y="390" width="1046" height="42" rx="0" fill="#e0ede4" />
+    <rect x="37" y="390" width="3" height="42" rx="0" fill="#235943" />
+    <line x1="37" y1="390" x2="1083" y2="390" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="415.5" font-size="13" fill="#202724" text-anchor="start">Catalog</text>
+    <text x="278" y="415.5" font-size="13" fill="#202724" text-anchor="start">r184</text>
+    <text x="488" y="415.5" font-size="13" fill="#202724" text-anchor="start">r189</text>
+    <rect x="708" y="399.5" width="103" height="24" rx="4" fill="#e9eeea" />
+    <text x="717" y="415.5" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Pulling changes</text>
+    <rect x="37" y="433" width="1046" height="42" rx="0" fill="#fafbf9" />
+    <line x1="37" y1="433" x2="1083" y2="433" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="458.5" font-size="13" fill="#202724" text-anchor="start">Playlists</text>
+    <text x="278" y="458.5" font-size="13" fill="#202724" text-anchor="start">r184</text>
+    <text x="488" y="458.5" font-size="13" fill="#202724" text-anchor="start">r186</text>
+    <rect x="708" y="442.5" width="122" height="24" rx="4" fill="#fbeddc" />
+    <text x="717" y="458.5" font-size="11" fill="#704621" text-anchor="start" font-weight="700">1 local edit pending</text>
+    <line x1="37" y1="476" x2="1083" y2="476" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="501.5" font-size="13" fill="#202724" text-anchor="start">Favorites</text>
+    <text x="278" y="501.5" font-size="13" fill="#202724" text-anchor="start">r182</text>
+    <text x="488" y="501.5" font-size="13" fill="#202724" text-anchor="start">r185</text>
+    <rect x="708" y="485.5" width="122" height="24" rx="4" fill="#fbeddc" />
+    <text x="717" y="501.5" font-size="11" fill="#704621" text-anchor="start" font-weight="700">1 local edit pending</text>
+    <rect x="37" y="519" width="1046" height="42" rx="0" fill="#fafbf9" />
+    <line x1="37" y1="519" x2="1083" y2="519" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="544.5" font-size="13" fill="#202724" text-anchor="start">History</text>
+    <text x="278" y="544.5" font-size="13" fill="#202724" text-anchor="start">r184</text>
+    <text x="488" y="544.5" font-size="13" fill="#202724" text-anchor="start">r184</text>
+    <rect x="708" y="528.5" width="58" height="24" rx="4" fill="#e0ede4" />
+    <text x="717" y="544.5" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Current</text>
+    <rect x="36" y="594" width="322" height="7" rx="3" fill="#e9eeea" />
+    <rect x="36" y="594" width="199.64" height="7" rx="3" fill="#235943" />
+    <text x="373" y="603" font-size="12" fill="#4c5953" text-anchor="start">Receiving page 3 of 5</text>
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="rgba(19,33,27,0.57)" />
+    <g transform="translate(130 75)" role="group" aria-label="Resolve Offline Edit">
+      <rect x="0" y="0" width="860" height="540" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Resolve Offline Edit</text>
+      <text x="836" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Night Drive · Compare the host playlist with your offline draft.</text>
+      <line x1="0" y1="76" x2="860" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="98" width="396" height="248" rx="6" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="38" y="130" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Host version</text>
+      <rect x="38" y="144" width="85" height="24" rx="4" fill="#e9eeea" />
+      <text x="47" y="160" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Revision 189</text>
+      <text x="46" y="204" font-size="12" fill="#4c5953" text-anchor="start">1</text>
+      <text x="83" y="204" font-size="14" fill="#202724" text-anchor="start">Harbor Lights</text>
+      <rect x="36" y="226" width="372" height="35" rx="4" fill="#e9eeea" />
+      <text x="46" y="247" font-size="12" fill="#4c5953" text-anchor="start">2</text>
+      <text x="83" y="247" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Ridge Line</text>
+      <text x="46" y="290" font-size="12" fill="#4c5953" text-anchor="start">3</text>
+      <text x="83" y="290" font-size="14" fill="#202724" text-anchor="start">Low Current</text>
+      <rect x="440" y="98" width="396" height="248" rx="6" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="454" y="130" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Local draft</text>
+      <rect x="454" y="144" width="134" height="24" rx="4" fill="#fbeddc" />
+      <text x="463" y="160" font-size="11" fill="#704621" text-anchor="start" font-weight="700">Based on revision 184</text>
+      <text x="462" y="204" font-size="12" fill="#4c5953" text-anchor="start">1</text>
+      <text x="499" y="204" font-size="14" fill="#202724" text-anchor="start">Harbor Lights</text>
+      <rect x="452" y="226" width="372" height="35" rx="4" fill="#fbeddc" />
+      <text x="462" y="247" font-size="12" fill="#4c5953" text-anchor="start">2</text>
+      <text x="499" y="247" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Night Crossing</text>
+      <text x="462" y="290" font-size="12" fill="#4c5953" text-anchor="start">3</text>
+      <text x="499" y="290" font-size="14" fill="#202724" text-anchor="start">Ridge Line</text>
+      <rect x="24" y="370" width="812" height="74" rx="5" fill="#e0ede4" />
+      <rect x="24" y="370" width="3" height="74" rx="1" fill="#235943" />
+      <text x="37" y="390" font-size="13" fill="#235943" text-anchor="start" font-weight="700">Your draft is preserved</text>
+      <text x="37" y="410" font-size="12" fill="#235943" text-anchor="start">Keep the host version or submit the local track order against revision 189.</text>
+      <line x1="0" y1="474" x2="860" y2="474" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="719" y="489" width="117" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="777.5" y="512.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR46.C02" data-button-label="icon-only" visibility="hidden">Reapply local</text>
+      <g transform="translate(768.5 498.5) scale(0.75)" data-button-icon="restore" role="img" aria-label="Reapply local">
+        <path d="M4 10a8 8 0 1 1 1 7m-1-13v6h6m2-3v5l3 2" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <rect x="614" y="489" width="95" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="661.5" y="512.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR46.C01" data-button-label="icon-only" visibility="hidden">Keep host</text>
+      <g transform="translate(652.5 498.5) scale(0.75)" data-button-icon="database" role="img" aria-label="Keep host">
+        <path d="M4 6c0-2 3.6-3 8-3s8 1 8 3-3.6 3-8 3-8-1-8-3zM4 6v12c0 2 3.6 3 8 3s8-1 8-3V6M4 12c0 2 3.6 3 8 3s8-1 8-3" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+    </g>
+  </g>
+</svg>

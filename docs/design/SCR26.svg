@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR26" data-state-id="SCR26.S0">
+  <title id="title">Extension Panel</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="#f4f5f2" />
+    <rect x="0" y="0" width="1120" height="65" rx="0" fill="#1e312a" />
+    <circle cx="35" cy="32" r="13" fill="#9ec9ab" />
+    <circle cx="35" cy="32" r="5" fill="#1e312a" />
+    <text x="58" y="39" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <text x="236" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Library</text>
+    <rect x="345" y="17" width="110" height="32" rx="5" fill="#365447" />
+    <text x="357" y="38" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Now Playing</text>
+    <text x="514" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Sync</text>
+    <text x="609" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Settings</text>
+    <circle cx="948" cy="32" r="4" fill="#a9dabc" />
+    <text x="960" y="37" font-size="12" fill="#dbe7df" text-anchor="start">Studio desktop</text>
+    <rect x="0" y="65" width="1120" height="49" rx="0" fill="#ffffff" />
+    <line x1="0" y1="114" x2="1120" y2="114" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">Now Playing</text>
+    <text x="149" y="95" font-size="14" fill="#4c5953" text-anchor="start">Queue</text>
+    <text x="222" y="95" font-size="14" fill="#4c5953" text-anchor="start">Mixer</text>
+    <text x="287" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Extensions</text>
+    <rect x="287" y="111" width="77" height="3" rx="1" fill="#235943" />
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Extensions</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Contributions from locally trusted plugins</text>
+    <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+    <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="674" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="164" y="674" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale</text>
+    <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="539.0" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Previous</text>
+    <g transform="translate(531 660) scale(0.666667)" data-button-icon="previous" role="img" aria-label="Previous">
+      <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" stroke="#235943" />
+    <text x="618.0" y="673.0" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Ⅱ</text>
+    <g transform="translate(610 660) scale(0.666667)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="689.5" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Next</text>
+    <g transform="translate(681.5 660) scale(0.666667)" data-button-icon="next" role="img" aria-label="Next">
+      <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="102" aria-valuetext="1:42 of 4:26" data-seek-slider="track">
+      <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">1:42</text>
+      <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+      <rect x="780" y="665" width="101.233" height="6" rx="3" fill="#235943" data-seek-part="played" />
+      <circle cx="881.233" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+      <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+    </g>
+    <rect x="36" y="207" width="286" height="394" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <rect x="47" y="220" width="264" height="62" rx="5" fill="#e0ede4" />
+    <text x="59" y="246" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Listening Notes</text>
+    <text x="59" y="266" font-size="12" fill="#4c5953" text-anchor="start">Enabled</text>
+    <rect x="47" y="295" width="264" height="62" rx="5" fill="#f4f5f2" />
+    <text x="59" y="321" font-size="14" fill="#202724" text-anchor="start">Studio Spectrum</text>
+    <text x="59" y="341" font-size="12" fill="#4c5953" text-anchor="start">Visualization</text>
+    <rect x="343" y="207" width="741" height="394" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="362" y="244" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Listening Notes</text>
+    <rect x="362" y="258" width="114" height="24" rx="4" fill="#e0ede4" />
+    <text x="371" y="274" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Worker connected</text>
+    <rect x="938" y="225" width="127" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="1001.5" y="248.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR26.C02" data-button-label="icon-only" visibility="hidden">Close panel</text>
+    <g transform="translate(992.5 234.5) scale(0.75)" data-button-icon="close" role="img" aria-label="Close panel">
+      <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <line x1="362" y1="303" x2="1064" y2="303" stroke="#d4dbd5" stroke-width="1" />
+    <text x="362" y="338" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Current track</text>
+    <text x="362" y="366" font-size="18" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights · Lena Vale</text>
+    <text x="362" y="407" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Listening note</text>
+    <rect x="362" y="417" width="703" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="373" y="440" font-size="13" fill="#202724" text-anchor="start">Check the mix at 1:42</text>
+    <rect x="362" y="485" width="144" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="434.0" y="508.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR26.C01" data-button-label="icon-only" visibility="hidden">Run command</text>
+    <g transform="translate(425 494.5) scale(0.75)" data-button-icon="play" role="img" aria-label="Run command">
+      <path d="m7 4 12 8-12 8z" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <text x="519" y="509" font-size="12" fill="#4c5953" text-anchor="start">Save note to listening history</text>
+  </g>
+</svg>

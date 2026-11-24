@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR28" data-state-id="SCR28.S0">
+  <title id="title">Appearance</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/app-chrome.svg#settings-header" />
+    <use href="../shared/app-chrome.svg#secondary-navigation-background" />
+    <use href="../shared/navigation.svg#settings-appearance" />
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Appearance</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Customize this desktop’s presentation</text>
+    <use href="../shared/transport.svg#desktop-transport" />
+    <rect x="36" y="207" width="573" height="362" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="54" y="248" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Theme</text>
+    <rect x="54" y="258" width="537" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="65" y="281" font-size="13" fill="#202724" text-anchor="start">Follow system</text>
+    <path d="M569 273l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="54" y="320" font-size="12" fill="#4c5953" text-anchor="start">Source · Shared default</text>
+    <text x="54" y="359" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Startup presentation</text>
+    <rect x="54" y="369" width="537" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="65" y="392" font-size="13" fill="#202724" text-anchor="start">Normal</text>
+    <path d="M569 384l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="54" y="454" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Default visualization</text>
+    <rect x="54" y="464" width="537" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="65" y="487" font-size="13" fill="#202724" text-anchor="start">Spectrum</text>
+    <path d="M569 479l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="54" y="533" font-size="12" fill="#4c5953" text-anchor="start">Source · Built-in default</text>
+    <rect x="630" y="207" width="454" height="362" rx="6" fill="#e9eeea" />
+    <text x="648" y="239" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Normal preview</text>
+    <rect x="652" y="267" width="409" height="202" rx="7" fill="#ffffff" stroke="#d4dbd5" />
+    <rect x="653" y="268" width="407" height="36" rx="5" fill="#1e312a" />
+    <text x="666" y="290" font-size="12" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <rect x="671" y="322" width="88" height="88" rx="4" fill="#cbd9cd" />
+    <circle cx="730.84" cy="346.64" r="8.8" fill="#edf2df" />
+    <path d="M678.04 389.76 L705.32 360.72 L720.28 375.68 L732.60 361.60 L751.08 389.76 Z" fill="#587363" stroke="#587363" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="681.56" y1="397.68" x2="748.44" y2="397.68" stroke="#edf2df" stroke-width="2" />
+    <text x="774" y="349" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="774" y="370" font-size="11" fill="#4c5953" text-anchor="start">Lena Vale</text>
+    <rect x="774" y="391" width="267" height="4" rx="2" fill="#e9eeea" />
+    <rect x="774" y="391" width="104.13000000000001" height="4" rx="2" fill="#235943" />
+    <circle cx="878.13" cy="393" r="6" fill="#235943" />
+    <rect x="774" y="411" width="82" height="29" rx="5" fill="#235943" stroke="#235943" />
+    <text x="815.0" y="430.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700">Pause</text>
+    <text x="650" y="510" font-size="12" fill="#4c5953" text-anchor="start">Window presentation is applied at next launch.</text>
+    <rect x="1002" y="586" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="1043.0" y="609.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR28.C01">Apply</text>
+    <rect x="910" y="586" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="951.0" y="609.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR28.C02">Inherit</text>
+  </g>
+</svg>

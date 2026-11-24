@@ -1,0 +1,10 @@
+@startuml UC-PLUGINS-001
+left to right direction
+actor "Desktop operator" as Primary
+actor "Plugin worker" as Secondary
+rectangle "Beets Man" {
+    usecase "UC-PLUGINS-001\nInstall and run extensions" as Goal
+}
+Primary -- Goal
+Secondary -- Goal
+@enduml

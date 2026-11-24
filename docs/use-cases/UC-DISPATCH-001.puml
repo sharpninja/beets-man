@@ -1,0 +1,10 @@
+@startuml UC-DISPATCH-001
+left to right direction
+actor "Desktop operator" as Primary
+actor "Plugin worker" as Secondary
+rectangle "Beets Man" {
+    usecase "UC-DISPATCH-001\nIssue a desktop action" as Goal
+}
+Primary -- Goal
+Secondary -- Goal
+@enduml

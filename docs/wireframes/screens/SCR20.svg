@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR20" data-state-id="SCR20.S0">
+  <title id="title">CLI Profile</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR19.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(137 68)" role="group" aria-label="CLI Profile">
+      <rect x="0" y="0" width="846" height="554" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">CLI Profile</text>
+      <text x="822" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Studio CLI · Session mode</text>
+      <line x1="0" y1="76" x2="846" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <text x="24" y="107" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Executable</text>
+      <rect x="24" y="117" width="472" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="140" font-size="13" fill="#202724" text-anchor="start">/usr/local/bin/studio-player</text>
+      <text x="513" y="107" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Invocation style</text>
+      <rect x="513" y="117" width="309" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="524" y="140" font-size="13" fill="#202724" text-anchor="start">Stdin/stdout session</text>
+      <path d="M800 132l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="24" y="177" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Argument tokens</text>
+      <rect x="24" y="187" width="472" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="210" font-size="13" fill="#202724" text-anchor="start">[ "--session", "--json" ]</text>
+      <text x="513" y="177" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Reply timeout</text>
+      <rect x="513" y="187" width="309" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="524" y="210" font-size="13" fill="#202724" text-anchor="start">2,000 ms</text>
+      <rect x="24" y="242" width="798" height="154" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <rect x="25" y="243" width="796" height="32" rx="4" fill="#e9eeea" />
+      <text x="36" y="264" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Action</text>
+      <text x="186" y="264" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Request kind</text>
+      <text x="425" y="264" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Status field</text>
+      <text x="679" y="264" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Capability</text>
+      <line x1="25" y1="276" x2="821" y2="276" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="300.0" font-size="13" fill="#202724" text-anchor="start">Play</text>
+      <text x="186" y="300.0" font-size="13" fill="#202724" text-anchor="start">play</text>
+      <text x="425" y="300.0" font-size="13" fill="#202724" text-anchor="start">state = playing</text>
+      <rect x="679" y="284.0" width="66" height="24" rx="4" fill="#e0ede4" />
+      <text x="688" y="300.0" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Available</text>
+      <rect x="25" y="316" width="796" height="39" rx="0" fill="#fafbf9" />
+      <line x1="25" y1="316" x2="821" y2="316" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="340.0" font-size="13" fill="#202724" text-anchor="start">Pause</text>
+      <text x="186" y="340.0" font-size="13" fill="#202724" text-anchor="start">pause</text>
+      <text x="425" y="340.0" font-size="13" fill="#202724" text-anchor="start">state = paused</text>
+      <rect x="679" y="324.0" width="66" height="24" rx="4" fill="#e0ede4" />
+      <text x="688" y="340.0" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Available</text>
+      <line x1="25" y1="356" x2="821" y2="356" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="380.0" font-size="13" fill="#202724" text-anchor="start">Master EQ</text>
+      <text x="186" y="380.0" font-size="13" fill="#202724" text-anchor="start">—</text>
+      <text x="425" y="380.0" font-size="13" fill="#202724" text-anchor="start">—</text>
+      <rect x="679" y="364.0" width="79" height="24" rx="4" fill="#e9eeea" />
+      <text x="688" y="380.0" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Unavailable</text>
+      <rect x="24" y="412" width="798" height="54" rx="5" fill="#e0ede4" />
+      <rect x="24" y="412" width="3" height="54" rx="1" fill="#235943" />
+      <text x="37" y="432" font-size="13" fill="#235943" text-anchor="start" font-weight="700">Profile validated</text>
+      <text x="37" y="452" font-size="12" fill="#235943" text-anchor="start">Play and Pause are mapped. Master EQ is disabled for this engine.</text>
+      <line x1="0" y1="488" x2="846" y2="488" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="740" y="503" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="781.0" y="526.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR20.C02">Save</text>
+      <rect x="648" y="503" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="689.0" y="526.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR20.C01">Validate</text>
+    </g>
+  </g>
+</svg>

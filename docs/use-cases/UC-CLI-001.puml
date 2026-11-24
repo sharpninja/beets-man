@@ -1,0 +1,10 @@
+@startuml UC-CLI-001
+left to right direction
+actor "Desktop operator" as Primary
+actor "Playback CLI" as Secondary
+rectangle "Beets Man" {
+    usecase "UC-CLI-001\nConfigure external playback" as Goal
+}
+Primary -- Goal
+Secondary -- Goal
+@enduml

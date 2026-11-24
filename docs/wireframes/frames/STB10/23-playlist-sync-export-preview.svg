@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR53" data-state-id="SCR53.STB10-23" data-storyboard-id="STB10" data-step-id="STB10-23">
+  <title id="title">Export Preview · Night Drive in the Musicolette profile, with only missing audio queued</title>
+  <g font-family="Liberation Sans,sans-serif" fill="#202724">
+    <use href="../../shared/playlist-sync.svg#staged" />
+    <use href="../../shared/dialogs.svg#scrim" />
+    <g transform="translate(88 47)">
+      <rect width="944" height="596" rx="10" fill="#fff" stroke="#d4dbd5" />
+      <text x="24" y="39" font-weight="700" font-size="24">Export Preview</text>
+      <text x="24" y="63" font-size="13" fill="#4c5953">Pixel 6 · Musicolette · Relative UTF-8 M3U8</text>
+      <line x1="0" y1="78" x2="944" y2="78" stroke="#d4dbd5" />
+      <rect x="24" y="98" width="896" height="42" rx="5" fill="#e0ede4" />
+      <text x="38" y="124" font-size="13" font-weight="700" fill="#235943">3 files to sync: 1 playlist + 2 audio files</text>
+      <text x="24" y="170" font-size="14" font-weight="700">playlists/Night Drive.m3u8</text>
+      <text x="24" y="192" font-size="12" fill="#4c5953">All 5 tracks remain in the generated playlist.</text>
+      <rect x="24" y="207" width="896" height="35" rx="4" fill="#e9eeea" stroke="#d4dbd5" />
+      <g font-size="12" font-weight="700" fill="#4c5953">
+        <text x="41" y="229">#</text><text x="87" y="229">Playlist track</text><text x="279" y="229">Relative path from playlist</text><text x="780" y="229">Audio on Pixel 6</text>
+      </g>
+      <g font-size="13">
+        <rect x="24" y="242" width="896" height="42" fill="#fff" stroke="#d4dbd5" />
+        <text x="41" y="268">1</text><text x="87" y="268">Harbor Lights</text><text x="279" y="268">../Lena Vale/Northern Lines/01 Harbor Lights.flac</text><text x="780" y="268" fill="#4c5953">Already present</text>
+        <rect x="24" y="284" width="896" height="42" fill="#fff" stroke="#d4dbd5" />
+        <text x="41" y="310">2</text><text x="87" y="310">Night Crossing</text><text x="279" y="310">../Lena Vale/Northern Lines/02 Night Crossing.flac</text><text x="780" y="310" fill="#235943" font-weight="700">Will transfer</text>
+        <rect x="24" y="326" width="896" height="42" fill="#fff" stroke="#d4dbd5" />
+        <text x="41" y="352">3</text><text x="87" y="352">Ridge Line</text><text x="279" y="352">../Lena Vale/Northern Lines/03 Ridge Line.flac</text><text x="780" y="352" fill="#4c5953">Already present</text>
+        <rect x="24" y="368" width="896" height="42" fill="#fff" stroke="#d4dbd5" />
+        <text x="41" y="394">4</text><text x="87" y="394">Low Current</text><text x="279" y="394">../Juniper Static/Low Current/01 Low Current.flac</text><text x="780" y="394" fill="#4c5953">Already present</text>
+        <rect x="24" y="410" width="896" height="42" fill="#fff" stroke="#d4dbd5" />
+        <text x="41" y="436">5</text><text x="87" y="436">Branch Signal</text><text x="279" y="436">../The Switchyards/Quiet Stations/01 Branch Signal.flac</text><text x="780" y="436" fill="#235943" font-weight="700">Will transfer</text>
+      </g>
+      <line x1="0" y1="530" x2="944" y2="530" stroke="#d4dbd5" />
+      <g data-control-id="SCR53.C02" data-button-icon="close" role="img" aria-label="Cancel preview">
+        <rect x="705" y="545" width="94" height="37" rx="5" fill="#fff" stroke="#d4dbd5" />
+        <g transform="translate(742 554) scale(.8)" color="#202724"><use href="../../shared/icons.svg#close" /></g>
+      </g>
+      <g data-control-id="SCR53.C01" data-button-icon="sync" role="img" aria-label="Start sync">
+        <rect x="810" y="545" width="110" height="37" rx="5" fill="#235943" />
+        <g transform="translate(855 554) scale(.8)" color="#fff"><use href="../../shared/icons.svg#sync" /></g>
+      </g>
+    </g>
+  </g>
+</svg>

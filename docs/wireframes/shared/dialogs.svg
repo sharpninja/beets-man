@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="scrim">
+      <rect x="0" y="0" width="1120" height="690" rx="0" fill="rgba(19,33,27,0.57)" />
+    </g>
+    <g id="playlist-backdrop">
+      <use href="app-chrome.svg#library-workspace-header" />
+      <use href="library.svg#sidebar-playlists" />
+      <use href="transport.svg#library-transport" />
+      <text x="204" y="111" fill="#202724" font-size="27" font-weight="700">Playlists</text>
+      <text x="204" y="140" fill="#4c5953" font-size="13" font-weight="400">Saved lists in your music library.</text>
+      <rect x="204" y="174" width="124" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+      <text x="266.0" y="198" fill="#202724" font-size="13" font-weight="700" text-anchor="middle">New playlist</text>
+      <rect x="340" y="174" width="109" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+      <text x="394.5" y="198" fill="#202724" font-size="13" font-weight="700" text-anchor="middle">Reorder</text>
+      <text x="204" y="242" fill="#202724" font-size="19" font-weight="700">Night Drive</text>
+      <text x="204" y="264" fill="#4c5953" font-size="12" font-weight="400">5 tracks · Sync pending</text>
+      <use href="library-grid.svg#catalog-scr10" />
+      <use href="library.svg#list-tabs-queue" />
+      <text x="808" y="177" fill="#202724" font-size="18" font-weight="700">Playing next</text>
+      <text x="808" y="204" fill="#4c5953" font-size="12" font-weight="400">Harbor Lights is playing</text>
+      <text x="808" y="270" fill="#202724" font-size="14" font-weight="700">Queued tracks</text>
+      <text x="1037" y="270" fill="#4c5953" font-size="12" font-weight="400">2 tracks</text>
+      <rect x="808" y="284" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+      <text x="819" y="311" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+      <text x="841" y="311" fill="#202724" font-size="13" font-weight="400">Low Current</text>
+      <text x="1074" y="311" fill="#4c5953" font-size="16" font-weight="400">×</text>
+      <rect x="808" y="328" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+      <text x="819" y="355" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+      <text x="841" y="355" fill="#202724" font-size="13" font-weight="400">Branch Signal</text>
+      <text x="1074" y="355" fill="#4c5953" font-size="16" font-weight="400">×</text>
+      <rect x="808" y="381" width="292" height="75" fill="#f4f5f2" stroke="#d4dbd5" rx="5" stroke-dasharray="5 4" />
+      <text x="827" y="415" fill="#4c5953" font-size="13" font-weight="400">Drag tracks or albums here</text>
+      <text x="827" y="435" fill="#4c5953" font-size="12" font-weight="400">Or use Add selected.</text>
+      <rect x="808" y="591" width="116" height="37" fill="#e9eeea" stroke="#d4dbd5" rx="5" />
+      <text x="866.0" y="615" fill="#4c5953" font-size="13" font-weight="700" text-anchor="middle">Add selected</text>
+      <rect x="935" y="591" width="165" height="37" fill="#235943" stroke="#235943" rx="5" />
+      <text x="1017.5" y="615" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">Save as playlist</text>
+    </g>
+    <g id="tracks-backdrop">
+      <use href="app-chrome.svg#library-workspace-header" />
+      <use href="library.svg#sidebar-tracks" />
+      <use href="transport.svg#library-transport" />
+      <text x="204" y="111" fill="#202724" font-size="27" font-weight="700">Tracks</text>
+      <text x="204" y="140" fill="#4c5953" font-size="13" font-weight="400">Music library · Studio host connected</text>
+      <rect x="204" y="174" width="105" height="37" fill="#e9eeea" stroke="#d4dbd5" rx="5" />
+      <text x="256.5" y="198" fill="#4c5953" font-size="13" font-weight="700" text-anchor="middle">Play track</text>
+      <rect x="320" y="174" width="125" height="37" fill="#e9eeea" stroke="#d4dbd5" rx="5" />
+      <text x="382.5" y="198" fill="#4c5953" font-size="13" font-weight="700" text-anchor="middle">Add to queue</text>
+      <use href="library-grid.svg#catalog-scr05" />
+      <use href="library.svg#list-tabs-queue" />
+      <text x="808" y="177" fill="#202724" font-size="18" font-weight="700">Playing next</text>
+      <text x="808" y="204" fill="#4c5953" font-size="12" font-weight="400">Harbor Lights is playing</text>
+      <text x="808" y="270" fill="#202724" font-size="14" font-weight="700">Queued tracks</text>
+      <text x="1037" y="270" fill="#4c5953" font-size="12" font-weight="400">2 tracks</text>
+      <rect x="808" y="284" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+      <text x="819" y="311" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+      <text x="841" y="311" fill="#202724" font-size="13" font-weight="400">Low Current</text>
+      <text x="1074" y="311" fill="#4c5953" font-size="16" font-weight="400">×</text>
+      <rect x="808" y="328" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+      <text x="819" y="355" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+      <text x="841" y="355" fill="#202724" font-size="13" font-weight="400">Branch Signal</text>
+      <text x="1074" y="355" fill="#4c5953" font-size="16" font-weight="400">×</text>
+      <rect x="808" y="381" width="292" height="75" fill="#f4f5f2" stroke="#d4dbd5" rx="5" stroke-dasharray="5 4" />
+      <text x="827" y="415" fill="#4c5953" font-size="13" font-weight="400">Drag tracks or albums here</text>
+      <text x="827" y="435" fill="#4c5953" font-size="12" font-weight="400">Or use Add selected.</text>
+      <rect x="808" y="591" width="116" height="37" fill="#e9eeea" stroke="#d4dbd5" rx="5" />
+      <text x="866.0" y="615" fill="#4c5953" font-size="13" font-weight="700" text-anchor="middle">Add selected</text>
+      <rect x="935" y="591" width="165" height="37" fill="#235943" stroke="#235943" rx="5" />
+      <text x="1017.5" y="615" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">Save as playlist</text>
+    </g>
+    <g id="sync-overview">
+      <use href="app-chrome.svg#sync-header" />
+      <use href="app-chrome.svg#secondary-navigation-background" />
+      <use href="navigation.svg#sync-overview" />
+      <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Sync</text>
+      <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Media transfers and connected devices</text>
+      <use href="transport.svg#desktop-transport" />
+      <rect x="995" y="138" width="89" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="1039.5" y="161.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR48.C01">Pair peer</text>
+      <rect x="903" y="138" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="944.0" y="161.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR48.C02">Rescan</text>
+      <rect x="36" y="208" width="324" height="394" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="52" y="241" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Devices</text>
+      <text x="62" y="282" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Studio PC</text>
+      <text x="62" y="303" font-size="12" fill="#4c5953" text-anchor="start">PC mirror</text>
+      <rect x="62" y="312" width="73" height="24" rx="4" fill="#e0ede4" />
+      <text x="71" y="328" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Up to date</text>
+      <text x="62" y="378" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Living Room PC</text>
+      <text x="62" y="399" font-size="12" fill="#4c5953" text-anchor="start">PC mirror</text>
+      <rect x="62" y="408" width="57" height="24" rx="4" fill="#e9eeea" />
+      <text x="71" y="424" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Paused</text>
+      <rect x="47" y="451" width="302" height="87" rx="5" fill="#e0ede4" stroke="#235943" />
+      <text x="62" y="474" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Pixel 6</text>
+      <text x="62" y="495" font-size="12" fill="#4c5953" text-anchor="start">Android export</text>
+      <rect x="62" y="504" width="76" height="24" rx="4" fill="#e0ede4" />
+      <text x="71" y="520" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Connected</text>
+      <rect x="382" y="208" width="702" height="394" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="400" y="242" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Pixel 6</text>
+      <rect x="488" y="223" width="100" height="24" rx="4" fill="#e0ede4" />
+      <text x="497" y="239" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Just connected</text>
+      <text x="400" y="280" font-size="13" fill="#4c5953" text-anchor="start">Android export · Musicolette / M3U8</text>
+      <line x1="400" y1="304" x2="1066" y2="304" stroke="#d4dbd5" stroke-width="1" />
+      <text x="400" y="333" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Media transfer</text>
+      <rect x="400" y="349" width="666" height="7" rx="3" fill="#e9eeea" />
+      <rect x="400" y="349" width="419.58" height="7" rx="3" fill="#235943" />
+      <text x="400" y="380" font-size="13" fill="#202724" text-anchor="start">38 of 60 files · 1.4 GB of 2.2 GB</text>
+      <text x="400" y="435" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Destination</text>
+      <text x="400" y="460" font-size="14" fill="#202724" text-anchor="start">/storage/emulated/0/Music/Beets</text>
+      <text x="400" y="515" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Last successful transfer</text>
+      <text x="400" y="540" font-size="14" fill="#202724" text-anchor="start">Today, 10:52</text>
+    </g>
+  </defs>
+</svg>

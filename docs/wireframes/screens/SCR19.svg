@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR19" data-state-id="SCR19.S0">
+  <title id="title">Playback Settings</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/app-chrome.svg#settings-header" />
+    <use href="../shared/app-chrome.svg#secondary-navigation-background" />
+    <use href="../shared/navigation.svg#settings-playback" />
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Playback</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Audio output and engine settings</text>
+    <use href="../shared/transport.svg#desktop-transport" />
+    <rect x="36" y="207" width="670" height="211" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="53" y="240" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Playback engine</text>
+    <text x="53" y="273" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Active engine</text>
+    <rect x="53" y="283" width="401" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="64" y="306" font-size="13" fill="#202724" text-anchor="start">SoundFlow · Built-in audio</text>
+    <path d="M432 298l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="467" y="282" width="218" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="576.0" y="305.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR19.C01">Choose engine</text>
+    <text x="53" y="352" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Saved CLI profile</text>
+    <text x="53" y="376" font-size="12" fill="#4c5953" text-anchor="start">Studio CLI · Session mode</text>
+    <rect x="506" y="345" width="179" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="595.5" y="368.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR19.C02">Edit CLI profile</text>
+    <rect x="36" y="435" width="670" height="168" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="53" y="467" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Output device</text>
+    <rect x="53" y="477" width="630" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="64" y="500" font-size="13" fill="#202724" text-anchor="start">System default · Studio speakers</text>
+    <path d="M661 492l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="53" y="553" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Automatic crossfade</text>
+    <rect x="217" y="548" width="358" height="4" rx="2" fill="#e9eeea" />
+    <rect x="217" y="548" width="118.14" height="4" rx="2" fill="#235943" />
+    <circle cx="335.14" cy="550" r="6" fill="#235943" />
+    <text x="601" y="554" font-size="12" fill="#4c5953" text-anchor="start">4 seconds</text>
+    <rect x="729" y="207" width="355" height="274" rx="6" fill="#e9eeea" />
+    <text x="747" y="241" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Active engine capabilities</text>
+    <circle cx="752" cy="282" r="4" fill="#235943" />
+    <text x="766" y="287" font-size="14" fill="#202724" text-anchor="start">Transport and seek</text>
+    <circle cx="752" cy="325" r="4" fill="#235943" />
+    <text x="766" y="330" font-size="14" fill="#202724" text-anchor="start">Dual-deck mixing</text>
+    <circle cx="752" cy="368" r="4" fill="#235943" />
+    <text x="766" y="373" font-size="14" fill="#202724" text-anchor="start">Master equalizer</text>
+    <circle cx="752" cy="411" r="4" fill="#235943" />
+    <text x="766" y="416" font-size="14" fill="#202724" text-anchor="start">Visualization telemetry</text>
+  </g>
+</svg>

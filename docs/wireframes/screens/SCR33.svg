@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR33" data-state-id="SCR33.S0">
+  <title id="title">Shortcut Conflict</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR32.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(254 126)" role="group" aria-label="Shortcut Conflict">
+      <rect x="0" y="0" width="612" height="438" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Shortcut Conflict</text>
+      <text x="588" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Assign a gesture to Toggle auto-fade.</text>
+      <line x1="0" y1="76" x2="612" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="100" width="564" height="89" rx="5" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="39" y="124" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Proposed gesture</text>
+      <rect x="39" y="137" width="82" height="33" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="80" y="159" font-size="14" fill="#202724" text-anchor="middle" font-weight="700">Space</text>
+      <text x="139" y="159" font-size="13" fill="#4c5953" text-anchor="start">Player context</text>
+      <rect x="24" y="212" width="564" height="62" rx="5" fill="#fbeddc" />
+      <rect x="24" y="212" width="3" height="62" rx="1" fill="#704621" />
+      <text x="37" y="232" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Gesture already assigned</text>
+      <text x="37" y="252" font-size="12" fill="#704621" text-anchor="start">Space is assigned to Play or pause in this context.</text>
+      <text x="24" y="309" font-size="13" fill="#4c5953" text-anchor="start">Current binding remains active until a replacement is confirmed.</text>
+      <line x1="0" y1="372" x2="612" y2="372" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="457" y="387" width="131" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="522.5" y="410.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR33.C01">Choose another</text>
+      <rect x="365" y="387" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="406.0" y="410.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR33.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+@startuml UC-RECORDS-001
+left to right direction
+actor "Desktop operator" as Primary
+actor "Registered peer" as Secondary
+rectangle "Beets Man" {
+    usecase "UC-RECORDS-001\nSync catalog and listening records" as Goal
+}
+Primary -- Goal
+Secondary -- Goal
+@enduml

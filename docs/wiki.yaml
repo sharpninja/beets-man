@@ -1,0 +1,169 @@
+schema: mcp-wiki-export/v1
+home:
+  document: home
+documents:
+  - id: home
+    title: Home
+    source: generated:home
+    target: Home.md
+    platforms:
+      - github
+      - azure
+  - id: functional
+    title: Functional Requirements
+    source: generated:functional
+    target: Functional-Requirements.md
+    platforms:
+      - github
+      - azure
+  - id: technical
+    title: Technical Requirements
+    source: generated:technical
+    target: Technical-Requirements.md
+    platforms:
+      - github
+      - azure
+  - id: testing
+    title: Testing Requirements
+    source: generated:testing
+    target: Testing-Requirements.md
+    platforms:
+      - github
+      - azure
+  - id: mapping
+    title: TR per FR Mapping
+    source: generated:mapping
+    target: TR-per-FR-Mapping.md
+    platforms:
+      - github
+      - azure
+  - id: matrix
+    title: Requirements Matrix
+    source: generated:matrix
+    target: Requirements-Matrix.md
+    platforms:
+      - github
+      - azure
+  - id: project-overview
+    title: Beets Man overview
+    source: README.md
+    target: Project-Overview.md
+    platforms:
+      - github
+      - azure
+  - id: architecture-overview
+    title: Architecture overview
+    source: docs/architecture/README.md
+    target: Architecture-Overview.md
+    platforms:
+      - github
+      - azure
+  - id: architecture-c4
+    title: C4 views
+    source: docs/architecture/views.md
+    target: C4-Views.md
+    platforms:
+      - github
+      - azure
+  - id: architecture-code
+    title: Code structure
+    source: docs/architecture/code-structure.md
+    target: Code-Structure.md
+    platforms:
+      - github
+      - azure
+  - id: architecture-cqrs
+    title: CQRS interfaces
+    source: docs/architecture/cqrs.md
+    target: CQRS-Interfaces.md
+    platforms:
+      - github
+      - azure
+  - id: architecture-persistence
+    title: LiteDB repositories
+    source: docs/architecture/persistence.md
+    target: LiteDB-Repositories.md
+    platforms:
+      - github
+      - azure
+  - id: stage-zero
+    title: Stage 0 scope and status
+    source: docs/stage-0/README.md
+    target: Stage-Zero.md
+    platforms:
+      - github
+      - azure
+  - id: stage-zero-contracts
+    title: Interface and recovery decisions
+    source: docs/stage-0/contracts.md
+    target: Interface-and-Recovery-Decisions.md
+    platforms:
+      - github
+      - azure
+  - id: stage-zero-readback
+    title: Stage 0 verification receipts
+    source: docs/stage-0/readback.md
+    target: Stage-Zero-Verification.md
+    platforms:
+      - github
+      - azure
+  - id: review-storyboards
+    title: Asset Review storyboard manifest
+    source: docs/design/_manifest.md
+    target: Storyboard-Manifest.md
+    platforms:
+      - github
+      - azure
+  - id: review-use-cases
+    title: Use case index
+    source: docs/use-cases/README.md
+    target: Use-Case-Index.md
+    platforms:
+      - github
+      - azure
+  - id: testing-ui-specs
+    title: UI test specifications
+    source: docs/testing/ui/index.md
+    target: UI-Test-Specifications.md
+    platforms:
+      - github
+      - azure
+  - id: testing-ui-coverage
+    title: UI coverage inventory
+    source: docs/testing/ui/coverage.md
+    target: UI-Coverage-Inventory.md
+    platforms:
+      - github
+      - azure
+navigation:
+  - document: home
+  - document: functional
+  - document: technical
+  - document: testing
+  - document: mapping
+  - document: matrix
+  - document: project-overview
+  - title: Architecture
+    path: Architecture
+    children:
+      - document: architecture-overview
+      - document: architecture-c4
+      - document: architecture-code
+      - document: architecture-cqrs
+      - document: architecture-persistence
+  - title: Stage 0
+    path: Stage-Zero
+    children:
+      - document: stage-zero
+      - document: stage-zero-contracts
+      - document: stage-zero-readback
+  - title: Design review
+    path: Design-Review
+    children:
+      - document: review-storyboards
+      - document: review-use-cases
+  - title: UI testing
+    path: UI-Testing
+    children:
+      - document: testing-ui-specs
+      - document: testing-ui-coverage

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR50" data-state-id="SCR50.STB10-25" data-storyboard-id="STB10" data-step-id="STB10-25">
+  <title id="title">Android Devices · Night Drive and all five tracks are available on Pixel 6</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <use href="../../shared/playlist-sync.svg#device-progress" />
+    <rect x="368" y="456" width="697" height="7" rx="3" fill="#235943" />
+    <text x="368" y="484" font-size="13" fill="#202724">3 of 3 files transferred · Up to date</text>
+    <text x="368" y="530" font-size="14" font-weight="700" fill="#235943">Night Drive is ready in Musicolette</text>
+    <text x="368" y="553" font-size="12" fill="#4c5953">All 5 playlist tracks are available on Pixel 6.</text>
+  </g>
+</svg>

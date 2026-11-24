@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR08" data-state-id="SCR08.STB10-21" data-storyboard-id="STB10" data-step-id="STB10-21">
+  <title id="title">Tracks · Drag the saved Night Drive playlist to the Sync list</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <use href="../../shared/playlist-sync.svg#library-sync" />
+    <rect x="16" y="436" width="152" height="29" rx="4" fill="#e0ede4" />
+    <text x="23" y="455" font-size="13" font-weight="700" fill="#235943">Night Drive</text>
+    <text x="1078" y="270" text-anchor="end" font-size="12" fill="#4c5953">0 files</text>
+    <rect x="808" y="293" width="292" height="83" rx="5" fill="#e0ede4" stroke="#235943" stroke-dasharray="6 4" />
+    <text x="827" y="329" fill="#235943" font-size="13" font-weight="700">Drop playlist here</text>
+    <text x="827" y="349" fill="#4c5953" font-size="12">Adds the playlist and missing audio.</text>
+    <g data-button-icon="list" role="img" aria-label="Preview export" aria-disabled="true">
+      <rect x="935" y="591" width="165" height="37" rx="5" fill="#e9eeea" stroke="#d4dbd5" />
+      <g transform="translate(1008 600) scale(.8)" color="#4c5953"><use href="../../shared/icons.svg#list" /></g>
+    </g>
+    <rect x="624" y="322" width="174" height="41" rx="5" fill="#235943" />
+    <g transform="translate(637 332) scale(.85)" color="#fff"><use href="../../shared/icons.svg#list" /></g>
+    <text x="665" y="347" fill="#fff" font-weight="700" font-size="13">Night Drive · 5 tracks</text>
+    <path d="M799 338l13 19 2-8 8-3z" fill="#fff" stroke="#1e312a" />
+  </g>
+</svg>

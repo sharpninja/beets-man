@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR08" data-state-id="SCR08.STB10-22" data-storyboard-id="STB10" data-step-id="STB10-22">
+  <title id="title">Sync list · The playlist file and two missing audio files are staged</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <use href="../../shared/playlist-sync.svg#staged" />
+  </g>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR44" data-state-id="SCR44.S0">
+  <title id="title">Revoke Instance</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR42.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(280 141)" role="group" aria-label="Revoke Instance">
+      <rect x="0" y="0" width="560" height="408" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Revoke Instance</text>
+      <text x="536" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Remove access for Travel laptop.</text>
+      <line x1="0" y1="76" x2="560" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="96" width="512" height="76" rx="5" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="38" y="125" font-size="17" fill="#202724" text-anchor="start" font-weight="700">Travel laptop</text>
+      <text x="38" y="149" font-size="12" fill="#4c5953" text-anchor="start">desktop-0d22 · Listener · Last seen Nov 19</text>
+      <rect x="24" y="191" width="512" height="74" rx="5" fill="#fbeddc" />
+      <rect x="24" y="191" width="3" height="74" rx="1" fill="#704621" />
+      <text x="37" y="211" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Future requests will be rejected</text>
+      <text x="37" y="231" font-size="12" fill="#704621" text-anchor="start">This desktop will lose access to the host catalog, sync, and notifications.</text>
+      <text x="24" y="300" font-size="12" fill="#4c5953" text-anchor="start">The host retains previously committed listening records.</text>
+      <line x1="0" y1="342" x2="560" y2="342" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="454" y="357" width="82" height="37" rx="5" fill="#8e3431" stroke="#8e3431" />
+      <text x="495.0" y="380.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR44.C01">Revoke</text>
+      <rect x="362" y="357" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="403.0" y="380.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR44.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

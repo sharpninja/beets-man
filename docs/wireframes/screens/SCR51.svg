@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR51" data-state-id="SCR51.S0">
+  <title id="title">Pair Media Peer</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/dialogs.svg#sync-overview" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(195 83)" role="group" aria-label="Pair Media Peer">
+      <rect x="0" y="0" width="730" height="524" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Pair Media Peer</text>
+      <text x="706" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Connect a receiving device through Syncthing-Fork.</text>
+      <line x1="0" y1="76" x2="730" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <text x="24" y="107" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Syncthing device ID</text>
+      <rect x="24" y="117" width="682" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="140" font-size="13" fill="#202724" text-anchor="start">7K6W2PR-6QT3EEX-NE…</text>
+      <rect x="24" y="177" width="334" height="61" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <circle cx="46" cy="203" r="8" fill="#4c5953" />
+      <circle cx="46" cy="203" r="5" fill="#ffffff" />
+      <text x="64" y="202" font-size="14" fill="#202724" text-anchor="start" font-weight="700">PC mirror</text>
+      <text x="64" y="223" font-size="12" fill="#4c5953" text-anchor="start">Mirror the host’s audio hierarchy.</text>
+      <rect x="372" y="177" width="334" height="61" rx="5" fill="#e0ede4" stroke="#235943" />
+      <circle cx="394" cy="203" r="8" fill="#235943" />
+      <circle cx="394" cy="203" r="5" fill="#ffffff" />
+      <circle cx="394" cy="203" r="3" fill="#235943" />
+      <text x="412" y="202" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Android export</text>
+      <text x="412" y="223" font-size="12" fill="#4c5953" text-anchor="start">Use a player-specific folder layout.</text>
+      <text x="24" y="269" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Share destination</text>
+      <rect x="24" y="279" width="682" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="302" font-size="13" fill="#202724" text-anchor="start">Pixel 6 · Android exports</text>
+      <rect x="24" y="339" width="682" height="82" rx="5" fill="#e0ede4" />
+      <rect x="24" y="339" width="3" height="82" rx="1" fill="#235943" />
+      <text x="37" y="359" font-size="13" fill="#235943" text-anchor="start" font-weight="700">Accept the share on Pixel 6</text>
+      <text x="37" y="379" font-size="12" fill="#235943" text-anchor="start">Transfers begin after the device accepts the share and the layout is confirmed.</text>
+      <line x1="0" y1="458" x2="730" y2="458" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="607" y="473" width="99" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="656.5" y="496.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR51.C01">Share files</text>
+      <rect x="515" y="473" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="556.0" y="496.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR51.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

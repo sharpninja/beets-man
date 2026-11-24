@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR54" data-state-id="SCR54.S0">
+  <title id="title">Confirm Export Removal</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR50.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(207 105)" role="group" aria-label="Confirm Export Removal">
+      <rect x="0" y="0" width="706" height="480" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Confirm Export Removal</text>
+      <text x="682" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Confirm file removal from the export assigned to Pixel 6.</text>
+      <line x1="0" y1="76" x2="706" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="96" width="658" height="63" rx="5" fill="#fbeddc" />
+      <rect x="24" y="96" width="3" height="63" rx="1" fill="#704621" />
+      <text x="37" y="116" font-size="13" fill="#704621" text-anchor="start" font-weight="700">1 device-owned path will be removed</text>
+      <text x="37" y="136" font-size="12" fill="#704621" text-anchor="start">Syncthing-Fork will propagate this removal to the receiving device.</text>
+      <rect x="24" y="184" width="658" height="83" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <rect x="25" y="185" width="656" height="32" rx="4" fill="#e9eeea" />
+      <text x="36" y="206" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Export path</text>
+      <text x="511" y="206" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Owner</text>
+      <line x1="25" y1="218" x2="681" y2="218" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="246.5" font-size="13" fill="#202724" text-anchor="start">M3U/Night Drive.m3u</text>
+      <rect x="511" y="230.5" width="89" height="24" rx="4" fill="#e9eeea" />
+      <text x="520" y="246.5" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Pixel 6 export</text>
+      <rect x="24" y="295" width="658" height="61" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <rect x="37" y="314" width="15" height="15" rx="2" fill="#ffffff" stroke="#4c5953" />
+      <text x="64" y="320" font-size="14" fill="#202724" text-anchor="start" font-weight="700">I understand this removal will sync to Pixel 6</text>
+      <text x="64" y="341" font-size="12" fill="#4c5953" text-anchor="start">The host library’s source files are retained.</text>
+      <line x1="0" y1="414" x2="706" y2="414" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="599" y="429" width="83" height="37" rx="5" fill="#e9eeea" stroke="#d4dbd5" />
+      <text x="640.5" y="452.5" font-size="13" fill="#4c5953" text-anchor="middle" font-weight="700" data-control-id="SCR54.C01">Confirm</text>
+      <rect x="507" y="429" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="548.0" y="452.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR54.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR13" data-state-id="SCR13.STB04-9" data-storyboard-id="STB04" data-step-id="STB04-9">
+  <title id="title">Queue — The elapsed time, thumb, and played portion update together while the queue stays visible.</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="#f4f5f2" />
+    <rect x="0" y="0" width="1120" height="65" rx="0" fill="#1e312a" />
+    <circle cx="35" cy="32" r="13" fill="#9ec9ab" />
+    <circle cx="35" cy="32" r="5" fill="#1e312a" />
+    <text x="58" y="39" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <text x="236" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Library</text>
+    <rect x="345" y="17" width="110" height="32" rx="5" fill="#365447" />
+    <text x="357" y="38" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Now Playing</text>
+    <text x="514" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Sync</text>
+    <text x="609" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Settings</text>
+    <circle cx="948" cy="32" r="4" fill="#a9dabc" />
+    <text x="960" y="37" font-size="12" fill="#dbe7df" text-anchor="start">Studio desktop</text>
+    <rect x="0" y="65" width="1120" height="49" rx="0" fill="#ffffff" />
+    <line x1="0" y1="114" x2="1120" y2="114" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">Now Playing</text>
+    <text x="149" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Queue</text>
+    <rect x="149" y="111" width="45" height="3" rx="1" fill="#235943" />
+    <text x="222" y="95" font-size="14" fill="#4c5953" text-anchor="start">Mixer</text>
+    <text x="287" y="95" font-size="14" fill="#4c5953" text-anchor="start">Extensions</text>
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Queue</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">4 upcoming tracks</text>
+    <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+    <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="674" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="164" y="674" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale</text>
+    <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="539.0" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Previous</text>
+    <g transform="translate(531 660) scale(0.666667)" data-button-icon="previous" role="img" aria-label="Previous">
+      <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" stroke="#235943" />
+    <text x="618.0" y="673.0" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Ⅱ</text>
+    <g transform="translate(610 660) scale(0.666667)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="689.5" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Next</text>
+    <g transform="translate(681.5 660) scale(0.666667)" data-button-icon="next" role="img" aria-label="Next">
+      <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="165" aria-valuetext="2:45 of 4:26" data-seek-slider="track">
+      <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">2:45</text>
+      <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+      <rect x="780" y="665" width="163.759" height="6" rx="3" fill="#235943" data-seek-part="played" />
+      <circle cx="943.759" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+      <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+    </g>
+    <rect x="36" y="210" width="1048" height="82" rx="6" fill="#1e312a" />
+    <rect x="52" y="224" width="54" height="54" rx="4" fill="#cbd9cd" />
+    <circle cx="88.72" cy="239.12" r="5.4" fill="#edf2df" />
+    <path d="M56.32 265.58 L73.06 247.76 L82.24 256.94 L89.80 248.30 L101.14 265.58 Z" fill="#587363" stroke="#587363" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="58.48" y1="270.44" x2="99.52000000000001" y2="270.44" stroke="#edf2df" stroke-width="2" />
+    <text x="122" y="247" font-size="16" fill="#ffffff" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="122" y="269" font-size="12" fill="#d7e6de" text-anchor="start">Lena Vale · Playing on Deck A</text>
+    <rect x="923" y="233" width="143" height="37" rx="5" fill="#2b473b" stroke="#5a7968" />
+    <text x="994.5" y="256.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Repeat: off</text>
+    <g transform="translate(985.5 242.5) scale(0.75)" data-button-icon="repeat-off" role="img" aria-label="Repeat: off">
+      <path d="M4 9h16l-3-3m3 3-3 3M20 15H4l3 3m-3-3 3-3M4 4l16 16" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="36" y="312" width="1048" height="206" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <rect x="37" y="313" width="1046" height="32" rx="4" fill="#e9eeea" />
+    <text x="48" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Move</text>
+    <text x="121" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Track</text>
+    <text x="439" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Artist</text>
+    <text x="702" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Album</text>
+    <text x="980" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Length</text>
+    <rect x="37" y="346" width="1046" height="42" rx="0" fill="#e0ede4" />
+    <rect x="37" y="346" width="3" height="42" rx="0" fill="#235943" />
+    <line x1="37" y1="346" x2="1083" y2="346" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="371.5" font-size="13" fill="#202724" text-anchor="start">⋮⋮ 1</text>
+    <text x="121" y="371.5" font-size="13" fill="#202724" text-anchor="start">Low Current</text>
+    <text x="439" y="371.5" font-size="13" fill="#202724" text-anchor="start">Juniper Static</text>
+    <text x="702" y="371.5" font-size="13" fill="#202724" text-anchor="start">Low Current</text>
+    <text x="980" y="371.5" font-size="13" fill="#202724" text-anchor="start">3:43</text>
+    <line x1="37" y1="389" x2="1083" y2="389" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="414.5" font-size="13" fill="#202724" text-anchor="start">⋮⋮ 2</text>
+    <text x="121" y="414.5" font-size="13" fill="#202724" text-anchor="start">Night Crossing</text>
+    <text x="439" y="414.5" font-size="13" fill="#202724" text-anchor="start">Lena Vale</text>
+    <text x="702" y="414.5" font-size="13" fill="#202724" text-anchor="start">Northern Lines</text>
+    <text x="980" y="414.5" font-size="13" fill="#202724" text-anchor="start">3:58</text>
+    <line x1="37" y1="432" x2="1083" y2="432" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="457.5" font-size="13" fill="#202724" text-anchor="start">⋮⋮ 3</text>
+    <text x="121" y="457.5" font-size="13" fill="#202724" text-anchor="start">Ridge Line</text>
+    <text x="439" y="457.5" font-size="13" fill="#202724" text-anchor="start">Lena Vale</text>
+    <text x="702" y="457.5" font-size="13" fill="#202724" text-anchor="start">Northern Lines</text>
+    <text x="980" y="457.5" font-size="13" fill="#202724" text-anchor="start">5:08</text>
+    <rect x="37" y="475" width="1046" height="42" rx="0" fill="#fafbf9" />
+    <line x1="37" y1="475" x2="1083" y2="475" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="500.5" font-size="13" fill="#202724" text-anchor="start">⋮⋮ 4</text>
+    <text x="121" y="500.5" font-size="13" fill="#202724" text-anchor="start">Branch Signal</text>
+    <text x="439" y="500.5" font-size="13" fill="#202724" text-anchor="start">The Switchyards</text>
+    <text x="702" y="500.5" font-size="13" fill="#202724" text-anchor="start">Quiet Stations</text>
+    <text x="980" y="500.5" font-size="13" fill="#202724" text-anchor="start">4:02</text>
+    <rect x="1002" y="544" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="1043.0" y="567.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR13.C01" data-button-label="icon-only" visibility="hidden">Reorder</text>
+    <g transform="translate(1034 553.5) scale(0.75)" data-button-icon="reorder" role="img" aria-label="Reorder">
+      <path d="M7 4v16m-3-3 3 3 3-3M17 20V4m-3 3 3-3 3 3" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="909" y="544" width="83" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="950.5" y="567.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR13.C02" data-button-label="icon-only" visibility="hidden">Remove</text>
+    <g transform="translate(941.5 553.5) scale(0.75)" data-button-icon="trash" role="img" aria-label="Remove">
+      <path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </g>
+</svg>

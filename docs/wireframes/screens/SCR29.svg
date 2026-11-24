@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR29" data-state-id="SCR29.S0">
+  <title id="title">Library Settings</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/app-chrome.svg#settings-header" />
+    <use href="../shared/app-chrome.svg#secondary-navigation-background" />
+    <use href="../shared/navigation.svg#settings-library" />
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Library settings</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Local storage and host import</text>
+    <use href="../shared/transport.svg#desktop-transport" />
+    <rect x="36" y="211" width="1048" height="169" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="54" y="244" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Storage on this desktop</text>
+    <text x="54" y="276" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Local Music Root</text>
+    <rect x="54" y="286" width="481" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="65" y="309" font-size="13" fill="#202724" text-anchor="start">~/Music</text>
+    <text x="550" y="276" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Catalog cache</text>
+    <rect x="550" y="286" width="515" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="561" y="309" font-size="13" fill="#202724" text-anchor="start">~/.local/share/beets-man/library.db</text>
+    <text x="54" y="352" font-size="12" fill="#4c5953" text-anchor="start">Scope · This desktop. Changes to paths apply after restart.</text>
+    <rect x="36" y="398" width="1048" height="203" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="54" y="432" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Host import</text>
+    <text x="54" y="463" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Import behavior</text>
+    <rect x="54" y="473" width="481" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="65" y="496" font-size="13" fill="#202724" text-anchor="start">Review suggested matches</text>
+    <path d="M513 488l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="550" y="463" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Host beets configuration</text>
+    <rect x="550" y="473" width="515" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="561" y="496" font-size="13" fill="#202724" text-anchor="start">studio-host · Music archive</text>
+    <rect x="909" y="544" width="156" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="987.0" y="567.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR29.C02">Edit import defaults</text>
+    <rect x="750" y="544" width="149" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="824.5" y="567.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR29.C01">View configuration</text>
+  </g>
+</svg>

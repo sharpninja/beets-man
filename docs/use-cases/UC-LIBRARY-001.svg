@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="285" viewBox="0 0 940 285" role="img">
+<title>UC-LIBRARY-001 use case diagram</title>
+<rect width="940" height="285" fill="white"/>
+<g font-family="sans-serif" fill="#18392e">
+<rect x="187" y="40" width="566" height="190" fill="#fbfdfb" stroke="#345e50"/>
+<text x="202" y="66" font-size="17">Beets Man</text>
+<g transform="translate(93 135)" stroke="#233d35" stroke-width="2" fill="none"><circle cy="-21" r="9"/><path d="M0 -12V20M-17 0H17M0 20L-14 38M0 20L14 38"/><text x="0" y="59" stroke="none" fill="#233d35" text-anchor="middle" font-size="14">Listener</text></g>
+<path d="M110 135H272" stroke="#335d50"/>
+
+<ellipse cx="470" cy="135" rx="198" ry="32" fill="#eaf4ee" stroke="#3c6a5b"/><text x="470" y="132" font-size="12" text-anchor="middle">UC-LIBRARY-001</text><text x="470" y="149" font-size="16" text-anchor="middle">Browse or search the catalog</text>
+</g>
+</svg>

@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR21" data-state-id="SCR21.STB15-1" data-storyboard-id="STB15" data-step-id="STB15-1">
+  <title id="title">Backend Switch — Switch preview shows the current and proposed engines and the loss of unsupported controls.</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="#f4f5f2" />
+    <rect x="0" y="0" width="1120" height="65" rx="0" fill="#1e312a" />
+    <circle cx="35" cy="32" r="13" fill="#9ec9ab" />
+    <circle cx="35" cy="32" r="5" fill="#1e312a" />
+    <text x="58" y="39" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <text x="236" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Library</text>
+    <text x="357" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Now Playing</text>
+    <text x="514" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Sync</text>
+    <rect x="597" y="17" width="82" height="32" rx="5" fill="#365447" />
+    <text x="609" y="38" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Settings</text>
+    <circle cx="948" cy="32" r="4" fill="#a9dabc" />
+    <text x="960" y="37" font-size="12" fill="#dbe7df" text-anchor="start">Studio desktop</text>
+    <rect x="0" y="65" width="1120" height="49" rx="0" fill="#ffffff" />
+    <line x1="0" y1="114" x2="1120" y2="114" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">General</text>
+    <text x="117" y="95" font-size="14" fill="#4c5953" text-anchor="start">Appearance</text>
+    <text x="227" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Playback</text>
+    <rect x="227" y="111" width="62" height="3" rx="1" fill="#235943" />
+    <text x="317" y="95" font-size="14" fill="#4c5953" text-anchor="start">Library</text>
+    <text x="393" y="95" font-size="14" fill="#4c5953" text-anchor="start">Sync</text>
+    <text x="455" y="95" font-size="14" fill="#4c5953" text-anchor="start">Notifications</text>
+    <text x="571" y="95" font-size="14" fill="#4c5953" text-anchor="start">Shortcuts</text>
+    <text x="666" y="95" font-size="14" fill="#4c5953" text-anchor="start">Plugins</text>
+    <text x="746" y="95" font-size="14" fill="#4c5953" text-anchor="start">Diagnostics</text>
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Playback</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Audio output and engine settings</text>
+    <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+    <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="674" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="164" y="674" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale</text>
+    <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="539.0" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Previous</text>
+    <g transform="translate(531 660) scale(0.666667)" data-button-icon="previous" role="img" aria-label="Previous">
+      <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" stroke="#235943" />
+    <text x="618.0" y="673.0" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Ⅱ</text>
+    <g transform="translate(610 660) scale(0.666667)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="689.5" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Next</text>
+    <g transform="translate(681.5 660) scale(0.666667)" data-button-icon="next" role="img" aria-label="Next">
+      <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="102" aria-valuetext="1:42 of 4:26" data-seek-slider="track">
+      <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">1:42</text>
+      <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+      <rect x="780" y="665" width="101.233" height="6" rx="3" fill="#235943" data-seek-part="played" />
+      <circle cx="881.233" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+      <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+    </g>
+    <rect x="36" y="207" width="670" height="211" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="53" y="240" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Playback engine</text>
+    <text x="53" y="273" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Active engine</text>
+    <rect x="53" y="283" width="401" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="64" y="306" font-size="13" fill="#202724" text-anchor="start">SoundFlow · Built-in audio</text>
+    <path d="M432 298l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <rect x="467" y="282" width="218" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="576.0" y="305.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Choose engine</text>
+    <g transform="translate(567 291.5) scale(0.75)" data-button-icon="sliders" role="img" aria-label="Choose engine">
+      <path d="M5 4v16m-3-5h6M12 4v16m-3-11h6M19 4v16m-3-6h6" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <text x="53" y="352" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Saved CLI profile</text>
+    <text x="53" y="376" font-size="12" fill="#4c5953" text-anchor="start">Studio CLI · Session mode</text>
+    <rect x="506" y="345" width="179" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="595.5" y="368.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Edit CLI profile</text>
+    <g transform="translate(586.5 354.5) scale(0.75)" data-button-icon="edit" role="img" aria-label="Edit CLI profile">
+      <path d="m4 20 4-.8L20 7l-3-3L5 16zM14 7l3 3" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="36" y="435" width="670" height="168" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="53" y="467" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Output device</text>
+    <rect x="53" y="477" width="630" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="64" y="500" font-size="13" fill="#202724" text-anchor="start">System default · Studio speakers</text>
+    <path d="M661 492l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="53" y="553" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Automatic crossfade</text>
+    <rect x="217" y="548" width="358" height="4" rx="2" fill="#e9eeea" />
+    <rect x="217" y="548" width="118.14" height="4" rx="2" fill="#235943" />
+    <circle cx="335.14" cy="550" r="6" fill="#235943" />
+    <text x="601" y="554" font-size="12" fill="#4c5953" text-anchor="start">4 seconds</text>
+    <rect x="729" y="207" width="355" height="274" rx="6" fill="#e9eeea" />
+    <text x="747" y="241" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Active engine capabilities</text>
+    <circle cx="752" cy="282" r="4" fill="#235943" />
+    <text x="766" y="287" font-size="14" fill="#202724" text-anchor="start">Transport and seek</text>
+    <circle cx="752" cy="325" r="4" fill="#235943" />
+    <text x="766" y="330" font-size="14" fill="#202724" text-anchor="start">Dual-deck mixing</text>
+    <circle cx="752" cy="368" r="4" fill="#235943" />
+    <text x="766" y="373" font-size="14" fill="#202724" text-anchor="start">Master equalizer</text>
+    <circle cx="752" cy="411" r="4" fill="#235943" />
+    <text x="766" y="416" font-size="14" fill="#202724" text-anchor="start">Visualization telemetry</text>
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="rgba(19,33,27,0.57)" />
+    <g transform="translate(232 127)" role="group" aria-label="Backend Switch">
+      <rect x="0" y="0" width="656" height="436" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Backend Switch</text>
+      <text x="632" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">The selected track and queue carry over to the new engine.</text>
+      <line x1="0" y1="76" x2="656" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="98" width="282" height="112" rx="5" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="37" y="122" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Current engine</text>
+      <text x="37" y="152" font-size="20" fill="#202724" text-anchor="start" font-weight="700">SoundFlow</text>
+      <text x="37" y="179" font-size="12" fill="#4c5953" text-anchor="start">Built-in audio</text>
+      <rect x="350" y="98" width="282" height="112" rx="5" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="363" y="122" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Switch to</text>
+      <text x="363" y="152" font-size="20" fill="#202724" text-anchor="start" font-weight="700">Studio CLI</text>
+      <text x="363" y="179" font-size="12" fill="#4c5953" text-anchor="start">Session profile · Validated</text>
+      <text x="327" y="157" font-size="23" fill="#235943" text-anchor="middle">→</text>
+      <rect x="24" y="233" width="608" height="62" rx="5" fill="#fbeddc" />
+      <rect x="24" y="233" width="3" height="62" rx="1" fill="#704621" />
+      <text x="37" y="253" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Playback will stop</text>
+      <text x="37" y="273" font-size="12" fill="#704621" text-anchor="start">Harbor Lights stays selected. Press Play when you are ready to use Studio CLI.</text>
+      <text x="24" y="332" font-size="12" fill="#4c5953" text-anchor="start">Unavailable with Studio CLI · Master EQ and visualizations</text>
+      <line x1="0" y1="370" x2="656" y2="370" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="550" y="385" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="591.0" y="408.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR21.C01" data-button-label="icon-only" visibility="hidden">Switch</text>
+      <g transform="translate(582 394.5) scale(0.75)" data-button-icon="sync" role="img" aria-label="Switch">
+        <path d="M20 8a8 8 0 0 0-13-2L4 9m0-5v5h5m-5 7a8 8 0 0 0 13 2l3-3m0 5v-5h-5" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <rect x="458" y="385" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="499.0" y="408.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR21.C02" data-button-label="icon-only" visibility="hidden">Cancel</text>
+      <g transform="translate(490 394.5) scale(0.75)" data-button-icon="close" role="img" aria-label="Cancel">
+        <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+    </g>
+  </g>
+</svg>

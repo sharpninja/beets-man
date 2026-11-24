@@ -1,0 +1,8 @@
+@startuml UC-CONFIG-001
+left to right direction
+actor "Desktop operator" as Primary
+rectangle "Beets Man" {
+    usecase "UC-CONFIG-001\nConfigure and repair this desktop" as Goal
+}
+Primary -- Goal
+@enduml

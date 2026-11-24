@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR10" data-state-id="SCR10.S0">
+  <title id="title">Playlists</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/app-chrome.svg#library-workspace-header" />
+    <use href="../shared/library.svg#sidebar-playlists" />
+    <use href="../shared/transport.svg#library-transport" />
+    <text x="204" y="111" fill="#202724" font-size="27" font-weight="700">Playlists</text>
+    <text x="204" y="140" fill="#4c5953" font-size="13" font-weight="400">Saved lists in your music library.</text>
+    <rect x="204" y="174" width="124" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="266.0" y="198" fill="#202724" font-size="13" font-weight="700" text-anchor="middle" data-control-id="SCR10.C01">New playlist</text>
+    <rect x="340" y="174" width="109" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="394.5" y="198" fill="#202724" font-size="13" font-weight="700" text-anchor="middle" data-control-id="SCR10.C02">Reorder</text>
+    <text x="204" y="242" fill="#202724" font-size="19" font-weight="700">Night Drive</text>
+    <text x="204" y="264" fill="#4c5953" font-size="12" font-weight="400">5 tracks · Sync pending</text>
+    <use href="../shared/library-grid.svg#catalog-scr10" />
+    <use href="../shared/library.svg#list-tabs-playlist" />
+    <text x="808" y="174" fill="#4c5953" font-size="12" font-weight="700">Playlist name</text>
+    <rect x="808" y="184" width="292" height="36" fill="#ffffff" stroke="#d4dbd5" rx="4" />
+    <text x="819" y="207" fill="#202724" font-size="13" font-weight="400">Night Drive</text>
+    <text x="808" y="270" fill="#202724" font-size="14" font-weight="700">Playlist order</text>
+    <text x="1037" y="270" fill="#4c5953" font-size="12" font-weight="400">5 tracks</text>
+    <rect x="808" y="284" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+    <text x="819" y="311" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+    <text x="841" y="311" fill="#202724" font-size="13" font-weight="400">Harbor Lights</text>
+    <text x="1074" y="311" fill="#4c5953" font-size="16" font-weight="400">×</text>
+    <rect x="808" y="328" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+    <text x="819" y="355" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+    <text x="841" y="355" fill="#202724" font-size="13" font-weight="400">Night Crossing</text>
+    <text x="1074" y="355" fill="#4c5953" font-size="16" font-weight="400">×</text>
+    <rect x="808" y="372" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+    <text x="819" y="399" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+    <text x="841" y="399" fill="#202724" font-size="13" font-weight="400">Ridge Line</text>
+    <text x="1074" y="399" fill="#4c5953" font-size="16" font-weight="400">×</text>
+    <rect x="808" y="416" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+    <text x="819" y="443" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+    <text x="841" y="443" fill="#202724" font-size="13" font-weight="400">Low Current</text>
+    <text x="1074" y="443" fill="#4c5953" font-size="16" font-weight="400">×</text>
+    <rect x="808" y="460" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+    <text x="819" y="487" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+    <text x="841" y="487" fill="#202724" font-size="13" font-weight="400">Branch Signal</text>
+    <text x="1074" y="487" fill="#4c5953" font-size="16" font-weight="400">×</text>
+    <rect x="808" y="513" width="292" height="75" fill="#f4f5f2" stroke="#d4dbd5" rx="5" stroke-dasharray="5 4" />
+    <text x="827" y="547" fill="#4c5953" font-size="13" font-weight="400">Drag tracks or albums here</text>
+    <text x="827" y="567" fill="#4c5953" font-size="12" font-weight="400">Or use Add selected.</text>
+    <rect x="808" y="591" width="116" height="37" fill="#e9eeea" stroke="#d4dbd5" rx="5" />
+    <text x="866.0" y="615" fill="#4c5953" font-size="13" font-weight="700" text-anchor="middle">Add selected</text>
+    <rect x="935" y="591" width="165" height="37" fill="#235943" stroke="#235943" rx="5" />
+    <text x="1017.5" y="615" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">Save playlist</text>
+  </g>
+</svg>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR43" data-state-id="SCR43.S0">
+  <title id="title">Register Instance</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR42.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(250 93)" role="group" aria-label="Register Instance">
+      <rect x="0" y="0" width="620" height="504" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Register Instance</text>
+      <text x="596" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Register this desktop to sync with a library host.</text>
+      <line x1="0" y1="76" x2="620" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <text x="24" y="106" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Host address</text>
+      <rect x="24" y="116" width="572" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="139" font-size="13" fill="#202724" text-anchor="start">https://studio-host.local:7443</text>
+      <text x="24" y="181" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Desktop name</text>
+      <rect x="24" y="191" width="572" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="214" font-size="13" fill="#202724" text-anchor="start">Travel laptop</text>
+      <text x="24" y="256" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Credential</text>
+      <rect x="24" y="266" width="572" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="289" font-size="13" fill="#202724" text-anchor="start">••••••••••••••••</text>
+      <rect x="24" y="330" width="572" height="63" rx="5" fill="#e0ede4" />
+      <rect x="24" y="330" width="3" height="63" rx="1" fill="#235943" />
+      <text x="37" y="350" font-size="13" fill="#235943" text-anchor="start" font-weight="700">Credentials stay on this desktop</text>
+      <text x="37" y="370" font-size="12" fill="#235943" text-anchor="start">The credential is stored in the operating system’s credential store.</text>
+      <line x1="0" y1="438" x2="620" y2="438" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="512" y="453" width="84" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="554.0" y="476.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR43.C01">Register</text>
+      <rect x="420" y="453" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="461.0" y="476.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR43.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

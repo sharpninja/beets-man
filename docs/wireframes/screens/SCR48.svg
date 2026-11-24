@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR48" data-state-id="SCR48.S0">
+  <title id="title">Sync</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/dialogs.svg#sync-overview" />
+    <rect x="896" y="531" width="170" height="37" fill="#235943" stroke="#235943" rx="5" />
+    <text x="981.0" y="555" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" data-control-id="SCR48.C03">Edit sync list</text>
+  </g>
+</svg>

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR31" data-state-id="SCR31.STB07-8" data-storyboard-id="STB07" data-step-id="STB07-8">
+  <title id="title">Notifications Settings — Both alerts turn on and their shared and built-in sources appear.</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="#f4f5f2" />
+    <rect x="0" y="0" width="1120" height="65" rx="0" fill="#1e312a" />
+    <circle cx="35" cy="32" r="13" fill="#9ec9ab" />
+    <circle cx="35" cy="32" r="5" fill="#1e312a" />
+    <text x="58" y="39" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <text x="236" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Library</text>
+    <text x="357" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Now Playing</text>
+    <text x="514" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Sync</text>
+    <rect x="597" y="17" width="82" height="32" rx="5" fill="#365447" />
+    <text x="609" y="38" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Settings</text>
+    <circle cx="948" cy="32" r="4" fill="#a9dabc" />
+    <text x="960" y="37" font-size="12" fill="#dbe7df" text-anchor="start">Studio desktop</text>
+    <rect x="0" y="65" width="1120" height="49" rx="0" fill="#ffffff" />
+    <line x1="0" y1="114" x2="1120" y2="114" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">General</text>
+    <text x="117" y="95" font-size="14" fill="#4c5953" text-anchor="start">Appearance</text>
+    <text x="227" y="95" font-size="14" fill="#4c5953" text-anchor="start">Playback</text>
+    <text x="317" y="95" font-size="14" fill="#4c5953" text-anchor="start">Library</text>
+    <text x="393" y="95" font-size="14" fill="#4c5953" text-anchor="start">Sync</text>
+    <text x="455" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Notifications</text>
+    <rect x="455" y="111" width="88" height="3" rx="1" fill="#235943" />
+    <text x="571" y="95" font-size="14" fill="#4c5953" text-anchor="start">Shortcuts</text>
+    <text x="666" y="95" font-size="14" fill="#4c5953" text-anchor="start">Plugins</text>
+    <text x="746" y="95" font-size="14" fill="#4c5953" text-anchor="start">Diagnostics</text>
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Notifications</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Desktop alerts and their effective sources</text>
+    <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+    <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="674" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="164" y="674" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale</text>
+    <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="539.0" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Previous</text>
+    <g transform="translate(531 660) scale(0.666667)" data-button-icon="previous" role="img" aria-label="Previous">
+      <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" stroke="#235943" />
+    <text x="618.0" y="673.0" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Ⅱ</text>
+    <g transform="translate(610 660) scale(0.666667)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="689.5" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Next</text>
+    <g transform="translate(681.5 660) scale(0.666667)" data-button-icon="next" role="img" aria-label="Next">
+      <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="102" aria-valuetext="1:42 of 4:26" data-seek-slider="track">
+      <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">1:42</text>
+      <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+      <rect x="780" y="665" width="101.233" height="6" rx="3" fill="#235943" data-seek-part="played" />
+      <circle cx="881.233" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+      <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+    </g>
+    <rect x="36" y="210" width="1048" height="314" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="54" y="241" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Alert</text>
+    <text x="706" y="241" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Effective source</text>
+    <line x1="54" y1="257" x2="1066" y2="257" stroke="#d4dbd5" stroke-width="1" />
+    <text x="54" y="288" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Sync completed</text>
+    <text x="54" y="310" font-size="12" fill="#4c5953" text-anchor="start">Notify when a transfer finishes</text>
+    <rect x="1029" y="272" width="37" height="21" rx="10" fill="#235943" stroke="#235943" />
+    <circle cx="1055" cy="283" r="7" fill="#ffffff" />
+    <rect x="706" y="271" width="95" height="24" rx="4" fill="#e9eeea" />
+    <text x="715" y="287" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Shared default</text>
+    <line x1="54" y1="339" x2="1066" y2="339" stroke="#d4dbd5" stroke-width="1" />
+    <text x="54" y="370" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Peer needs attention</text>
+    <text x="54" y="392" font-size="12" fill="#4c5953" text-anchor="start">Notify when a share or folder fails</text>
+    <rect x="1029" y="354" width="37" height="21" rx="10" fill="#235943" stroke="#235943" />
+    <circle cx="1055" cy="365" r="7" fill="#ffffff" />
+    <rect x="706" y="353" width="97" height="24" rx="4" fill="#e9eeea" />
+    <text x="715" y="369" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Built-in default</text>
+    <line x1="54" y1="421" x2="1066" y2="421" stroke="#d4dbd5" stroke-width="1" />
+    <text x="54" y="452" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Playback errors</text>
+    <text x="54" y="474" font-size="12" fill="#4c5953" text-anchor="start">Notify when an engine cannot play a track</text>
+    <rect x="1029" y="436" width="37" height="21" rx="10" fill="#e9eeea" stroke="#d4dbd5" />
+    <circle cx="1040" cy="447" r="7" fill="#4c5953" />
+    <rect x="706" y="435" width="93" height="24" rx="4" fill="#e9eeea" />
+    <text x="715" y="451" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Built-in default</text>
+    <rect x="36" y="539" width="749" height="62" rx="5" fill="#fbeddc" />
+    <rect x="36" y="539" width="3" height="62" rx="1" fill="#704621" />
+    <text x="49" y="559" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Using cached defaults</text>
+    <text x="49" y="579" font-size="12" fill="#704621" text-anchor="start">The last valid shared settings remain in effect while the host is offline.</text>
+    <rect x="1002" y="552" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="1043.0" y="575.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR31.C01" data-button-label="icon-only" visibility="hidden">Apply</text>
+    <g transform="translate(1034 561.5) scale(0.75)" data-button-icon="check" role="img" aria-label="Apply">
+      <path d="m5 12 4 4 10-10" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="910" y="552" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="951.0" y="575.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR31.C02" data-button-label="icon-only" visibility="hidden">Reset</text>
+    <g transform="translate(942 561.5) scale(0.75)" data-button-icon="restore" role="img" aria-label="Reset">
+      <path d="M4 10a8 8 0 1 1 1 7m-1-13v6h6m2-3v5l3 2" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="1026" y="435" width="45" height="28" fill="#ffffff" stroke="none" rx="0" />
+    <rect x="1029" y="436" width="37" height="21" fill="#235943" stroke="none" rx="10" />
+    <circle cx="1055" cy="447" r="7" fill="#ffffff" />
+  </g>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR31" data-state-id="SCR31.S0">
+  <title id="title">Notifications Settings</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/app-chrome.svg#settings-header" />
+    <use href="../shared/app-chrome.svg#secondary-navigation-background" />
+    <use href="../shared/navigation.svg#settings-notifications" />
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Notifications</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Desktop alerts and their effective sources</text>
+    <use href="../shared/transport.svg#desktop-transport" />
+    <rect x="36" y="210" width="1048" height="314" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="54" y="241" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Alert</text>
+    <text x="706" y="241" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Effective source</text>
+    <line x1="54" y1="257" x2="1066" y2="257" stroke="#d4dbd5" stroke-width="1" />
+    <text x="54" y="288" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Sync completed</text>
+    <text x="54" y="310" font-size="12" fill="#4c5953" text-anchor="start">Notify when a transfer finishes</text>
+    <rect x="1029" y="272" width="37" height="21" rx="10" fill="#235943" stroke="#235943" />
+    <circle cx="1055" cy="283" r="7" fill="#ffffff" />
+    <rect x="706" y="271" width="95" height="24" rx="4" fill="#e9eeea" />
+    <text x="715" y="287" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Shared default</text>
+    <line x1="54" y1="339" x2="1066" y2="339" stroke="#d4dbd5" stroke-width="1" />
+    <text x="54" y="370" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Peer needs attention</text>
+    <text x="54" y="392" font-size="12" fill="#4c5953" text-anchor="start">Notify when a share or folder fails</text>
+    <rect x="1029" y="354" width="37" height="21" rx="10" fill="#235943" stroke="#235943" />
+    <circle cx="1055" cy="365" r="7" fill="#ffffff" />
+    <rect x="706" y="353" width="97" height="24" rx="4" fill="#e9eeea" />
+    <text x="715" y="369" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Built-in default</text>
+    <line x1="54" y1="421" x2="1066" y2="421" stroke="#d4dbd5" stroke-width="1" />
+    <text x="54" y="452" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Playback errors</text>
+    <text x="54" y="474" font-size="12" fill="#4c5953" text-anchor="start">Notify when an engine cannot play a track</text>
+    <rect x="1029" y="436" width="37" height="21" rx="10" fill="#e9eeea" stroke="#d4dbd5" />
+    <circle cx="1040" cy="447" r="7" fill="#4c5953" />
+    <rect x="706" y="435" width="93" height="24" rx="4" fill="#e9eeea" />
+    <text x="715" y="451" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Local override</text>
+    <rect x="36" y="539" width="749" height="62" rx="5" fill="#fbeddc" />
+    <rect x="36" y="539" width="3" height="62" rx="1" fill="#704621" />
+    <text x="49" y="559" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Using cached defaults</text>
+    <text x="49" y="579" font-size="12" fill="#704621" text-anchor="start">The last valid shared settings remain in effect while the host is offline.</text>
+    <rect x="1002" y="552" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="1043.0" y="575.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR31.C01">Apply</text>
+    <rect x="910" y="552" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="951.0" y="575.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR31.C02">Reset</text>
+  </g>
+</svg>

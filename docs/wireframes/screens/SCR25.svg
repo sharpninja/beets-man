@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR25" data-state-id="SCR25.S0">
+  <title id="title">Visualization Picker</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR12.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(172 91)" role="group" aria-label="Visualization Picker">
+      <rect x="0" y="0" width="776" height="508" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Visualization Picker</text>
+      <text x="752" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Choose the visualization shown during playback.</text>
+      <line x1="0" y1="76" x2="776" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="97" width="262" height="311" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <rect x="35" y="109" width="240" height="61" rx="5" fill="#e0ede4" stroke="#235943" />
+      <circle cx="57" cy="135" r="8" fill="#235943" />
+      <circle cx="57" cy="135" r="5" fill="#ffffff" />
+      <circle cx="57" cy="135" r="3" fill="#235943" />
+      <text x="75" y="134" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Spectrum</text>
+      <text x="75" y="155" font-size="12" fill="#4c5953" text-anchor="start">Built-in · Available</text>
+      <rect x="35" y="180" width="240" height="61" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <circle cx="57" cy="206" r="8" fill="#4c5953" />
+      <circle cx="57" cy="206" r="5" fill="#ffffff" />
+      <text x="75" y="205" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Waveform</text>
+      <text x="75" y="226" font-size="12" fill="#4c5953" text-anchor="start">Built-in · Available</text>
+      <rect x="35" y="251" width="240" height="61" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <circle cx="57" cy="277" r="8" fill="#4c5953" />
+      <circle cx="57" cy="277" r="5" fill="#ffffff" />
+      <text x="75" y="276" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Studio Spectrum</text>
+      <text x="75" y="297" font-size="12" fill="#4c5953" text-anchor="start">Plugin · Available</text>
+      <rect x="303" y="97" width="449" height="239" rx="7" fill="#1e312a" />
+      <line x1="335" y1="144.8" x2="720" y2="144.8" stroke="#3b554a" stroke-width="1" />
+      <line x1="335" y1="192.6" x2="720" y2="192.6" stroke="#3b554a" stroke-width="1" />
+      <line x1="335" y1="240.4" x2="720" y2="240.4" stroke="#3b554a" stroke-width="1" />
+      <line x1="335" y1="288.2" x2="720" y2="288.2" stroke="#3b554a" stroke-width="1" />
+      <rect x="339.0" y="277.72" width="3.85" height="20.28" rx="2" fill="#9bccac" />
+      <rect x="346.85" y="260.29" width="3.85" height="37.71" rx="2" fill="#679d7d" />
+      <rect x="354.71" y="244.88" width="3.85" height="53.12" rx="2" fill="#679d7d" />
+      <rect x="362.56" y="232.09" width="3.85" height="65.91" rx="2" fill="#679d7d" />
+      <rect x="370.42" y="222.33" width="3.85" height="75.67" rx="2" fill="#9bccac" />
+      <rect x="378.27" y="215.88" width="3.85" height="82.12" rx="2" fill="#679d7d" />
+      <rect x="386.12" y="212.81" width="3.85" height="85.19" rx="2" fill="#679d7d" />
+      <rect x="393.98" y="213.04" width="3.85" height="84.96" rx="2" fill="#679d7d" />
+      <rect x="401.83" y="216.28" width="3.85" height="81.72" rx="2" fill="#9bccac" />
+      <rect x="409.69" y="222.12" width="3.85" height="75.88" rx="2" fill="#679d7d" />
+      <rect x="417.54" y="230.0" width="3.85" height="68.0" rx="2" fill="#679d7d" />
+      <rect x="425.4" y="239.26" width="3.85" height="58.74" rx="2" fill="#679d7d" />
+      <rect x="433.25" y="249.17" width="3.85" height="48.83" rx="2" fill="#9bccac" />
+      <rect x="441.1" y="258.99" width="3.85" height="39.01" rx="2" fill="#679d7d" />
+      <rect x="448.96" y="267.98" width="3.85" height="30.02" rx="2" fill="#679d7d" />
+      <rect x="456.81" y="275.48" width="3.85" height="22.52" rx="2" fill="#679d7d" />
+      <rect x="464.67" y="274.53" width="3.85" height="23.47" rx="2" fill="#9bccac" />
+      <rect x="472.52" y="271.63" width="3.85" height="26.37" rx="2" fill="#679d7d" />
+      <rect x="480.38" y="271.54" width="3.85" height="26.46" rx="2" fill="#679d7d" />
+      <rect x="488.23" y="274.39" width="3.85" height="23.61" rx="2" fill="#679d7d" />
+      <rect x="496.08" y="275.3" width="3.85" height="22.7" rx="2" fill="#9bccac" />
+      <rect x="503.94" y="266.88" width="3.85" height="31.12" rx="2" fill="#679d7d" />
+      <rect x="511.79" y="256.18" width="3.85" height="41.82" rx="2" fill="#679d7d" />
+      <rect x="519.65" y="243.73" width="3.85" height="54.27" rx="2" fill="#679d7d" />
+      <rect x="527.5" y="230.19" width="3.85" height="67.81" rx="2" fill="#9bccac" />
+      <rect x="535.35" y="216.28" width="3.85" height="81.72" rx="2" fill="#679d7d" />
+      <rect x="543.21" y="202.78" width="3.85" height="95.22" rx="2" fill="#679d7d" />
+      <rect x="551.06" y="190.45" width="3.85" height="107.55" rx="2" fill="#679d7d" />
+      <rect x="558.92" y="180.03" width="3.85" height="117.97" rx="2" fill="#9bccac" />
+      <rect x="566.77" y="172.18" width="3.85" height="125.82" rx="2" fill="#679d7d" />
+      <rect x="574.62" y="167.43" width="3.85" height="130.57" rx="2" fill="#679d7d" />
+      <rect x="582.48" y="166.17" width="3.85" height="131.83" rx="2" fill="#679d7d" />
+      <rect x="590.33" y="168.64" width="3.85" height="129.36" rx="2" fill="#9bccac" />
+      <rect x="598.19" y="174.87" width="3.85" height="123.13" rx="2" fill="#679d7d" />
+      <rect x="606.04" y="184.73" width="3.85" height="113.27" rx="2" fill="#679d7d" />
+      <rect x="613.9" y="197.9" width="3.85" height="100.1" rx="2" fill="#679d7d" />
+      <rect x="621.75" y="213.9" width="3.85" height="84.1" rx="2" fill="#9bccac" />
+      <rect x="629.6" y="232.12" width="3.85" height="65.88" rx="2" fill="#679d7d" />
+      <rect x="637.46" y="251.82" width="3.85" height="46.18" rx="2" fill="#679d7d" />
+      <rect x="645.31" y="272.21" width="3.85" height="25.79" rx="2" fill="#679d7d" />
+      <rect x="653.17" y="262.99" width="3.85" height="35.01" rx="2" fill="#9bccac" />
+      <rect x="661.02" y="243.7" width="3.85" height="54.3" rx="2" fill="#679d7d" />
+      <rect x="668.88" y="226.15" width="3.85" height="71.85" rx="2" fill="#679d7d" />
+      <rect x="676.73" y="210.99" width="3.85" height="87.01" rx="2" fill="#679d7d" />
+      <rect x="684.58" y="198.79" width="3.85" height="99.21" rx="2" fill="#9bccac" />
+      <rect x="692.44" y="189.94" width="3.85" height="108.06" rx="2" fill="#679d7d" />
+      <rect x="700.29" y="184.67" width="3.85" height="113.33" rx="2" fill="#679d7d" />
+      <rect x="708.15" y="183.02" width="3.85" height="114.98" rx="2" fill="#679d7d" />
+      <text x="303" y="366" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Spectrum · Built-in</text>
+      <text x="303" y="390" font-size="13" fill="#4c5953" text-anchor="start">Uses the active engine’s frequency data.</text>
+      <line x1="0" y1="442" x2="776" y2="442" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="670" y="457" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="711.0" y="480.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR25.C01">Apply</text>
+      <rect x="578" y="457" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="619.0" y="480.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR25.C02">Close</text>
+    </g>
+  </g>
+</svg>

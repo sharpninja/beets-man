@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR53" data-state-id="SCR53.S0">
+  <title id="title">Export Preview</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR50.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(88 47)" role="group" aria-label="Export Preview">
+      <rect x="0" y="0" width="944" height="596" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Export Preview</text>
+      <text x="920" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Pixel 6 · Musicolette export · Changes owned by this device</text>
+      <line x1="0" y1="76" x2="944" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="95" width="77" height="24" rx="4" fill="#e0ede4" />
+      <text x="33" y="111" font-size="11" fill="#235943" text-anchor="start" font-weight="700">2 additions</text>
+      <rect x="124" y="95" width="56" height="24" rx="4" fill="#e9eeea" />
+      <text x="133" y="111" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">1 move</text>
+      <rect x="214" y="95" width="69" height="24" rx="4" fill="#fbeddc" />
+      <text x="223" y="111" font-size="11" fill="#704621" text-anchor="start" font-weight="700">1 removal</text>
+      <rect x="318" y="95" width="72" height="24" rx="4" fill="#f8e9e7" />
+      <text x="327" y="111" font-size="11" fill="#8e3431" text-anchor="start" font-weight="700">1 collision</text>
+      <rect x="24" y="139" width="896" height="226" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <rect x="25" y="140" width="894" height="32" rx="4" fill="#e9eeea" />
+      <text x="36" y="161" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Change</text>
+      <text x="130" y="161" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Current path</text>
+      <text x="434" y="161" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Proposed path</text>
+      <text x="775" y="161" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Status</text>
+      <line x1="25" y1="173" x2="919" y2="173" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="201.0" font-size="13" fill="#202724" text-anchor="start">Add</text>
+      <text x="130" y="201.0" font-size="13" fill="#202724" text-anchor="start">—</text>
+      <text x="434" y="201.0" font-size="13" fill="#202724" text-anchor="start">Lena Vale/Northern Lines/01 Harbor Lights.flac</text>
+      <rect x="775" y="185.0" width="51" height="24" rx="4" fill="#e0ede4" />
+      <text x="784" y="201.0" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Ready</text>
+      <rect x="25" y="221" width="894" height="47" rx="0" fill="#e0ede4" />
+      <rect x="25" y="221" width="3" height="47" rx="0" fill="#235943" />
+      <line x1="25" y1="221" x2="919" y2="221" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="249.0" font-size="13" fill="#202724" text-anchor="start">Add</text>
+      <text x="130" y="249.0" font-size="13" fill="#202724" text-anchor="start">—</text>
+      <text x="434" y="249.0" font-size="13" fill="#202724" text-anchor="start">Lena Vale/Northern Lines/02 Night Crossing.flac</text>
+      <rect x="775" y="233.0" width="65" height="24" rx="4" fill="#f8e9e7" />
+      <text x="784" y="249.0" font-size="11" fill="#8e3431" text-anchor="start" font-weight="700">Collision</text>
+      <line x1="25" y1="269" x2="919" y2="269" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="297.0" font-size="13" fill="#202724" text-anchor="start">Move</text>
+      <text x="130" y="297.0" font-size="13" fill="#202724" text-anchor="start">Albums/Ridge Line.flac</text>
+      <text x="434" y="297.0" font-size="13" fill="#202724" text-anchor="start">Lena Vale/Northern Lines/03 Ridge Line.flac</text>
+      <rect x="775" y="281.0" width="93" height="24" rx="4" fill="#e9eeea" />
+      <text x="784" y="297.0" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Device-owned</text>
+      <rect x="25" y="317" width="894" height="47" rx="0" fill="#fafbf9" />
+      <line x1="25" y1="317" x2="919" y2="317" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="345.0" font-size="13" fill="#202724" text-anchor="start">Remove</text>
+      <text x="130" y="345.0" font-size="13" fill="#202724" text-anchor="start">M3U/Night Drive.m3u</text>
+      <text x="434" y="345.0" font-size="13" fill="#202724" text-anchor="start">—</text>
+      <rect x="775" y="329.0" width="108" height="24" rx="4" fill="#fbeddc" />
+      <text x="784" y="345.0" font-size="11" fill="#704621" text-anchor="start" font-weight="700">Approval needed</text>
+      <rect x="24" y="387" width="896" height="65" rx="5" fill="#f8e9e7" />
+      <rect x="24" y="387" width="3" height="65" rx="1" fill="#8e3431" />
+      <text x="37" y="407" font-size="13" fill="#8e3431" text-anchor="start" font-weight="700">Resolve the collision before publishing</text>
+      <text x="37" y="427" font-size="12" fill="#8e3431" text-anchor="start">Night Crossing conflicts with an existing path. The device’s previous export remains active.</text>
+      <text x="24" y="485" font-size="13" fill="#4c5953" text-anchor="start">File removals require a separate confirmation.</text>
+      <line x1="0" y1="530" x2="944" y2="530" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="838" y="545" width="82" height="37" rx="5" fill="#e9eeea" stroke="#d4dbd5" />
+      <text x="879.0" y="568.5" font-size="13" fill="#4c5953" text-anchor="middle" font-weight="700" data-control-id="SCR53.C01">Publish</text>
+      <rect x="746" y="545" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="787.0" y="568.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR53.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR50" data-state-id="SCR50.STB10-24" data-storyboard-id="STB10" data-step-id="STB10-24">
+  <title id="title">Android Devices · The playlist and missing audio are transferring</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <use href="../../shared/playlist-sync.svg#device-progress" />
+    <rect x="368" y="456" width="232" height="7" rx="3" fill="#235943" />
+    <text x="368" y="484" font-size="13" fill="#202724">1 of 3 files transferred</text>
+    <text x="368" y="530" font-size="14" font-weight="700" fill="#235943">Syncing Night Drive to Pixel 6</text>
+    <text x="368" y="553" font-size="12" fill="#4c5953">1 playlist file · 2 missing audio files</text>
+  </g>
+</svg>

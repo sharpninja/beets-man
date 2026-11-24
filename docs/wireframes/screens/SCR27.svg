@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR27" data-state-id="SCR27.S0">
+  <title id="title">Settings</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/app-chrome.svg#settings-header" />
+    <use href="../shared/app-chrome.svg#secondary-navigation-background" />
+    <use href="../shared/navigation.svg#settings-general" />
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Settings</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Preferences on Studio desktop</text>
+    <use href="../shared/transport.svg#desktop-transport" />
+    <rect x="36" y="212" width="338" height="139" rx="6" fill="#e0ede4" stroke="#235943" />
+    <text x="51" y="246" font-size="17" fill="#202724" text-anchor="start" font-weight="700">Appearance</text>
+    <text x="51" y="272" font-size="13" fill="#4c5953" text-anchor="start">Theme and window presentation</text>
+    <rect x="51" y="290" width="93" height="24" rx="4" fill="#e0ede4" />
+    <text x="60" y="306" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Local override</text>
+    <text x="355" y="248" font-size="20" fill="#235943" text-anchor="end">›</text>
+    <rect x="391" y="212" width="338" height="139" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="406" y="246" font-size="17" fill="#202724" text-anchor="start" font-weight="700">Playback</text>
+    <text x="406" y="272" font-size="13" fill="#4c5953" text-anchor="start">Engine, output and crossfade</text>
+    <rect x="406" y="290" width="95" height="24" rx="4" fill="#e9eeea" />
+    <text x="415" y="306" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Shared default</text>
+    <text x="710" y="248" font-size="20" fill="#235943" text-anchor="end">›</text>
+    <rect x="746" y="212" width="338" height="139" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="761" y="246" font-size="17" fill="#202724" text-anchor="start" font-weight="700">Library</text>
+    <text x="761" y="272" font-size="13" fill="#4c5953" text-anchor="start">Local storage and import behavior</text>
+    <rect x="761" y="290" width="87" height="24" rx="4" fill="#e9eeea" />
+    <text x="770" y="306" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">This desktop</text>
+    <text x="1065" y="248" font-size="20" fill="#235943" text-anchor="end">›</text>
+    <rect x="36" y="368" width="338" height="139" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="51" y="402" font-size="17" fill="#202724" text-anchor="start" font-weight="700">Sync</text>
+    <text x="51" y="428" font-size="13" fill="#4c5953" text-anchor="start">Peer and record sync options</text>
+    <rect x="51" y="446" width="95" height="24" rx="4" fill="#e9eeea" />
+    <text x="60" y="462" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Shared default</text>
+    <text x="355" y="404" font-size="20" fill="#235943" text-anchor="end">›</text>
+    <rect x="391" y="368" width="338" height="139" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="406" y="402" font-size="17" fill="#202724" text-anchor="start" font-weight="700">Notifications</text>
+    <text x="406" y="428" font-size="13" fill="#4c5953" text-anchor="start">Delivery and desktop alerts</text>
+    <rect x="406" y="446" width="95" height="24" rx="4" fill="#e9eeea" />
+    <text x="415" y="462" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Shared default</text>
+    <text x="710" y="404" font-size="20" fill="#235943" text-anchor="end">›</text>
+    <rect x="746" y="368" width="338" height="139" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="761" y="402" font-size="17" fill="#202724" text-anchor="start" font-weight="700">Shortcuts</text>
+    <text x="761" y="428" font-size="13" fill="#4c5953" text-anchor="start">Gesture and playback keys</text>
+    <rect x="761" y="446" width="87" height="24" rx="4" fill="#e9eeea" />
+    <text x="770" y="462" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">This desktop</text>
+    <text x="1065" y="404" font-size="20" fill="#235943" text-anchor="end">›</text>
+    <rect x="961" y="546" width="123" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="1022.5" y="569.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR27.C01">Open category</text>
+    <rect x="818" y="546" width="133" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="884.5" y="569.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR27.C02">Restore defaults</text>
+  </g>
+</svg>

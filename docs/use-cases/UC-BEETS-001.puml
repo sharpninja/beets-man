@@ -1,0 +1,10 @@
+@startuml UC-BEETS-001
+left to right direction
+actor "Library operator" as Primary
+actor "beets" as Secondary
+rectangle "Beets Man" {
+    usecase "UC-BEETS-001\nManage the host library" as Goal
+}
+Primary -- Goal
+Secondary -- Goal
+@enduml

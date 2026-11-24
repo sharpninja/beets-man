@@ -1,0 +1,10 @@
+@startuml UC-PLAYER-001
+left to right direction
+actor "Listener" as Primary
+actor "Audio output" as Secondary
+rectangle "Beets Man" {
+    usecase "UC-PLAYER-001\nPlay, mix, and visualize music" as Goal
+}
+Primary -- Goal
+Secondary -- Goal
+@enduml

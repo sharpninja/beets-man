@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="650" height="236" viewBox="0 0 650 236" role="img" aria-labelledby="title" data-screen-id="SCR16" data-state-id="SCR16.S0">
+  <title id="title">Minimum Player</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <rect x="0" y="0" width="650" height="236" rx="9" fill="#1e312a" />
+    <line x1="0" y1="45" x2="650" y2="45" stroke="#567165" stroke-width="1" />
+    <text x="18" y="29" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <text x="631" y="29" font-size="15" fill="#ffffff" text-anchor="end">−     ×</text>
+    <rect x="18" y="61" width="82" height="82" rx="4" fill="#cbd9cd" />
+    <circle cx="73.76" cy="83.96000000000001" r="8.200000000000001" fill="#edf2df" />
+    <path d="M24.56 124.14 L49.98 97.08 L63.92 111.02 L75.40 97.90 L92.62 124.14 Z" fill="#587363" stroke="#587363" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="27.84" y1="131.51999999999998" x2="90.16" y2="131.51999999999998" stroke="#edf2df" stroke-width="2" />
+    <text x="117" y="83" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="118" y="107" font-size="13" fill="#c5d8cd" text-anchor="start">Lena Vale</text>
+    <rect x="473" y="68" width="157" height="33" rx="5" fill="#2b473b" stroke="#5a7968" />
+    <text x="551.5" y="89.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR16.C02">Normal view</text>
+    <rect x="118" y="129" width="512" height="4" rx="2" fill="#526b60" />
+    <rect x="118" y="129" width="199.68" height="4" rx="2" fill="#a7d8b6" />
+    <circle cx="317.68" cy="131" r="6" fill="#a7d8b6" />
+    <text x="118" y="156" font-size="11" fill="#c5d8cd" text-anchor="start">1:42</text>
+    <text x="630" y="156" font-size="11" fill="#c5d8cd" text-anchor="end">4:26</text>
+    <rect x="118" y="177" width="100" height="37" rx="5" fill="#2b473b" stroke="#5a7968" />
+    <text x="168.0" y="200.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700">Previous</text>
+    <rect x="227" y="177" width="117" height="37" rx="5" fill="#2b473b" stroke="#5a7968" />
+    <text x="285.5" y="200.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR16.C01">Play / pause</text>
+    <rect x="353" y="177" width="76" height="37" rx="5" fill="#2b473b" stroke="#5a7968" />
+    <text x="391.0" y="200.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700">Next</text>
+    <text x="458" y="201" font-size="11" fill="#c5d8cd" text-anchor="start">Volume</text>
+    <rect x="513" y="196" width="117" height="4" rx="2" fill="#526b60" />
+    <rect x="513" y="196" width="84.24" height="4" rx="2" fill="#a7d8b6" />
+    <circle cx="597.24" cy="198" r="6" fill="#a7d8b6" />
+  </g>
+</svg>

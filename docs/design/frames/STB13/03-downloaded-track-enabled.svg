@@ -1,0 +1,176 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR08" data-state-id="SCR08.STB13-3" data-storyboard-id="STB13" data-step-id="STB13-3">
+  <title id="title">Tracks — Selection returns to a downloaded row and Play track is enabled.</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" fill="#f4f5f2" stroke="none" rx="0" />
+    <rect x="0" y="0" width="1120" height="65" fill="#1e312a" stroke="none" rx="0" />
+    <circle cx="34" cy="32" r="12" fill="#9ec9ab" />
+    <circle cx="34" cy="32" r="4" fill="#1e312a" />
+    <text x="57" y="39" fill="#ffffff" font-size="20" font-weight="700">Beets Man</text>
+    <rect x="220" y="16" width="86" height="32" fill="#365447" stroke="none" rx="5" />
+    <text x="238" y="37" fill="#ffffff" font-size="14" font-weight="700">Library</text>
+    <text x="333" y="37" fill="#d7e6dd" font-size="14" font-weight="400">Now Playing</text>
+    <text x="468" y="37" fill="#d7e6dd" font-size="14" font-weight="400">Sync</text>
+    <text x="548" y="37" fill="#d7e6dd" font-size="14" font-weight="400">Settings</text>
+    <text x="963" y="37" fill="#d7e6dd" font-size="12" font-weight="400">Studio desktop</text>
+    <rect x="0" y="65" width="184" height="581" fill="#ffffff" stroke="none" rx="0" />
+    <line x1="183" y1="65" x2="183" y2="646" stroke="#d4dbd5" />
+    <text x="22" y="100" fill="#4c5953" font-size="11" font-weight="700">LIBRARY</text>
+    <text x="25" y="138" fill="#202724" font-size="14" font-weight="400">Overview</text>
+    <text x="25" y="175" fill="#202724" font-size="14" font-weight="400">Artists</text>
+    <text x="25" y="212" fill="#202724" font-size="14" font-weight="400">Albums</text>
+    <rect x="12" y="228" width="158" height="32" fill="#e0ede4" stroke="none" rx="4" />
+    <rect x="12" y="234" width="3" height="20" fill="#235943" stroke="none" rx="1" />
+    <text x="25" y="249" fill="#235943" font-size="14" font-weight="700">Tracks</text>
+    <text x="25" y="286" fill="#202724" font-size="14" font-weight="400">Search</text>
+    <text x="25" y="323" fill="#202724" font-size="14" font-weight="400">Playlists</text>
+    <text x="25" y="360" fill="#202724" font-size="14" font-weight="400">Jobs</text>
+    <line x1="22" y1="395" x2="161" y2="395" stroke="#d4dbd5" />
+    <text x="22" y="422" fill="#4c5953" font-size="11" font-weight="700">SAVED PLAYLISTS</text>
+    <text x="23" y="455" fill="#202724" font-size="13" font-weight="400">Night Drive</text>
+    <text x="23" y="487" fill="#202724" font-size="13" font-weight="400">Desk Rotation</text>
+    <rect x="0" y="646" width="1120" height="44" fill="#ffffff" stroke="none" rx="0" />
+    <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" />
+    <text x="22" y="674" fill="#202724" font-size="13" font-weight="700">Harbor Lights</text>
+    <text x="132" y="674" fill="#4c5953" font-size="12" font-weight="400">Lena Vale</text>
+    <rect x="478" y="654" width="78" height="28" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="517.0" y="673.0" fill="#202724" font-size="13" font-weight="700" text-anchor="middle" data-button-label="icon-only" visibility="hidden">Previous</text>
+    <g transform="translate(509 660) scale(0.666667)" data-button-icon="previous" role="img" aria-label="Previous">
+      <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="566" y="654" width="65" height="28" fill="#235943" stroke="#235943" rx="5" />
+    <text x="598.5" y="673.0" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" data-button-label="icon-only" visibility="hidden">Pause</text>
+    <g transform="translate(590.5 660) scale(0.666667)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="641" y="654" width="65" height="28" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="673.5" y="673.0" fill="#202724" font-size="13" font-weight="700" text-anchor="middle" data-button-label="icon-only" visibility="hidden">Next</text>
+    <g transform="translate(665.5 660) scale(0.666667)" data-button-icon="next" role="img" aria-label="Next">
+      <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="102" aria-valuetext="1:42 of 4:26" data-seek-slider="track">
+      <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">1:42</text>
+      <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+      <rect x="780" y="665" width="101.233" height="6" rx="3" fill="#235943" data-seek-part="played" />
+      <circle cx="881.233" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+      <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+    </g>
+    <text x="204" y="111" fill="#202724" font-size="27" font-weight="700">Tracks</text>
+    <text x="204" y="140" fill="#4c5953" font-size="13" font-weight="400">Cached library · Host offline</text>
+    <rect x="204" y="174" width="105" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="256.5" y="198" fill="#202724" font-size="13" font-weight="700" text-anchor="middle" data-control-id="SCR08.C01" data-button-label="icon-only" visibility="hidden">Play track</text>
+    <g transform="translate(247.5 183.5) scale(0.75)" data-button-icon="play" role="img" aria-label="Play track">
+      <path d="m7 4 12 8-12 8z" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="320" y="174" width="125" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="382.5" y="198" fill="#202724" font-size="13" font-weight="700" text-anchor="middle" data-control-id="SCR08.C02" data-button-label="icon-only" visibility="hidden">Add to queue</text>
+    <g transform="translate(373.5 183.5) scale(0.75)" data-button-icon="list-add" role="img" aria-label="Add to queue">
+      <path d="M4 6h16M4 11h16M4 16h8m5-2v8m-4-4h8" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g data-library-grid="song" role="table" transform="translate(0 242)">
+      <g role="row" font-size="11" font-weight="700" fill="#4c5953">
+        <rect x="204" y="0" width="576" height="32" fill="#e9eeea" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" />
+        <text x="214" y="20" role="columnheader">#</text>
+        <text x="244" y="20" role="columnheader">Title</text>
+        <text x="391" y="20" role="columnheader">Length</text>
+        <text x="446" y="20" role="columnheader">Rating</text>
+        <text x="518" y="20" role="columnheader">Contributing artist</text>
+        <text x="640" y="20" role="columnheader">Album</text>
+        <text x="736" y="20" role="columnheader">Genre</text>
+      </g>
+      <g role="row" transform="translate(0 32)" data-selected="true">
+        <rect x="204" y="0" width="576" height="43" fill="#e0ede4" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">1</text>
+        <text fill="#235943" x="244" y="34" font-size="10">Downloaded</text>
+        <text x="244" y="17" role="cell" font-size="12" fill="#202724">Harbor Lights</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">4:26</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Northern Lines</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+      <g role="row" transform="translate(0 75)">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">2</text>
+        <text fill="#8a5100" x="244" y="34" font-size="10">Pending</text>
+        <text x="244" y="17" role="cell" font-size="12" fill="#202724">Night Crossing</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">3:58</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Northern Lines</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+      <g role="row" transform="translate(0 118)">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">3</text>
+        <text fill="#235943" x="244" y="34" font-size="10">Downloaded</text>
+        <text x="244" y="17" role="cell" font-size="12" fill="#202724">Ridge Line</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">5:08</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Northern Lines</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+      <g role="row" transform="translate(0 161)">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">1</text>
+        <text fill="#235943" x="244" y="34" font-size="10">Downloaded</text>
+        <text x="244" y="17" role="cell" font-size="12" fill="#202724">Low Current</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">3:43</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">Juniper Static</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Low Current</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+      <g role="row" transform="translate(0 204)">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">1</text>
+        <text fill="#235943" x="244" y="34" font-size="10">Downloaded</text>
+        <text x="244" y="17" role="cell" font-size="12" fill="#202724">Branch Signal</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">4:02</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">The Switchyards</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Quiet Stations</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+    </g>
+    <rect x="790" y="65" width="330" height="581" fill="#ffffff" stroke="none" rx="0" />
+    <line x1="790" y1="65" x2="790" y2="646" stroke="#d4dbd5" />
+    <text x="808" y="97" fill="#4c5953" font-size="11" font-weight="700">LISTS</text>
+    <rect x="808" y="108" width="91" height="34" fill="#e0ede4" stroke="none" rx="4" />
+    <rect x="813" y="139" width="81" height="3" fill="#235943" stroke="none" rx="1" />
+    <text x="822" y="130" fill="#235943" font-size="13" font-weight="700">Queue</text>
+    <text x="918" y="130" fill="#202724" font-size="13" font-weight="400">Playlist</text>
+    <text x="1015" y="130" fill="#202724" font-size="13" font-weight="400">Sync</text>
+    <text x="808" y="177" fill="#202724" font-size="18" font-weight="700">Playing next</text>
+    <text x="808" y="204" fill="#4c5953" font-size="12" font-weight="400">Harbor Lights is playing</text>
+    <text x="808" y="270" fill="#202724" font-size="14" font-weight="700">Queued tracks</text>
+    <text x="1037" y="270" fill="#4c5953" font-size="12" font-weight="400">2 tracks</text>
+    <rect x="808" y="284" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+    <text x="819" y="311" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+    <text x="841" y="311" fill="#202724" font-size="13" font-weight="400">Low Current</text>
+    <text x="1074" y="311" fill="#4c5953" font-size="16" font-weight="400">×</text>
+    <rect x="808" y="328" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+    <text x="819" y="355" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+    <text x="841" y="355" fill="#202724" font-size="13" font-weight="400">Branch Signal</text>
+    <text x="1074" y="355" fill="#4c5953" font-size="16" font-weight="400">×</text>
+    <rect x="808" y="381" width="292" height="75" fill="#f4f5f2" stroke="#d4dbd5" rx="5" stroke-dasharray="5 4" />
+    <text x="827" y="415" fill="#4c5953" font-size="13" font-weight="400">Drag tracks or albums here</text>
+    <text x="827" y="435" fill="#4c5953" font-size="12" font-weight="400">Or use Add selected.</text>
+    <rect x="808" y="591" width="116" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="866.0" y="615" fill="#202724" font-size="13" font-weight="700" text-anchor="middle" data-button-label="icon-only" visibility="hidden">Add selected</text>
+    <g transform="translate(857 600.5) scale(0.75)" data-button-icon="add" role="img" aria-label="Add selected">
+      <path d="M12 5v14M5 12h14" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="935" y="591" width="165" height="37" fill="#235943" stroke="#235943" rx="5" />
+    <text x="1017.5" y="615" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle" data-button-label="icon-only" visibility="hidden">Save as playlist</text>
+    <g transform="translate(1008.5 600.5) scale(0.75)" data-button-icon="save" role="img" aria-label="Save as playlist">
+      <path d="M4 4h13l3 3v13H4zM8 4v6h7V4M8 20v-6h8v6" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,10 @@
+@startuml UC-SETTINGS-001
+left to right direction
+actor "Desktop operator" as Primary
+actor "Desktop OS" as Secondary
+rectangle "Beets Man" {
+    usecase "UC-SETTINGS-001\nSet and inherit preferences" as Goal
+}
+Primary -- Goal
+Secondary -- Goal
+@enduml

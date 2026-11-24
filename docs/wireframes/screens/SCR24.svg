@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR24" data-state-id="SCR24.S0">
+  <title id="title">Plugin Diagnostics</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR22.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(183 99)" role="group" aria-label="Plugin Diagnostics">
+      <rect x="0" y="0" width="754" height="492" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Plugin Diagnostics</text>
+      <text x="730" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Studio Spectrum · example.scope 2.0.0</text>
+      <line x1="0" y1="76" x2="754" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="96" width="102" height="24" rx="4" fill="#f8e9e7" />
+      <text x="33" y="112" font-size="11" fill="#8e3431" text-anchor="start" font-weight="700">Worker stopped</text>
+      <text x="166" y="113" font-size="12" fill="#4c5953" text-anchor="start">Last heartbeat 11:08:01</text>
+      <rect x="24" y="139" width="706" height="60" rx="5" fill="#fbeddc" />
+      <rect x="24" y="139" width="3" height="60" rx="1" fill="#704621" />
+      <text x="37" y="159" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Visualization detached</text>
+      <text x="37" y="179" font-size="12" fill="#704621" text-anchor="start">Frame delivery timed out. Playback is still active.</text>
+      <rect x="24" y="220" width="706" height="156" rx="5" fill="#1e312a" />
+      <text x="41" y="250" font-size="13" fill="#e0eee4" text-anchor="start" font-family="Liberation Mono,monospace">11:08:01  INFO   Worker heartbeat</text>
+      <text x="41" y="282" font-size="13" fill="#e0eee4" text-anchor="start" font-family="Liberation Mono,monospace">11:08:03  WARN   WorkerFrameTimeout</text>
+      <text x="41" y="314" font-size="13" fill="#e0eee4" text-anchor="start" font-family="Liberation Mono,monospace">11:08:03  INFO   Contribution detached</text>
+      <text x="41" y="346" font-size="13" fill="#e0eee4" text-anchor="start" font-family="Liberation Mono,monospace">Correlation ID   viz-93cd</text>
+      <line x1="0" y1="426" x2="754" y2="426" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="608" y="441" width="122" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="669.0" y="464.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR24.C01">Restart worker</text>
+      <rect x="516" y="441" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="557.0" y="464.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR24.C02">Close</text>
+    </g>
+  </g>
+</svg>

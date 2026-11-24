@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR21" data-state-id="SCR21.S0">
+  <title id="title">Backend Switch</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR19.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(232 127)" role="group" aria-label="Backend Switch">
+      <rect x="0" y="0" width="656" height="436" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Backend Switch</text>
+      <text x="632" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">The selected track and queue carry over to the new engine.</text>
+      <line x1="0" y1="76" x2="656" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="98" width="282" height="112" rx="5" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="37" y="122" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Current engine</text>
+      <text x="37" y="152" font-size="20" fill="#202724" text-anchor="start" font-weight="700">SoundFlow</text>
+      <text x="37" y="179" font-size="12" fill="#4c5953" text-anchor="start">Built-in audio</text>
+      <rect x="350" y="98" width="282" height="112" rx="5" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="363" y="122" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Switch to</text>
+      <text x="363" y="152" font-size="20" fill="#202724" text-anchor="start" font-weight="700">Studio CLI</text>
+      <text x="363" y="179" font-size="12" fill="#4c5953" text-anchor="start">Session profile · Validated</text>
+      <text x="327" y="157" font-size="23" fill="#235943" text-anchor="middle">→</text>
+      <rect x="24" y="233" width="608" height="62" rx="5" fill="#fbeddc" />
+      <rect x="24" y="233" width="3" height="62" rx="1" fill="#704621" />
+      <text x="37" y="253" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Playback will stop</text>
+      <text x="37" y="273" font-size="12" fill="#704621" text-anchor="start">Harbor Lights stays selected. Press Play when you are ready to use Studio CLI.</text>
+      <text x="24" y="332" font-size="12" fill="#4c5953" text-anchor="start">Unavailable with Studio CLI · Master EQ and visualizations</text>
+      <line x1="0" y1="370" x2="656" y2="370" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="550" y="385" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="591.0" y="408.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR21.C01">Switch</text>
+      <rect x="458" y="385" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="499.0" y="408.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR21.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

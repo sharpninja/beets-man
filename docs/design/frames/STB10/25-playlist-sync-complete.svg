@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR50" data-state-id="SCR50.STB10-25" data-storyboard-id="STB10" data-step-id="STB10-25">
+  <title id="title">Android Devices · Night Drive and all five tracks are available on Pixel 6</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <g>
+      <g font-family="Liberation Sans,sans-serif">
+        <g>
+          <g>
+            <rect x="0" y="0" width="1120" height="690" rx="0" fill="#f4f5f2" />
+            <rect x="0" y="0" width="1120" height="65" rx="0" fill="#1e312a" />
+            <circle cx="35" cy="32" r="13" fill="#9ec9ab" />
+            <circle cx="35" cy="32" r="5" fill="#1e312a" />
+            <text x="58" y="39" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+          </g>
+          <g>
+            <text x="236" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Library</text>
+          </g>
+          <g>
+            <text x="357" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Now Playing</text>
+          </g>
+          <rect x="502" y="17" width="59" height="32" rx="5" fill="#365447" />
+          <text x="514" y="38" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Sync</text>
+          <g>
+            <text x="609" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Settings</text>
+          </g>
+          <g>
+            <circle cx="948" cy="32" r="4" fill="#a9dabc" />
+            <text x="960" y="37" font-size="12" fill="#dbe7df" text-anchor="start">Studio desktop</text>
+          </g>
+        </g>
+        <g>
+          <rect x="0" y="65" width="1120" height="49" rx="0" fill="#ffffff" />
+          <line x1="0" y1="114" x2="1120" y2="114" stroke="#d4dbd5" stroke-width="1" />
+        </g>
+        <g>
+          <g>
+            <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">Overview</text>
+          </g>
+          <g>
+            <text x="127" y="95" font-size="14" fill="#4c5953" text-anchor="start">PC Mirrors</text>
+          </g>
+          <g>
+            <text x="226" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Android Devices</text>
+            <rect x="226" y="111" width="113" height="3" rx="1" fill="#235943" />
+          </g>
+          <g>
+            <text x="367" y="95" font-size="14" fill="#4c5953" text-anchor="start">Instances</text>
+          </g>
+          <g>
+            <text x="462" y="95" font-size="14" fill="#4c5953" text-anchor="start">Records</text>
+          </g>
+        </g>
+        <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Android devices</text>
+        <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Per-device player layouts and export status</text>
+        <g>
+          <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+          <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+          <text x="36" y="674" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+          <text x="164" y="674" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale</text>
+          <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+          <text x="539.0" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700">Previous</text>
+          <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" stroke="#235943" />
+          <text x="618.0" y="673.0" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700">Ⅱ</text>
+          <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+          <text x="689.5" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700">Next</text>
+          <g>
+            <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="102" aria-valuetext="1:42 of 4:26" data-seek-slider="track">
+              <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">1:42</text>
+              <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+              <rect x="780" y="665" width="101.233" height="6" rx="3" fill="#235943" data-seek-part="played" />
+              <circle cx="881.233" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+              <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+            </g>
+          </g>
+        </g>
+        <rect x="36" y="207" width="292" height="395" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+        <rect x="47" y="221" width="270" height="85" rx="5" fill="#e0ede4" stroke="#235943" />
+        <text x="59" y="249" font-size="16" fill="#202724" text-anchor="start" font-weight="700">Pixel 6</text>
+        <text x="59" y="272" font-size="12" fill="#4c5953" text-anchor="start">Syncthing ID · 7K6W2PR…</text>
+        <rect x="59" y="320" width="76" height="24" rx="4" fill="#e0ede4" />
+        <text x="68" y="336" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Connected</text>
+        <rect x="349" y="207" width="735" height="395" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+        <text x="368" y="243" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Export for Pixel 6</text>
+        <text x="368" y="278" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Assigned player profile</text>
+        <rect x="368" y="288" width="495" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+        <text x="379" y="311" font-size="13" fill="#202724" text-anchor="start">Musicolette · Artist / Album · M3U8</text>
+        <path d="M841 303l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <rect x="880" y="287" width="185" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+        <text x="972.5" y="310.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR50.C01">Select layout</text>
+        <text x="368" y="358" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Storage root</text>
+        <text x="368" y="384" font-size="14" fill="#202724" text-anchor="start">/storage/emulated/0/Music/Beets</text>
+        <line x1="368" y1="409" x2="1065" y2="409" stroke="#d4dbd5" stroke-width="1" />
+        <text x="368" y="438" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Transfer progress</text>
+        <rect x="368" y="456" width="697" height="7" rx="3" fill="#e9eeea" />
+        <rect x="368" y="456" width="439.11" height="7" rx="3" fill="#235943" />
+        <text x="368" y="484" font-size="13" fill="#202724" text-anchor="start">38 of 60 files · 1.4 GB of 2.2 GB</text>
+        <rect x="918" y="531" width="147" height="37" rx="5" fill="#235943" stroke="#235943" />
+        <text x="991.5" y="554.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR50.C02">Preview</text>
+      </g>
+      <style>text[data-control-id="SCR50.C01"], text[data-control-id="SCR50.C02"], text[y="673.0"][text-anchor="middle"] { visibility: hidden; }</style>
+      <g data-button-icon="previous" role="img" aria-label="Previous" transform="translate(531 660) scale(.666667)" color="#202724">
+        <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <g data-button-icon="pause" role="img" aria-label="Pause" transform="translate(610 660) scale(.666667)" color="#fff">
+        <path d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <g data-button-icon="next" role="img" aria-label="Next" transform="translate(681.5 660) scale(.666667)" color="#202724">
+        <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <g data-button-icon="layout" role="img" aria-label="Select layout" transform="translate(963 297) scale(.8)" color="#202724">
+        <path d="M3 5h18v14H3zM9 5v14m6-14v14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <g data-button-icon="list" role="img" aria-label="Preview" transform="translate(982 539) scale(.8)" color="#fff">
+        <path d="M4 6h16M4 12h16M4 18h16M8 6v12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <rect x="365" y="418" width="705" height="96" fill="#fff" />
+      <text x="368" y="438" font-size="12" font-weight="700" fill="#4c5953">Playlist sync · Night Drive</text>
+      <rect x="368" y="456" width="697" height="7" rx="3" fill="#e9eeea" />
+    </g>
+    <rect x="368" y="456" width="697" height="7" rx="3" fill="#235943" />
+    <text x="368" y="484" font-size="13" fill="#202724">3 of 3 files transferred · Up to date</text>
+    <text x="368" y="530" font-size="14" font-weight="700" fill="#235943">Night Drive is ready in Musicolette</text>
+    <text x="368" y="553" font-size="12" fill="#4c5953">All 5 playlist tracks are available on Pixel 6.</text>
+  </g>
+</svg>

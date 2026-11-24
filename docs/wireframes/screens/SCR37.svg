@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR37" data-state-id="SCR37.S0">
+  <title id="title">Autotag Review</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR38.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(96 51)" role="group" aria-label="Autotag Review">
+      <rect x="0" y="0" width="928" height="588" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Autotag Review</text>
+      <text x="904" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Import job #27 · Review suggested album tags.</text>
+      <line x1="0" y1="76" x2="928" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="97" width="251" height="370" rx="6" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="38" y="129" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Candidates</text>
+      <rect x="35" y="147" width="229" height="83" rx="5" fill="#e0ede4" stroke="#235943" />
+      <text x="46" y="172" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Northern Lines</text>
+      <text x="46" y="193" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale · 2023</text>
+      <text x="46" y="214" font-size="12" fill="#235943" text-anchor="start">Strong match · 3 tracks</text>
+      <text x="46" y="265" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Northern Lines (Live)</text>
+      <text x="46" y="286" font-size="12" fill="#4c5953" text-anchor="start">Possible match · 2 tracks</text>
+      <rect x="295" y="98" width="80" height="80" rx="4" fill="#cbd9cd" />
+      <circle cx="349.4" cy="120.4" r="8.0" fill="#edf2df" />
+      <path d="M301.40 159.60 L326.20 133.20 L339.80 146.80 L351.00 134.00 L367.80 159.60 Z" fill="#587363" stroke="#587363" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+      <line x1="304.6" y1="166.8" x2="365.4" y2="166.8" stroke="#edf2df" stroke-width="2" />
+      <text x="390" y="127" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Northern Lines</text>
+      <text x="390" y="152" font-size="13" fill="#4c5953" text-anchor="start">Lena Vale · 2023 · 3 of 3 tracks matched</text>
+      <rect x="295" y="199" width="609" height="178" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <rect x="296" y="200" width="607" height="32" rx="4" fill="#e9eeea" />
+      <text x="307" y="221" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Source tag</text>
+      <text x="553" y="221" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Suggested tag</text>
+      <text x="797" y="221" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Match</text>
+      <line x1="296" y1="233" x2="903" y2="233" stroke="#d4dbd5" stroke-width="1" />
+      <text x="307" y="261.0" font-size="13" fill="#202724" text-anchor="start">01 Harbor Lights</text>
+      <text x="553" y="261.0" font-size="13" fill="#202724" text-anchor="start">Harbor Lights</text>
+      <rect x="797" y="245.0" width="63" height="24" rx="4" fill="#e0ede4" />
+      <text x="806" y="261.0" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Matched</text>
+      <rect x="296" y="281" width="607" height="47" rx="0" fill="#fafbf9" />
+      <line x1="296" y1="281" x2="903" y2="281" stroke="#d4dbd5" stroke-width="1" />
+      <text x="307" y="309.0" font-size="13" fill="#202724" text-anchor="start">02 Night Crossing</text>
+      <text x="553" y="309.0" font-size="13" fill="#202724" text-anchor="start">Night Crossing</text>
+      <rect x="797" y="293.0" width="63" height="24" rx="4" fill="#e0ede4" />
+      <text x="806" y="309.0" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Matched</text>
+      <line x1="296" y1="329" x2="903" y2="329" stroke="#d4dbd5" stroke-width="1" />
+      <text x="307" y="357.0" font-size="13" fill="#202724" text-anchor="start">03 Ridge Line</text>
+      <text x="553" y="357.0" font-size="13" fill="#202724" text-anchor="start">Ridge Line</text>
+      <rect x="797" y="341.0" width="63" height="24" rx="4" fill="#e0ede4" />
+      <text x="806" y="357.0" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Matched</text>
+      <rect x="295" y="399" width="609" height="67" rx="5" fill="#e0ede4" />
+      <rect x="295" y="399" width="3" height="67" rx="1" fill="#235943" />
+      <text x="308" y="419" font-size="13" fill="#235943" text-anchor="start" font-weight="700">Album and artist tags will be updated</text>
+      <text x="308" y="439" font-size="12" fill="#235943" text-anchor="start">Review the comparison before applying this candidate.</text>
+      <line x1="0" y1="522" x2="928" y2="522" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="806" y="537" width="98" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="855.0" y="560.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR37.C01">Use match</text>
+      <rect x="702" y="537" width="94" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="749.0" y="560.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR37.C02">Keep tags</text>
+      <rect x="610" y="537" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="651.0" y="560.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR37.C03">Skip</text>
+    </g>
+  </g>
+</svg>

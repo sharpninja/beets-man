@@ -1,0 +1,832 @@
+{
+  "workspace": "beets-man",
+  "layer": "layer-1",
+  "records": [
+    {
+      "kind": "fr",
+      "id": "FR-CONFIG-001",
+      "title": "Configure this desktop",
+      "description": "Desktop operator can configure this desktop. Start with an absent configuration file. Launch the desktop. Inspect resolved settings; restart after editing a local value.",
+      "priority": "high",
+      "area": "CONFIG",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-defaults",
+          "text": "First launch creates a populated per-user appsettings.json with Information by default, Microsoft at Warning, bounded rolling logs, a local LiteDB path, and a resolved Music folder.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-overrides",
+          "text": "After restart, explicit logging levels, database location, and music root take effect. Upgrades supply missing defaults and retain explicit and unknown keys.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-repair",
+          "text": "Malformed configuration and database paths inside a share show an actionable repair state. A newly selected missing database requires explicit creation approval; an unavailable music root leaves cached browsing usable.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-logs",
+          "text": "Diagnostics expose category, event, correlation and plugin identity where relevant. Secrets, raw CLI arguments, and private media metadata are omitted, and high-rate events are bounded.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-CONFIG-ARCH-001",
+      "title": "Configure this desktop architecture",
+      "description": "Typed JSON bootstrap, platform path resolver, and filtered ILogger providers",
+      "priority": "high",
+      "area": "CONFIG",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-CONFIG-001",
+      "title": "Isolated acceptance tests: Configure this desktop",
+      "description": "xUnit v3, FR only. Inject a Windows or Linux profile root, absent JSON, configured overrides, malformed JSON, and a seeded private field. Compare generated/resolved keys and filtered events.\nCONFIGAcceptanceTests.Defaults_MatchesContract (FR-CONFIG-001#ac-defaults): First launch creates a populated per-user appsettings.json with Information by default, Microsoft at Warning, bounded rolling logs, a local LiteDB path, and a resolved Music folder.\nCONFIGAcceptanceTests.Overrides_MatchesContract (FR-CONFIG-001#ac-overrides): After restart, explicit logging levels, database location, and music root take effect. Upgrades supply missing defaults and retain explicit and unknown keys.\nCONFIGAcceptanceTests.Repair_MatchesContract (FR-CONFIG-001#ac-repair): Malformed configuration and database paths inside a share show an actionable repair state. A newly selected missing database requires explicit creation approval; an unavailable music root leaves cached browsing usable.\nCONFIGAcceptanceTests.Logs_MatchesContract (FR-CONFIG-001#ac-logs): Diagnostics expose category, event, correlation and plugin identity where relevant. Secrets, raw CLI arguments, and private media metadata are omitted, and high-rate events are bounded.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "CONFIG"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-CONFIG-002",
+      "title": "Windows/Linux integration: Configure this desktop",
+      "description": "Run first launch and restart against disposable directories. Inspect actual JSON, real LiteDB, and rolling app and worker log files.",
+      "priority": "high",
+      "area": "CONFIG"
+    },
+    {
+      "kind": "fr",
+      "id": "FR-DISPATCH-001",
+      "title": "Execute a desktop action",
+      "description": "Desktop operator can execute a desktop action. Open Library. Invoke an action from a button, shortcut, or plugin. Observe the result after UI dispatch.",
+      "priority": "high",
+      "area": "DISPATCH",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-routing",
+          "text": "Each app action submits exactly one typed Unit of Work to its handler; real validation failures and cancellation produce a typed result.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-update",
+          "text": "A result does not change bound UI state until a dispatcher callback applies it; a stale result cannot replace a newer view.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-responsive",
+          "text": "A long import does not block commands for UI navigation. Commands writing the same state do not expose partially applied changes.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-DISPATCH-ARCH-001",
+      "title": "Execute a desktop action architecture",
+      "description": "Typed internal CQRS dispatcher, read projections, transaction ownership, and one Avalonia UIThread adapter",
+      "priority": "high",
+      "area": "DISPATCH",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-DISPATCH-001",
+      "title": "Isolated acceptance tests: Execute a desktop action",
+      "description": "xUnit v3, FR only. Use recording handlers and a queued fake dispatcher. Deliver query revision 2 before revision 1 and hold a fake import open while navigating.\nDISPATCHAcceptanceTests.Routing_MatchesContract (FR-DISPATCH-001#ac-routing): Each app action submits exactly one typed Unit of Work to its handler; real validation failures and cancellation produce a typed result.\nDISPATCHAcceptanceTests.Update_MatchesContract (FR-DISPATCH-001#ac-update): A result does not change bound UI state until a dispatcher callback applies it; a stale result cannot replace a newer view.\nDISPATCHAcceptanceTests.Responsive_MatchesContract (FR-DISPATCH-001#ac-responsive): A long import does not block commands for UI navigation. Commands writing the same state do not expose partially applied changes.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "DISPATCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-DISPATCH-002",
+      "title": "Windows/Linux integration: Execute a desktop action",
+      "description": "Exercise an actual Avalonia window, dispatcher, focus, modal draft and bound collection changes with background callbacks.",
+      "priority": "high",
+      "area": "DISPATCH"
+    },
+    {
+      "kind": "fr",
+      "id": "FR-LIBRARY-001",
+      "title": "Browse the music catalog",
+      "description": "Listener can browse the music catalog. Open a cached or online catalog. Browse or search by artist, album or track. Select an available track or inspect a pending track.",
+      "priority": "high",
+      "area": "LIBRARY",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-browse",
+          "text": "Artists, albums, tracks, playlists, and search show matching catalog records and player actions.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-offline",
+          "text": "Cached records remain browsable offline. Downloaded tracks play from the local root and pending media are identified as unavailable.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-LIBRARY-ARCH-001",
+      "title": "Browse the music catalog architecture",
+      "description": "Indexed LiteDB read projections and path mapping under the configured local root",
+      "priority": "high",
+      "area": "LIBRARY",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-LIBRARY-001",
+      "title": "Isolated acceptance tests: Browse the music catalog",
+      "description": "xUnit v3, FR only. Seed album A with matching downloaded track T1 and pending track T2. Disconnect the host and compare filtering, status, and the playback request.\nLIBRARYAcceptanceTests.Browse_MatchesContract (FR-LIBRARY-001#ac-browse): Artists, albums, tracks, playlists, and search show matching catalog records and player actions.\nLIBRARYAcceptanceTests.Offline_MatchesContract (FR-LIBRARY-001#ac-offline): Cached records remain browsable offline. Downloaded tracks play from the local root and pending media are identified as unavailable.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "LIBRARY"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-LIBRARY-002",
+      "title": "Windows/Linux integration: Browse the music catalog",
+      "description": "Open a real LiteDB cache and resolve tracks against a prepared local music tree while disconnected.",
+      "priority": "high",
+      "area": "LIBRARY"
+    },
+    {
+      "kind": "fr",
+      "id": "FR-PLAYER-001",
+      "title": "Play and mix music",
+      "description": "Listener can play and mix music. Cue two local tracks. Play and blend them; switch presentation. Observe continuity and return from fullscreen.",
+      "priority": "high",
+      "area": "PLAYER",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-transport",
+          "text": "Play, pause, seek, previous, next, volume, shuffle and repeat update a persistent queue and the active deck.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-mix",
+          "text": "Two independently cueable decks expose per-deck transport and gain; manual crossfader and bypassable master EQ apply to the output.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-fade",
+          "text": "Automatic crossfade uses the configured duration; manual input takes over; an incoming-track failure preserves the outgoing track and surfaces the error.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-modes",
+          "text": "Minimum, Normal, bounded visualization, and full visualization keep the session and queue. Escape restores the prior windowed mode; missing telemetry preserves usable transport and exit controls.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-queue-autosave",
+          "text": "When the active queue is backed by a saved playlist, the user can turn automatic saving of queue edits to that playlist on or off.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-PLAYER-ARCH-001",
+      "title": "Play and mix music architecture",
+      "description": "SoundFlow, MiniAudio, FFmpeg, independent deck state, and one playback session",
+      "priority": "high",
+      "area": "PLAYER",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-PLAYER-001",
+      "title": "Isolated acceptance tests: Play and mix music",
+      "description": "xUnit v3, FR only. Use a fake backend, two tracks A and B and a controllable audio clock. Compare queue, channel targets, fade cancellation, and state before and after each mode transition.\nPLAYERAcceptanceTests.Transport_MatchesContract (FR-PLAYER-001#ac-transport): Play, pause, seek, previous, next, volume, shuffle and repeat update a persistent queue and the active deck.\nPLAYERAcceptanceTests.Mix_MatchesContract (FR-PLAYER-001#ac-mix): Two independently cueable decks expose per-deck transport and gain; manual crossfader and bypassable master EQ apply to the output.\nPLAYERAcceptanceTests.Fade_MatchesContract (FR-PLAYER-001#ac-fade): Automatic crossfade uses the configured duration; manual input takes over; an incoming-track failure preserves the outgoing track and surfaces the error.\nPLAYERAcceptanceTests.Modes_MatchesContract (FR-PLAYER-001#ac-modes): Minimum, Normal, bounded visualization, and full visualization keep the session and queue. Escape restores the prior windowed mode; missing telemetry preserves usable transport and exit controls.\nPLAYERAcceptanceTests.QueueAutoSave_MatchesContract (FR-PLAYER-001#ac-queue-autosave): Load a saved playlist into the active queue. With auto-save on, apply and persist an ordered queue edit to that playlist. With auto-save off, verify a queue edit leaves the saved playlist unchanged.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "PLAYER"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-PLAYER-002",
+      "title": "Windows/Linux integration: Play and mix music",
+      "description": "Verify SoundFlow native output by codec, mixer and EQ response, physical output and window transitions.",
+      "priority": "high",
+      "area": "PLAYER"
+    },
+    {
+      "kind": "fr",
+      "id": "FR-CLI-001",
+      "title": "Use an external playback strategy",
+      "description": "Desktop operator can use an external playback strategy. Choose a CLI profile. Validate and switch backend; invoke transport. Observe structured status on success or an actionable error.",
+      "priority": "high",
+      "area": "CLI",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-profiles",
+          "text": "Profiles validate declared actions, arguments, capabilities and status mappings for one-shot commands and stdin/stdout sessions. Unsupported controls are identified.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-switch",
+          "text": "Switching stops the prior backend, retains queue and track, and awaits explicit Play. Paths are passed as data; timeout, exit, and malformed replies are surfaced.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-CLI-ARCH-001",
+      "title": "Use an external playback strategy architecture",
+      "description": "Versioned YAML, direct process arguments, per-command and session strategies",
+      "priority": "high",
+      "area": "CLI",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-CLI-001",
+      "title": "Isolated acceptance tests: Use an external playback strategy",
+      "description": "xUnit v3, FR only. Supply synthetic one-shot and session replies for Play, an unsupported EQ action, an exit failure and a timeout. Compare the structured state and exact argument tokens.\nCLIAcceptanceTests.Profiles_MatchesContract (FR-CLI-001#ac-profiles): Profiles validate declared actions, arguments, capabilities and status mappings for one-shot commands and stdin/stdout sessions. Unsupported controls are identified.\nCLIAcceptanceTests.Switch_MatchesContract (FR-CLI-001#ac-switch): Switching stops the prior backend, retains queue and track, and awaits explicit Play. Paths are passed as data; timeout, exit, and malformed replies are surfaced.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "CLI"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-CLI-002",
+      "title": "Windows/Linux integration: Use an external playback strategy",
+      "description": "Use fixture executables with spaced arguments, timeout, process exit, request/reply and malformed records in both invocation modes.",
+      "priority": "high",
+      "area": "CLI"
+    },
+    {
+      "kind": "fr",
+      "id": "FR-PLUGINS-001",
+      "title": "Install and run extensions",
+      "description": "Desktop operator can install and run extensions. Select a local plugin package. Review compatibility and trust; enable it. Use its contribution or observe isolated failure.",
+      "priority": "high",
+      "area": "PLUGINS",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-manage",
+          "text": "Local plugin packages can be installed, trusted per version, enabled, disabled, updated, and removed; shared defaults cannot trust or activate code.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-visualize",
+          "text": "Validated plugin contributions render in host-owned surfaces. Visualization receives bounded available telemetry and app commands enter CQRS.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-recovery",
+          "text": "Worker timeout or crash removes its contribution while playback and navigation remain usable. Diagnostics identify plugin/version, and recovery startup disables plugins.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-PLUGINS-ARCH-001",
+      "title": "Install and run extensions architecture",
+      "description": "Versioned worker IPC, declarative host rendering, local trust, ILoggerFactory SDK",
+      "priority": "high",
+      "area": "PLUGINS",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-PLUGINS-001",
+      "title": "Isolated acceptance tests: Install and run extensions",
+      "description": "xUnit v3, FR only. Supply plugin sample ID example.scope at versions 1 and 2, a valid view, an invalid view, a stale frame and a simulated dead worker. Observe trust, rendered contribution and recovery.\nPLUGINSAcceptanceTests.Manage_MatchesContract (FR-PLUGINS-001#ac-manage): Local plugin packages can be installed, trusted per version, enabled, disabled, updated, and removed; shared defaults cannot trust or activate code.\nPLUGINSAcceptanceTests.Visualize_MatchesContract (FR-PLUGINS-001#ac-visualize): Validated plugin contributions render in host-owned surfaces. Visualization receives bounded available telemetry and app commands enter CQRS.\nPLUGINSAcceptanceTests.Recovery_MatchesContract (FR-PLUGINS-001#ac-recovery): Worker timeout or crash removes its contribution while playback and navigation remain usable. Diagnostics identify plugin/version, and recovery startup disables plugins.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "PLUGINS"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-PLUGINS-002",
+      "title": "Windows/Linux integration: Install and run extensions",
+      "description": "Run real workers and send valid/invalid IPC; kill a worker during playback. Inspect categorized logs and recovery startup.",
+      "priority": "high",
+      "area": "PLUGINS"
+    },
+    {
+      "kind": "fr",
+      "id": "FR-SETTINGS-001",
+      "title": "Set shared and local preferences",
+      "description": "Desktop operator can set shared and local preferences. Open Settings. Change an eligible default or apply a local override. Inspect the effective value and source.",
+      "priority": "high",
+      "area": "SETTINGS",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-precedence",
+          "text": "An explicit local override wins over a shared default, which wins over a built-in default. Clearing the override restores inheritance.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-availability",
+          "text": "Offline operation uses the last valid shared defaults. Invalid values are rejected; credentials, local paths, plugin trust and OS registration stay local.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-shortcuts",
+          "text": "Contextual key mappings identify conflicts. Opt-in system playback shortcuts report OS denial and leave in-app mappings usable.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-SETTINGS-ARCH-001",
+      "title": "Set shared and local preferences architecture",
+      "description": "Typed, versioned registry and revisioned host settings with device-local storage",
+      "priority": "high",
+      "area": "SETTINGS",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-SETTINGS-001",
+      "title": "Isolated acceptance tests: Set shared and local preferences",
+      "description": "xUnit v3, FR only. Use fade duration 0 built-in, 4 shared, and 2 local. Drop connectivity, clear the local override, and deny a synthetic global shortcut.\nSETTINGSAcceptanceTests.Precedence_MatchesContract (FR-SETTINGS-001#ac-precedence): An explicit local override wins over a shared default, which wins over a built-in default. Clearing the override restores inheritance.\nSETTINGSAcceptanceTests.Availability_MatchesContract (FR-SETTINGS-001#ac-availability): Offline operation uses the last valid shared defaults. Invalid values are rejected; credentials, local paths, plugin trust and OS registration stay local.\nSETTINGSAcceptanceTests.Shortcuts_MatchesContract (FR-SETTINGS-001#ac-shortcuts): Contextual key mappings identify conflicts. Opt-in system playback shortcuts report OS denial and leave in-app mappings usable.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "SETTINGS"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-SETTINGS-002",
+      "title": "Windows/Linux integration: Set shared and local preferences",
+      "description": "Propagate defaults between running desktops and exercise OS-level hotkey registrations and conflicts.",
+      "priority": "high",
+      "area": "SETTINGS"
+    },
+    {
+      "kind": "fr",
+      "id": "FR-BEETS-001",
+      "title": "Manage the host music library",
+      "description": "Library operator can manage the host music library. Open a library on a connected desktop. Upload, review, edit, organize or remove music. Review the resulting catalog and any errors.",
+      "priority": "high",
+      "area": "BEETS",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-open",
+          "text": "An authorized desktop can open or initialize the beets library and manage supported paths, naming, import behavior and installed plugins.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-import",
+          "text": "Uploading makes staged copies. Guided import offers match, keep tags, or skip; failures show recoverable job state.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-edit",
+          "text": "Tag edits reject stale revisions. Organize previews affected paths; catalog removal and audio deletion are separate choices, and deletion requires confirmation.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-recover",
+          "text": "Partial beets changes are reconciled before publishing revisions or retrying; offline metadata mutations are unavailable.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-BEETS-ARCH-001",
+      "title": "Manage the host music library architecture",
+      "description": "Authenticated host service, serialized journaled beets adapter, catalog reconciliation",
+      "priority": "high",
+      "area": "BEETS",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-BEETS-001",
+      "title": "Isolated acceptance tests: Manage the host music library",
+      "description": "xUnit v3, FR only. Inject a journal and fake beets results for upload A, a stale revision, a move preview, catalog removal and a write failure after one result. Compare intended changes and published revisions.\nBEETSAcceptanceTests.Open_MatchesContract (FR-BEETS-001#ac-open): An authorized desktop can open or initialize the beets library and manage supported paths, naming, import behavior and installed plugins.\nBEETSAcceptanceTests.Import_MatchesContract (FR-BEETS-001#ac-import): Uploading makes staged copies. Guided import offers match, keep tags, or skip; failures show recoverable job state.\nBEETSAcceptanceTests.Edit_MatchesContract (FR-BEETS-001#ac-edit): Tag edits reject stale revisions. Organize previews affected paths; catalog removal and audio deletion are separate choices, and deletion requires confirmation.\nBEETSAcceptanceTests.Recover_MatchesContract (FR-BEETS-001#ac-recover): Partial beets changes are reconciled before publishing revisions or retrying; offline metadata mutations are unavailable.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "BEETS"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-BEETS-002",
+      "title": "Windows/Linux integration: Manage the host music library",
+      "description": "Use real beets and a disposable library, inspect staged bytes, tags, filenames, catalog revisions and partial job recovery.",
+      "priority": "high",
+      "area": "BEETS"
+    },
+    {
+      "kind": "fr",
+      "id": "FR-RECORDS-001",
+      "title": "Sync catalog, listening records and defaults",
+      "description": "Registered desktop operator can sync catalog, listening records and defaults. Register two desktops. Edit from one and reconnect the other. Observe independent catch-up and conflict handling.",
+      "priority": "high",
+      "area": "RECORDS",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-register",
+          "text": "Registered instances can originate host changes; revocation prevents further access from that instance.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-replicate",
+          "text": "Catalog, playlists, favorites, history and eligible defaults converge through stable IDs, revisions and tombstones. Applying a page and its checkpoint is atomic.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-notify",
+          "text": "Other registered recipients pull and acknowledge committed changes independently. Duplicate delivery does not reapply changes and an offline recipient cannot block others.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-offline",
+          "text": "Offline playlists, favorites and history retain stable operation IDs. Plays merge by play ID and conflicting drafts survive replay and snapshot recovery.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-RECORDS-ARCH-001",
+      "title": "Sync catalog, listening records and defaults architecture",
+      "description": "Host and local LiteDB, consistent snapshots, cursor checkpoints, and durable notification delivery",
+      "priority": "high",
+      "area": "RECORDS",
+      "subarea": "ARCH",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-litedb-repositories",
+          "text": "The desktop and host use separate LiteDB files behind typed repository adapters. Each write transaction atomically commits the related records, operation receipts, and applicable revision or delivery state.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-litedb-c4-entities",
+          "text": "The C4 workspace defines the desktop and host LiteDB collections, their document keys and fields, and their logical relationships. The entity views match the repository collection inventory.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "test",
+      "id": "TEST-RECORDS-001",
+      "title": "Isolated acceptance tests: Sync catalog, listening records and defaults",
+      "description": "xUnit v3, FR only. Register A, B and C. Deliver the same change twice to B while C is offline, then reconnect C with an expired cursor and a conflicting draft.\nRECORDSAcceptanceTests.Register_MatchesContract (FR-RECORDS-001#ac-register): Registered instances can originate host changes; revocation prevents further access from that instance.\nRECORDSAcceptanceTests.Replicate_MatchesContract (FR-RECORDS-001#ac-replicate): Catalog, playlists, favorites, history and eligible defaults converge through stable IDs, revisions and tombstones. Applying a page and its checkpoint is atomic.\nRECORDSAcceptanceTests.Notify_MatchesContract (FR-RECORDS-001#ac-notify): Other registered recipients pull and acknowledge committed changes independently. Duplicate delivery does not reapply changes and an offline recipient cannot block others.\nRECORDSAcceptanceTests.Offline_MatchesContract (FR-RECORDS-001#ac-offline): Offline playlists, favorites and history retain stable operation IDs. Plays merge by play ID and conflicting drafts survive replay and snapshot recovery.\nRECORDSAcceptanceTests.RepositoryWrites_MatchesContract (FR-RECORDS-001#ac-replicate, TR-RECORDS-ARCH-001#ac-litedb-repositories): Use independent fakes for the typed repositories, reject a stale expected revision and repeated operation with different intent, and inject a failure mid-write. Verify that records, receipt, and applicable revision or delivery entries become visible together only on commit.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "RECORDS"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-RECORDS-002",
+      "title": "Windows/Linux integration: Sync catalog, listening records and defaults",
+      "description": "Restart live host and replicas around commit and acknowledgment, revoke an instance, and prove catch-up after expiry.\nPlanned persistence verification (TR-RECORDS-ARCH-001#ac-litedb-repositories, TR-RECORDS-ARCH-001#ac-litedb-c4-entities): Use separate disposable LiteDB files to verify rollback across collections, replay receipt lookup after reopen and atomic page/checkpoint writes. Validate the Structurizr model and compare desktop and host entity keys, fields, and collection inventories to their repository mappings.",
+      "priority": "high",
+      "area": "RECORDS"
+    },
+    {
+      "kind": "fr",
+      "id": "FR-FILESYNC-001",
+      "title": "Mirror media to PCs and Android",
+      "description": "Library operator can mirror media to PCs and Android. Pair a receiving peer. Select a layout or confirm mirror and sync. Verify playable media or diagnose share and transfer errors.",
+      "priority": "high",
+      "area": "FILESYNC",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-mirror",
+          "text": "PC peers mirror the full music library, show connection and share status, and expose pause, resume and rescan. A pending file remains unavailable to play.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-layouts",
+          "text": "Each Android device can choose a validated YAML layout with independent export and share ID. New devices default to musicolet.yaml with album-based paths and relative UTF-8 M3U8 playlists.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-safety",
+          "text": "Preview identifies file adds, moves and removals and profile-driven removals need confirmation. Interrupted exports preserve the source and other shares.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-arrival",
+          "text": "A registered Android connection immediately selects Normal UI on Sync and the peer through CQRS. Playback and modal draft/focus survive. Duplicate, desktop and historical events do not trigger navigation.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-playlist-drop",
+          "text": "Dropping a saved playlist into a device's Sync list stages a playlist file in the selected app profile's format, preserving every track in order. Stage only audio missing at that device's export destination, reusing audio already on the device or already staged. When all audio is present, stage just the playlist file.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-FILESYNC-ARCH-001",
+      "title": "Mirror media to PCs and Android architecture",
+      "description": "Syncthing REST/events and per-device send-only export trees",
+      "priority": "high",
+      "area": "FILESYNC",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-FILESYNC-001",
+      "title": "Isolated acceptance tests: Mirror media to PCs and Android",
+      "description": "xUnit v3, FR only. Inject Android and desktop IDs, overlapping template paths, one interrupted export and a modal draft. Compare export ownership, preview, allowed removals and the final selected peer.\nFILESYNCAcceptanceTests.Mirror_MatchesContract (FR-FILESYNC-001#ac-mirror): PC peers mirror the full music library, show connection and share status, and expose pause, resume and rescan. A pending file remains unavailable to play.\nFILESYNCAcceptanceTests.Layouts_MatchesContract (FR-FILESYNC-001#ac-layouts): Each Android device can choose a validated YAML layout with independent export and share ID. New devices default to musicolet.yaml with album-based paths and relative UTF-8 M3U8 playlists.\nFILESYNCAcceptanceTests.Safety_MatchesContract (FR-FILESYNC-001#ac-safety): Preview identifies file adds, moves and removals and profile-driven removals need confirmation. Interrupted exports preserve the source and other shares.\nFILESYNCAcceptanceTests.Arrival_MatchesContract (FR-FILESYNC-001#ac-arrival): A registered Android connection immediately selects Normal UI on Sync and the peer through CQRS. Playback and modal draft/focus survive. Duplicate, desktop and historical events do not trigger navigation.\nFILESYNCAcceptanceTests.PlaylistDrop_MatchesContract (FR-FILESYNC-001#ac-playlist-drop): Exercise mixed and fully present device inventory, repeated or overlapping drops, and two selected app profiles with different playlist formats. Assert ordered references to every track in the formatted playlist, exactly the distinct missing audio destinations staged, and no additional audio when everything is already present.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "priority": "high",
+      "area": "FILESYNC"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-FILESYNC-002",
+      "title": "Windows/Linux integration: Mirror media to PCs and Android",
+      "description": "Use two PC replicas and physical Android with Syncthing-Fork and Musicolet. Verify arrival from all modes, share isolation, playlist order, restart recovery and deletion propagation.",
+      "priority": "high",
+      "area": "FILESYNC"
+    }
+  ],
+  "mappings": [
+    {
+      "frId": "FR-CONFIG-001",
+      "trIds": [
+        "TR-CONFIG-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-CONFIG-001",
+        "TEST-CONFIG-002"
+      ],
+      "notes": "UC-CONFIG-001 • STB01 • FR-CONFIG-001#ac-defaults, FR-CONFIG-001#ac-overrides, FR-CONFIG-001#ac-repair, FR-CONFIG-001#ac-logs"
+    },
+    {
+      "frId": "FR-DISPATCH-001",
+      "trIds": [
+        "TR-DISPATCH-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-DISPATCH-001",
+        "TEST-DISPATCH-002"
+      ],
+      "notes": "UC-DISPATCH-001 • STB02 • FR-DISPATCH-001#ac-routing, FR-DISPATCH-001#ac-update, FR-DISPATCH-001#ac-responsive"
+    },
+    {
+      "frId": "FR-LIBRARY-001",
+      "trIds": [
+        "TR-LIBRARY-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-LIBRARY-001",
+        "TEST-LIBRARY-002"
+      ],
+      "notes": "UC-LIBRARY-001 • STB03 • FR-LIBRARY-001#ac-browse, FR-LIBRARY-001#ac-offline"
+    },
+    {
+      "frId": "FR-PLAYER-001",
+      "trIds": [
+        "TR-PLAYER-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-PLAYER-001",
+        "TEST-PLAYER-002"
+      ],
+      "notes": "UC-PLAYER-001 • STB04 • FR-PLAYER-001#ac-transport, FR-PLAYER-001#ac-mix, FR-PLAYER-001#ac-fade, FR-PLAYER-001#ac-modes, FR-PLAYER-001#ac-queue-autosave"
+    },
+    {
+      "frId": "FR-CLI-001",
+      "trIds": [
+        "TR-CLI-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-CLI-001",
+        "TEST-CLI-002"
+      ],
+      "notes": "UC-CLI-001 • STB05 • FR-CLI-001#ac-profiles, FR-CLI-001#ac-switch"
+    },
+    {
+      "frId": "FR-PLUGINS-001",
+      "trIds": [
+        "TR-PLUGINS-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-PLUGINS-001",
+        "TEST-PLUGINS-002"
+      ],
+      "notes": "UC-PLUGINS-001 • STB06 • FR-PLUGINS-001#ac-manage, FR-PLUGINS-001#ac-visualize, FR-PLUGINS-001#ac-recovery"
+    },
+    {
+      "frId": "FR-SETTINGS-001",
+      "trIds": [
+        "TR-SETTINGS-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-SETTINGS-001",
+        "TEST-SETTINGS-002"
+      ],
+      "notes": "UC-SETTINGS-001 • STB07 • FR-SETTINGS-001#ac-precedence, FR-SETTINGS-001#ac-availability, FR-SETTINGS-001#ac-shortcuts"
+    },
+    {
+      "frId": "FR-BEETS-001",
+      "trIds": [
+        "TR-BEETS-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-BEETS-001",
+        "TEST-BEETS-002"
+      ],
+      "notes": "UC-BEETS-001 • STB08 • FR-BEETS-001#ac-open, FR-BEETS-001#ac-import, FR-BEETS-001#ac-edit, FR-BEETS-001#ac-recover"
+    },
+    {
+      "frId": "FR-RECORDS-001",
+      "trIds": [
+        "TR-RECORDS-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-RECORDS-001",
+        "TEST-RECORDS-002"
+      ],
+      "notes": "UC-RECORDS-001 • STB09 • FR-RECORDS-001#ac-register, FR-RECORDS-001#ac-replicate, FR-RECORDS-001#ac-notify, FR-RECORDS-001#ac-offline"
+    },
+    {
+      "frId": "FR-FILESYNC-001",
+      "trIds": [
+        "TR-FILESYNC-ARCH-001"
+      ],
+      "testIds": [
+        "TEST-FILESYNC-001",
+        "TEST-FILESYNC-002"
+      ],
+      "notes": "UC-FILESYNC-001 • STB10 • FR-FILESYNC-001#ac-mirror, FR-FILESYNC-001#ac-layouts, FR-FILESYNC-001#ac-safety, FR-FILESYNC-001#ac-arrival, FR-FILESYNC-001#ac-playlist-drop"
+    }
+  ],
+  "useCases": [
+    {
+      "id": "UC-CONFIG-001",
+      "frId": "FR-CONFIG-001",
+      "title": "Configure this desktop",
+      "actor": "Desktop operator",
+      "steps": [
+        "Start with an absent configuration file",
+        "Launch the desktop",
+        "Inspect resolved settings; restart after editing a local value"
+      ],
+      "storyboard": "STB01",
+      "checks": [
+        "FR-CONFIG-001#ac-defaults",
+        "FR-CONFIG-001#ac-overrides",
+        "FR-CONFIG-001#ac-repair",
+        "FR-CONFIG-001#ac-logs"
+      ]
+    },
+    {
+      "id": "UC-DISPATCH-001",
+      "frId": "FR-DISPATCH-001",
+      "title": "Execute a desktop action",
+      "actor": "Desktop operator",
+      "steps": [
+        "Open Library",
+        "Invoke an action from a button, shortcut, or plugin",
+        "Observe the result after UI dispatch"
+      ],
+      "storyboard": "STB02",
+      "checks": [
+        "FR-DISPATCH-001#ac-routing",
+        "FR-DISPATCH-001#ac-update",
+        "FR-DISPATCH-001#ac-responsive"
+      ]
+    },
+    {
+      "id": "UC-LIBRARY-001",
+      "frId": "FR-LIBRARY-001",
+      "title": "Browse the music catalog",
+      "actor": "Listener",
+      "steps": [
+        "Open a cached or online catalog",
+        "Browse or search by artist, album or track",
+        "Select an available track or inspect a pending track"
+      ],
+      "storyboard": "STB03",
+      "checks": [
+        "FR-LIBRARY-001#ac-browse",
+        "FR-LIBRARY-001#ac-offline"
+      ]
+    },
+    {
+      "id": "UC-PLAYER-001",
+      "frId": "FR-PLAYER-001",
+      "title": "Play and mix music",
+      "actor": "Listener",
+      "steps": [
+        "Cue two local tracks",
+        "Play and blend them; switch presentation",
+        "Observe continuity and return from fullscreen"
+      ],
+      "storyboard": "STB04",
+      "checks": [
+        "FR-PLAYER-001#ac-transport",
+        "FR-PLAYER-001#ac-mix",
+        "FR-PLAYER-001#ac-fade",
+        "FR-PLAYER-001#ac-modes",
+        "FR-PLAYER-001#ac-queue-autosave"
+      ]
+    },
+    {
+      "id": "UC-CLI-001",
+      "frId": "FR-CLI-001",
+      "title": "Use an external playback strategy",
+      "actor": "Desktop operator",
+      "steps": [
+        "Choose a CLI profile",
+        "Validate and switch backend; invoke transport",
+        "Observe structured status on success or an actionable error"
+      ],
+      "storyboard": "STB05",
+      "checks": [
+        "FR-CLI-001#ac-profiles",
+        "FR-CLI-001#ac-switch"
+      ]
+    },
+    {
+      "id": "UC-PLUGINS-001",
+      "frId": "FR-PLUGINS-001",
+      "title": "Install and run extensions",
+      "actor": "Desktop operator",
+      "steps": [
+        "Select a local plugin package",
+        "Review compatibility and trust; enable it",
+        "Use its contribution or observe isolated failure"
+      ],
+      "storyboard": "STB06",
+      "checks": [
+        "FR-PLUGINS-001#ac-manage",
+        "FR-PLUGINS-001#ac-visualize",
+        "FR-PLUGINS-001#ac-recovery"
+      ]
+    },
+    {
+      "id": "UC-SETTINGS-001",
+      "frId": "FR-SETTINGS-001",
+      "title": "Set shared and local preferences",
+      "actor": "Desktop operator",
+      "steps": [
+        "Open Settings",
+        "Change an eligible default or apply a local override",
+        "Inspect the effective value and source"
+      ],
+      "storyboard": "STB07",
+      "checks": [
+        "FR-SETTINGS-001#ac-precedence",
+        "FR-SETTINGS-001#ac-availability",
+        "FR-SETTINGS-001#ac-shortcuts"
+      ]
+    },
+    {
+      "id": "UC-BEETS-001",
+      "frId": "FR-BEETS-001",
+      "title": "Manage the host music library",
+      "actor": "Library operator",
+      "steps": [
+        "Open a library on a connected desktop",
+        "Upload, review, edit, organize or remove music",
+        "Review the resulting catalog and any errors"
+      ],
+      "storyboard": "STB08",
+      "checks": [
+        "FR-BEETS-001#ac-open",
+        "FR-BEETS-001#ac-import",
+        "FR-BEETS-001#ac-edit",
+        "FR-BEETS-001#ac-recover"
+      ]
+    },
+    {
+      "id": "UC-RECORDS-001",
+      "frId": "FR-RECORDS-001",
+      "title": "Sync catalog, listening records and defaults",
+      "actor": "Registered desktop operator",
+      "steps": [
+        "Register two desktops",
+        "Edit from one and reconnect the other",
+        "Observe independent catch-up and conflict handling"
+      ],
+      "storyboard": "STB09",
+      "checks": [
+        "FR-RECORDS-001#ac-register",
+        "FR-RECORDS-001#ac-replicate",
+        "FR-RECORDS-001#ac-notify",
+        "FR-RECORDS-001#ac-offline"
+      ]
+    },
+    {
+      "id": "UC-FILESYNC-001",
+      "frId": "FR-FILESYNC-001",
+      "title": "Mirror media to PCs and Android",
+      "actor": "Library operator",
+      "steps": [
+        "Pair a receiving peer",
+        "Select a layout or confirm mirror and sync",
+        "Verify playable media or diagnose share and transfer errors"
+      ],
+      "storyboard": "STB10",
+      "checks": [
+        "FR-FILESYNC-001#ac-mirror",
+        "FR-FILESYNC-001#ac-layouts",
+        "FR-FILESYNC-001#ac-safety",
+        "FR-FILESYNC-001#ac-arrival",
+        "FR-FILESYNC-001#ac-playlist-drop"
+      ]
+    }
+  ]
+}

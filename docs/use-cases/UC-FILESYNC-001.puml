@@ -1,0 +1,10 @@
+@startuml UC-FILESYNC-001
+left to right direction
+actor "Library operator" as Primary
+actor "Syncthing-Fork" as Secondary
+rectangle "Beets Man" {
+    usecase "UC-FILESYNC-001\nMirror media and open Sync on arrival" as Goal
+}
+Primary -- Goal
+Secondary -- Goal
+@enduml

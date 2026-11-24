@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="library-sync">
+      <use href="app-chrome.svg#library-workspace-header" />
+      <use href="library.svg#sidebar-tracks" />
+      <use href="#library-transport-icons" />
+      <text x="204" y="111" font-size="27" font-weight="700" fill="#202724">Tracks</text>
+      <text x="204" y="140" font-size="13" fill="#4c5953">Music library · Studio host connected</text>
+      <g data-button-icon="play" role="img" aria-label="Play track" aria-disabled="true">
+        <rect x="204" y="174" width="105" height="37" rx="5" fill="#e9eeea" stroke="#d4dbd5" />
+        <g transform="translate(247 183) scale(.8)" color="#4c5953"><use href="icons.svg#play" /></g>
+      </g>
+      <g data-button-icon="list-add" role="img" aria-label="Add to queue" aria-disabled="true">
+        <rect x="320" y="174" width="125" height="37" rx="5" fill="#e9eeea" stroke="#d4dbd5" />
+        <g transform="translate(373 183) scale(.8)" color="#4c5953"><use href="icons.svg#list-add" /></g>
+      </g>
+      <use href="library-grid.svg#catalog-scr05" />
+      <use href="library.svg#list-tabs-sync" />
+      <text x="808" y="174" font-size="12" font-weight="700" fill="#4c5953">Sync to device</text>
+      <rect x="808" y="184" width="292" height="36" rx="4" fill="#fff" stroke="#d4dbd5" />
+      <text x="819" y="207" font-size="13" fill="#202724">Pixel 6 ▾</text>
+      <text x="808" y="241" font-size="12" fill="#4c5953">Musicolette · Relative UTF-8 M3U8</text>
+      <text x="808" y="270" font-size="14" font-weight="700" fill="#202724">Sync list</text>
+      <g data-button-icon="add" role="img" aria-label="Add selected" aria-disabled="true">
+        <rect x="808" y="591" width="116" height="37" rx="5" fill="#e9eeea" stroke="#d4dbd5" />
+        <g transform="translate(857 600) scale(.8)" color="#4c5953"><use href="icons.svg#add" /></g>
+      </g>
+    </g>
+    <g id="library-transport-icons">
+      <use href="transport.svg#library-transport" />
+      <style>text[y="673.0"][text-anchor="middle"] { visibility: hidden; }</style>
+      <g data-button-icon="previous" role="img" aria-label="Previous" transform="translate(509 660) scale(.666667)" color="#202724"><use href="icons.svg#previous" /></g>
+      <g data-button-icon="pause" role="img" aria-label="Pause" transform="translate(590.5 660) scale(.666667)" color="#fff"><use href="icons.svg#pause" /></g>
+      <g data-button-icon="next" role="img" aria-label="Next" transform="translate(665.5 660) scale(.666667)" color="#202724"><use href="icons.svg#next" /></g>
+    </g>
+    <g id="staged">
+      <use href="#library-sync" />
+      <text x="1078" y="270" text-anchor="end" font-size="12" fill="#4c5953">3 files</text>
+      <g data-staged-type="playlist">
+        <rect x="808" y="284" width="292" height="54" fill="#e0ede4" stroke="#d4dbd5" />
+        <g transform="translate(821 297) scale(.8)" color="#235943"><use href="icons.svg#list" /></g>
+        <text x="848" y="307" font-size="14" font-weight="700" fill="#202724">Night Drive.m3u8</text>
+        <text x="848" y="325" font-size="11" fill="#4c5953">Playlist · 5 tracks in order</text>
+      </g>
+      <g data-staged-type="audio">
+        <rect x="808" y="338" width="292" height="49" fill="#fff" stroke="#d4dbd5" />
+        <text x="824" y="359" font-size="13" fill="#202724">Night Crossing</text>
+        <text x="824" y="376" font-size="11" fill="#4c5953">Audio · Missing on Pixel 6</text>
+      </g>
+      <g data-staged-type="audio">
+        <rect x="808" y="387" width="292" height="49" fill="#fff" stroke="#d4dbd5" />
+        <text x="824" y="408" font-size="13" fill="#202724">Branch Signal</text>
+        <text x="824" y="425" font-size="11" fill="#4c5953">Audio · Missing on Pixel 6</text>
+      </g>
+      <text x="808" y="465" font-size="12" fill="#4c5953">3 tracks already on Pixel 6.</text>
+      <rect x="808" y="487" width="292" height="66" rx="5" stroke="#d4dbd5" stroke-dasharray="5 4" fill="#f4f5f2" />
+      <text x="826" y="525" font-size="13" fill="#4c5953">Drag tracks, albums or playlists here</text>
+      <g data-button-icon="list" role="img" aria-label="Preview export">
+        <rect x="935" y="591" width="165" height="37" rx="5" fill="#235943" />
+        <g transform="translate(1008 600) scale(.8)" color="#fff"><use href="icons.svg#list" /></g>
+      </g>
+    </g>
+    <g id="device-progress">
+      <use href="../screens/SCR50.svg#screen-content" />
+      <style>text[data-control-id="SCR50.C01"], text[data-control-id="SCR50.C02"], text[y="673.0"][text-anchor="middle"] { visibility: hidden; }</style>
+      <g data-button-icon="previous" role="img" aria-label="Previous" transform="translate(531 660) scale(.666667)" color="#202724"><use href="icons.svg#previous" /></g>
+      <g data-button-icon="pause" role="img" aria-label="Pause" transform="translate(610 660) scale(.666667)" color="#fff"><use href="icons.svg#pause" /></g>
+      <g data-button-icon="next" role="img" aria-label="Next" transform="translate(681.5 660) scale(.666667)" color="#202724"><use href="icons.svg#next" /></g>
+      <g data-button-icon="layout" role="img" aria-label="Select layout" transform="translate(963 297) scale(.8)" color="#202724">
+        <use href="icons.svg#layout" />
+      </g>
+      <g data-button-icon="list" role="img" aria-label="Preview" transform="translate(982 539) scale(.8)" color="#fff">
+        <use href="icons.svg#list" />
+      </g>
+      <rect x="365" y="418" width="705" height="96" fill="#fff" />
+      <text x="368" y="438" font-size="12" font-weight="700" fill="#4c5953">Playlist sync · Night Drive</text>
+      <rect x="368" y="456" width="697" height="7" rx="3" fill="#e9eeea" />
+    </g>
+  </defs>
+</svg>

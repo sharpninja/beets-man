@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR42" data-state-id="SCR42.STB09-1" data-storyboard-id="STB09" data-step-id="STB09-1">
+  <title id="title">Registered Instances — Studio desktop is active and Travel laptop has yet to register.</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="#f4f5f2" />
+    <rect x="0" y="0" width="1120" height="65" rx="0" fill="#1e312a" />
+    <circle cx="35" cy="32" r="13" fill="#9ec9ab" />
+    <circle cx="35" cy="32" r="5" fill="#1e312a" />
+    <text x="58" y="39" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <text x="236" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Library</text>
+    <text x="357" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Now Playing</text>
+    <rect x="502" y="17" width="59" height="32" rx="5" fill="#365447" />
+    <text x="514" y="38" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Sync</text>
+    <text x="609" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Settings</text>
+    <circle cx="948" cy="32" r="4" fill="#a9dabc" />
+    <text x="960" y="37" font-size="12" fill="#dbe7df" text-anchor="start">Studio desktop</text>
+    <rect x="0" y="65" width="1120" height="49" rx="0" fill="#ffffff" />
+    <line x1="0" y1="114" x2="1120" y2="114" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">Overview</text>
+    <text x="127" y="95" font-size="14" fill="#4c5953" text-anchor="start">PC Mirrors</text>
+    <text x="226" y="95" font-size="14" fill="#4c5953" text-anchor="start">Android Devices</text>
+    <text x="367" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Instances</text>
+    <rect x="367" y="111" width="67" height="3" rx="1" fill="#235943" />
+    <text x="462" y="95" font-size="14" fill="#4c5953" text-anchor="start">Records</text>
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Registered instances</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Desktop access to studio-host</text>
+    <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+    <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="674" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="164" y="674" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale</text>
+    <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="539.0" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Previous</text>
+    <g transform="translate(531 660) scale(0.666667)" data-button-icon="previous" role="img" aria-label="Previous">
+      <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" stroke="#235943" />
+    <text x="618.0" y="673.0" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Ⅱ</text>
+    <g transform="translate(610 660) scale(0.666667)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="689.5" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Next</text>
+    <g transform="translate(681.5 660) scale(0.666667)" data-button-icon="next" role="img" aria-label="Next">
+      <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="102" aria-valuetext="1:42 of 4:26" data-seek-slider="track">
+      <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">1:42</text>
+      <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+      <rect x="780" y="665" width="101.233" height="6" rx="3" fill="#235943" data-seek-part="played" />
+      <circle cx="881.233" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+      <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+    </g>
+    <rect x="939" y="137" width="145" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="1011.5" y="160.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR42.C01" data-button-label="icon-only" visibility="hidden">Register</text>
+    <g transform="translate(1002.5 146.5) scale(0.75)" data-button-icon="person" role="img" aria-label="Register">
+      <path d="M12 4a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM5 20v-2a7 7 0 0 1 14 0v2z" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="36" y="212" width="1048" height="206" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <rect x="37" y="213" width="1046" height="32" rx="4" fill="#e9eeea" />
+    <text x="48" y="234" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Desktop</text>
+    <text x="271" y="234" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Instance ID</text>
+    <text x="543" y="234" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Last seen</text>
+    <text x="746" y="234" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Role</text>
+    <text x="921" y="234" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Access</text>
+    <rect x="37" y="246" width="1046" height="42" rx="0" fill="#e0ede4" />
+    <rect x="37" y="246" width="3" height="42" rx="0" fill="#235943" />
+    <line x1="37" y1="246" x2="1083" y2="246" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="271.5" font-size="13" fill="#202724" text-anchor="start">Studio desktop</text>
+    <text x="271" y="271.5" font-size="13" fill="#202724" text-anchor="start">desktop-a91f</text>
+    <text x="543" y="271.5" font-size="13" fill="#202724" text-anchor="start">Just now</text>
+    <text x="746" y="271.5" font-size="13" fill="#202724" text-anchor="start">Operator</text>
+    <rect x="921" y="255.5" width="51" height="24" rx="4" fill="#e0ede4" />
+    <text x="930" y="271.5" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Active</text>
+    <rect x="37" y="289" width="1046" height="42" rx="0" fill="#fafbf9" />
+    <line x1="37" y1="289" x2="1083" y2="289" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="314.5" font-size="13" fill="#202724" text-anchor="start">Living Room PC</text>
+    <text x="271" y="314.5" font-size="13" fill="#202724" text-anchor="start">desktop-1c70</text>
+    <text x="543" y="314.5" font-size="13" fill="#202724" text-anchor="start">Yesterday</text>
+    <text x="746" y="314.5" font-size="13" fill="#202724" text-anchor="start">Listener</text>
+    <rect x="921" y="298.5" width="51" height="24" rx="4" fill="#e0ede4" />
+    <text x="930" y="314.5" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Active</text>
+    <line x1="37" y1="332" x2="1083" y2="332" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="357.5" font-size="13" fill="#202724" text-anchor="start">Travel laptop</text>
+    <text x="271" y="357.5" font-size="13" fill="#202724" text-anchor="start">desktop-0d22</text>
+    <text x="543" y="357.5" font-size="13" fill="#202724" text-anchor="start">Nov 19, 08:16</text>
+    <text x="746" y="357.5" font-size="13" fill="#202724" text-anchor="start">Listener</text>
+    <rect x="921" y="341.5" width="90" height="24" rx="4" fill="#e9eeea" />
+    <text x="930" y="357.5" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Unregistered</text>
+    <rect x="37" y="375" width="1046" height="42" rx="0" fill="#fafbf9" />
+    <line x1="37" y1="375" x2="1083" y2="375" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="400.5" font-size="13" fill="#202724" text-anchor="start">Old desktop</text>
+    <text x="271" y="400.5" font-size="13" fill="#202724" text-anchor="start">desktop-42ac</text>
+    <text x="543" y="400.5" font-size="13" fill="#202724" text-anchor="start">Nov 12, 09:22</text>
+    <text x="746" y="400.5" font-size="13" fill="#202724" text-anchor="start">Listener</text>
+    <rect x="921" y="384.5" width="64" height="24" rx="4" fill="#e9eeea" />
+    <text x="930" y="400.5" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Revoked</text>
+    <rect x="36" y="440" width="1048" height="141" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="53" y="476" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Studio desktop</text>
+    <text x="53" y="509" font-size="13" fill="#4c5953" text-anchor="start">Operator · Current desktop</text>
+    <text x="53" y="538" font-size="12" fill="#4c5953" text-anchor="start">Selected instance · desktop-a91f</text>
+    <rect x="940" y="471" width="126" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="1003.0" y="494.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR42.C02" data-button-label="icon-only" visibility="hidden">Revoke</text>
+    <g transform="translate(994 480.5) scale(0.75)" data-button-icon="disable" role="img" aria-label="Revoke">
+      <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM6 18 18 6" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </g>
+</svg>

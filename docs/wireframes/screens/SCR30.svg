@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR30" data-state-id="SCR30.S0">
+  <title id="title">Sync Settings</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/app-chrome.svg#settings-header" />
+    <use href="../shared/app-chrome.svg#secondary-navigation-background" />
+    <use href="../shared/navigation.svg#settings-sync" />
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Sync settings</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Defaults for registered devices and media transfers</text>
+    <use href="../shared/transport.svg#desktop-transport" />
+    <rect x="36" y="208" width="674" height="393" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="53" y="245" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Device defaults</text>
+    <text x="53" y="284" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">New PC peer</text>
+    <rect x="53" y="294" width="636" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="64" y="317" font-size="13" fill="#202724" text-anchor="start">Mirror music folder</text>
+    <path d="M667 309l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="53" y="376" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">New Android device</text>
+    <rect x="53" y="386" width="636" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="64" y="409" font-size="13" fill="#202724" text-anchor="start">Choose layout during pairing</text>
+    <path d="M667 401l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="53" y="472" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Open Sync when a paired phone connects</text>
+    <text x="53" y="494" font-size="12" fill="#4c5953" text-anchor="start">Local override · Applies to all player views</text>
+    <rect x="652" y="456" width="37" height="21" rx="10" fill="#235943" stroke="#235943" />
+    <circle cx="678" cy="467" r="7" fill="#ffffff" />
+    <rect x="53" y="533" width="137" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="121.5" y="556.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR30.C01">Set defaults</text>
+    <rect x="732" y="208" width="352" height="393" rx="6" fill="#e9eeea" />
+    <text x="750" y="245" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Local connection</text>
+    <rect x="750" y="267" width="90" height="24" rx="4" fill="#e0ede4" />
+    <text x="759" y="283" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Shares online</text>
+    <text x="750" y="328" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Music mirror</text>
+    <text x="750" y="351" font-size="12" fill="#4c5953" text-anchor="start">2 PC peers</text>
+    <line x1="750" y1="368" x2="1066" y2="368" stroke="#d4dbd5" stroke-width="1" />
+    <text x="750" y="404" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Android exports</text>
+    <text x="750" y="427" font-size="12" fill="#4c5953" text-anchor="start">1 paired device</text>
+    <rect x="750" y="533" width="151" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="825.5" y="556.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR30.C02">Open devices</text>
+  </g>
+</svg>

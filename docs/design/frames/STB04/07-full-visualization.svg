@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR18" data-state-id="SCR18.STB04-7" data-storyboard-id="STB04" data-step-id="STB04-7">
+  <title id="title">Full Visualization — Spectrum fills the display and keeps Pause and Exit full screen.</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="#1e312a" />
+    <line x1="32" y1="138.0" x2="1088" y2="138.0" stroke="#3b554a" stroke-width="1" />
+    <line x1="32" y1="276.0" x2="1088" y2="276.0" stroke="#3b554a" stroke-width="1" />
+    <line x1="32" y1="414.0" x2="1088" y2="414.0" stroke="#3b554a" stroke-width="1" />
+    <line x1="32" y1="552.0" x2="1088" y2="552.0" stroke="#3b554a" stroke-width="1" />
+    <rect x="36.0" y="577.6" width="9.79" height="74.4" rx="2" fill="#9bccac" />
+    <rect x="49.79" y="513.64" width="9.79" height="138.36" rx="2" fill="#679d7d" />
+    <rect x="63.58" y="457.14" width="9.79" height="194.86" rx="2" fill="#679d7d" />
+    <rect x="77.37" y="410.2" width="9.79" height="241.8" rx="2" fill="#679d7d" />
+    <rect x="91.16" y="374.41" width="9.79" height="277.59" rx="2" fill="#9bccac" />
+    <rect x="104.95" y="350.73" width="9.79" height="301.27" rx="2" fill="#679d7d" />
+    <rect x="118.74" y="339.48" width="9.79" height="312.52" rx="2" fill="#679d7d" />
+    <rect x="132.53" y="340.3" width="9.79" height="311.7" rx="2" fill="#679d7d" />
+    <rect x="146.32" y="352.21" width="9.79" height="299.79" rx="2" fill="#9bccac" />
+    <rect x="160.11" y="373.64" width="9.79" height="278.36" rx="2" fill="#679d7d" />
+    <rect x="173.89" y="402.55" width="9.79" height="249.45" rx="2" fill="#679d7d" />
+    <rect x="187.68" y="436.51" width="9.79" height="215.49" rx="2" fill="#679d7d" />
+    <rect x="201.47" y="472.87" width="9.79" height="179.13" rx="2" fill="#9bccac" />
+    <rect x="215.26" y="508.89" width="9.79" height="143.11" rx="2" fill="#679d7d" />
+    <rect x="229.05" y="541.88" width="9.79" height="110.12" rx="2" fill="#679d7d" />
+    <rect x="242.84" y="569.39" width="9.79" height="82.61" rx="2" fill="#679d7d" />
+    <rect x="256.63" y="565.9" width="9.79" height="86.1" rx="2" fill="#9bccac" />
+    <rect x="270.42" y="555.24" width="9.79" height="96.76" rx="2" fill="#679d7d" />
+    <rect x="284.21" y="554.92" width="9.79" height="97.08" rx="2" fill="#679d7d" />
+    <rect x="298.0" y="565.4" width="9.79" height="86.6" rx="2" fill="#679d7d" />
+    <rect x="311.79" y="568.71" width="9.79" height="83.29" rx="2" fill="#9bccac" />
+    <rect x="325.58" y="537.82" width="9.79" height="114.18" rx="2" fill="#679d7d" />
+    <rect x="339.37" y="498.57" width="9.79" height="153.43" rx="2" fill="#679d7d" />
+    <rect x="353.16" y="452.92" width="9.79" height="199.08" rx="2" fill="#679d7d" />
+    <rect x="366.95" y="403.24" width="9.79" height="248.76" rx="2" fill="#9bccac" />
+    <rect x="380.74" y="352.21" width="9.79" height="299.79" rx="2" fill="#679d7d" />
+    <rect x="394.53" y="302.66" width="9.79" height="349.34" rx="2" fill="#679d7d" />
+    <rect x="408.32" y="257.43" width="9.79" height="394.57" rx="2" fill="#679d7d" />
+    <rect x="422.11" y="219.22" width="9.79" height="432.78" rx="2" fill="#9bccac" />
+    <rect x="435.89" y="190.41" width="9.79" height="461.59" rx="2" fill="#679d7d" />
+    <rect x="449.68" y="172.98" width="9.79" height="479.02" rx="2" fill="#679d7d" />
+    <rect x="463.47" y="168.38" width="9.79" height="483.62" rx="2" fill="#679d7d" />
+    <rect x="477.26" y="177.42" width="9.79" height="474.58" rx="2" fill="#9bccac" />
+    <rect x="491.05" y="200.28" width="9.79" height="451.72" rx="2" fill="#679d7d" />
+    <rect x="504.84" y="236.45" width="9.79" height="415.55" rx="2" fill="#679d7d" />
+    <rect x="518.63" y="284.77" width="9.79" height="367.23" rx="2" fill="#679d7d" />
+    <rect x="532.42" y="343.48" width="9.79" height="308.52" rx="2" fill="#9bccac" />
+    <rect x="546.21" y="410.3" width="9.79" height="241.7" rx="2" fill="#679d7d" />
+    <rect x="560.0" y="482.58" width="9.79" height="169.42" rx="2" fill="#679d7d" />
+    <rect x="573.79" y="557.37" width="9.79" height="94.63" rx="2" fill="#679d7d" />
+    <rect x="587.58" y="523.55" width="9.79" height="128.45" rx="2" fill="#9bccac" />
+    <rect x="601.37" y="452.81" width="9.79" height="199.19" rx="2" fill="#679d7d" />
+    <rect x="615.16" y="388.4" width="9.79" height="263.6" rx="2" fill="#679d7d" />
+    <rect x="628.95" y="332.81" width="9.79" height="319.19" rx="2" fill="#679d7d" />
+    <rect x="642.74" y="288.05" width="9.79" height="363.95" rx="2" fill="#9bccac" />
+    <rect x="656.53" y="255.58" width="9.79" height="396.42" rx="2" fill="#679d7d" />
+    <rect x="670.32" y="236.23" width="9.79" height="415.77" rx="2" fill="#679d7d" />
+    <rect x="684.11" y="230.17" width="9.79" height="421.83" rx="2" fill="#679d7d" />
+    <rect x="697.89" y="236.9" width="9.79" height="415.1" rx="2" fill="#9bccac" />
+    <rect x="711.68" y="255.28" width="9.79" height="396.72" rx="2" fill="#679d7d" />
+    <rect x="725.47" y="283.6" width="9.79" height="368.4" rx="2" fill="#679d7d" />
+    <rect x="739.26" y="319.69" width="9.79" height="332.31" rx="2" fill="#679d7d" />
+    <rect x="753.05" y="361.03" width="9.79" height="290.97" rx="2" fill="#9bccac" />
+    <rect x="766.84" y="404.88" width="9.79" height="247.12" rx="2" fill="#679d7d" />
+    <rect x="780.63" y="448.42" width="9.79" height="203.58" rx="2" fill="#679d7d" />
+    <rect x="794.42" y="488.97" width="9.79" height="163.03" rx="2" fill="#679d7d" />
+    <rect x="808.21" y="524.04" width="9.79" height="127.96" rx="2" fill="#9bccac" />
+    <rect x="822.0" y="551.54" width="9.79" height="100.46" rx="2" fill="#679d7d" />
+    <rect x="835.79" y="569.84" width="9.79" height="82.16" rx="2" fill="#679d7d" />
+    <rect x="849.58" y="577.29" width="9.79" height="74.71" rx="2" fill="#679d7d" />
+    <rect x="863.37" y="575.33" width="9.79" height="76.67" rx="2" fill="#9bccac" />
+    <rect x="877.16" y="562.34" width="9.79" height="89.66" rx="2" fill="#679d7d" />
+    <rect x="890.95" y="539.8" width="9.79" height="112.2" rx="2" fill="#679d7d" />
+    <rect x="904.74" y="509.18" width="9.79" height="142.82" rx="2" fill="#679d7d" />
+    <rect x="918.53" y="472.45" width="9.79" height="179.55" rx="2" fill="#9bccac" />
+    <rect x="932.32" y="431.97" width="9.79" height="220.03" rx="2" fill="#679d7d" />
+    <rect x="946.11" y="390.39" width="9.79" height="261.61" rx="2" fill="#679d7d" />
+    <rect x="959.89" y="350.49" width="9.79" height="301.51" rx="2" fill="#679d7d" />
+    <rect x="973.68" y="315.01" width="9.79" height="336.99" rx="2" fill="#9bccac" />
+    <rect x="987.47" y="286.53" width="9.79" height="365.47" rx="2" fill="#679d7d" />
+    <rect x="1001.26" y="267.31" width="9.79" height="384.69" rx="2" fill="#679d7d" />
+    <rect x="1015.05" y="259.15" width="9.79" height="392.85" rx="2" fill="#679d7d" />
+    <rect x="1028.84" y="263.34" width="9.79" height="388.66" rx="2" fill="#9bccac" />
+    <rect x="1042.63" y="280.51" width="9.79" height="371.49" rx="2" fill="#679d7d" />
+    <rect x="1056.42" y="310.67" width="9.79" height="341.33" rx="2" fill="#679d7d" />
+    <rect x="1070.21" y="353.13" width="9.79" height="298.87" rx="2" fill="#679d7d" />
+    <text x="36" y="53" font-size="17" fill="#ffffff" text-anchor="start" font-weight="700">Spectrum</text>
+    <text x="36" y="78" font-size="14" fill="#cee2d5" text-anchor="start">Harbor Lights · Lena Vale</text>
+    <rect x="908" y="27" width="176" height="37" rx="5" fill="#2b473b" stroke="#5a7968" />
+    <text x="996.0" y="50.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR18.C01" data-button-label="icon-only" visibility="hidden">Exit full screen</text>
+    <g transform="translate(987 36.5) scale(0.75)" data-button-icon="fullscreen" role="img" aria-label="Exit full screen">
+      <path d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="30" y="567" width="1060" height="91" rx="6" fill="#192a23" stroke="#5d7d6b" />
+    <rect x="47" y="587" width="95" height="37" rx="5" fill="#2b473b" stroke="#5a7968" />
+    <text x="94.5" y="610.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR18.C02" data-button-label="icon-only" visibility="hidden">Pause</text>
+    <g transform="translate(85.5 596.5) scale(0.75)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="161" y="601" width="764" height="4" rx="2" fill="#526b60" />
+    <rect x="161" y="601" width="297.96000000000004" height="4" rx="2" fill="#a7d8b6" />
+    <circle cx="458.96000000000004" cy="603" r="6" fill="#a7d8b6" />
+    <text x="942" y="607" font-size="13" fill="#ffffff" text-anchor="start">1:42 / 4:26</text>
+    <text x="161" y="636" font-size="12" fill="#bcd3c4" text-anchor="start">Esc returns to the previous windowed view</text>
+  </g>
+</svg>

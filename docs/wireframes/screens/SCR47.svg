@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR47" data-state-id="SCR47.S0">
+  <title id="title">Snapshot Recovery</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR45.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(219 107)" role="group" aria-label="Snapshot Recovery">
+      <rect x="0" y="0" width="682" height="476" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Snapshot Recovery</text>
+      <text x="658" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">The host no longer has the changes after your saved cursor.</text>
+      <line x1="0" y1="76" x2="682" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="97" width="634" height="61" rx="5" fill="#fbeddc" />
+      <rect x="24" y="97" width="3" height="61" rx="1" fill="#704621" />
+      <text x="37" y="117" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Cursor r184 has expired</text>
+      <text x="37" y="137" font-size="12" fill="#704621" text-anchor="start">A fresh catalog snapshot is required before ordinary sync can resume.</text>
+      <rect x="24" y="178" width="634" height="108" rx="5" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="38" y="202" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Snapshot recovery</text>
+      <rect x="38" y="217" width="606" height="7" rx="3" fill="#e9eeea" />
+      <rect x="38" y="217" width="0" height="7" rx="3" fill="#235943" />
+      <text x="38" y="254" font-size="13" fill="#4c5953" text-anchor="start">Waiting to start</text>
+      <rect x="24" y="307" width="634" height="69" rx="5" fill="#e0ede4" />
+      <rect x="24" y="307" width="3" height="69" rx="1" fill="#235943" />
+      <text x="37" y="327" font-size="13" fill="#235943" text-anchor="start" font-weight="700">2 pending edits will be preserved</text>
+      <text x="37" y="347" font-size="12" fill="#235943" text-anchor="start">Your Night Drive playlist draft and a favorite change will be replayed once the catalog is rebuilt.</text>
+      <line x1="0" y1="410" x2="682" y2="410" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="517" y="425" width="141" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="587.5" y="448.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR47.C01">Refresh snapshot</text>
+      <rect x="425" y="425" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="466.0" y="448.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR47.C02">Close</text>
+    </g>
+  </g>
+</svg>

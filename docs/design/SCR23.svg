@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR23" data-state-id="SCR23.S0">
+  <title id="title">Plugin Trust</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="#f4f5f2" />
+    <rect x="0" y="0" width="1120" height="65" rx="0" fill="#1e312a" />
+    <circle cx="35" cy="32" r="13" fill="#9ec9ab" />
+    <circle cx="35" cy="32" r="5" fill="#1e312a" />
+    <text x="58" y="39" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <text x="236" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Library</text>
+    <text x="357" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Now Playing</text>
+    <text x="514" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Sync</text>
+    <rect x="597" y="17" width="82" height="32" rx="5" fill="#365447" />
+    <text x="609" y="38" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Settings</text>
+    <circle cx="948" cy="32" r="4" fill="#a9dabc" />
+    <text x="960" y="37" font-size="12" fill="#dbe7df" text-anchor="start">Studio desktop</text>
+    <rect x="0" y="65" width="1120" height="49" rx="0" fill="#ffffff" />
+    <line x1="0" y1="114" x2="1120" y2="114" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">General</text>
+    <text x="117" y="95" font-size="14" fill="#4c5953" text-anchor="start">Appearance</text>
+    <text x="227" y="95" font-size="14" fill="#4c5953" text-anchor="start">Playback</text>
+    <text x="317" y="95" font-size="14" fill="#4c5953" text-anchor="start">Library</text>
+    <text x="393" y="95" font-size="14" fill="#4c5953" text-anchor="start">Sync</text>
+    <text x="455" y="95" font-size="14" fill="#4c5953" text-anchor="start">Notifications</text>
+    <text x="571" y="95" font-size="14" fill="#4c5953" text-anchor="start">Shortcuts</text>
+    <text x="666" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Plugins</text>
+    <rect x="666" y="111" width="52" height="3" rx="1" fill="#235943" />
+    <text x="746" y="95" font-size="14" fill="#4c5953" text-anchor="start">Diagnostics</text>
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Plugins</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Manage local extension packages</text>
+    <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+    <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="674" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="164" y="674" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale</text>
+    <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="539.0" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Previous</text>
+    <g transform="translate(531 660) scale(0.666667)" data-button-icon="previous" role="img" aria-label="Previous">
+      <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" stroke="#235943" />
+    <text x="618.0" y="673.0" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Ⅱ</text>
+    <g transform="translate(610 660) scale(0.666667)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="689.5" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Next</text>
+    <g transform="translate(681.5 660) scale(0.666667)" data-button-icon="next" role="img" aria-label="Next">
+      <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="102" aria-valuetext="1:42 of 4:26" data-seek-slider="track">
+      <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">1:42</text>
+      <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+      <rect x="780" y="665" width="101.233" height="6" rx="3" fill="#235943" data-seek-part="played" />
+      <circle cx="881.233" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+      <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+    </g>
+    <rect x="913" y="137" width="171" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="998.5" y="160.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Install package</text>
+    <g transform="translate(989.5 146.5) scale(0.75)" data-button-icon="install" role="img" aria-label="Install package">
+      <path d="M5 11v9h14v-9M12 3v11m-4-4 4 4 4-4" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="36" y="211" width="1048" height="163" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <rect x="37" y="212" width="1046" height="32" rx="4" fill="#e9eeea" />
+    <text x="48" y="233" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Package</text>
+    <text x="347" y="233" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Version</text>
+    <text x="489" y="233" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Trust</text>
+    <text x="655" y="233" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Worker</text>
+    <text x="862" y="233" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Contribution</text>
+    <rect x="37" y="245" width="1046" height="42" rx="0" fill="#e0ede4" />
+    <rect x="37" y="245" width="3" height="42" rx="0" fill="#235943" />
+    <line x1="37" y1="245" x2="1083" y2="245" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="270.5" font-size="13" fill="#202724" text-anchor="start">Studio Spectrum</text>
+    <text x="347" y="270.5" font-size="13" fill="#202724" text-anchor="start">2.0.0</text>
+    <rect x="489" y="254.5" width="58" height="24" rx="4" fill="#e0ede4" />
+    <text x="498" y="270.5" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Trusted</text>
+    <rect x="655" y="254.5" width="64" height="24" rx="4" fill="#e0ede4" />
+    <text x="664" y="270.5" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Running</text>
+    <text x="862" y="270.5" font-size="13" fill="#202724" text-anchor="start">Visualization</text>
+    <rect x="37" y="288" width="1046" height="42" rx="0" fill="#fafbf9" />
+    <line x1="37" y1="288" x2="1083" y2="288" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="313.5" font-size="13" fill="#202724" text-anchor="start">Listening Notes</text>
+    <text x="347" y="313.5" font-size="13" fill="#202724" text-anchor="start">1.4.2</text>
+    <rect x="489" y="297.5" width="58" height="24" rx="4" fill="#e0ede4" />
+    <text x="498" y="313.5" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Trusted</text>
+    <rect x="655" y="297.5" width="64" height="24" rx="4" fill="#e9eeea" />
+    <text x="664" y="313.5" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Disabled</text>
+    <text x="862" y="313.5" font-size="13" fill="#202724" text-anchor="start">Extension panel</text>
+    <line x1="37" y1="331" x2="1083" y2="331" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="356.5" font-size="13" fill="#202724" text-anchor="start">Room Meter</text>
+    <text x="347" y="356.5" font-size="13" fill="#202724" text-anchor="start">1.0.0</text>
+    <rect x="489" y="340.5" width="98" height="24" rx="4" fill="#fbeddc" />
+    <text x="498" y="356.5" font-size="11" fill="#704621" text-anchor="start" font-weight="700">Review needed</text>
+    <rect x="655" y="340.5" width="63" height="24" rx="4" fill="#e9eeea" />
+    <text x="664" y="356.5" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Stopped</text>
+    <text x="862" y="356.5" font-size="13" fill="#202724" text-anchor="start">Visualization</text>
+    <rect x="36" y="398" width="1048" height="196" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="52" y="432" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Studio Spectrum</text>
+    <text x="52" y="460" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">example.scope · 2.0.0</text>
+    <text x="52" y="502" font-size="14" fill="#202724" text-anchor="start">Contributes a spectrum visualization to Now Playing.</text>
+    <text x="52" y="545" font-size="13" fill="#4c5953" text-anchor="start">Worker protocol connected</text>
+    <rect x="985" y="420" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="1026.0" y="443.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Disable</text>
+    <g transform="translate(1017 429.5) scale(0.75)" data-button-icon="disable" role="img" aria-label="Disable">
+      <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM6 18 18 6" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="869" y="420" width="106" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="922.0" y="443.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Diagnostics</text>
+    <g transform="translate(913 429.5) scale(0.75)" data-button-icon="log" role="img" aria-label="Diagnostics">
+      <path d="M5 3h11l3 3v15H5zM8 9h8m-8 4h8m-8 4h6" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="rgba(19,33,27,0.57)" />
+    <g transform="translate(248 113)" role="group" aria-label="Plugin Trust">
+      <rect x="0" y="0" width="624" height="464" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Plugin Trust</text>
+      <text x="600" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Review this package before enabling its worker.</text>
+      <line x1="0" y1="76" x2="624" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <text x="24" y="116" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Studio Spectrum</text>
+      <text x="24" y="143" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">example.scope · Version 2.0.0</text>
+      <rect x="24" y="168" width="576" height="106" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <rect x="25" y="169" width="574" height="32" rx="4" fill="#e9eeea" />
+      <text x="36" y="190" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Package check</text>
+      <text x="246" y="190" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Result</text>
+      <line x1="25" y1="202" x2="599" y2="202" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="224.0" font-size="13" fill="#202724" text-anchor="start">Host protocol</text>
+      <text x="246" y="224.0" font-size="13" fill="#202724" text-anchor="start">Compatible · v1</text>
+      <rect x="25" y="238" width="574" height="35" rx="0" fill="#fafbf9" />
+      <line x1="25" y1="238" x2="599" y2="238" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="260.0" font-size="13" fill="#202724" text-anchor="start">Contribution</text>
+      <text x="246" y="260.0" font-size="13" fill="#202724" text-anchor="start">Spectrum visualization</text>
+      <rect x="24" y="293" width="576" height="73" rx="5" fill="#fbeddc" />
+      <rect x="24" y="293" width="3" height="73" rx="1" fill="#704621" />
+      <text x="37" y="313" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Runs with your permissions</text>
+      <text x="37" y="333" font-size="12" fill="#704621" text-anchor="start">Trust applies to version 2.0.0 on this desktop. Review a new version before enabling it.</text>
+      <line x1="0" y1="398" x2="624" y2="398" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="491" y="413" width="109" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="545.5" y="436.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR23.C01" data-button-label="icon-only" visibility="hidden">Trust locally</text>
+      <g transform="translate(536.5 422.5) scale(0.75)" data-button-icon="shield" role="img" aria-label="Trust locally">
+        <path d="M12 3 4 6v5c0 5 3 8 8 10 5-2 8-5 8-10V6zm-4 9 3 3 5-5" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <rect x="399" y="413" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="440.0" y="436.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR23.C02" data-button-label="icon-only" visibility="hidden">Cancel</text>
+      <g transform="translate(431 422.5) scale(0.75)" data-button-icon="close" role="img" aria-label="Cancel">
+        <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR51" data-state-id="SCR51.S0">
+  <title id="title">Pair Media Peer</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="#f4f5f2" />
+    <rect x="0" y="0" width="1120" height="65" rx="0" fill="#1e312a" />
+    <circle cx="35" cy="32" r="13" fill="#9ec9ab" />
+    <circle cx="35" cy="32" r="5" fill="#1e312a" />
+    <text x="58" y="39" font-size="21" fill="#ffffff" text-anchor="start" font-weight="700">Beets Man</text>
+    <text x="236" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Library</text>
+    <text x="357" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Now Playing</text>
+    <rect x="502" y="17" width="59" height="32" rx="5" fill="#365447" />
+    <text x="514" y="38" font-size="14" fill="#ffffff" text-anchor="start" font-weight="700">Sync</text>
+    <text x="609" y="38" font-size="14" fill="#c3d1c9" text-anchor="start">Settings</text>
+    <circle cx="948" cy="32" r="4" fill="#a9dabc" />
+    <text x="960" y="37" font-size="12" fill="#dbe7df" text-anchor="start">Studio desktop</text>
+    <rect x="0" y="65" width="1120" height="49" rx="0" fill="#ffffff" />
+    <line x1="0" y1="114" x2="1120" y2="114" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Overview</text>
+    <rect x="36" y="111" width="63" height="3" rx="1" fill="#235943" />
+    <text x="127" y="95" font-size="14" fill="#4c5953" text-anchor="start">PC Mirrors</text>
+    <text x="226" y="95" font-size="14" fill="#4c5953" text-anchor="start">Android Devices</text>
+    <text x="367" y="95" font-size="14" fill="#4c5953" text-anchor="start">Instances</text>
+    <text x="462" y="95" font-size="14" fill="#4c5953" text-anchor="start">Records</text>
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Sync</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">Media transfers and connected devices</text>
+    <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+    <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+    <text x="36" y="674" font-size="13" fill="#202724" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="164" y="674" font-size="12" fill="#4c5953" text-anchor="start">Lena Vale</text>
+    <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="539.0" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Previous</text>
+    <g transform="translate(531 660) scale(0.666667)" data-button-icon="previous" role="img" aria-label="Previous">
+      <path d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" stroke="#235943" />
+    <text x="618.0" y="673.0" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Ⅱ</text>
+    <g transform="translate(610 660) scale(0.666667)" data-button-icon="pause" role="img" aria-label="Pause">
+      <path d="M8 5v14M16 5v14" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="689.5" y="673.0" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Next</text>
+    <g transform="translate(681.5 660) scale(0.666667)" data-button-icon="next" role="img" aria-label="Next">
+      <path d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="102" aria-valuetext="1:42 of 4:26" data-seek-slider="track">
+      <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">1:42</text>
+      <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+      <rect x="780" y="665" width="101.233" height="6" rx="3" fill="#235943" data-seek-part="played" />
+      <circle cx="881.233" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+      <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+    </g>
+    <rect x="995" y="138" width="89" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="1039.5" y="161.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Pair peer</text>
+    <g transform="translate(1030.5 147.5) scale(0.75)" data-button-icon="pair" role="img" aria-label="Pair peer">
+      <path d="m10 13 4-4m-7 6-2 2a3 3 0 0 0 4 4l4-4a3 3 0 0 0 0-4m4-4 2-2a3 3 0 0 0-4-4l-4 4a3 3 0 0 0 0 4" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="903" y="138" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="944.0" y="161.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-button-label="icon-only" visibility="hidden">Rescan</text>
+    <g transform="translate(935 147.5) scale(0.75)" data-button-icon="refresh" role="img" aria-label="Rescan">
+      <path d="M20 10a8 8 0 1 0 0 6M20 4v6h-6" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+    <rect x="36" y="208" width="324" height="394" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="52" y="241" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Devices</text>
+    <text x="62" y="282" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Studio PC</text>
+    <text x="62" y="303" font-size="12" fill="#4c5953" text-anchor="start">PC mirror</text>
+    <rect x="62" y="312" width="73" height="24" rx="4" fill="#e0ede4" />
+    <text x="71" y="328" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Up to date</text>
+    <text x="62" y="378" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Living Room PC</text>
+    <text x="62" y="399" font-size="12" fill="#4c5953" text-anchor="start">PC mirror</text>
+    <rect x="62" y="408" width="57" height="24" rx="4" fill="#e9eeea" />
+    <text x="71" y="424" font-size="11" fill="#4c5953" text-anchor="start" font-weight="700">Paused</text>
+    <rect x="47" y="451" width="302" height="87" rx="5" fill="#e0ede4" stroke="#235943" />
+    <text x="62" y="474" font-size="15" fill="#202724" text-anchor="start" font-weight="700">Pixel 6</text>
+    <text x="62" y="495" font-size="12" fill="#4c5953" text-anchor="start">Android export</text>
+    <rect x="62" y="504" width="76" height="24" rx="4" fill="#e0ede4" />
+    <text x="71" y="520" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Connected</text>
+    <rect x="382" y="208" width="702" height="394" rx="6" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="400" y="242" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Pixel 6</text>
+    <rect x="488" y="223" width="100" height="24" rx="4" fill="#e0ede4" />
+    <text x="497" y="239" font-size="11" fill="#235943" text-anchor="start" font-weight="700">Just connected</text>
+    <text x="400" y="280" font-size="13" fill="#4c5953" text-anchor="start">Android export · Musicolette / M3U8</text>
+    <line x1="400" y1="304" x2="1066" y2="304" stroke="#d4dbd5" stroke-width="1" />
+    <text x="400" y="333" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Media transfer</text>
+    <rect x="400" y="349" width="666" height="7" rx="3" fill="#e9eeea" />
+    <rect x="400" y="349" width="419.58" height="7" rx="3" fill="#235943" />
+    <text x="400" y="380" font-size="13" fill="#202724" text-anchor="start">38 of 60 files · 1.4 GB of 2.2 GB</text>
+    <text x="400" y="435" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Destination</text>
+    <text x="400" y="460" font-size="14" fill="#202724" text-anchor="start">/storage/emulated/0/Music/Beets</text>
+    <text x="400" y="515" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Last successful transfer</text>
+    <text x="400" y="540" font-size="14" fill="#202724" text-anchor="start">Today, 10:52</text>
+    <rect x="0" y="0" width="1120" height="690" rx="0" fill="rgba(19,33,27,0.57)" />
+    <g transform="translate(195 83)" role="group" aria-label="Pair Media Peer">
+      <rect x="0" y="0" width="730" height="524" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Pair Media Peer</text>
+      <text x="706" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Connect a receiving device through Syncthing-Fork.</text>
+      <line x1="0" y1="76" x2="730" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <text x="24" y="107" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Syncthing device ID</text>
+      <rect x="24" y="117" width="682" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="140" font-size="13" fill="#202724" text-anchor="start">7K6W2PR-6QT3EEX-NE…</text>
+      <rect x="24" y="177" width="334" height="61" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <circle cx="46" cy="203" r="8" fill="#4c5953" />
+      <circle cx="46" cy="203" r="5" fill="#ffffff" />
+      <text x="64" y="202" font-size="14" fill="#202724" text-anchor="start" font-weight="700">PC mirror</text>
+      <text x="64" y="223" font-size="12" fill="#4c5953" text-anchor="start">Mirror the host’s audio hierarchy.</text>
+      <rect x="372" y="177" width="334" height="61" rx="5" fill="#e0ede4" stroke="#235943" />
+      <circle cx="394" cy="203" r="8" fill="#235943" />
+      <circle cx="394" cy="203" r="5" fill="#ffffff" />
+      <circle cx="394" cy="203" r="3" fill="#235943" />
+      <text x="412" y="202" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Android export</text>
+      <text x="412" y="223" font-size="12" fill="#4c5953" text-anchor="start">Use a player-specific folder layout.</text>
+      <text x="24" y="269" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Share destination</text>
+      <rect x="24" y="279" width="682" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="302" font-size="13" fill="#202724" text-anchor="start">Pixel 6 · Android exports</text>
+      <rect x="24" y="339" width="682" height="82" rx="5" fill="#e0ede4" />
+      <rect x="24" y="339" width="3" height="82" rx="1" fill="#235943" />
+      <text x="37" y="359" font-size="13" fill="#235943" text-anchor="start" font-weight="700">Accept the share on Pixel 6</text>
+      <text x="37" y="379" font-size="12" fill="#235943" text-anchor="start">Transfers begin after the device accepts the share and the layout is confirmed.</text>
+      <line x1="0" y1="458" x2="730" y2="458" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="607" y="473" width="99" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="656.5" y="496.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR51.C01" data-button-label="icon-only" visibility="hidden">Share files</text>
+      <g transform="translate(647.5 482.5) scale(0.75)" data-button-icon="share" role="img" aria-label="Share files">
+        <path d="M4 11v9h16v-9M12 16V4m-4 4 4-4 4 4" fill="none" stroke="#ffffff" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+      <rect x="515" y="473" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="556.0" y="496.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR51.C02" data-button-label="icon-only" visibility="hidden">Cancel</text>
+      <g transform="translate(547 482.5) scale(0.75)" data-button-icon="close" role="img" aria-label="Cancel">
+        <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="#202724" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+    </g>
+  </g>
+</svg>

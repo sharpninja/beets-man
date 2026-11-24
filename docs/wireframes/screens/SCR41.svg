@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR41" data-state-id="SCR41.S0">
+  <title id="title">Remove Music</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/dialogs.svg#tracks-backdrop" />
+    <rect x="0" y="0" width="1120" height="690" fill="rgba(19,33,27,0.57)" stroke="none" rx="0" />
+    <g transform="translate(218 94)" role="group" aria-label="Remove Music">
+      <rect x="0" y="0" width="684" height="502" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Remove Music</text>
+      <text x="660" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Harbor Lights and Night Crossing · Northern Lines</text>
+      <line x1="0" y1="76" x2="684" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="24" y="97" width="636" height="61" rx="5" fill="#e0ede4" stroke="#235943" />
+      <circle cx="46" cy="123" r="8" fill="#235943" />
+      <circle cx="46" cy="123" r="5" fill="#ffffff" />
+      <circle cx="46" cy="123" r="3" fill="#235943" />
+      <text x="64" y="122" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Remove catalog records only</text>
+      <text x="64" y="143" font-size="12" fill="#4c5953" text-anchor="start">Keep the original audio files on the host.</text>
+      <rect x="24" y="171" width="636" height="61" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <circle cx="46" cy="197" r="8" fill="#4c5953" />
+      <circle cx="46" cy="197" r="5" fill="#ffffff" />
+      <text x="64" y="196" font-size="14" fill="#202724" text-anchor="start" font-weight="700">Delete audio and catalog records</text>
+      <text x="64" y="217" font-size="12" fill="#4c5953" text-anchor="start">Choose this option to review a separate confirmation.</text>
+      <rect x="24" y="254" width="636" height="81" rx="5" fill="#f4f5f2" stroke="#d4dbd5" />
+      <text x="38" y="277" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Shares containing these tracks</text>
+      <text x="38" y="303" font-size="14" fill="#202724" text-anchor="start">Studio PC mirror · Pixel 6 export</text>
+      <rect x="24" y="354" width="636" height="59" rx="5" fill="#e0ede4" />
+      <rect x="24" y="354" width="3" height="59" rx="1" fill="#235943" />
+      <text x="37" y="374" font-size="13" fill="#235943" text-anchor="start" font-weight="700">2 catalog records selected</text>
+      <text x="37" y="394" font-size="12" fill="#235943" text-anchor="start">The selected action keeps the audio files and shared copies.</text>
+      <line x1="0" y1="436" x2="684" y2="436" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="523" y="451" width="137" height="37" rx="5" fill="#8e3431" stroke="#8e3431" />
+      <text x="591.5" y="474.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR41.C01">Confirm removal</text>
+      <rect x="431" y="451" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="472.0" y="474.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR41.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

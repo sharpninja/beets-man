@@ -1,0 +1,319 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="settings-tab-general">
+      <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">General</text>
+    </g>
+    <g id="settings-tab-appearance">
+      <text x="117" y="95" font-size="14" fill="#4c5953" text-anchor="start">Appearance</text>
+    </g>
+    <g id="settings-tab-playback">
+      <text x="227" y="95" font-size="14" fill="#4c5953" text-anchor="start">Playback</text>
+    </g>
+    <g id="settings-tab-library">
+      <text x="317" y="95" font-size="14" fill="#4c5953" text-anchor="start">Library</text>
+    </g>
+    <g id="settings-tab-sync">
+      <text x="393" y="95" font-size="14" fill="#4c5953" text-anchor="start">Sync</text>
+    </g>
+    <g id="settings-tab-notifications">
+      <text x="455" y="95" font-size="14" fill="#4c5953" text-anchor="start">Notifications</text>
+    </g>
+    <g id="settings-tab-shortcuts">
+      <text x="571" y="95" font-size="14" fill="#4c5953" text-anchor="start">Shortcuts</text>
+    </g>
+    <g id="settings-tab-plugins">
+      <text x="666" y="95" font-size="14" fill="#4c5953" text-anchor="start">Plugins</text>
+    </g>
+    <g id="settings-tab-diagnostics-selected">
+      <text x="746" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Diagnostics</text>
+      <rect x="746" y="111" width="82" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="player-tab-now-playing-selected">
+      <text x="36" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Now Playing</text>
+      <rect x="36" y="111" width="85" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="player-tab-queue">
+      <text x="149" y="95" font-size="14" fill="#4c5953" text-anchor="start">Queue</text>
+    </g>
+    <g id="player-tab-mixer">
+      <text x="222" y="95" font-size="14" fill="#4c5953" text-anchor="start">Mixer</text>
+    </g>
+    <g id="player-tab-extensions">
+      <text x="287" y="95" font-size="14" fill="#4c5953" text-anchor="start">Extensions</text>
+    </g>
+    <g id="player-tab-now-playing">
+      <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">Now Playing</text>
+    </g>
+    <g id="player-tab-queue-selected">
+      <text x="149" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Queue</text>
+      <rect x="149" y="111" width="45" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="player-tab-mixer-selected">
+      <text x="222" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Mixer</text>
+      <rect x="222" y="111" width="37" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="settings-tab-playback-selected">
+      <text x="227" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Playback</text>
+      <rect x="227" y="111" width="62" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="settings-tab-diagnostics">
+      <text x="746" y="95" font-size="14" fill="#4c5953" text-anchor="start">Diagnostics</text>
+    </g>
+    <g id="settings-tab-plugins-selected">
+      <text x="666" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Plugins</text>
+      <rect x="666" y="111" width="52" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="player-tab-extensions-selected">
+      <text x="287" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Extensions</text>
+      <rect x="287" y="111" width="77" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="settings-tab-general-selected">
+      <text x="36" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">General</text>
+      <rect x="36" y="111" width="53" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="settings-tab-appearance-selected">
+      <text x="117" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Appearance</text>
+      <rect x="117" y="111" width="82" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="settings-tab-library-selected">
+      <text x="317" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Library</text>
+      <rect x="317" y="111" width="48" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="settings-tab-sync-selected">
+      <text x="393" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Sync</text>
+      <rect x="393" y="111" width="34" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="settings-tab-notifications-selected">
+      <text x="455" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Notifications</text>
+      <rect x="455" y="111" width="88" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="settings-tab-shortcuts-selected">
+      <text x="571" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Shortcuts</text>
+      <rect x="571" y="111" width="67" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="jobs-tab-overview">
+      <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">Overview</text>
+    </g>
+    <g id="jobs-tab-artists">
+      <text x="127" y="95" font-size="14" fill="#4c5953" text-anchor="start">Artists</text>
+    </g>
+    <g id="jobs-tab-albums">
+      <text x="200" y="95" font-size="14" fill="#4c5953" text-anchor="start">Albums</text>
+    </g>
+    <g id="jobs-tab-tracks">
+      <text x="280" y="95" font-size="14" fill="#4c5953" text-anchor="start">Tracks</text>
+    </g>
+    <g id="jobs-tab-search">
+      <text x="353" y="95" font-size="14" fill="#4c5953" text-anchor="start">Search</text>
+    </g>
+    <g id="jobs-tab-playlists">
+      <text x="428" y="95" font-size="14" fill="#4c5953" text-anchor="start">Playlists</text>
+    </g>
+    <g id="jobs-tab-jobs-selected">
+      <text x="514" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Jobs</text>
+      <rect x="514" y="111" width="34" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="sync-tab-overview">
+      <text x="36" y="95" font-size="14" fill="#4c5953" text-anchor="start">Overview</text>
+    </g>
+    <g id="sync-tab-pc-mirrors">
+      <text x="127" y="95" font-size="14" fill="#4c5953" text-anchor="start">PC Mirrors</text>
+    </g>
+    <g id="sync-tab-android-devices">
+      <text x="226" y="95" font-size="14" fill="#4c5953" text-anchor="start">Android Devices</text>
+    </g>
+    <g id="sync-tab-instances-selected">
+      <text x="367" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Instances</text>
+      <rect x="367" y="111" width="67" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="sync-tab-records">
+      <text x="462" y="95" font-size="14" fill="#4c5953" text-anchor="start">Records</text>
+    </g>
+    <g id="sync-tab-instances">
+      <text x="367" y="95" font-size="14" fill="#4c5953" text-anchor="start">Instances</text>
+    </g>
+    <g id="sync-tab-records-selected">
+      <text x="462" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Records</text>
+      <rect x="462" y="111" width="57" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="sync-tab-pc-mirrors-selected">
+      <text x="127" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">PC Mirrors</text>
+      <rect x="127" y="111" width="71" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="sync-tab-android-devices-selected">
+      <text x="226" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Android Devices</text>
+      <rect x="226" y="111" width="113" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="sync-tab-overview-selected">
+      <text x="36" y="95" font-size="14" fill="#235943" text-anchor="start" font-weight="700">Overview</text>
+      <rect x="36" y="111" width="63" height="3" rx="1" fill="#235943" />
+    </g>
+    <g id="settings-diagnostics">
+      <use href="#settings-tab-general" />
+      <use href="#settings-tab-appearance" />
+      <use href="#settings-tab-playback" />
+      <use href="#settings-tab-library" />
+      <use href="#settings-tab-sync" />
+      <use href="#settings-tab-notifications" />
+      <use href="#settings-tab-shortcuts" />
+      <use href="#settings-tab-plugins" />
+      <use href="#settings-tab-diagnostics-selected" />
+    </g>
+    <g id="player-now-playing">
+      <use href="#player-tab-now-playing-selected" />
+      <use href="#player-tab-queue" />
+      <use href="#player-tab-mixer" />
+      <use href="#player-tab-extensions" />
+    </g>
+    <g id="player-queue">
+      <use href="#player-tab-now-playing" />
+      <use href="#player-tab-queue-selected" />
+      <use href="#player-tab-mixer" />
+      <use href="#player-tab-extensions" />
+    </g>
+    <g id="player-mixer">
+      <use href="#player-tab-now-playing" />
+      <use href="#player-tab-queue" />
+      <use href="#player-tab-mixer-selected" />
+      <use href="#player-tab-extensions" />
+    </g>
+    <g id="settings-playback">
+      <use href="#settings-tab-general" />
+      <use href="#settings-tab-appearance" />
+      <use href="#settings-tab-playback-selected" />
+      <use href="#settings-tab-library" />
+      <use href="#settings-tab-sync" />
+      <use href="#settings-tab-notifications" />
+      <use href="#settings-tab-shortcuts" />
+      <use href="#settings-tab-plugins" />
+      <use href="#settings-tab-diagnostics" />
+    </g>
+    <g id="settings-plugins">
+      <use href="#settings-tab-general" />
+      <use href="#settings-tab-appearance" />
+      <use href="#settings-tab-playback" />
+      <use href="#settings-tab-library" />
+      <use href="#settings-tab-sync" />
+      <use href="#settings-tab-notifications" />
+      <use href="#settings-tab-shortcuts" />
+      <use href="#settings-tab-plugins-selected" />
+      <use href="#settings-tab-diagnostics" />
+    </g>
+    <g id="player-extensions">
+      <use href="#player-tab-now-playing" />
+      <use href="#player-tab-queue" />
+      <use href="#player-tab-mixer" />
+      <use href="#player-tab-extensions-selected" />
+    </g>
+    <g id="settings-general">
+      <use href="#settings-tab-general-selected" />
+      <use href="#settings-tab-appearance" />
+      <use href="#settings-tab-playback" />
+      <use href="#settings-tab-library" />
+      <use href="#settings-tab-sync" />
+      <use href="#settings-tab-notifications" />
+      <use href="#settings-tab-shortcuts" />
+      <use href="#settings-tab-plugins" />
+      <use href="#settings-tab-diagnostics" />
+    </g>
+    <g id="settings-appearance">
+      <use href="#settings-tab-general" />
+      <use href="#settings-tab-appearance-selected" />
+      <use href="#settings-tab-playback" />
+      <use href="#settings-tab-library" />
+      <use href="#settings-tab-sync" />
+      <use href="#settings-tab-notifications" />
+      <use href="#settings-tab-shortcuts" />
+      <use href="#settings-tab-plugins" />
+      <use href="#settings-tab-diagnostics" />
+    </g>
+    <g id="settings-library">
+      <use href="#settings-tab-general" />
+      <use href="#settings-tab-appearance" />
+      <use href="#settings-tab-playback" />
+      <use href="#settings-tab-library-selected" />
+      <use href="#settings-tab-sync" />
+      <use href="#settings-tab-notifications" />
+      <use href="#settings-tab-shortcuts" />
+      <use href="#settings-tab-plugins" />
+      <use href="#settings-tab-diagnostics" />
+    </g>
+    <g id="settings-sync">
+      <use href="#settings-tab-general" />
+      <use href="#settings-tab-appearance" />
+      <use href="#settings-tab-playback" />
+      <use href="#settings-tab-library" />
+      <use href="#settings-tab-sync-selected" />
+      <use href="#settings-tab-notifications" />
+      <use href="#settings-tab-shortcuts" />
+      <use href="#settings-tab-plugins" />
+      <use href="#settings-tab-diagnostics" />
+    </g>
+    <g id="settings-notifications">
+      <use href="#settings-tab-general" />
+      <use href="#settings-tab-appearance" />
+      <use href="#settings-tab-playback" />
+      <use href="#settings-tab-library" />
+      <use href="#settings-tab-sync" />
+      <use href="#settings-tab-notifications-selected" />
+      <use href="#settings-tab-shortcuts" />
+      <use href="#settings-tab-plugins" />
+      <use href="#settings-tab-diagnostics" />
+    </g>
+    <g id="settings-shortcuts">
+      <use href="#settings-tab-general" />
+      <use href="#settings-tab-appearance" />
+      <use href="#settings-tab-playback" />
+      <use href="#settings-tab-library" />
+      <use href="#settings-tab-sync" />
+      <use href="#settings-tab-notifications" />
+      <use href="#settings-tab-shortcuts-selected" />
+      <use href="#settings-tab-plugins" />
+      <use href="#settings-tab-diagnostics" />
+    </g>
+    <g id="jobs-jobs">
+      <use href="#jobs-tab-overview" />
+      <use href="#jobs-tab-artists" />
+      <use href="#jobs-tab-albums" />
+      <use href="#jobs-tab-tracks" />
+      <use href="#jobs-tab-search" />
+      <use href="#jobs-tab-playlists" />
+      <use href="#jobs-tab-jobs-selected" />
+    </g>
+    <g id="sync-instances">
+      <use href="#sync-tab-overview" />
+      <use href="#sync-tab-pc-mirrors" />
+      <use href="#sync-tab-android-devices" />
+      <use href="#sync-tab-instances-selected" />
+      <use href="#sync-tab-records" />
+    </g>
+    <g id="sync-records">
+      <use href="#sync-tab-overview" />
+      <use href="#sync-tab-pc-mirrors" />
+      <use href="#sync-tab-android-devices" />
+      <use href="#sync-tab-instances" />
+      <use href="#sync-tab-records-selected" />
+    </g>
+    <g id="sync-pc-mirrors">
+      <use href="#sync-tab-overview" />
+      <use href="#sync-tab-pc-mirrors-selected" />
+      <use href="#sync-tab-android-devices" />
+      <use href="#sync-tab-instances" />
+      <use href="#sync-tab-records" />
+    </g>
+    <g id="sync-android-devices">
+      <use href="#sync-tab-overview" />
+      <use href="#sync-tab-pc-mirrors" />
+      <use href="#sync-tab-android-devices-selected" />
+      <use href="#sync-tab-instances" />
+      <use href="#sync-tab-records" />
+    </g>
+    <g id="sync-overview">
+      <use href="#sync-tab-overview-selected" />
+      <use href="#sync-tab-pc-mirrors" />
+      <use href="#sync-tab-android-devices" />
+      <use href="#sync-tab-instances" />
+      <use href="#sync-tab-records" />
+    </g>
+  </defs>
+</svg>

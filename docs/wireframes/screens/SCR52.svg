@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR52" data-state-id="SCR52.S0">
+  <title id="title">Android Layout</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR50.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(142 77)" role="group" aria-label="Android Layout">
+      <rect x="0" y="0" width="836" height="536" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Android Layout</text>
+      <text x="812" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Pixel 6 · Select a layout to preview the resulting paths.</text>
+      <line x1="0" y1="76" x2="836" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <text x="24" y="105" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Player profile</text>
+      <rect x="24" y="115" width="788" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="138" font-size="13" fill="#202724" text-anchor="start">Musicolette · Artist / Album · v2</text>
+      <path d="M790 130l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <text x="24" y="174" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Suggested root</text>
+      <rect x="24" y="184" width="481" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="35" y="207" font-size="13" fill="#202724" text-anchor="start">/storage/emulated/0/Music/Beets</text>
+      <text x="522" y="174" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Playlist format</text>
+      <rect x="522" y="184" width="290" height="36" rx="4" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="533" y="207" font-size="13" fill="#202724" text-anchor="start">M3U8 · Relative paths</text>
+      <path d="M790 199l4 4 4-4" fill="none" stroke="#4c5953" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <rect x="24" y="244" width="788" height="168" rx="6" fill="#1e312a" />
+      <text x="39" y="272" font-size="13" fill="#ffffff" text-anchor="start" font-weight="700">Example export</text>
+      <text x="39" y="302" font-size="13" fill="#d5eadc" text-anchor="start" font-family="Liberation Mono,monospace">Beets/</text>
+      <text x="39" y="329" font-size="13" fill="#d5eadc" text-anchor="start" font-family="Liberation Mono,monospace">  Lena Vale/Northern Lines/01 Harbor Lights.flac</text>
+      <text x="39" y="356" font-size="13" fill="#d5eadc" text-anchor="start" font-family="Liberation Mono,monospace">  playlists/Night Drive.m3u8</text>
+      <line x1="0" y1="470" x2="836" y2="470" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="730" y="485" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="771.0" y="508.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR52.C01">Preview</text>
+      <rect x="638" y="485" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="679.0" y="508.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR52.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

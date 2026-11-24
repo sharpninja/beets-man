@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 690">
+  <defs>
+    <g id="song-columns">
+      <g role="row" font-size="11" font-weight="700" fill="#4c5953">
+        <rect x="204" y="0" width="576" height="32" fill="#e9eeea" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" />
+        <text x="214" y="20" role="columnheader">#</text>
+        <text x="244" y="20" role="columnheader">Title</text>
+        <text x="391" y="20" role="columnheader">Length</text>
+        <text x="446" y="20" role="columnheader">Rating</text>
+        <text x="518" y="20" role="columnheader">Contributing artist</text>
+        <text x="640" y="20" role="columnheader">Album</text>
+        <text x="736" y="20" role="columnheader">Genre</text>
+      </g>
+    </g>
+    <g id="album-columns">
+      <g role="row" font-size="11" font-weight="700" fill="#4c5953">
+        <rect x="204" y="0" width="576" height="32" fill="#e9eeea" stroke="#d4dbd5" />
+        <path d="M490 0v32" fill="none" stroke="#d4dbd5" />
+        <text x="216" y="20" role="columnheader">Album</text>
+        <text x="503" y="20" role="columnheader">Album artist</text>
+      </g>
+    </g>
+    <g id="song-harbor-lights">
+      <g role="row">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">1</text>
+        <text x="244" y="26" role="cell" font-size="12" fill="#202724">Harbor Lights</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">4:26</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Northern Lines</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+    </g>
+    <g id="song-night-crossing">
+      <g role="row">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">2</text>
+        <text x="244" y="26" role="cell" font-size="12" fill="#202724">Night Crossing</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">3:58</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Northern Lines</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+    </g>
+    <g id="song-ridge-line">
+      <g role="row">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">3</text>
+        <text x="244" y="26" role="cell" font-size="12" fill="#202724">Ridge Line</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">5:08</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Northern Lines</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+    </g>
+    <g id="song-low-current">
+      <g role="row">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">1</text>
+        <text x="244" y="26" role="cell" font-size="12" fill="#202724">Low Current</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">3:43</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">Juniper Static</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Low Current</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+    </g>
+    <g id="song-branch-signal">
+      <g role="row">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">1</text>
+        <text x="244" y="26" role="cell" font-size="12" fill="#202724">Branch Signal</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">4:02</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">The Switchyards</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Quiet Stations</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+    </g>
+    <g id="catalog-scr05">
+      <g data-library-grid="song" role="table" transform="translate(0 242)">
+        <use href="#song-columns" />
+        <g transform="translate(0 32)">
+          <use href="#song-harbor-lights" />
+        </g>
+        <g transform="translate(0 75)">
+          <use href="#song-night-crossing" />
+        </g>
+        <g transform="translate(0 118)">
+          <use href="#song-ridge-line" />
+        </g>
+        <g transform="translate(0 161)">
+          <use href="#song-low-current" />
+        </g>
+        <g transform="translate(0 204)">
+          <use href="#song-branch-signal" />
+        </g>
+      </g>
+    </g>
+    <g id="album-northern-lines">
+      <g role="row">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M490 0v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="216" y="26" role="cell" font-size="12" fill="#202724">Northern Lines</text>
+        <text x="503" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+      </g>
+    </g>
+    <g id="album-blue-meridian">
+      <g role="row">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M490 0v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="216" y="26" role="cell" font-size="12" fill="#202724">Blue Meridian</text>
+        <text x="503" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+      </g>
+    </g>
+    <g id="catalog-scr06">
+      <g data-library-grid="album" role="table" transform="translate(0 242)">
+        <use href="#album-columns" />
+        <g transform="translate(0 32)">
+          <use href="#album-northern-lines" />
+        </g>
+        <g transform="translate(0 75)">
+          <use href="#album-blue-meridian" />
+        </g>
+      </g>
+    </g>
+    <g id="album-northern-lines-selected">
+      <g role="row" data-selected="true">
+        <rect x="204" y="0" width="576" height="43" fill="#e0ede4" stroke="#d4dbd5" />
+        <path d="M490 0v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="216" y="26" role="cell" font-size="12" fill="#202724">Northern Lines</text>
+        <text x="503" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+      </g>
+    </g>
+    <g id="album-low-current">
+      <g role="row">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M490 0v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="216" y="26" role="cell" font-size="12" fill="#202724">Low Current</text>
+        <text x="503" y="26" role="cell" font-size="12" fill="#202724">Juniper Static</text>
+      </g>
+    </g>
+    <g id="album-quiet-stations">
+      <g role="row">
+        <rect x="204" y="0" width="576" height="43" fill="#ffffff" stroke="#d4dbd5" />
+        <path d="M490 0v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="216" y="26" role="cell" font-size="12" fill="#202724">Quiet Stations</text>
+        <text x="503" y="26" role="cell" font-size="12" fill="#202724">The Switchyards</text>
+      </g>
+    </g>
+    <g id="catalog-scr07">
+      <g data-library-grid="album" role="table" transform="translate(0 242)">
+        <use href="#album-columns" />
+        <g transform="translate(0 32)">
+          <use href="#album-northern-lines-selected" />
+        </g>
+        <g transform="translate(0 75)">
+          <use href="#album-low-current" />
+        </g>
+        <g transform="translate(0 118)">
+          <use href="#album-quiet-stations" />
+        </g>
+      </g>
+    </g>
+    <g id="song-harbor-lights-selected">
+      <g role="row" data-selected="true">
+        <rect x="204" y="0" width="576" height="43" fill="#e0ede4" stroke="#d4dbd5" />
+        <path d="M234 0v32m148-32v32m55-32v32m72-32v32m122-32v32m96-32v32" fill="none" stroke="#d4dbd5" transform="scale(1 1.34375)" />
+        <text x="214" y="26" role="cell" font-size="12" fill="#202724">1</text>
+        <text x="244" y="26" role="cell" font-size="12" fill="#202724">Harbor Lights</text>
+        <text x="391" y="26" role="cell" font-size="12" fill="#202724">4:26</text>
+        <text x="446" y="26" role="cell" font-size="12" fill="#202724" aria-label="Unrated">☆☆☆☆☆</text>
+        <text x="518" y="26" role="cell" font-size="12" fill="#202724">Lena Vale</text>
+        <text x="640" y="26" role="cell" font-size="12" fill="#202724">Northern Lines</text>
+        <text x="736" y="26" role="cell" font-size="12" fill="#202724">-</text>
+      </g>
+    </g>
+    <g id="catalog-scr08">
+      <g data-library-grid="song" role="table" transform="translate(0 242)">
+        <use href="#song-columns" />
+        <g transform="translate(0 32)">
+          <use href="#song-harbor-lights-selected" />
+        </g>
+        <g transform="translate(0 75)">
+          <use href="#song-night-crossing" />
+        </g>
+        <g transform="translate(0 118)">
+          <use href="#song-ridge-line" />
+        </g>
+        <g transform="translate(0 161)">
+          <use href="#song-low-current" />
+        </g>
+        <g transform="translate(0 204)">
+          <use href="#song-branch-signal" />
+        </g>
+      </g>
+    </g>
+    <g id="catalog-scr09">
+      <g data-library-grid="song" role="table" transform="translate(0 242)">
+        <use href="#song-columns" />
+        <g transform="translate(0 32)">
+          <use href="#song-harbor-lights" />
+        </g>
+        <g transform="translate(0 75)">
+          <use href="#song-night-crossing" />
+        </g>
+        <g transform="translate(0 118)">
+          <use href="#song-ridge-line" />
+        </g>
+      </g>
+    </g>
+    <g id="catalog-scr10">
+      <g data-library-grid="song" role="table" transform="translate(0 280)">
+        <use href="#song-columns" />
+        <g transform="translate(0 32)">
+          <use href="#song-harbor-lights" />
+        </g>
+        <g transform="translate(0 75)">
+          <use href="#song-night-crossing" />
+        </g>
+        <g transform="translate(0 118)">
+          <use href="#song-ridge-line" />
+        </g>
+        <g transform="translate(0 161)">
+          <use href="#song-low-current" />
+        </g>
+        <g transform="translate(0 204)">
+          <use href="#song-branch-signal" />
+        </g>
+      </g>
+    </g>
+  </defs>
+</svg>

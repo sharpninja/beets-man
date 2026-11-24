@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <path id="add" d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="album" d="M4 4h16v16H4zM8 8h8v8H8zM12 12h.1" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="back" d="m11 6-6 6 6 6M5 12h14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="check" d="m5 12 4 4 10-10" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="close" d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="database" d="M4 6c0-2 3.6-3 8-3s8 1 8 3-3.6 3-8 3-8-1-8-3zM4 6v12c0 2 3.6 3 8 3s8-1 8-3V6M4 12c0 2 3.6 3 8 3s8-1 8-3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="disable" d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM6 18 18 6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="edit" d="m4 20 4-.8L20 7l-3-3L5 16zM14 7l3 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="filter-clear" d="M3 5h18l-7 7v3l-4 4v-7zM17 15l4 4m0-4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="folder" d="M3 7V5h7l2 2h9v12H3zM3 10h18" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="fullscreen" d="M9 4H4v5m11-5h5v5M4 15v5h5m11-5v5h-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="inherit" d="M5 12V7h14m-4-4 4 4-4 4M5 17h10m-3-3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="install" d="M5 11v9h14v-9M12 3v11m-4-4 4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="key" d="M10 13a5 5 0 1 1 3-3l8 8-3 3-2-2-2 2-3-3 2-2zM8 8h.1" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="layout" d="M3 5h18v14H3zM9 5v14m6-14v14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="list" d="M4 6h16M4 12h16M4 18h16M8 6v12" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="list-add" d="M4 6h16M4 11h16M4 16h8m5-2v8m-4-4h8" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="log" d="M5 3h11l3 3v15H5zM8 9h8m-8 4h8m-8 4h6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="next" d="m5 4 11 8-11 8zM19 4v16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="pair" d="m10 13 4-4m-7 6-2 2a3 3 0 0 0 4 4l4-4a3 3 0 0 0 0-4m4-4 2-2a3 3 0 0 0-4-4l-4 4a3 3 0 0 0 0 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="pause" d="M8 5v14M16 5v14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="person" d="M12 4a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM5 20v-2a7 7 0 0 1 14 0v2z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="play" d="m7 4 12 8-12 8z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="play-pause" d="m4 5 9 7-9 7zM16 5v14m4-14v14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="previous" d="m19 4-11 8 11 8zM5 4v16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="refresh" d="M20 10a8 8 0 1 0 0 6M20 4v6h-6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="repeat" d="M4 9h16l-3-3m3 3-3 3M20 15H4l3 3m-3-3 3-3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="repeat-off" d="M4 9h16l-3-3m3 3-3 3M20 15H4l3 3m-3-3 3-3M4 4l16 16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="reorder" d="M7 4v16m-3-3 3 3 3-3M17 20V4m-3 3 3-3 3 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="restore" d="M4 10a8 8 0 1 1 1 7m-1-13v6h6m2-3v5l3 2" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="save" d="M4 4h13l3 3v13H4zM8 4v6h7V4M8 20v-6h8v6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="search" d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm5 11 5 5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="search-clear" d="M9 4a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm4 9 3 3m1-1 4 4m0-4-4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="share" d="M4 11v9h16v-9M12 16V4m-4 4 4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="shield" d="M12 3 4 6v5c0 5 3 8 8 10 5-2 8-5 8-10V6zm-4 9 3 3 5-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="shuffle" d="M3 6h3c5 0 7 12 12 12h3m-3-3 3 3-3 3M3 18h3c5 0 7-12 12-12h3m-3-3 3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="skip" d="m5 5 10 7-10 7zM19 5v14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="sliders" d="M5 4v16m-3-5h6M12 4v16m-3-11h6M19 4v16m-3-6h6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="sync" d="M20 8a8 8 0 0 0-13-2L4 9m0-5v5h5m-5 7a8 8 0 0 0 13 2l3-3m0 5v-5h-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="tag" d="M3 4h8l10 10-7 7L3 10zM7 8h.1" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="trash" d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="validate" d="M6 3h9l3 3v15H6zm3 10 2 2 4-5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+    <path id="window" d="M4 4h16v16H4zM4 9h16" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+  </defs>
+</svg>

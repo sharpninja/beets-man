@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR06" data-state-id="SCR06.S0">
+  <title id="title">Artists</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/app-chrome.svg#library-workspace-header" />
+    <use href="../shared/library.svg#sidebar-artists" />
+    <use href="../shared/transport.svg#library-transport" />
+    <text x="204" y="111" fill="#202724" font-size="27" font-weight="700">Artists</text>
+    <text x="204" y="140" fill="#4c5953" font-size="13" font-weight="400">Browse by album artist.</text>
+    <rect x="204" y="174" width="122" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="265.0" y="198" fill="#202724" font-size="13" font-weight="700" text-anchor="middle" data-control-id="SCR06.C01">Open artist</text>
+    <rect x="337" y="174" width="128" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="401.0" y="198" fill="#202724" font-size="13" font-weight="700" text-anchor="middle" data-control-id="SCR06.C02">Play selection</text>
+    <use href="../shared/library-grid.svg#catalog-scr06" />
+    <text x="206" y="383" fill="#202724" font-size="17" font-weight="700">Lena Vale</text>
+    <text x="206" y="404" fill="#4c5953" font-size="13" font-weight="400">Northern Lines and Blue Meridian · 19 tracks</text>
+    <use href="../shared/library.svg#list-tabs-queue" />
+    <text x="808" y="177" fill="#202724" font-size="18" font-weight="700">Playing next</text>
+    <text x="808" y="204" fill="#4c5953" font-size="12" font-weight="400">Harbor Lights is playing</text>
+    <text x="808" y="270" fill="#202724" font-size="14" font-weight="700">Queued tracks</text>
+    <text x="1037" y="270" fill="#4c5953" font-size="12" font-weight="400">2 tracks</text>
+    <rect x="808" y="284" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+    <text x="819" y="311" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+    <text x="841" y="311" fill="#202724" font-size="13" font-weight="400">Low Current</text>
+    <text x="1074" y="311" fill="#4c5953" font-size="16" font-weight="400">×</text>
+    <rect x="808" y="328" width="292" height="44" fill="#ffffff" stroke="#d4dbd5" rx="0" />
+    <text x="819" y="355" fill="#4c5953" font-size="14" font-weight="400">⠿</text>
+    <text x="841" y="355" fill="#202724" font-size="13" font-weight="400">Branch Signal</text>
+    <text x="1074" y="355" fill="#4c5953" font-size="16" font-weight="400">×</text>
+    <rect x="808" y="381" width="292" height="75" fill="#f4f5f2" stroke="#d4dbd5" rx="5" stroke-dasharray="5 4" />
+    <text x="827" y="415" fill="#4c5953" font-size="13" font-weight="400">Drag tracks or albums here</text>
+    <text x="827" y="435" fill="#4c5953" font-size="12" font-weight="400">Or use Add selected.</text>
+    <rect x="808" y="591" width="116" height="37" fill="#ffffff" stroke="#d4dbd5" rx="5" />
+    <text x="866.0" y="615" fill="#202724" font-size="13" font-weight="700" text-anchor="middle">Add selected</text>
+    <rect x="935" y="591" width="165" height="37" fill="#235943" stroke="#235943" rx="5" />
+    <text x="1017.5" y="615" fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">Save as playlist</text>
+  </g>
+</svg>

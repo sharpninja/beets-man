@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR23" data-state-id="SCR23.S0">
+  <title id="title">Plugin Trust</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="SCR22.svg#screen-content" data-omit-controls="true" />
+    <use href="../shared/dialogs.svg#scrim" />
+    <g transform="translate(248 113)" role="group" aria-label="Plugin Trust">
+      <rect x="0" y="0" width="624" height="464" rx="10" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="24" y="38" font-size="24" fill="#202724" text-anchor="start" font-weight="700">Plugin Trust</text>
+      <text x="600" y="36" font-size="21" fill="#4c5953" text-anchor="end">×</text>
+      <text x="24" y="61" font-size="13" fill="#4c5953" text-anchor="start">Review this package before enabling its worker.</text>
+      <line x1="0" y1="76" x2="624" y2="76" stroke="#d4dbd5" stroke-width="1" />
+      <text x="24" y="116" font-size="21" fill="#202724" text-anchor="start" font-weight="700">Studio Spectrum</text>
+      <text x="24" y="143" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">example.scope · Version 2.0.0</text>
+      <rect x="24" y="168" width="576" height="106" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <rect x="25" y="169" width="574" height="32" rx="4" fill="#e9eeea" />
+      <text x="36" y="190" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Package check</text>
+      <text x="246" y="190" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Result</text>
+      <line x1="25" y1="202" x2="599" y2="202" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="224.0" font-size="13" fill="#202724" text-anchor="start">Host protocol</text>
+      <text x="246" y="224.0" font-size="13" fill="#202724" text-anchor="start">Compatible · v1</text>
+      <rect x="25" y="238" width="574" height="35" rx="0" fill="#fafbf9" />
+      <line x1="25" y1="238" x2="599" y2="238" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="260.0" font-size="13" fill="#202724" text-anchor="start">Contribution</text>
+      <text x="246" y="260.0" font-size="13" fill="#202724" text-anchor="start">Spectrum visualization</text>
+      <rect x="24" y="293" width="576" height="73" rx="5" fill="#fbeddc" />
+      <rect x="24" y="293" width="3" height="73" rx="1" fill="#704621" />
+      <text x="37" y="313" font-size="13" fill="#704621" text-anchor="start" font-weight="700">Runs with your permissions</text>
+      <text x="37" y="333" font-size="12" fill="#704621" text-anchor="start">Trust applies to version 2.0.0 on this desktop. Review a new version before enabling it.</text>
+      <line x1="0" y1="398" x2="624" y2="398" stroke="#d4dbd5" stroke-width="1" />
+      <rect x="491" y="413" width="109" height="37" rx="5" fill="#235943" stroke="#235943" />
+      <text x="545.5" y="436.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR23.C01">Trust locally</text>
+      <rect x="399" y="413" width="82" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <text x="440.0" y="436.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR23.C02">Cancel</text>
+    </g>
+  </g>
+</svg>

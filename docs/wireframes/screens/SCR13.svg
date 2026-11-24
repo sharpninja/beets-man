@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR13" data-state-id="SCR13.S0">
+  <title id="title">Queue</title>
+  <g font-family="Liberation Sans,sans-serif" id="screen-content">
+    <use href="../shared/app-chrome.svg#player-header" />
+    <use href="../shared/app-chrome.svg#secondary-navigation-background" />
+    <use href="../shared/navigation.svg#player-queue" />
+    <text x="36" y="160" font-size="29" fill="#202724" text-anchor="start" font-weight="700">Queue</text>
+    <text x="36" y="185" font-size="13" fill="#4c5953" text-anchor="start">4 upcoming tracks</text>
+    <use href="../shared/transport.svg#desktop-transport" />
+    <rect x="36" y="210" width="1048" height="82" rx="6" fill="#1e312a" />
+    <rect x="52" y="224" width="54" height="54" rx="4" fill="#cbd9cd" />
+    <circle cx="88.72" cy="239.12" r="5.4" fill="#edf2df" />
+    <path d="M56.32 265.58 L73.06 247.76 L82.24 256.94 L89.80 248.30 L101.14 265.58 Z" fill="#587363" stroke="#587363" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+    <line x1="58.48" y1="270.44" x2="99.52000000000001" y2="270.44" stroke="#edf2df" stroke-width="2" />
+    <text x="122" y="247" font-size="16" fill="#ffffff" text-anchor="start" font-weight="700">Harbor Lights</text>
+    <text x="122" y="269" font-size="12" fill="#d7e6de" text-anchor="start">Lena Vale · Playing on Deck A</text>
+    <rect x="923" y="233" width="143" height="37" rx="5" fill="#2b473b" stroke="#5a7968" />
+    <text x="994.5" y="256.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700">Repeat: off</text>
+    <rect x="36" y="312" width="1048" height="206" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <rect x="37" y="313" width="1046" height="32" rx="4" fill="#e9eeea" />
+    <text x="48" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Move</text>
+    <text x="121" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Track</text>
+    <text x="439" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Artist</text>
+    <text x="702" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Album</text>
+    <text x="980" y="334" font-size="12" fill="#4c5953" text-anchor="start" font-weight="700">Length</text>
+    <line x1="37" y1="346" x2="1083" y2="346" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="371.5" font-size="13" fill="#202724" text-anchor="start">⋮⋮ 1</text>
+    <text x="121" y="371.5" font-size="13" fill="#202724" text-anchor="start">Night Crossing</text>
+    <text x="439" y="371.5" font-size="13" fill="#202724" text-anchor="start">Lena Vale</text>
+    <text x="702" y="371.5" font-size="13" fill="#202724" text-anchor="start">Northern Lines</text>
+    <text x="980" y="371.5" font-size="13" fill="#202724" text-anchor="start">3:58</text>
+    <rect x="37" y="389" width="1046" height="42" rx="0" fill="#e0ede4" />
+    <rect x="37" y="389" width="3" height="42" rx="0" fill="#235943" />
+    <line x1="37" y1="389" x2="1083" y2="389" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="414.5" font-size="13" fill="#202724" text-anchor="start">⋮⋮ 2</text>
+    <text x="121" y="414.5" font-size="13" fill="#202724" text-anchor="start">Ridge Line</text>
+    <text x="439" y="414.5" font-size="13" fill="#202724" text-anchor="start">Lena Vale</text>
+    <text x="702" y="414.5" font-size="13" fill="#202724" text-anchor="start">Northern Lines</text>
+    <text x="980" y="414.5" font-size="13" fill="#202724" text-anchor="start">5:08</text>
+    <line x1="37" y1="432" x2="1083" y2="432" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="457.5" font-size="13" fill="#202724" text-anchor="start">⋮⋮ 3</text>
+    <text x="121" y="457.5" font-size="13" fill="#202724" text-anchor="start">Low Current</text>
+    <text x="439" y="457.5" font-size="13" fill="#202724" text-anchor="start">Juniper Static</text>
+    <text x="702" y="457.5" font-size="13" fill="#202724" text-anchor="start">Low Current</text>
+    <text x="980" y="457.5" font-size="13" fill="#202724" text-anchor="start">3:43</text>
+    <rect x="37" y="475" width="1046" height="42" rx="0" fill="#fafbf9" />
+    <line x1="37" y1="475" x2="1083" y2="475" stroke="#d4dbd5" stroke-width="1" />
+    <text x="48" y="500.5" font-size="13" fill="#202724" text-anchor="start">⋮⋮ 4</text>
+    <text x="121" y="500.5" font-size="13" fill="#202724" text-anchor="start">Branch Signal</text>
+    <text x="439" y="500.5" font-size="13" fill="#202724" text-anchor="start">The Switchyards</text>
+    <text x="702" y="500.5" font-size="13" fill="#202724" text-anchor="start">Quiet Stations</text>
+    <text x="980" y="500.5" font-size="13" fill="#202724" text-anchor="start">4:02</text>
+    <rect x="1002" y="544" width="82" height="37" rx="5" fill="#235943" stroke="#235943" />
+    <text x="1043.0" y="567.5" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="700" data-control-id="SCR13.C01">Reorder</text>
+    <rect x="909" y="544" width="83" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+    <text x="950.5" y="567.5" font-size="13" fill="#202724" text-anchor="middle" font-weight="700" data-control-id="SCR13.C02">Remove</text>
+  </g>
+</svg>

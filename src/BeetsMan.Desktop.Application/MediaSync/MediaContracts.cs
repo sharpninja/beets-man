@@ -8,10 +8,26 @@ namespace BeetsMan.Desktop.Application.MediaSync;
 public enum MediaPeerKind { PcMirror, Android }
 
 /// <summary>Contains visible peer and share status.</summary>
-public sealed record MediaPeer(Guid PeerId, string Name, MediaPeerKind Kind, bool Connected, long ConnectionGeneration);
+public sealed record MediaPeer(Guid PeerId, string Name, MediaPeerKind Kind, bool Connected, long ConnectionGeneration)
+{
+    /// <summary>Whether the current connection state has been observed.</summary>
+    public bool ConnectionKnown { get; init; } = true;
+}
 
 /// <summary>Contains the settings of one library-owned share.</summary>
-public sealed record MediaShare(Guid ShareId, Guid PeerId, bool Paused, long Revision);
+public sealed record MediaShare(Guid ShareId, Guid PeerId, bool Paused, long Revision)
+{
+    /// <summary>Gets the latest verified progress and native condition for this mirror.</summary>
+    /// <remarks>2026-11-24: Project STB10 progress while paused for FR-FILESYNC-001#ac-mirror.</remarks>
+    public MediaShareProgress? Progress { get; init; }
+}
+
+/// <summary>Identifies the last observed condition of the native share.</summary>
+/// <remarks>2026-11-24: Report approved receiver acceptance for FR-FILESYNC-001#ac-layouts.</remarks>
+public enum MediaSharePhase { Unknown, AwaitingAcceptance, Paused, Transferring, Complete, Disconnected, Failed, Ready }
+
+/// <summary>Reports the ratio inputs and any current failure for the selected media share.</summary>
+public sealed record MediaShareProgress(MediaSharePhase Phase, long? FilesReceived, long? TotalFiles, string? FailureCode);
 
 /// <summary>Describes a selected share in a pairing proposal.</summary>
 public sealed record ShareSelection(MediaPeerKind Kind, string LocalRoot, string? ProfileId);
@@ -47,10 +63,20 @@ public sealed record ResumeMediaTransfer(Guid TransferId, long ExpectedRevision)
 public enum ExportAudioStatus { Present, Staged, Missing, Unavailable }
 
 /// <summary>Identifies one resolved and versioned player profile.</summary>
-public sealed record DeviceProfile(string ProfileId, long Revision, string Name, string RelativePathTemplate, string? PlaylistFormat);
+/// <remarks>2026-11-24: Include the suggested Android root from the registered layout for FR-FILESYNC-001#ac-layouts.</remarks>
+public sealed record DeviceProfile(string ProfileId, long Revision, string Name, string RelativePathTemplate, string? PlaylistFormat,
+    string? SuggestedRoot = null);
 
 /// <summary>Contains eligible layouts for the identified device.</summary>
-public sealed record DeviceLayoutsSnapshot(Guid DeviceId, ImmutableArray<DeviceProfile> Profiles);
+public sealed record DeviceLayoutsSnapshot(Guid DeviceId, ImmutableArray<DeviceProfile> Profiles)
+{
+    /// <summary>Gets the versioned layout assigned to the device, independently of the current review.</summary>
+    /// <remarks>2026-11-24: Project the committed STB20 assignment for FR-FILESYNC-001#ac-layouts.</remarks>
+    public DeviceLayoutAssignment? ActiveProfile { get; init; }
+}
+
+/// <summary>Identifies the currently assigned player layout and version.</summary>
+public sealed record DeviceLayoutAssignment(string ProfileId, long Revision);
 
 /// <summary>Identifies a staged export item by source and intended destination.</summary>
 public abstract record ExportEntry(Guid EntryId, string Destination)
@@ -75,8 +101,19 @@ public sealed record OwnedRemovalProposal(Guid ProposalId, Guid PlanId, long Pla
 /// <summary>Indicates that the operator approved a specific owned-removal proposal.</summary>
 public sealed record OwnedRemovalApproval(Guid ProposalId, Guid PlanId, long PlanRevision);
 
+/// <summary>Identifies the effect of an export file action.</summary>
+public enum ExportFileChangeKind { Add = 1, Replace = 2, Move = 3, Remove = 4 }
+
+/// <summary>Describes the relevant old and new paths of a reviewed file action.</summary>
+public sealed record ExportFileChange(ExportFileChangeKind Kind, string? Before, string? After);
+
 /// <summary>Returns validation and the planned file changes before publication.</summary>
-public sealed record DeviceExportPreview(DeviceExportPlan Plan, ImmutableArray<ValidationIssue> BlockingIssues, ImmutableArray<string> ProposedRemovals);
+/// <remarks>2026-11-24: Expose exact file actions to FR-FILESYNC-001#ac-safety review.</remarks>
+public sealed record DeviceExportPreview(DeviceExportPlan Plan, ImmutableArray<ValidationIssue> BlockingIssues, ImmutableArray<string> ProposedRemovals)
+{
+    /// <summary>Gets the ordered actions that will be applied on approval.</summary>
+    public ImmutableArray<ExportFileChange> Changes { get; init; } = [];
+}
 
 /// <summary>Identifies committed publication and its optional transfer.</summary>
 public sealed record ExportPublicationReceipt(Guid PublicationId, Guid PlanId, long PlanRevision, Guid? TransferId);
@@ -92,7 +129,8 @@ public abstract record DeviceExportSubmission
 public abstract record DeviceExportEdit { public sealed record Remove(ImmutableArray<Guid> EntryIds) : DeviceExportEdit; }
 
 /// <summary>Reads the active or explicitly selected list for the device.</summary>
-public sealed record GetDeviceExportPlan(Guid DeviceId, Guid? PlanId = null) : IQuery<DeviceExportPlan>;
+/// <remarks>2026-11-24: Bind a staged list read to the exact selected profile for FR-FILESYNC-001#ac-playlist-drop.</remarks>
+public sealed record GetDeviceExportPlan(Guid DeviceId, Guid? PlanId = null, string? ProfileId = null, long? ProfileRevision = null) : IQuery<DeviceExportPlan>;
 
 /// <summary>Stages ordered tracks for the identified scope.</summary>
 public sealed record StageTracksForDevice(ImmutableArray<Guid> OrderedTrackIds, Guid DeviceId, string ProfileId, long ProfileRevision, Guid? PlanId, long? ExpectedPlanRevision) : ICommand<DeviceExportPlan>;

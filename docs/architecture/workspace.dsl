@@ -4,7 +4,7 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
         beets = softwareSystem "beets" "Owns music tagging, organization, and the source catalog."
         syncthing = softwareSystem "Syncthing" "Moves media files between the host and registered replicas."
         android = softwareSystem "Android peer" "Syncthing-Fork receives a device export. Musicolet reads music and playlists."
-        os = softwareSystem "Desktop OS" "Provides preferences paths, credential storage, hotkeys, windows, and audio output."
+        os = softwareSystem "Operating system" "Provides local credentials, certificates, preferences paths, windows, hotkeys, and audio output."
         app = softwareSystem "Beets Man" "Desktop music playback, library management, and peer synchronization." {
             desktop = container "Desktop app" "Local browsing, playback, configuration, and user actions." "Avalonia 12 and .NET 10" {
                 views = component "Presentation boundary" "Avalonia binds MVVM Toolkit ViewModels, typed CQRS commands, and system wait cursor state for logically blocked scopes."
@@ -19,7 +19,8 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
                 soundflow = component "SoundFlow strategy" "Mixes decks, applies EQ, and produces audio telemetry."
                 cli = component "External CLI strategy" "Translates YAML actions into command or session protocol calls."
                 extensions = component "Plugin supervisor" "Manages local trust, worker IPC, and declarative contributions."
-                hostClient = component "Host library client" "Submits authenticated import and tag commands, preserves edit drafts, and observes asynchronous job status."
+                hostClient = component "Host library client" "Submits authenticated library commands, controls registered PC mirrors, prepares and publishes Android exports, and reads and retries verified transfer checkpoints over HTTPS."
+                androidMonitor = component "Android arrival monitor" "Uses a fresh baseline after any feed interruption and dispatches current registered Android arrivals through the existing shell command."
                 replica = component "Record sync client" "Applies snapshots and revisions, replays edits, and acknowledges notifications."
                 desktopPersistence = component "Desktop repositories" "Maps owned desktop state and materialized catalog queries to local LiteDB collections. Runs atomic local writes." "LiteDB adapter"
                 log = component "Logging adapter" "ILogger scopes, local filters, rolling retention, and redaction."
@@ -30,13 +31,16 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
                 }
             }
             host = container "Library host" "Authenticated HTTP API and owner of synchronized application state." "ASP.NET Core and .NET 10" {
+                hostStartup = component "Library host startup" "Loads reference-only configuration, validates local store and export paths, and starts one HTTPS listener with authenticated routes and durable transfer workers."
                 api = component "Versioned host API" "Authenticates registered devices and dispatches host work."
                 intake = component "Import staging" "Accepts uploaded copies and exposes staged inputs to guided import. Keeps drafts and temporary files separate from the published library."
                 library = component "beets job coordinator" "Journals, executes, and reconciles external library writes."
                 journal = component "Catalog and revision feed" "Projects beets records and publishes consistent snapshots and change pages."
                 delivery = component "Notification queue" "Persists committed changes and tracks acknowledged recipients."
-                exports = component "Device export manager" "Plans exports against the selected device and player profile. Preserves playlist order and stages only missing audio for a playlist drop."
-                peers = component "Syncthing adapter" "Manages music shares and forwards live peer connection transitions."
+                exports = component "Device export manager" "Stages tracks and ordered playlists. Reviews layout changes and owned removals while the active profile remains assigned. Commits the new profile after verified file effects."
+                mediaDirectory = component "Media directory and pairing" "Scopes an approval to an active peer and configured destination. Persists the original response and initial Android profile, then refreshes Android acceptance from the approved folder."
+                peers = component "Syncthing adapter" "Offers the approved send-only folder. Verifies Android receiver acceptance and scope before and after index reads. Reads PC mirror progress, applies scoped controls, and forwards live peer transitions."
+                androidRelay = component "Android arrival relay" "Publishes current registered Android connections with live arrival revisions. Reconciles native restart or gaps without replaying historical arrivals."
                 hostPersistence = component "Host repositories" "Maps authoritative documents, operation receipts, revisions and delivery records to host LiteDB collections. Runs atomic host writes." "LiteDB adapter"
             }
             data = container "Host state" "Registrations, beets job journal, catalog, shared preferences, and notification delivery." "LiteDB" {
@@ -49,6 +53,7 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
         }
         listener -> desktop "Uses"
         desktop -> os "Uses playback, hotkeys, and credential services"
+        host -> os "Reads configured credentials and the TLS certificate from local OS stores"
         desktop -> host "Sends authenticated commands and sync requests" "HTTPS JSON"
         desktop -> local "Reads and commits desktop state"
         desktop -> workers "Exchanges telemetry, declarations, commands, and log events" "Versioned IPC"
@@ -73,6 +78,8 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
         playback -> desktopPersistence "Restores and commits the current queue"
         cqrs -> hostClient "Submits host commands or requests current job state"
         hostClient -> api "Uploads copies, submits typed commands, and reads job status" "HTTPS JSON and streamed files"
+        androidMonitor -> hostClient "Long polls authenticated Android arrival frames"
+        androidMonitor -> cqrs "Applies live arrival and selects the device in Normal Sync"
         cqrs -> projection "Publishes typed outcomes"
         projection -> dispatcher "Schedules immutable UI update"
         dispatcher -> views "Applies state on UIThread"
@@ -92,8 +99,12 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
         replica -> api "Registers, fetches changes and acknowledges"
         api -> replica "Forwards active Android peer state"
         replica -> cqrs "Reports sync and peer events"
+        hostStartup -> api "Registers the authenticated host routes"
+        hostStartup -> os "Reads scoped credentials and the TLS certificate"
+        hostStartup -> hostPersistence "Opens and owns the configured LiteDB store"
+        hostStartup -> exports "Binds the registered share roots and workers"
         api -> library "Dispatches beets jobs"
-        api -> hostPersistence "Reads registered instance state"
+        api -> hostPersistence "Reads registered instance state and authorized Android bindings"
         hostPersistence -> data "Queries collections and commits host transactions"
         api -> intake "Authenticates and accepts uploaded album copies"
         library -> intake "Consumes a completed staged upload by ID"
@@ -105,12 +116,16 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
         journal -> delivery "Enqueues correlated publication"
         delivery -> hostPersistence "Stores recipient progress"
         api -> delivery "Pulls and acknowledges queued notifications"
-        api -> exports "Previews and publishes a device layout"
+        api -> exports "Edits staged plans, prepares and publishes reviewed plans, and reads or retries transfers"
+        api -> mediaDirectory "Reads registered media state and dispatches pairing and mirror commands"
+        mediaDirectory -> peers "Offers the folder, verifies receiver acceptance and mirror progress, and applies scoped controls"
+        mediaDirectory -> hostPersistence "Reserves approvals and stores bindings, observations and operation receipts"
         exports -> journal "Reads ordered playlist entries and source track identities"
-        exports -> hostPersistence "Tracks committed export ownership"
-        exports -> peers "Reads destination availability and requests scan after publication"
-        peers -> syncthing "Manages shares and observes connections"
-        peers -> api "Reports current Android connection transition"
+        exports -> hostPersistence "Commits prepared preview identity, operation receipts, progress and export ownership"
+        exports -> peers "Reads receiver inventory and dispatches durable scans for committed sender folders"
+        peers -> syncthing "Offers scoped folders, controls PC mirrors and observes connections"
+        peers -> androidRelay "Publishes confirmed connections from the continuous native event stream"
+        api -> androidRelay "Waits for authenticated Android connection observations"
         !include litedb-entities.dsl
         deploymentEnvironment "Self-hosted" {
             main = deploymentNode "Designated PC" "Windows or Linux host, or intended macOS host" {
@@ -153,6 +168,8 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
         custom "HostLiteDbEntities" "Host state LiteDB entities" "Document-level detail for the Host state container." {
             include hostArtist hostAlbum hostTrack hostPlaylist hostListening hostPreference hostInstance
             include hostJob hostReceipt hostRevision hostChange hostDelivery hostExport hostExportEntry hostSchema
+            include hostExportManifest hostExportOwnedFile hostExportJournal hostExportJournalItem hostExportScan hostExportScanItem
+            include hostPcMirrorState
             autoLayout lr
         }
         dynamic desktop "BootstrapDispatch" {
@@ -217,8 +234,10 @@ workspace "Beets Man" "Stage 0 architecture candidate" {
             autoLayout lr
         }
         dynamic host "AndroidArrival" {
-            peers -> syncthing "Reads live DeviceConnected event"
-            peers -> api "Forwards the registered peer transition"
+            peers -> syncthing "Reads live DeviceConnected and DeviceDisconnected events"
+            peers -> androidRelay "Publishes the confirmed connection after continuity and registration checks"
+            api -> hostPersistence "Rechecks the authorized Android bindings"
+            api -> androidRelay "Returns the current connection and live arrival revision"
             autoLayout lr
         }
         deployment * "Self-hosted" "SelfHosted" {

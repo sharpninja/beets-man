@@ -1,8 +1,8 @@
 # Beets Man
 
-Beets Man is a desktop music player and library manager designed around a beets library. The repository contains its Stage 0 requirements, architecture, reviewable wireframes, and the first .NET 10 presentation implementation. The desktop executable and library host are planned.
+Beets Man is a desktop music player and library manager designed around a beets library. This .NET 10 checkpoint includes a runnable library host and the desktop application, presentation, and audio layers. The desktop screens are represented by reviewable wireframes.
 
-The design covers a Details grid for browsing, queue and playlist editing, playback and mixing, guided beets import, and per-device sync. Dragging a saved playlist to the Sync list stages the playlist in the selected player's format and adds only the audio missing from that device.
+Implemented workflows include catalog browsing, queue and playlist editing, playback and seeking, and authenticated media sync. The host offers Syncthing shares to registered PCs and Android devices. Staging a saved playlist produces the selected player's playlist format and stages only the audio missing from that device. Guided beets import and tag editing have CQRS and ViewModel contracts and are awaiting host workflow implementation.
 
 ## Review the design
 
@@ -21,11 +21,11 @@ asset-review --asset-root docs/design
 
 ## Build the implementation checkpoint
 
-From the repository root with .NET 10 and PowerShell installed, compile the headless projects and run the isolated test suite through Nuke.
+From the repository root with .NET 10 and PowerShell installed, compile the projects and run the isolated test suite through Nuke.
 
 ```powershell
 pwsh -NoProfile -NonInteractive -File ./build.ps1 Compile
 pwsh -NoProfile -NonInteractive -File ./build.ps1 Test
 ```
 
-The checkpoint contains the typed CQRS request and result contracts, shared presentation dispatch and scheduling, and Toolkit bindings for the shell, bootstrap, diagnostics, and player. The command catalog also describes the remaining presentation work. Screens follow implementation of the ViewModels, commands, and application services.
+Configure the host's local storage, TLS listener, and OS credential references before starting it. The [library host configuration guide](docs/architecture/code-structure.md#standalone-host) documents the launch command and the Android and PC share settings. The [UI command catalog](docs/architecture/ui-commands.md) maps desktop commands to their CQRS requests and results.

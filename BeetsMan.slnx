@@ -2,8 +2,13 @@
   <Folder Name="/src/">
     <Project Path="src/BeetsMan.Desktop.Application/BeetsMan.Desktop.Application.csproj" />
     <Project Path="src/BeetsMan.Desktop/BeetsMan.Desktop.csproj" />
+    <Project Path="src/BeetsMan.Host.Contracts/BeetsMan.Host.Contracts.csproj" />
+    <Project Path="src/BeetsMan.Host/BeetsMan.Host.csproj" />
   </Folder>
   <Folder Name="/tests/">
+    <Project Path="tests/BeetsMan.Desktop.IntegrationTests/BeetsMan.Desktop.IntegrationTests.csproj" />
     <Project Path="tests/BeetsMan.Desktop.Tests/BeetsMan.Desktop.Tests.csproj" />
+    <Project Path="tests/BeetsMan.Host.Tests/BeetsMan.Host.Tests.csproj" />
+    <Project Path="tests/BeetsMan.Host.IntegrationTests/BeetsMan.Host.IntegrationTests.csproj" />
   </Folder>
 </Solution>

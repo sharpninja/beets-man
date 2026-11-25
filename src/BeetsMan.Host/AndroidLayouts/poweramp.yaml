@@ -1,0 +1,8 @@
+# 2026-11-24 FR-FILESYNC-001#ac-layouts. Alternate Android profile shown in STB20.
+id: poweramp
+player: Poweramp
+templateVersion: 3
+suggestedRoot: /storage/emulated/0/Music/Beets
+audioPathTemplate: '{albumArtist}/{album}/{fileName}'
+playlistFormat: m3u8
+playlistPathTemplate: 'playlists/{playlistName}.{playlistFormat}'

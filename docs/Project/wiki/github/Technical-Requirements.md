@@ -42,6 +42,13 @@ Scope: layer-1+
 **Status:** pending
 Scope: layer-1+
 
+## TR-LIBRARY-ARCH-002
+
+**Isolate and publish reviewed library edit batches** — Route every library-changing intent through the same desktop-local batch boundary while its toggle is enabled. Cover scheduled and plugin-originated library writes, keeping files and records separate from the authoritative catalog and active shares until approval. Bind commit approval to an exact reviewed batch revision and publish through the authoritative library change feed.
+**Covered by:** FR: FR-LIBRARY-002; TEST: TEST-LIBRARY-003, TEST-LIBRARY-004
+**Status:** pending
+Scope: layer-1+
+
 ## TR-PLAYER-ARCH-001
 
 **Play and mix music architecture** — SoundFlow, MiniAudio, FFmpeg, independent deck state, and one playback session

@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../BeetsMan.Host.Contracts/BeetsMan.Host.Contracts.csproj" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="LiteDB" Version="5.0.21" />
+    <PackageReference Include="YamlDotNet" Version="18.1.0" />
+    <EmbeddedResource Include="AndroidLayouts/*.yaml" />
+  </ItemGroup>
+</Project>

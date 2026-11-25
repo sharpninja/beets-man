@@ -105,6 +105,16 @@ Run with an independent correct fake and reject a deliberate incorrect outcome f
 Open a real LiteDB cache and resolve tracks against a prepared local music tree while disconnected.
 
 
+### TEST-LIBRARY-003
+
+For FR-LIBRARY-002#ac-batch-local, FR-LIBRARY-002#ac-batch-review, FR-LIBRARY-002#ac-batch-commit and FR-LIBRARY-002#ac-batch-revert, exercise toggle on/off, edits from every library mutation family, full review, stale approval, successful commit and full revert. Independently reject fixtures that bypass batching through import, organize/move, removal/deletion, queue auto-save or a background writer, upload or publish early, omit a change, commit the wrong revision, or leave a local edit after revert. Include FR-LIBRARY-002#ac-batch-toggle-off by proving the dirty batch survives cancellation and exits only after commit or revert.
+
+
+### TEST-LIBRARY-004
+
+For FR-LIBRARY-002#ac-batch-local, FR-LIBRARY-002#ac-batch-review, FR-LIBRARY-002#ac-batch-commit and FR-LIBRARY-002#ac-batch-revert, exercise real desktop and host stores, scratch media, beets and registered peer replicas. Verify private files and records across restart, exact mixed-batch approval, commit and peer delivery, uncertain commit recovery and full revert. At the screen phase verify the toggle, complete change list and revision-bound approval dialog using the actual desktop. Include FR-LIBRARY-002#ac-batch-toggle-off by proving the dirty batch survives cancellation and exits only after commit or revert.
+
+
 
 ## TEST-PLAYER
 
@@ -117,11 +127,13 @@ PLAYERAcceptanceTests.Fade_MatchesContract (FR-PLAYER-001#ac-fade): Automatic cr
 PLAYERAcceptanceTests.Modes_MatchesContract (FR-PLAYER-001#ac-modes): Minimum, Normal, bounded visualization, and full visualization keep the session and queue. Escape restores the prior windowed mode; missing telemetry preserves usable transport and exit controls.
 PLAYERAcceptanceTests.QueueAutoSave_MatchesContract (FR-PLAYER-001#ac-queue-autosave): Load a saved playlist into the active queue. With auto-save on, apply and persist an ordered queue edit to that playlist. With auto-save off, verify a queue edit leaves the saved playlist unchanged.
 Run with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.
+PLAYERAcceptanceTests.RestartResume_MatchesContract (FR-PLAYER-001#ac-resume-playback-after-restart): Model a restart with and without the toggle enabled. Verify that an eligible saved playlist resumes only when enabled and that restoration retains the saved queue occurrence and position.
 
 
 ### TEST-PLAYER-002
 
 Verify SoundFlow native output by codec, mixer and EQ response, physical output and window transitions.
+PlaybackRestartIntegrationTests.RestartResume_MatchesContract (FR-PLAYER-001#ac-resume-playback-after-restart): Restart against a disposable LiteDB playback store and the configured audio adapter. Verify opt-in playback, restore-only behavior with the toggle off, and a recoverable result if the saved track is unavailable.
 
 
 

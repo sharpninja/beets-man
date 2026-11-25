@@ -10,6 +10,7 @@ Traceability policy: see `Requirements-Traceability-Policy.md`.
 | FR-DISPATCH-001 | Tracked | Functional-Requirements.md |
 | FR-FILESYNC-001 | Tracked | Functional-Requirements.md |
 | FR-LIBRARY-001 | Tracked | Functional-Requirements.md |
+| FR-LIBRARY-002 | Tracked | Functional-Requirements.md |
 | FR-PLAYER-001 | Tracked | Functional-Requirements.md |
 | FR-PLUGINS-001 | Tracked | Functional-Requirements.md |
 | FR-RECORDS-001 | Tracked | Functional-Requirements.md |
@@ -20,6 +21,7 @@ Traceability policy: see `Requirements-Traceability-Policy.md`.
 | TR-DISPATCH-ARCH-001 | Tracked | Technical-Requirements.md |
 | TR-FILESYNC-ARCH-001 | Tracked | Technical-Requirements.md |
 | TR-LIBRARY-ARCH-001 | Tracked | Technical-Requirements.md |
+| TR-LIBRARY-ARCH-002 | Tracked | Technical-Requirements.md |
 | TR-PLAYER-ARCH-001 | Tracked | Technical-Requirements.md |
 | TR-PLUGINS-ARCH-001 | Tracked | Technical-Requirements.md |
 | TR-RECORDS-ARCH-001 | Tracked | Technical-Requirements.md |
@@ -36,6 +38,8 @@ Traceability policy: see `Requirements-Traceability-Policy.md`.
 | TEST-FILESYNC-002 | Tracked | Testing-Requirements.md |
 | TEST-LIBRARY-001 | Tracked | Testing-Requirements.md |
 | TEST-LIBRARY-002 | Tracked | Testing-Requirements.md |
+| TEST-LIBRARY-003 | Tracked | Testing-Requirements.md |
+| TEST-LIBRARY-004 | Tracked | Testing-Requirements.md |
 | TEST-PLAYER-001 | Tracked | Testing-Requirements.md |
 | TEST-PLAYER-002 | Tracked | Testing-Requirements.md |
 | TEST-PLUGINS-001 | Tracked | Testing-Requirements.md |

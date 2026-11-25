@@ -7,7 +7,14 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../BeetsMan.Desktop.Application/BeetsMan.Desktop.Application.csproj" />
+    <ProjectReference Include="../BeetsMan.Host.Contracts/BeetsMan.Host.Contracts.csproj" />
     <PackageReference Include="Avalonia" Version="12.1.5" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="LiteDB" Version="5.0.21" />
+    <!-- 2026-11-24: ILogger scopes and the filtered provider for FR-CONFIG-001#ac-logs. -->
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.14" />
+    <!-- 2026-11-24: Native deck and decoder adapters for TR-PLAYER-ARCH-001. -->
+    <PackageReference Include="SoundFlow" Version="1.4.2" />
+    <PackageReference Include="SoundFlow.Codecs.FFMpeg" Version="1.4.0" />
   </ItemGroup>
 </Project>

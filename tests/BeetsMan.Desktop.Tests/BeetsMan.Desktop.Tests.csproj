@@ -11,4 +11,17 @@
     <PackageReference Include="xunit.v3" Version="3.2.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" PrivateAssets="all" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/BeetsMan.Desktop/BeetsMan.Desktop.csproj" />
+    <ProjectReference Include="../../src/BeetsMan.Host/BeetsMan.Host.csproj" />
+    <Compile Include="../Shared/TransactionAssertions.cs" Link="TransactionAssertions.cs" />
+    <Compile Include="../Shared/PlaylistWorkspaceAssertions.cs" Link="PlaylistWorkspaceAssertions.cs" />
+    <Compile Include="../Shared/BootstrapAssertions.cs" Link="BootstrapAssertions.cs" />
+    <Compile Include="../Shared/DiagnosticsAssertions.cs" Link="DiagnosticsAssertions.cs" />
+    <Compile Include="../Shared/CatalogAssertions.cs" Link="CatalogAssertions.cs" />
+    <Compile Include="../Shared/PlaybackCheckpointAssertions.cs" Link="PlaybackCheckpointAssertions.cs" />
+    <Compile Include="../Shared/PlaybackSeekAssertions.cs" Link="PlaybackSeekAssertions.cs" />
+    <Compile Include="../Shared/QueueAutoSaveAssertions.cs" Link="QueueAutoSaveAssertions.cs" />
+    <None Include="../../docs/architecture/ui-commands.md" Link="ui-commands.md" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>

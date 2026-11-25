@@ -101,9 +101,11 @@ public abstract class PresentationViewModel : ObservableObject, IDisposable
         CancellationToken token, Predicate<TResult>? accepts = null) =>
         ReadAttemptAsync(request, slot, apply, token, accepts);
 
+    /// <summary>Dispatches a scoped write, optionally reusing the identity of an earlier uncertain attempt.</summary>
+    /// <remarks>2026-11-24: Preserve transfer retry identity for FR-FILESYNC-001#ac-safety.</remarks>
     protected Task WriteAsync<TResult>(ICommand<TResult> request, Action<TResult> apply, CancellationToken token,
-        Predicate<TResult>? accepts = null, bool retryInvalid = false, bool blocksInteraction = false, Guid? writeOwner = null) =>
-        WriteAttemptAsync(request, Guid.NewGuid(), apply, token, accepts, retryInvalid, blocksInteraction, writeOwner ?? WriteOwner);
+        Predicate<TResult>? accepts = null, bool retryInvalid = false, bool blocksInteraction = false, Guid? writeOwner = null, Guid? operationId = null) =>
+        WriteAttemptAsync(request, operationId ?? Guid.NewGuid(), apply, token, accepts, retryInvalid, blocksInteraction, writeOwner ?? WriteOwner);
 
     protected Task PostAsync(PresentationScope scope, Action apply) =>
         Services.Scheduler.PostAsync(() =>
@@ -111,6 +113,24 @@ public abstract class PresentationViewModel : ObservableObject, IDisposable
             if (active && !disposed && Scope == scope)
                 apply();
         }, CancellationToken.None);
+
+    protected async Task DispatchEventAsync<TResult>(ICommand<TResult> request, Action<TResult> apply,
+        Predicate<TResult> accepts, CancellationToken token)
+    {
+        if (!active || token.IsCancellationRequested)
+            return;
+        var context = Services.NewRequest();
+        var stamp = new RequestStamp(Scope, context.CorrelationId, ++sequence);
+        var operationId = Guid.NewGuid();
+        using var linked = CancellationTokenSource.CreateLinkedTokenSource(lifetime.Token, token);
+        var result = await ObserveCancellationAsync(ct => Services.Dispatcher.SendAsync(request,
+            new(context, operationId), ct), linked.Token).ConfigureAwait(false);
+        await PostAsync(stamp.Scope, () =>
+        {
+            if (result is Outcome<TResult>.Success success && accepts(success.Value))
+                apply(success.Value);
+        }).ConfigureAwait(false);
+    }
 
     private async Task ReadAttemptAsync<TResult>(IQuery<TResult> request, string slot, Action<TResult> apply,
         CancellationToken token, Predicate<TResult>? accepts)

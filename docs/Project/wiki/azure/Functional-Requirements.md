@@ -57,6 +57,17 @@ Scope: layer-1+
 - [ ] Artists, albums, tracks, playlists, and search show matching catalog records and player actions.
 - [ ] Cached records remain browsable offline. Downloaded tracks play from the local root and pending media are identified as unavailable.
 
+## FR-LIBRARY-002 Review and apply a batch of library edits
+
+The desktop exposes a batch-mode toggle. While enabled, every change to the library stays in the local batch until the operator approves and commits it or reverts the entire batch. Committed changes synchronize to peers.
+Scope: layer-1+
+**Acceptance Criteria:**
+- [ ] Turning on the batch-mode toggle sends every library change, including imports, organization and file moves, removals and deletions, metadata edits and saved playlist changes, to the local batch. No library changes reach the host or peers before explicit commit.
+- [ ] A review dialog lists every pending change in the batch and requires explicit approval to commit the reviewed changes.
+- [ ] Committing the approved batch makes its library edits eligible for synchronization to registered peers. Peers receive no unapproved changes.
+- [ ] Reverting a pending batch restores all changes in that batch on the originating desktop and propagates none of them to peers.
+- [ ] Turning batch mode off with pending edits requires the user to resolve the batch through commit or revert. Closing the review leaves the pending batch intact.
+
 ## FR-PLAYER-001 Play and mix music
 
 Listener can play and mix music. Cue two local tracks. Play and blend them; switch presentation. Observe continuity and return from fullscreen.
@@ -67,6 +78,7 @@ Scope: layer-1+
 - [ ] Automatic crossfade uses the configured duration; manual input takes over; an incoming-track failure preserves the outgoing track and surfaces the error.
 - [ ] Minimum, Normal, bounded visualization, and full visualization keep the session and queue. Escape restores the prior windowed mode; missing telemetry preserves usable transport and exit controls.
 - [ ] When the active queue is backed by a saved playlist, the user can turn automatic saving of queue edits to that playlist on or off.
+- [ ] A desktop-local toggle controls whether playback of the active playlist continues automatically when the desktop application restarts.
 
 ## FR-PLUGINS-001 Install and run extensions
 

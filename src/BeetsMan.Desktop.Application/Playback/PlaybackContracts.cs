@@ -31,8 +31,8 @@ public enum QueueSaveStatus { NotRequested, Saved, Pending, Conflict, Failed }
 public sealed record QueueEntry(Guid EntryId, Guid TrackId);
 
 /// <summary>Captures queue order, revision, and its optional playlist backing.</summary>
-public sealed record QueueSnapshot(long QueueRevision, ImmutableArray<QueueEntry> Entries, PlaylistVersion? BackingPlaylist = null,
-    bool AutoSave = false, QueueSaveStatus SaveStatus = QueueSaveStatus.NotRequested, PlaylistSavedReceipt? SaveReceipt = null,
+public sealed record QueueSnapshot(long QueueRevision, ImmutableArray<QueueEntry> Entries, bool AutoSave, PlaylistVersion? BackingPlaylist = null,
+    QueueSaveStatus SaveStatus = QueueSaveStatus.NotRequested, PlaylistSavedReceipt? SaveReceipt = null,
     bool Shuffle = false, RepeatMode Repeat = RepeatMode.Off);
 
 /// <summary>Contains the state of a specific deck.</summary>
@@ -44,9 +44,10 @@ public sealed record MasterOutput(double Gain, double CrossfaderPosition, bool A
     ImmutableArray<double> EqualizerBands, bool EqualizerBypassed);
 
 /// <summary>Contains the shared immutable state for all presentations of a playback session.</summary>
+/// <remarks>2026-11-24: Carry the selected queue occurrence for FR-PLAYER-001#ac-transport, including repeated tracks.</remarks>
 public sealed record PlaybackState(Guid SessionId, long Revision, QueueSnapshot Queue, PlaybackCapabilities Capabilities,
     TransportStatus Status, Guid? ActiveTrackId = null, TimeSpan Position = default, TimeSpan? Duration = null,
-    ImmutableArray<DeckState> Decks = default, MasterOutput? Output = null);
+    ImmutableArray<DeckState> Decks = default, MasterOutput? Output = null, Guid? ActiveQueueEntryId = null);
 
 /// <summary>Describes one scoped edit of preserve-order queue entries.</summary>
 public abstract record QueueEdit

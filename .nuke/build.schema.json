@@ -25,6 +25,7 @@
       "type": "string",
       "enum": [
         "Compile",
+        "MigrationIntegrationTests",
         "Test",
         "TestGroups"
       ]
@@ -101,8 +102,11 @@
     {
       "properties": {
         "test-groups": {
-          "type": "string",
-          "description": "Selected project and test classes"
+          "type": "array",
+          "description": "Selected projects and test classes",
+          "items": {
+            "type": "string"
+          }
         },
         "testRunId": {
           "type": "string",

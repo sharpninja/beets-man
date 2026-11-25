@@ -159,6 +159,66 @@
     },
     {
       "kind": "fr",
+      "id": "FR-LIBRARY-002",
+      "title": "Review and apply a batch of library edits",
+      "description": "The desktop exposes a batch-mode toggle. While enabled, every change to the library stays in the local batch until the operator approves and commits it or reverts the entire batch. Committed changes synchronize to peers.",
+      "priority": "high",
+      "area": "LIBRARY",
+      "acceptanceCriteria": [
+        {
+          "id": "ac-batch-local",
+          "text": "Turning on the batch-mode toggle sends every library change, including imports, organization and file moves, removals and deletions, metadata edits and saved playlist changes, to the local batch. No library changes reach the host or peers before explicit commit.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-batch-review",
+          "text": "A review dialog lists every pending change in the batch and requires explicit approval to commit the reviewed changes.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-batch-commit",
+          "text": "Committing the approved batch makes its library edits eligible for synchronization to registered peers. Peers receive no unapproved changes.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-batch-revert",
+          "text": "Reverting a pending batch restores all changes in that batch on the originating desktop and propagates none of them to peers.",
+          "isSatisfied": false
+        },
+        {
+          "id": "ac-batch-toggle-off",
+          "text": "Turning batch mode off with pending edits requires the user to resolve the batch through commit or revert. Closing the review leaves the pending batch intact.",
+          "isSatisfied": false
+        }
+      ]
+    },
+    {
+      "kind": "tr",
+      "id": "TR-LIBRARY-ARCH-002",
+      "title": "Isolate and publish reviewed library edit batches",
+      "description": "Route every library-changing intent through the same desktop-local batch boundary while its toggle is enabled. Cover scheduled and plugin-originated library writes, keeping files and records separate from the authoritative catalog and active shares until approval. Bind commit approval to an exact reviewed batch revision and publish through the authoritative library change feed.",
+      "priority": "high",
+      "area": "LIBRARY",
+      "subarea": "ARCH"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-LIBRARY-003",
+      "title": "Isolated acceptance tests: Library edit batches",
+      "description": "For FR-LIBRARY-002#ac-batch-local, FR-LIBRARY-002#ac-batch-review, FR-LIBRARY-002#ac-batch-commit and FR-LIBRARY-002#ac-batch-revert, exercise toggle on/off, edits from every library mutation family, full review, stale approval, successful commit and full revert. Independently reject fixtures that bypass batching through import, organize/move, removal/deletion, queue auto-save or a background writer, upload or publish early, omit a change, commit the wrong revision, or leave a local edit after revert. Include FR-LIBRARY-002#ac-batch-toggle-off by proving the dirty batch survives cancellation and exits only after commit or revert.",
+      "priority": "high",
+      "area": "LIBRARY"
+    },
+    {
+      "kind": "test",
+      "id": "TEST-LIBRARY-004",
+      "title": "Windows/Linux integration: Library edit batches",
+      "description": "For FR-LIBRARY-002#ac-batch-local, FR-LIBRARY-002#ac-batch-review, FR-LIBRARY-002#ac-batch-commit and FR-LIBRARY-002#ac-batch-revert, exercise real desktop and host stores, scratch media, beets and registered peer replicas. Verify private files and records across restart, exact mixed-batch approval, commit and peer delivery, uncertain commit recovery and full revert. At the screen phase verify the toggle, complete change list and revision-bound approval dialog using the actual desktop. Include FR-LIBRARY-002#ac-batch-toggle-off by proving the dirty batch survives cancellation and exits only after commit or revert.",
+      "priority": "high",
+      "area": "LIBRARY"
+    },
+    {
+      "kind": "fr",
       "id": "FR-PLAYER-001",
       "title": "Play and mix music",
       "description": "Listener can play and mix music. Cue two local tracks. Play and blend them; switch presentation. Observe continuity and return from fullscreen.",
@@ -189,6 +249,11 @@
           "id": "ac-queue-autosave",
           "text": "When the active queue is backed by a saved playlist, the user can turn automatic saving of queue edits to that playlist on or off.",
           "isSatisfied": false
+        },
+        {
+          "id": "ac-resume-playback-after-restart",
+          "text": "A desktop-local toggle controls whether playback of the active playlist continues automatically when the desktop application restarts.",
+          "isSatisfied": false
         }
       ]
     },
@@ -205,7 +270,7 @@
       "kind": "test",
       "id": "TEST-PLAYER-001",
       "title": "Isolated acceptance tests: Play and mix music",
-      "description": "xUnit v3, FR only. Use a fake backend, two tracks A and B and a controllable audio clock. Compare queue, channel targets, fade cancellation, and state before and after each mode transition.\nPLAYERAcceptanceTests.Transport_MatchesContract (FR-PLAYER-001#ac-transport): Play, pause, seek, previous, next, volume, shuffle and repeat update a persistent queue and the active deck.\nPLAYERAcceptanceTests.Mix_MatchesContract (FR-PLAYER-001#ac-mix): Two independently cueable decks expose per-deck transport and gain; manual crossfader and bypassable master EQ apply to the output.\nPLAYERAcceptanceTests.Fade_MatchesContract (FR-PLAYER-001#ac-fade): Automatic crossfade uses the configured duration; manual input takes over; an incoming-track failure preserves the outgoing track and surfaces the error.\nPLAYERAcceptanceTests.Modes_MatchesContract (FR-PLAYER-001#ac-modes): Minimum, Normal, bounded visualization, and full visualization keep the session and queue. Escape restores the prior windowed mode; missing telemetry preserves usable transport and exit controls.\nPLAYERAcceptanceTests.QueueAutoSave_MatchesContract (FR-PLAYER-001#ac-queue-autosave): Load a saved playlist into the active queue. With auto-save on, apply and persist an ordered queue edit to that playlist. With auto-save off, verify a queue edit leaves the saved playlist unchanged.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.",
+      "description": "xUnit v3, FR only. Use a fake backend, two tracks A and B and a controllable audio clock. Compare queue, channel targets, fade cancellation, and state before and after each mode transition.\nPLAYERAcceptanceTests.Transport_MatchesContract (FR-PLAYER-001#ac-transport): Play, pause, seek, previous, next, volume, shuffle and repeat update a persistent queue and the active deck.\nPLAYERAcceptanceTests.Mix_MatchesContract (FR-PLAYER-001#ac-mix): Two independently cueable decks expose per-deck transport and gain; manual crossfader and bypassable master EQ apply to the output.\nPLAYERAcceptanceTests.Fade_MatchesContract (FR-PLAYER-001#ac-fade): Automatic crossfade uses the configured duration; manual input takes over; an incoming-track failure preserves the outgoing track and surfaces the error.\nPLAYERAcceptanceTests.Modes_MatchesContract (FR-PLAYER-001#ac-modes): Minimum, Normal, bounded visualization, and full visualization keep the session and queue. Escape restores the prior windowed mode; missing telemetry preserves usable transport and exit controls.\nPLAYERAcceptanceTests.QueueAutoSave_MatchesContract (FR-PLAYER-001#ac-queue-autosave): Load a saved playlist into the active queue. With auto-save on, apply and persist an ordered queue edit to that playlist. With auto-save off, verify a queue edit leaves the saved playlist unchanged.\nRun with an independent correct fake and reject a deliberate incorrect outcome for each case. Bind the same cases and assertions to production.\nPLAYERAcceptanceTests.RestartResume_MatchesContract (FR-PLAYER-001#ac-resume-playback-after-restart): Model a restart with and without the toggle enabled. Verify that an eligible saved playlist resumes only when enabled and that restoration retains the saved queue occurrence and position.",
       "priority": "high",
       "area": "PLAYER"
     },
@@ -213,7 +278,7 @@
       "kind": "test",
       "id": "TEST-PLAYER-002",
       "title": "Windows/Linux integration: Play and mix music",
-      "description": "Verify SoundFlow native output by codec, mixer and EQ response, physical output and window transitions.",
+      "description": "Verify SoundFlow native output by codec, mixer and EQ response, physical output and window transitions.\nPlaybackRestartIntegrationTests.RestartResume_MatchesContract (FR-PLAYER-001#ac-resume-playback-after-restart): Restart against a disposable LiteDB playback store and the configured audio adapter. Verify opt-in playback, restore-only behavior with the toggle off, and a recoverable result if the saved track is unavailable.",
       "priority": "high",
       "area": "PLAYER"
     },
@@ -580,6 +645,17 @@
       "notes": "UC-LIBRARY-001 • STB03 • FR-LIBRARY-001#ac-browse, FR-LIBRARY-001#ac-offline"
     },
     {
+      "frId": "FR-LIBRARY-002",
+      "trIds": [
+        "TR-LIBRARY-ARCH-002"
+      ],
+      "testIds": [
+        "TEST-LIBRARY-003",
+        "TEST-LIBRARY-004"
+      ],
+      "notes": "FR-LIBRARY-002#ac-batch-local, FR-LIBRARY-002#ac-batch-review, FR-LIBRARY-002#ac-batch-commit, FR-LIBRARY-002#ac-batch-revert, FR-LIBRARY-002#ac-batch-toggle-off"
+    },
+    {
       "frId": "FR-PLAYER-001",
       "trIds": [
         "TR-PLAYER-ARCH-001"
@@ -588,7 +664,7 @@
         "TEST-PLAYER-001",
         "TEST-PLAYER-002"
       ],
-      "notes": "UC-PLAYER-001 • STB04 • FR-PLAYER-001#ac-transport, FR-PLAYER-001#ac-mix, FR-PLAYER-001#ac-fade, FR-PLAYER-001#ac-modes, FR-PLAYER-001#ac-queue-autosave"
+      "notes": "UC-PLAYER-001 • STB04 • FR-PLAYER-001#ac-transport, FR-PLAYER-001#ac-mix, FR-PLAYER-001#ac-fade, FR-PLAYER-001#ac-modes, FR-PLAYER-001#ac-queue-autosave, FR-PLAYER-001#ac-resume-playback-after-restart"
     },
     {
       "frId": "FR-CLI-001",
@@ -726,7 +802,8 @@
         "FR-PLAYER-001#ac-mix",
         "FR-PLAYER-001#ac-fade",
         "FR-PLAYER-001#ac-modes",
-        "FR-PLAYER-001#ac-queue-autosave"
+        "FR-PLAYER-001#ac-queue-autosave",
+        "FR-PLAYER-001#ac-resume-playback-after-restart"
       ]
     },
     {

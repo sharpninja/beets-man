@@ -34,8 +34,13 @@ public sealed partial class ShellViewModel(PresentationServices services, Guid w
     private Task CloseDialogAsync(Guid overlayId, CancellationToken token) => CloseAsync(overlayId, OverlayCloseReason.Close, token);
 
     /// <summary>Applies a live, registered Android arrival supplied by the application event adapter.</summary>
-    public Task OnAndroidPeerArrivalAsync(Guid peerId, long generation, CancellationToken token = default) =>
-        WriteAsync(new ApplyAndroidPeerArrival(WindowId, peerId, generation), Apply, token, Accepts);
+    public async Task OnAndroidPeerArrivalAsync(Guid peerId, long generation, CancellationToken token = default)
+    {
+        Task attempt = Task.CompletedTask;
+        var scope = Scope;
+        await PostAsync(scope, () => attempt = DispatchEventAsync(new ApplyAndroidPeerArrival(WindowId, peerId, generation), Apply, Accepts, token));
+        await attempt;
+    }
 
     internal Task OpenOverlayAsync(Guid ownerId, OverlayIntent intent, CancellationToken token) =>
         WriteAsync(new OpenOverlay(WindowId, ownerId, intent), Apply, token, Accepts);

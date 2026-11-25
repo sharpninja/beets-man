@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+    <PackageReference Include="xunit.v3" Version="3.2.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" PrivateAssets="all" />
+    <ProjectReference Include="../../src/BeetsMan.Desktop/BeetsMan.Desktop.csproj" />
+    <Compile Include="../Shared/TransactionAssertions.cs" Link="TransactionAssertions.cs" />
+    <Compile Include="../Shared/PlaylistWorkspaceAssertions.cs" Link="PlaylistWorkspaceAssertions.cs" />
+    <Compile Include="../Shared/BootstrapAssertions.cs" Link="BootstrapAssertions.cs" />
+    <Compile Include="../Shared/DiagnosticsAssertions.cs" Link="DiagnosticsAssertions.cs" />
+    <Compile Include="../Shared/CatalogAssertions.cs" Link="CatalogAssertions.cs" />
+    <Compile Include="../Shared/PlaybackCheckpointAssertions.cs" Link="PlaybackCheckpointAssertions.cs" />
+    <Compile Include="../Shared/QueueAutoSaveAssertions.cs" Link="QueueAutoSaveAssertions.cs" />
+  </ItemGroup>
+</Project>

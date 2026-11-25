@@ -5,7 +5,11 @@ namespace BeetsMan.Desktop.Application.Configuration;
 
 /// <summary>Carries local configuration paths and configured log filters.</summary>
 /// <remarks>2026-11-24: Materialize documented contracts for FR-CONFIG-001#ac-defaults, ac-overrides, ac-repair, and ac-logs.</remarks>
-public sealed record BootstrapSettings(string SettingsPath, string DatabasePath, string MusicRoot, ImmutableDictionary<string, string> LogLevels);
+public sealed record BootstrapSettings(string SettingsPath, string DatabasePath, string MusicRoot, ImmutableDictionary<string, string> LogLevels,
+    RollingLogSettings? RollingLog = null);
+
+/// <summary>Contains the local rolling-file logging settings.</summary>
+public sealed record RollingLogSettings(bool Enabled, string Directory, int RetainedFileCount);
 
 /// <summary>Binds database creation approval to the validated path.</summary>
 public sealed record DatabaseCreationApproval(Guid ProposalId, string DatabasePath);

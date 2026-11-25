@@ -14,7 +14,8 @@ public sealed record PlaylistVersion(Guid PlaylistId, long Revision);
 public sealed record PlaylistDraft(Guid DraftId, long Revision, string Name, ImmutableArray<PlaylistEntry> Entries, PlaylistVersion? BasePlaylist);
 
 /// <summary>Identifies the committed playlist and corresponding local draft.</summary>
-public sealed record PlaylistSavedReceipt(Guid DraftId, Guid PlaylistId, long Revision);
+/// <remarks>2026-11-24: Carry the playback session on queue auto-save receipts for FR-PLAYER-001#ac-queue-autosave.</remarks>
+public sealed record PlaylistSavedReceipt(Guid DraftId, Guid PlaylistId, long Revision, long? DraftRevision = null, Guid? QueueSessionId = null);
 
 /// <summary>Specifies how a draft begins.</summary>
 public abstract record PlaylistDraftSource

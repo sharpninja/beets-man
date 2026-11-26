@@ -13,6 +13,9 @@ public sealed record PluginVersion(string PluginId, string Version);
 /// <summary>Identifies an approved contribution and its declarative arguments.</summary>
 public sealed record ContributionInvocation(PluginVersion Plugin, string ContributionId, ImmutableDictionary<string, string> Arguments);
 
+/// <summary>Identifies the panel contributed by one installed plugin version.</summary>
+public sealed record PluginPanelSelection(PluginVersion Plugin, string PanelId);
+
 /// <summary>Binds enabled descriptors to pre-registered, typed application requests.</summary>
 public interface IContributionRegistry
 {
@@ -48,11 +51,20 @@ public abstract class ContributionRoute
 
 /// <summary>Owns local package management, worker diagnostics, and approved contributions.</summary>
 /// <remarks>2026-11-24: Bind FR-PLUGINS-001#ac-manage, ac-visualize and ac-recovery without invoking workers from presentation.</remarks>
+/// <remarks>2026-11-25: Project the typed plugin action and optional playback result for FR-PLUGINS-001#ac-visualize.</remarks>
 public sealed partial class ExtensionsViewModel(PresentationServices services, Guid ownerId, PlaybackPresentation playback,
-    IContributionRegistry contributions) : PresentationViewModel(services, ownerId)
+    IContributionRegistry? contributions = null) : PresentationViewModel(services, ownerId)
 {
     [ObservableProperty] private PluginState? state;
     [ObservableProperty] private PluginVersion? diagnosticsSelection;
+    [ObservableProperty] private PluginActionReceipt? lastAction;
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SelectVisualizationCommand))]
+    private VisualizationState? visualization;
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SubmitPanelCommand), nameof(ClosePanelCommand))]
+    private PluginPanelSnapshot? panel;
+    private long panelRequest;
 
     [RelayCommand]
     private Task LoadAsync(CancellationToken token) => ReadAsync(new GetPluginState(), "plugins", Apply, token, Accepts);
@@ -67,7 +79,8 @@ public sealed partial class ExtensionsViewModel(PresentationServices services, G
         }, token, Accepts);
 
     [RelayCommand]
-    private Task OpenVisualizationPickerAsync(CancellationToken token) => LoadAsync(token);
+    private Task OpenVisualizationPickerAsync(CancellationToken token) => Task.WhenAll(LoadAsync(token),
+        ReadAsync(new GetVisualization(playback.SessionId), "visualization", ApplyVisualization, token, AcceptsVisualization));
 
     [RelayCommand]
     private Task InstallAsync(Guid selection, CancellationToken token) => Send(new InstallPluginPackage(selection), token);
@@ -87,23 +100,65 @@ public sealed partial class ExtensionsViewModel(PresentationServices services, G
     [RelayCommand]
     private Task RemoveAsync(PluginVersion plugin, CancellationToken token) => Send(new RemovePlugin(plugin.PluginId, plugin.Version), token);
 
-    [RelayCommand(CanExecute = nameof(CanEnable))]
+    [RelayCommand(CanExecute = nameof(CanRestart))]
     private Task RestartWorkerAsync(PluginVersion plugin, CancellationToken token) => Send(new RestartPluginWorker(plugin.PluginId, plugin.Version), token);
 
     [RelayCommand(CanExecute = nameof(CanSelectVisualization))]
-    private Task SelectVisualizationAsync(ContributionInvocation invocation, CancellationToken token) => CanSelectVisualization(invocation)
-        ? WriteAsync(new SelectVisualization(playback.SessionId, invocation.ContributionId), playback.Apply, token, playback.Accepts,
-            writeOwner: playback.SessionId) : Task.CompletedTask;
+    private Task SelectVisualizationAsync(VisualizationChoice choice, CancellationToken token) => CanSelectVisualization(choice)
+        ? WriteAsync(new SelectVisualization(playback.SessionId, choice), ApplyVisualization, token, AcceptsVisualization)
+        : Task.CompletedTask;
 
     [RelayCommand(CanExecute = nameof(CanRunContribution))]
-    private Task RunContributionAsync(ContributionInvocation invocation, CancellationToken token) => CanRunContribution(invocation)
-        ? contributions.Bind(invocation)?.DispatchAsync(this, token) ?? Task.CompletedTask : Task.CompletedTask;
+    private Task RunContributionAsync(ContributionInvocation invocation, CancellationToken token)
+    {
+        if (!CanRunContribution(invocation))
+            return Task.CompletedTask;
+        if (contributions is not null)
+            return contributions.Bind(invocation)?.DispatchAsync(this, token) ?? Task.CompletedTask;
+        return WriteAsync(new InvokePluginAction(playback.SessionId, invocation.Plugin.PluginId, invocation.Plugin.Version,
+            invocation.ContributionId, invocation.Arguments), ApplyAction, token);
+    }
+
+    [RelayCommand(CanExecute = nameof(CanOpenPanel))]
+    private Task OpenPanelAsync(PluginPanelSelection selection, CancellationToken token)
+    {
+        if (!CanOpenPanel(selection))
+            return Task.CompletedTask;
+        var request = ++panelRequest;
+        return ReadAsync(new GetPluginPanel(playback.SessionId, selection.Plugin.PluginId, selection.Plugin.Version, selection.PanelId),
+            "plugin-panel", opened =>
+            {
+                Panel = opened;
+                LastAction = null;
+            }, token, opened => request == panelRequest && IsCurrentPanel(opened.Reference));
+    }
+
+    [RelayCommand(CanExecute = nameof(CanSubmitPanel))]
+    private Task SubmitPanelAsync(ImmutableDictionary<string, string> fields, CancellationToken token) => Panel is { } current &&
+        CanSubmitPanel(fields) ? WriteAsync(new SubmitPluginPanel(current.Reference, fields), ApplyAction, token,
+            _ => Panel == current && IsCurrentPanel(current.Reference), blocksInteraction: true) : Task.CompletedTask;
+
+    [RelayCommand(CanExecute = nameof(CanClosePanel))]
+    private void ClosePanel()
+    {
+        panelRequest++;
+        Panel = null;
+        LastAction = null;
+    }
 
     /// <summary>Projects supervisor updates and detaches contributions according to the current snapshot.</summary>
     public Task ReceiveAsync(PluginState incoming) => PostAsync(Scope, () =>
     {
         if (Accepts(incoming))
             Apply(incoming);
+    });
+
+    /// <summary>Projects current frames only for the attached desktop session.</summary>
+    /// <remarks>2026-11-25: Keep telemetry revisions separate from the transport for FR-PLUGINS-001#ac-visualize.</remarks>
+    public Task ReceiveAsync(VisualizationState incoming) => PostAsync(Scope, () =>
+    {
+        if (AcceptsVisualization(incoming))
+            ApplyVisualization(incoming);
     });
 
     internal Task DispatchContributionAsync<TResult>(ICommand<TResult> request, Action<TResult> project, CancellationToken token) =>
@@ -116,17 +171,39 @@ public sealed partial class ExtensionsViewModel(PresentationServices services, G
     {
         EnableCommand.NotifyCanExecuteChanged(); DisableCommand.NotifyCanExecuteChanged(); RestartWorkerCommand.NotifyCanExecuteChanged();
         SelectVisualizationCommand.NotifyCanExecuteChanged(); RunContributionCommand.NotifyCanExecuteChanged();
+        OpenPanelCommand.NotifyCanExecuteChanged(); SubmitPanelCommand.NotifyCanExecuteChanged();
     }
 
     private bool CanEnable(PluginVersion? plugin) => CanWrite && Lookup(plugin)?.Trust == PluginTrust.Local;
     private bool CanDisable(PluginVersion? plugin) => CanWrite && Lookup(plugin)?.Enabled == true;
+    private bool CanRestart(PluginVersion? plugin) => CanEnable(plugin) && State?.RecoveryMode != true && Lookup(plugin)?.Enabled == true;
 
-    private bool CanSelectVisualization(ContributionInvocation? invocation) =>
-        IsActive && !Services.HasWrite(playback.SessionId) &&
-        (playback.State?.Capabilities & PlaybackCapabilities.Visualization) == PlaybackCapabilities.Visualization &&
-        HasContribution(invocation, PluginContributionKind.Visualization);
+    private bool CanSelectVisualization(VisualizationChoice? choice)
+    {
+        if (choice is null || !CanWrite || Visualization?.Supported != true)
+            return false;
+        return choice == VisualizationChoice.Waveform || choice == VisualizationChoice.Spectrum ||
+            choice is { PluginId: { } id, Version: { } version } &&
+            Lookup(new(id, version)) is { Worker: PluginWorkerStatus.Ready, Visualizations.IsDefaultOrEmpty: false } ready &&
+            ready.Visualizations.Contains(choice.ContributionId);
+    }
 
-    private bool CanRunContribution(ContributionInvocation? invocation) => CanWrite && HasContribution(invocation, PluginContributionKind.Action);
+    private bool CanRunContribution(ContributionInvocation? invocation) => invocation is not null && CanWrite &&
+        HasContribution(invocation, PluginContributionKind.Action) &&
+        !Lookup(invocation.Plugin)!.Contributions.Any(item => item.Panel?.ActionId == invocation.ContributionId);
+
+    private bool CanSubmitPanel(ImmutableDictionary<string, string>? fields) =>
+        fields is not null && CanWrite && Panel is { } current && IsCurrentPanel(current.Reference);
+
+    private bool CanOpenPanel(PluginPanelSelection? selection) => selection is not null && IsActive &&
+        Lookup(selection.Plugin) is { Worker: PluginWorkerStatus.Ready } current &&
+        current.Contributions.Any(item => item.ContributionId == selection.PanelId && item.Panel is not null);
+
+    private bool CanClosePanel() => Panel is not null;
+
+    private bool IsCurrentPanel(PluginPanelReference reference) =>
+        Lookup(new(reference.PluginId, reference.Version)) is { Worker: PluginWorkerStatus.Ready } current &&
+        current.ActivationId == reference.ActivationId && current.Contributions.Any(item => item.ContributionId == reference.PanelId && item.Panel is not null);
 
     private bool HasContribution(ContributionInvocation? invocation, PluginContributionKind kind) => invocation is not null &&
         Lookup(invocation.Plugin) is { Trust: PluginTrust.Local, Worker: PluginWorkerStatus.Ready, Enabled: true } plugin &&
@@ -136,10 +213,23 @@ public sealed partial class ExtensionsViewModel(PresentationServices services, G
         State?.Plugins.FirstOrDefault(info => info.PluginId == plugin.PluginId && info.Version == plugin.Version);
 
     private bool Accepts(PluginState incoming) => incoming.Revision >= (State?.Revision ?? 0);
+    private bool AcceptsVisualization(VisualizationState incoming) =>
+        incoming.SessionId == playback.SessionId && incoming.Revision >= (Visualization?.Revision ?? 0);
+
+    private void ApplyVisualization(VisualizationState incoming) => Visualization = incoming;
     private void Apply(PluginState incoming)
     {
         State = incoming;
+        if (Panel is { } open && !IsCurrentPanel(open.Reference))
+            ClosePanel();
         OnWriteAvailabilityChanged();
+    }
+
+    private void ApplyAction(PluginActionReceipt result)
+    {
+        LastAction = result;
+        if (result.Playback is { } update && playback.Accepts(update))
+            playback.Apply(update);
     }
 
     private Task Send(ICommand<PluginState> request, CancellationToken token) => WriteAsync(request, Apply, token, Accepts);

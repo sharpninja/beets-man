@@ -6,6 +6,7 @@ namespace BeetsMan.Desktop.Presentation;
 
 /// <summary>Converts logical interaction blocking into the platform's standard wait cursor.</summary>
 /// <remarks>2026-11-24: Expose the wait pointer for logically blocked UI without making normal background jobs block interaction.</remarks>
+/// <remarks>2026-11-26: Trace the system cursor conversion to FR-DISPATCH-001#ac-wait-pointer.</remarks>
 public sealed class WaitCursorConverter : IValueConverter, IDisposable
 {
     private Cursor? waitCursor;

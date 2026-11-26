@@ -9,6 +9,33 @@
         <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
       </g>
     </g>
+    <g id="track-seek-165">
+      <g role="slider" aria-label="Track position" aria-valuemin="0" aria-valuemax="266" aria-valuenow="165" aria-valuetext="2:45 of 4:26" data-seek-slider="track">
+        <text x="765" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="elapsed">2:45</text>
+        <rect x="780" y="665" width="264" height="6" rx="3" fill="#82968b" data-seek-part="track" />
+        <rect x="780" y="665" width="163.759" height="6" rx="3" fill="#235943" data-seek-part="played" />
+        <circle cx="943.759" cy="668" r="8" fill="#235943" stroke="#ffffff" stroke-width="2" data-seek-part="thumb" />
+        <text x="1084" y="672" font-size="12" fill="#4c5953" text-anchor="end" data-seek-part="duration">4:26</text>
+      </g>
+    </g>
+    <g id="desktop-transport-icons">
+      <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
+      <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />
+      <text x="36" y="674" font-size="13" fill="#202724" font-weight="700">Harbor Lights</text>
+      <text x="164" y="674" font-size="12" fill="#4c5953">Lena Vale</text>
+      <rect x="500" y="654" width="78" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <g transform="translate(531 660) scale(0.666667)" color="#202724" data-button-icon="previous" role="img" aria-label="Previous">
+        <use href="icons.svg#previous" />
+      </g>
+      <rect x="585" y="654" width="66" height="28" rx="5" fill="#235943" />
+      <g transform="translate(610 660) scale(0.666667)" color="#ffffff" data-button-icon="pause" role="img" aria-label="Pause">
+        <use href="icons.svg#pause" />
+      </g>
+      <rect x="658" y="654" width="63" height="28" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <g transform="translate(681.5 660) scale(0.666667)" color="#202724" data-button-icon="next" role="img" aria-label="Next">
+        <use href="icons.svg#next" />
+      </g>
+    </g>
     <g id="desktop-transport">
       <rect x="0" y="646" width="1120" height="44" rx="0" fill="#ffffff" />
       <line x1="0" y1="646" x2="1120" y2="646" stroke="#d4dbd5" stroke-width="1" />

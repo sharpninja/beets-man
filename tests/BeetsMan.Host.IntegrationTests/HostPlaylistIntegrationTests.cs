@@ -1,3 +1,4 @@
+using System.Globalization;
 using BeetsMan.Host.Adapters.Persistence;
 using BeetsMan.Host.Application;
 using BeetsMan.Host.Contracts.V1;
@@ -22,6 +23,8 @@ public sealed class HostPlaylistIntegrationTests : IDisposable
     private CancellationToken Token => TestContext.Current.CancellationToken;
     private AuthenticatedHostInstance Caller => new(library, origin);
 
+    /// <summary>Checks one publication transaction, including the document keys consumed across its collections.</summary>
+    /// <remarks>2026-11-26: Verify host playlist, receipt, revision and delivery mappings for TR-RECORDS-ARCH-001#ac-litedb-c4-entities.</remarks>
     [Fact]
     public async Task QueueSaveCommitsAllCollectionsAndReturnsTheSameReceiptAfterReopen()
     {
@@ -59,6 +62,51 @@ public sealed class HostPlaylistIntegrationTests : IDisposable
         Assert.Equal(2, stale.ActualRevision);
         Assert.Equal("stale-saved-playlist", stale.Code);
         Assert.Equal(accepted.FeedRevision, Value(await reopened.ReadPublicationAsync(library, 3, Token)).CurrentRevision);
+
+        reopened.Dispose();
+        VerifyPublicationDocuments(accepted, change);
+    }
+
+    /// <summary>Reads the durable document layout after the production store closes.</summary>
+    /// <remarks>2026-11-26: Verify composite identities, typed fields and references for TR-RECORDS-ARCH-001#ac-litedb-c4-entities.</remarks>
+    private void VerifyPublicationDocuments(PlaylistSaveResponse accepted, PlaylistSaveRequest change)
+    {
+        using var persisted = new LiteDatabase(PathToDatabase);
+        var operationKey = $"{origin:N}/{change.OperationId:N}";
+        var revisionKey = $"{library:N}/{accepted.FeedRevision.ToString(CultureInfo.InvariantCulture)}";
+        var schema = persisted.GetCollection<BsonDocument>("store_schema").FindById("store");
+        Assert.Equal("Host", schema["StoreRole"].AsString);
+        Assert.NotEqual(Guid.Empty, schema["StoreId"].AsGuid);
+        Assert.Equal(1, schema["SchemaVersion"].AsInt32);
+
+        var body = persisted.GetCollection<BsonDocument>("saved_playlists").FindById(accepted.PlaylistId);
+        Assert.Equal(library, body["LibraryId"].AsGuid);
+        Assert.Equal(accepted.PlaylistRevision, body["Revision"].AsInt64);
+        Assert.Equal(change.Name, body["Name"].AsString);
+        Assert.Equal(PlaylistOrder, body["Entries"].AsArray.Select(item => item.AsDocument["EntryId"].AsGuid));
+        Assert.Equal(repeatedTrack, body["Entries"].AsArray[0].AsDocument["TrackId"].AsGuid);
+
+        var receipt = persisted.GetCollection<BsonDocument>("operation_receipts").FindById(operationKey);
+        Assert.Equal(origin, receipt["OriginInstanceId"].AsGuid);
+        Assert.Equal(change.OperationId, receipt["OperationId"].AsGuid);
+        Assert.NotEmpty(receipt["IntentFingerprint"].AsString);
+        Assert.Equal(accepted.PlaylistId, receipt["Receipt"]["PlaylistId"].AsGuid);
+        Assert.Equal(accepted.FeedRevision, receipt["Receipt"]["FeedRevision"].AsInt64);
+        Assert.Equal(accepted.FeedRevision, persisted.GetCollection<BsonDocument>("revision_heads").FindById(library)["CurrentRevision"].AsInt64);
+        var revision = persisted.GetCollection<BsonDocument>("revision_changes").FindById(revisionKey);
+        Assert.Equal(change.OperationId, revision["OperationId"].AsGuid);
+        Assert.Equal(origin, revision["OriginInstanceId"].AsGuid);
+        Assert.Equal(accepted.PlaylistId, Assert.Single(revision["Changes"].AsArray).AsDocument["Payload"]["_id"].AsGuid);
+
+        var deliveries = persisted.GetCollection<BsonDocument>("notification_deliveries");
+        foreach (var peer in new[] { RecipientB, RecipientC })
+        {
+            var delivery = deliveries.FindById($"{revisionKey}/{peer:N}");
+            Assert.Equal(peer, delivery["RecipientInstanceId"].AsGuid);
+            Assert.Equal(accepted.FeedRevision, delivery["Revision"].AsInt64);
+            Assert.Equal(library, delivery["LibraryId"].AsGuid);
+            Assert.Equal("Pending", delivery["Status"].AsString);
+        }
     }
 
     [Fact]

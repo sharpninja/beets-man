@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using System.ComponentModel;
 using System.Globalization;
 using BeetsMan.Desktop.Application.Configuration;
 using BeetsMan.Desktop.Application.Dispatch;
@@ -8,11 +9,13 @@ using Microsoft.Extensions.Logging.Abstractions;
 namespace BeetsMan.Desktop.Adapters.Configuration;
 
 /// <summary>Identifies a request and optionally a verified plugin in a diagnostic scope.</summary>
-public sealed record DiagnosticScope(Guid? CorrelationId, string? PluginId = null);
+public sealed record DiagnosticScope(Guid? CorrelationId, string? PluginId = null, string? PluginVersion = null);
 
 /// <summary>Filters and records bounded event metadata for logs and the diagnostics query.</summary>
 /// <remarks>2026-11-24: Implement FR-CONFIG-001#ac-logs and TR-CONFIG-ARCH-001 with a filtered provider and allow-listed event fields.</remarks>
-public sealed class DiagnosticsLoggerProvider : ILoggerProvider, ISupportExternalScope, IQueryHandler<GetDiagnostics, DiagnosticsPage>
+/// <remarks>2026-11-25: Open the activated log directory for SCR03 and FR-CONFIG-001#ac-logs.</remarks>
+public sealed class DiagnosticsLoggerProvider : ILoggerProvider, ISupportExternalScope, IQueryHandler<GetDiagnostics, DiagnosticsPage>,
+    ICommandHandler<OpenLogFolder, FolderOpenReceipt>
 {
     private const int BufferSize = 1_024;
     private const int PageSize = 100;
@@ -22,6 +25,7 @@ public sealed class DiagnosticsLoggerProvider : ILoggerProvider, ISupportExterna
     private readonly TimeProvider clock;
     private readonly int eventsPerSecond;
     private readonly RollingDiagnosticsFile? rolling;
+    private readonly ILogFolderBrowser browser;
     private IExternalScopeProvider scopes = new LoggerExternalScopeProvider();
     private long position;
     private long windowStart;
@@ -29,14 +33,37 @@ public sealed class DiagnosticsLoggerProvider : ILoggerProvider, ISupportExterna
     private bool disposed;
 
     /// <summary>Creates diagnostics for the resolved logging settings.</summary>
-    public DiagnosticsLoggerProvider(BootstrapSettings settings, TimeProvider? clock = null, int eventsPerSecond = 256)
+    public DiagnosticsLoggerProvider(BootstrapSettings settings, TimeProvider? clock = null, int eventsPerSecond = 256, ILogFolderBrowser? browser = null)
     {
         ArgumentOutOfRangeException.ThrowIfNegativeOrZero(eventsPerSecond);
         this.settings = settings;
         this.clock = clock ?? TimeProvider.System;
         this.eventsPerSecond = eventsPerSecond;
+        this.browser = browser ?? new ShellLogFolderBrowser();
         if (settings.RollingLog is { Enabled: true } fileSettings)
             rolling = new(fileSettings);
+    }
+
+    /// <inheritdoc />
+    public async Task<Outcome<FolderOpenReceipt>> HandleAsync(OpenLogFolder command, CommandContext context, CancellationToken cancellationToken)
+    {
+        try
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            if (settings.RollingLog is not { } log || !Path.IsPathFullyQualified(log.Directory))
+                return new Outcome<FolderOpenReceipt>.Invalid([new("log-folder-unconfigured")]);
+            if (await browser.OpenAsync(log.Directory, log.Enabled, cancellationToken).ConfigureAwait(false))
+                return new Outcome<FolderOpenReceipt>.Success(new(log.Directory));
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            return new Outcome<FolderOpenReceipt>.Cancelled();
+        }
+        catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or Win32Exception or NotSupportedException)
+        {
+            return new Outcome<FolderOpenReceipt>.DependencyFailure("log-folder-open-failed", true);
+        }
+        return new Outcome<FolderOpenReceipt>.DependencyFailure("log-folder-open-failed", true);
     }
 
     /// <inheritdoc />
@@ -97,11 +124,14 @@ public sealed class DiagnosticsLoggerProvider : ILoggerProvider, ISupportExterna
                 {
                     active.CorrelationId = known.CorrelationId ?? active.CorrelationId;
                     if (known.PluginId is { } id && IsIdentifier(id, 96))
+                    {
                         active.PluginId = id;
+                        active.PluginVersion = known.PluginVersion is { } version && IsIdentifier(version, 64) ? version : null;
+                    }
                 }
             }, scope);
             var entry = new DiagnosticEntry(clock.GetUtcNow(), level.ToString(), category,
-                eventId.Id.ToString(CultureInfo.InvariantCulture), scope.CorrelationId, scope.PluginId);
+                eventId.Id.ToString(CultureInfo.InvariantCulture), scope.CorrelationId, scope.PluginId, scope.PluginVersion);
             if (entries.Count == BufferSize)
                 entries.Dequeue();
             entries.Enqueue((++position, entry));
@@ -148,6 +178,7 @@ public sealed class DiagnosticsLoggerProvider : ILoggerProvider, ISupportExterna
     {
         public Guid? CorrelationId { get; set; }
         public string? PluginId { get; set; }
+        public string? PluginVersion { get; set; }
     }
 
     private sealed class CategoryLogger(DiagnosticsLoggerProvider owner, string category, LogLevel minimum) : ILogger

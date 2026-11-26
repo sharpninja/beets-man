@@ -7,7 +7,7 @@ namespace BeetsMan.Host.Tests;
 
 /// <summary>Checks the publication preview against independent owned, foreign, current and desired files.</summary>
 /// <remarks>2026-11-24: Bind TEST-FILESYNC-001 to FR-FILESYNC-001#ac-safety and ac-playlist-drop.</remarks>
-public sealed class DeviceExportPublicationPlannerTests
+public sealed partial class FILESYNCAcceptanceTests
 {
     private static readonly string NewDigest = new('A', 64);
     private static readonly string MoveDigest = new('B', 64);
@@ -15,8 +15,10 @@ public sealed class DeviceExportPublicationPlannerTests
     private static readonly string ForeignDigest = new('D', 64);
     private readonly DeviceExportPublicationPlanner planner = new();
 
+    /// <summary>Requires exact approval for reviewed owned removals and protects other shares.</summary>
+    /// <remarks>2026-11-26: Run the named TEST-FILESYNC-001 safety case for FR-FILESYNC-001#ac-safety.</remarks>
     [Fact]
-    public void PreviewReportsReviewedMovesAndOnlyTheOwnedRemovalThatNeedsApproval()
+    public void Safety_MatchesContract()
     {
         var fixture = Fixture();
         var preview = Prepare(fixture);
@@ -102,8 +104,6 @@ public sealed class DeviceExportPublicationPlannerTests
             new(movedTrack, "Current/Move.flac", true, true, MoveDigest),
             new(new(ExportContentKind.Audio, Guid.NewGuid()), "Other/Unowned.flac", true, true, ForeignDigest)]);
     }
-
-    private static T Value<T>(HostOutcome<T> outcome) => Assert.IsType<HostOutcome<T>.Success>(outcome).Value;
 
     private sealed record ExportFixture(DeviceExportPlan Plan, RegisteredAndroidExport Destination, PublishedDeviceExportManifest Manifest,
         DeviceExportShareSnapshot Share, ImmutableArray<DeviceExportFileCandidate> Files);

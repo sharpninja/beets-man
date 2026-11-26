@@ -6,6 +6,7 @@ namespace BeetsMan.Desktop.Tests;
 
 /// <summary>Verifies shell acceptance assertions against independent fixture snapshots.</summary>
 /// <remarks>2026-11-24: Prove TEST-PLAYER-001 and TEST-FILESYNC-001 shell assertions for ac-modes and ac-arrival.</remarks>
+/// <remarks>2026-11-26: Share mode restoration expectations for FR-PLAYER-001#ac-modes and FR-FILESYNC-001#ac-arrival.</remarks>
 public sealed class ShellStateMockTests
 {
     [Fact]
@@ -42,8 +43,8 @@ internal static class ShellStateAssertions
     public static void VerifyModes(ShellState original, ShellState full, ShellState restored)
     {
         Assert.Equal(PresentationMode.FullVisualization, full.Mode);
-        Assert.Equal(PresentationMode.Minimum, full.PriorWindowedMode);
-        Assert.Equal(PresentationMode.Minimum, restored.Mode);
+        Assert.Equal(original.Mode, full.PriorWindowedMode);
+        Assert.Equal(original.Mode, restored.Mode);
         Assert.Equal(original.PlaybackSessionId, full.PlaybackSessionId);
         Assert.Equal(original.PlaybackSessionId, restored.PlaybackSessionId);
         Assert.Equal(original.Overlays, restored.Overlays);

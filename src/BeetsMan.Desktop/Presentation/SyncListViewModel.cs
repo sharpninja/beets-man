@@ -10,6 +10,7 @@ public sealed record DeviceExportTarget(Guid DeviceId, string ProfileId, long Pr
 
 /// <summary>Owns the staged list independently of preview and transfer.</summary>
 /// <remarks>2026-11-24: Bind FR-FILESYNC-001#ac-playlist-drop to one typed staging request with the selected app profile and plan revision.</remarks>
+/// <remarks>2026-11-25: Wait for the selected profile's plan snapshot before enabling edits for FR-FILESYNC-001#ac-playlist-drop.</remarks>
 public sealed partial class SyncListViewModel(PresentationServices services, Guid ownerId, DeviceExportTarget target)
     : PresentationViewModel(services, ownerId)
 {
@@ -32,16 +33,21 @@ public sealed partial class SyncListViewModel(PresentationServices services, Gui
         if (Target == next)
             return;
         currentTarget = next;
-        Activate(Scope.OwnerId);
         SetProperty(ref plan, null, nameof(Plan));
         SelectedEntryIds = [];
+        Activate(Scope.OwnerId);
         OnPropertyChanged(nameof(Target));
     }
 
     [RelayCommand]
-    private Task OpenAsync(Guid? planId, CancellationToken token) => ReadAsync(new GetDeviceExportPlan(Target.DeviceId, planId, Target.ProfileId,
-        Target.ProfileRevision), "plan",
-        Apply, token, incoming => Accepts(incoming) && (planId is null || incoming.PlanId == planId));
+    internal Task OpenAsync(Guid? planId, CancellationToken token) => LoadPlanAsync(planId, token);
+
+    /// <summary>Reports whether the selected player's staging plan was applied to the current scope.</summary>
+    /// <remarks>2026-11-26: Require the selected projection for FR-FILESYNC-001#ac-arrival.</remarks>
+    internal Task<bool> LoadPlanAsync(Guid? planId, CancellationToken token) => HasTarget
+        ? ReadAsync(new GetDeviceExportPlan(Target.DeviceId, planId, Target.ProfileId, Target.ProfileRevision), "plan",
+            Apply, token, incoming => Accepts(incoming) && (planId is null || incoming.PlanId == planId))
+        : Task.FromResult(false);
 
     [RelayCommand(CanExecute = nameof(CanAddTracks))]
     private Task AddSelectedAsync(ImmutableArray<Guid> tracks, CancellationToken token) => StageTracksAsync(tracks, token);
@@ -82,9 +88,9 @@ public sealed partial class SyncListViewModel(PresentationServices services, Gui
         DropSavedPlaylistCommand.NotifyCanExecuteChanged(); RemoveStagedEntryCommand.NotifyCanExecuteChanged();
     }
 
-    private bool HasTarget => Target.DeviceId != Guid.Empty && !string.IsNullOrWhiteSpace(Target.ProfileId);
-    private bool CanAddTracks(ImmutableArray<Guid> tracks) => CanWrite && HasTarget && !tracks.IsDefaultOrEmpty;
-    private bool CanDropPlaylist(Guid playlistId) => CanWrite && HasTarget && playlistId != Guid.Empty;
+    private bool HasTarget => Target.DeviceId != Guid.Empty && Target.ProfileRevision > 0 && !string.IsNullOrWhiteSpace(Target.ProfileId);
+    private bool CanAddTracks(ImmutableArray<Guid> tracks) => CanWrite && Plan is not null && !tracks.IsDefaultOrEmpty;
+    private bool CanDropPlaylist(Guid playlistId) => CanWrite && Plan is not null && playlistId != Guid.Empty;
     private bool CanRemove(ImmutableArray<Guid> entries) => CanWrite && Plan is { PlanId: not null, PlanRevision: not null } && !entries.IsDefaultOrEmpty;
 
     private Task StageTracksAsync(ImmutableArray<Guid> tracks, CancellationToken token) => CanAddTracks(tracks)

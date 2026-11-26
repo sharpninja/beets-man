@@ -20,6 +20,7 @@ public sealed partial class LibraryViewModel(PresentationServices services, Guid
     private CatalogPage? page;
     private TrackAvailabilitySnapshot? availability;
     private ImmutableDictionary<Guid, FavoriteState> favorites = ImmutableDictionary<Guid, FavoriteState>.Empty;
+    private readonly Dictionary<Guid, long> favoriteWrites = [];
 
     [ObservableProperty] private string searchText = string.Empty;
     [ObservableProperty] private ImmutableArray<Guid> selectedIds = [];
@@ -62,12 +63,27 @@ public sealed partial class LibraryViewModel(PresentationServices services, Guid
         ReadAsync(new GetTrackAvailability(tracks), "availability", next => SetProperty(ref availability, next, nameof(Availability)), token,
             next => next.Revision >= (page?.Revision ?? 0) && next.Revision >= (availability?.Revision ?? 0));
 
+    /// <summary>Loads the favorite's host revision and pending local value for FR-RECORDS-001#ac-offline.</summary>
     [RelayCommand]
-    private Task SetFavoriteAsync(FavoriteEdit input, CancellationToken token) =>
-        WriteAsync(new SetFavorite(input.TrackId, input.IsFavorite, input.Revision), result =>
-            SetProperty(ref favorites, Favorites.SetItem(result.TrackId, result), nameof(Favorites)), token,
-            result => result.TrackId == input.TrackId && result.Revision >= (Favorites.GetValueOrDefault(input.TrackId)?.Revision ?? 0),
-            writeOwner: Scope.OwnerId);
+    private Task InspectFavoriteAsync(Guid trackId, CancellationToken token)
+    {
+        var before = favoriteWrites.GetValueOrDefault(trackId);
+        return ReadAsync(new GetFavorite(trackId), $"favorite-{trackId:N}", ApplyFavorite, token,
+            incoming => favoriteWrites.GetValueOrDefault(trackId) == before && AcceptsFavorite(trackId, incoming));
+    }
+
+    [RelayCommand]
+    private Task SetFavoriteAsync(FavoriteEdit input, CancellationToken token) => WriteAsync(new SetFavorite(input.TrackId, input.IsFavorite, input.Revision),
+        incoming =>
+        {
+            favoriteWrites[input.TrackId] = favoriteWrites.GetValueOrDefault(input.TrackId) + 1;
+            ApplyFavorite(incoming);
+        }, token, incoming => AcceptsFavorite(input.TrackId, incoming), writeOwner: Scope.OwnerId);
+
+    private bool AcceptsFavorite(Guid track, FavoriteState incoming) => incoming.TrackId == track &&
+        incoming.Revision >= (Favorites.GetValueOrDefault(track)?.Revision ?? 0);
+
+    private void ApplyFavorite(FavoriteState incoming) => SetProperty(ref favorites, Favorites.SetItem(incoming.TrackId, incoming), nameof(Favorites));
 
     [RelayCommand(CanExecute = nameof(CanEnqueueMany))]
     private Task PlaySelectionAsync(ImmutableArray<Guid> tracks, CancellationToken token) => EnqueueAsync(tracks, EnqueueMode.PlayNow, token);

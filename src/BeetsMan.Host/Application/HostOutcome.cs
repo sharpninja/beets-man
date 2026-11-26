@@ -34,4 +34,5 @@ public abstract record HostOutcome<T>
 }
 
 /// <summary>The library and instance identity verified at the host boundary.</summary>
-public sealed record AuthenticatedHostInstance(Guid LibraryId, Guid InstanceId);
+/// <remarks>2026-11-25: Carry the host-provisioned Operator authority for FR-RECORDS-001#ac-register.</remarks>
+public sealed record AuthenticatedHostInstance(Guid LibraryId, Guid InstanceId, bool CanManageRegistrations = false);

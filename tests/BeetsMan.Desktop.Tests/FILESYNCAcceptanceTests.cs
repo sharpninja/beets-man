@@ -10,7 +10,7 @@ namespace BeetsMan.Desktop.Tests;
 
 /// <summary>Exercises the staged-playlist rules through the real planner and typed host boundary.</summary>
 /// <remarks>2026-11-24: Bind TEST-FILESYNC-001 to FR-FILESYNC-001#ac-playlist-drop and ac-safety using independent device inventory.</remarks>
-public sealed class FILESYNCAcceptanceTests
+public sealed partial class FILESYNCAcceptanceTests
 {
     [Fact]
     public void PlaylistDrop_MatchesContract()

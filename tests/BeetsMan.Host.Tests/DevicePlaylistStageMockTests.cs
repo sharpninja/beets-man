@@ -7,6 +7,60 @@ namespace BeetsMan.Host.Tests;
 /// <remarks>2026-11-24: Exercise TEST-FILESYNC-001 for FR-FILESYNC-001#ac-playlist-drop and ac-safety.</remarks>
 public sealed class DevicePlaylistStageMockTests
 {
+    /// <summary>Proves the desktop arrival lifecycle assertions detect premature navigation and a leaked monitor.</summary>
+    /// <remarks>2026-11-25: Verify independent controls before the FR-FILESYNC-001#ac-arrival composition changes.</remarks>
+    [Fact]
+    public void ComposedArrivalRejectsAnUnownedOrUnstoppedMonitor()
+    {
+        var fixture = new ComposedAndroidArrivalObservation(true, true, 1, true, true, true, true, true);
+        StageAssertions.VerifyComposedAndroidArrival(fixture);
+        ComposedAndroidArrivalObservation[] wrong =
+        [
+            fixture with { BaselineSilent = false },
+            fixture with { ReusedPresentation = false },
+            fixture with { MaximumPollsInFlight = 2 },
+            fixture with { SelectedLivePhone = false },
+            fixture with { DraftPreserved = false },
+            fixture with { PlaybackPreserved = false },
+            fixture with { StopCancelledLongPoll = false },
+            fixture with { DeactivatedViewModels = false }
+        ];
+        Assert.All(wrong, observation => Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyComposedAndroidArrival(observation)));
+    }
+
+    /// <summary>Proves the configured desktop drop assertions recognize the wrong profile, bytes, or staged entries.</summary>
+    /// <remarks>2026-11-25: Reject independent wrong outcomes for FR-FILESYNC-001#ac-layouts and ac-playlist-drop before composing the routes.</remarks>
+    [Fact]
+    public void ComposedDropRejectsTheWrongFormatOrInventory()
+    {
+        var fixture = new ComposedDropObservation(["musicolet:m3u8", "car-player:pls"], ["missing.flac", "missing.flac"],
+            ["present.flac", "missing.flac", "present.flac"],
+            "#EXTM3U\n../Unknown Artist/Unknown Album/present.flac\n../Unknown Artist/Unknown Album/missing.flac\n../Unknown Artist/Unknown Album/present.flac\n",
+            "[playlist]\nFile1=../Unknown Artist/Unknown Album/present.flac\nFile2=../Unknown Artist/Unknown Album/missing.flac\nFile3=../Unknown Artist/Unknown Album/present.flac\nNumberOfEntries=3\nVersion=2\n",
+            ["Complete.pls"], true, true, true, true, true, true, true, true, true, true);
+        StageAssertions.VerifyComposedDrop(fixture);
+        ComposedDropObservation[] wrong =
+        [
+            fixture with { ProfileFormats = ["musicolet:m3u8", "car-player:m3u8"] },
+            fixture with { AudioNames = ["present.flac", "missing.flac", "missing.flac"] },
+            fixture with { TrackOrder = ["present.flac", "missing.flac"] },
+            fixture with { M3u8 = "#EXTM3U\n" },
+            fixture with { Pls = "[playlist]\nNumberOfEntries=0\nVersion=2\n" },
+            fixture with { FullyPresentEntries = ["present.flac", "Complete.pls"] },
+            fixture with { RepeatKeepsEntryIds = false },
+            fixture with { DeviceUnchanged = false },
+            fixture with { RejectedDuplicateLayout = false },
+            fixture with { DropDisabledWithoutPeer = false },
+            fixture with { SelectedPeerLoadedActiveProfile = false },
+            fixture with { ExplicitProfileWasScoped = false },
+            fixture with { PreviewKeptStagedPlan = false },
+            fixture with { LeavingPeerClearedSelection = false },
+            fixture with { ReturningPeerRestoredDefaultPlan = false },
+            fixture with { OwnersStopped = false }
+        ];
+        Assert.All(wrong, observation => Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyComposedDrop(observation)));
+    }
+
     /// <summary>Checks that new observations advance the status revision and unrelated commands preserve them.</summary>
     /// <remarks>2026-11-24: Distinguish persisted Android share status from historical pairing receipts for FR-FILESYNC-001#ac-layouts.</remarks>
     [Fact]
@@ -219,7 +273,7 @@ public sealed class DevicePlaylistStageMockTests
     public void HostStartupAssertionsRejectCrossShareAndMissingWorker()
     {
         var fixture = new HostStartupObservation(true, ["musicolet", "poweramp"], "playlists/First.m3u8", "playlists/Second.m3u8",
-            true, true, ["android-a", "android-b"], true, 401, true, true);
+            true, true, ["android-a", "android-b"], true, 401, true, true, true, true, true, true, true, true);
         StageAssertions.VerifyHostStartup(fixture);
         Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { Started = false }));
         Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { AvailableProfiles = ["musicolet"] }));
@@ -232,6 +286,12 @@ public sealed class DevicePlaylistStageMockTests
         Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { UnauthorizedStatus = 200 }));
         Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { StoreReopened = false }));
         Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { OverlapRejected = false }));
+        Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { IdleBeforePublication = false }));
+        Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { PublicationTrackedReceiver = false }));
+        Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { TerminalTransferStoppedPolling = false }));
+        Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { PeerChangeClearedTransfer = false }));
+        Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { ShutdownCancelledTransferRead = false }));
+        Assert.ThrowsAny<XunitException>(() => StageAssertions.VerifyHostStartup(fixture with { VerifiedCompletionRaisedAlert = false }));
     }
 
     /// <summary>Proves the desktop transfer assertions reject scope, replay and progress errors before implementation.</summary>

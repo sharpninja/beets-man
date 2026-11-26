@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <g id="evening-queue">
+      <use href="app-chrome.svg#player-header" />
+      <use href="app-chrome.svg#secondary-navigation-background" />
+      <use href="navigation.svg#player-queue" />
+      <text x="36" y="160" font-size="29" fill="#202724" font-weight="700">Queue</text>
+      <text x="36" y="185" font-size="13" fill="#4c5953">Playlist: Evening Queue · 4 tracks</text>
+      <use href="transport.svg#desktop-transport-icons" />
+      <rect x="36" y="210" width="1048" height="82" rx="6" fill="#1e312a" />
+      <rect x="52" y="224" width="54" height="54" rx="4" fill="#cbd9cd" />
+      <circle cx="88.72" cy="239.12" r="5.4" fill="#edf2df" />
+      <path d="M56.32 265.58 73.06 247.76 82.24 256.94 89.80 248.30 101.14 265.58Z" fill="#587363" stroke="#587363" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M58.48 270.44h41.52" stroke="#edf2df" stroke-width="2" />
+      <text x="122" y="247" font-size="16" fill="#ffffff" font-weight="700">Harbor Lights</text>
+      <text x="122" y="269" font-size="12" fill="#d7e6de">Lena Vale · Playing on Deck A</text>
+      <rect x="923" y="233" width="143" height="37" rx="5" fill="#2b473b" stroke="#5a7968" />
+      <g transform="translate(985.5 242.5) scale(0.75)" color="#ffffff" data-button-icon="repeat-off" role="img" aria-label="Repeat: off">
+        <use href="icons.svg#repeat-off" />
+      </g>
+      <rect x="36" y="312" width="1048" height="206" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+      <rect x="37" y="313" width="1046" height="32" rx="4" fill="#e9eeea" />
+      <g font-size="12" fill="#4c5953" font-weight="700">
+        <text x="48" y="334">Move</text>
+        <text x="121" y="334">Track</text>
+        <text x="439" y="334">Artist</text>
+        <text x="702" y="334">Album</text>
+        <text x="980" y="334">Length</text>
+      </g>
+      <rect x="37" y="346" width="1046" height="42" fill="#e0ede4" />
+      <rect x="37" y="346" width="3" height="42" fill="#235943" />
+      <rect x="37" y="475" width="1046" height="42" fill="#fafbf9" />
+      <path d="M37 346h1046 M37 389h1046 M37 432h1046 M37 475h1046" fill="none" stroke="#d4dbd5" />
+      <g font-size="13" fill="#202724">
+        <text x="48" y="371.5">⋮⋮ 1</text>
+        <text x="121" y="371.5">Low Current</text>
+        <text x="439" y="371.5">Juniper Static</text>
+        <text x="702" y="371.5">Low Current</text>
+        <text x="980" y="371.5">3:43</text>
+        <text x="48" y="414.5">⋮⋮ 2</text>
+        <text x="121" y="414.5">Branch Signal</text>
+        <text x="439" y="414.5">The Switchyards</text>
+        <text x="702" y="414.5">Quiet Stations</text>
+        <text x="980" y="414.5">4:02</text>
+        <text x="48" y="457.5">⋮⋮ 3</text>
+        <text x="121" y="457.5">Harbor Lights</text>
+        <text x="439" y="457.5">Lena Vale</text>
+        <text x="702" y="457.5">Northern Lines</text>
+        <text x="980" y="457.5">4:26</text>
+        <text x="48" y="500.5">⋮⋮ 4</text>
+        <text x="121" y="500.5">Night Crossing</text>
+        <text x="439" y="500.5">Lena Vale</text>
+        <text x="702" y="500.5">Northern Lines</text>
+        <text x="980" y="500.5">3:58</text>
+      </g>
+      <g data-control-id="SCR13.C01" role="img" aria-label="Reorder">
+        <rect x="1002" y="544" width="82" height="37" rx="5" fill="#235943" />
+        <g transform="translate(1034 553.5) scale(0.75)" color="#ffffff" data-button-icon="reorder">
+          <use href="icons.svg#reorder" />
+        </g>
+      </g>
+      <g data-control-id="SCR13.C02" role="img" aria-label="Remove">
+        <rect x="909" y="544" width="83" height="37" rx="5" fill="#ffffff" stroke="#d4dbd5" />
+        <g transform="translate(941.5 553.5) scale(0.75)" color="#202724" data-button-icon="trash">
+          <use href="icons.svg#trash" />
+        </g>
+      </g>
+    </g>
+    <text id="auto-save-label" x="894" y="163" font-size="14" fill="#202724" font-weight="700">Auto-save playlist</text>
+    <g id="auto-save-off" data-control-id="SCR13.C03" role="switch" aria-label="Auto-save playlist" aria-checked="false">
+      <use href="#auto-save-label" />
+      <rect x="1040" y="146" width="44" height="23" rx="11.5" fill="#67776f" />
+      <circle cx="1052" cy="157.5" r="8" fill="#ffffff" />
+    </g>
+    <g id="auto-save-on" data-control-id="SCR13.C03" role="switch" aria-label="Auto-save playlist" aria-checked="true">
+      <use href="#auto-save-label" />
+      <rect x="1040" y="146" width="44" height="23" rx="11.5" fill="#235943" />
+      <circle cx="1072" cy="157.5" r="8" fill="#ffffff" />
+    </g>
+  </defs>
+</svg>

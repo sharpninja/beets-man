@@ -9,6 +9,7 @@ public sealed record PlaybackStrategySelection(string StrategyId, Guid? ProfileI
 
 /// <summary>Owns development of a local CLI profile and review of an engine switch.</summary>
 /// <remarks>2026-11-24: Bind FR-CLI-001#ac-profiles and ac-switch while sharing the existing playback session.</remarks>
+/// <remarks>2026-11-25: Confirm the proposal through the session owner even when its audio clock advances.</remarks>
 public sealed partial class CliPlaybackViewModel(PresentationServices services, Guid ownerId, PlaybackPresentation playback)
     : PresentationViewModel(services, ownerId)
 {
@@ -29,8 +30,7 @@ public sealed partial class CliPlaybackViewModel(PresentationServices services, 
     private Task ChooseEngineAsync(PlaybackStrategySelection selection, CancellationToken token) =>
         ReadAsync(new GetPlaybackStrategyProposal(playback.SessionId, selection.StrategyId, selection.ProfileId), "proposal",
             result => Proposal = result, token, result => result.SessionId == playback.SessionId &&
-                result.StrategyId == selection.StrategyId && result.ProfileId == selection.ProfileId &&
-                result.Revision >= (playback.State?.Revision ?? 0));
+                result.StrategyId == selection.StrategyId && result.ProfileId == selection.ProfileId);
 
     [RelayCommand]
     private Task EditProfileAsync(Guid? profileId, CancellationToken token) => ReadAsync(new GetCliProfile(profileId), "profile", result =>
@@ -75,5 +75,5 @@ public sealed partial class CliPlaybackViewModel(PresentationServices services, 
 
     private bool CanValidate() => IsActive && Profile is not null;
     private bool CanSave() => CanWrite && Profile is not null;
-    private bool CanSwitch() => CanWrite && Proposal is not null;
+    private bool CanSwitch() => CanWrite && Proposal is { RequiresConfirmation: true };
 }

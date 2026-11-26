@@ -2,6 +2,7 @@ using System.Net.Http.Headers;
 using System.Text.Json;
 using BeetsMan.Host.Application;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BeetsMan.Host.Api;
 
@@ -10,9 +11,10 @@ namespace BeetsMan.Host.Api;
 internal static class HostLibraryMutation
 {
     /// <summary>Authenticates and invokes a typed host command, preserving its scoped problem codes.</summary>
+    /// <remarks>2026-11-24: Allow a scoped job lookup to report absence for FR-BEETS-001#ac-import.</remarks>
     internal static async Task<IResult> RunAsync<TRequest, TResponse>(Guid libraryId, HttpContext context,
         IHostAccessTokenVerifier verifier, Func<Guid, AuthenticatedHostInstance, TRequest, CancellationToken, Task<HostOutcome<TResponse>>> execute,
-        string operation, CancellationToken token) where TRequest : class
+        string operation, CancellationToken token, string? notFoundCode = null) where TRequest : class
     {
         var (caller, failure) = await AuthorizeAsync(libraryId, context, verifier, operation, token).ConfigureAwait(false);
         if (failure is not null)
@@ -27,11 +29,13 @@ internal static class HostLibraryMutation
             return Problem($"invalid-{operation}-json", StatusCodes.Status400BadRequest);
 
         var result = await execute(libraryId, caller!, command, token).ConfigureAwait(false);
-        return ToHttpResult(result, operation);
+        return result is HostOutcome<TResponse>.Rejected rejected && rejected.Code == notFoundCode
+            ? Problem(rejected.Code, StatusCodes.Status404NotFound) : ToHttpResult(result, operation);
     }
 
     /// <summary>Checks the authenticated HTTPS library scope used by both queries and commands.</summary>
     /// <remarks>2026-11-24: Preserve the shared registration boundary for FR-FILESYNC-001#ac-layouts and ac-playlist-drop.</remarks>
+    /// <remarks>2026-11-25: Observe authenticated same-library activity for the SCR42 roster under FR-RECORDS-001#ac-register.</remarks>
     internal static async Task<(AuthenticatedHostInstance? Caller, IResult? Failure)> AuthorizeAsync(Guid libraryId, HttpContext context,
         IHostAccessTokenVerifier verifier, string operation, CancellationToken token)
     {
@@ -43,7 +47,11 @@ internal static class HostLibraryMutation
             context.Response.Headers.WWWAuthenticate = "Bearer";
             return (null, Problem($"{operation}-credentials-required", StatusCodes.Status401Unauthorized));
         }
-        return caller.LibraryId == libraryId ? (caller, null) : (null, Problem($"{operation}-access-denied", StatusCodes.Status403Forbidden));
+        if (caller.LibraryId != libraryId)
+            return (null, Problem($"{operation}-access-denied", StatusCodes.Status403Forbidden));
+        if (context.RequestServices.GetService<IHostDesktopActivity>() is { } activity)
+            await activity.ObserveAsync(libraryId, caller.InstanceId, token).ConfigureAwait(false);
+        return (caller, null);
     }
 
     /// <summary>Maps typed library outcomes to a versioned HTTPS result.</summary>

@@ -4,20 +4,22 @@ using System.Text;
 using BeetsMan.Host.Adapters.Syncthing;
 using BeetsMan.Host.Api;
 using BeetsMan.Host.Application;
+using BeetsMan.LocalCredentials;
 
 namespace BeetsMan.Host.Bootstrap;
 
 /// <summary>Resolves configured credentials into the host's independent identity and Syncthing services.</summary>
 /// <remarks>2026-11-24: Keep tokens in the OS store and authenticate their exact instance for FR-RECORDS-001#ac-register and FR-FILESYNC-001#ac-safety.</remarks>
+/// <remarks>2026-11-25: Bind Operator privileges to provisioned credentials for FR-RECORDS-001#ac-register.</remarks>
 public sealed class LibraryHostCredentials : IHostAccessTokenVerifier, IRegisteredSyncthingTokenProvider, IHostSenderTokenProvider
 {
     private readonly Guid libraryId;
     private readonly ILocalHostCredentialVault vault;
-    private readonly FrozenDictionary<string, Guid> clientFingerprints;
+    private readonly FrozenDictionary<string, AuthenticatedHostInstance> clientFingerprints;
     private readonly FrozenDictionary<Guid, string> receivers;
     private readonly FrozenDictionary<string, string> senders;
 
-    private LibraryHostCredentials(Guid libraryId, ILocalHostCredentialVault vault, Dictionary<string, Guid> clients,
+    private LibraryHostCredentials(Guid libraryId, ILocalHostCredentialVault vault, Dictionary<string, AuthenticatedHostInstance> clients,
         Dictionary<Guid, string> receivers, Dictionary<string, string> senders)
     {
         this.libraryId = libraryId;
@@ -32,6 +34,7 @@ public sealed class LibraryHostCredentials : IHostAccessTokenVerifier, IRegister
         ILocalHostCredentialVault vault, CancellationToken token)
     {
         var clients = new Dictionary<Guid, string>();
+        var operators = new HashSet<Guid>();
         var receivers = new Dictionary<Guid, string>();
         var senders = new Dictionary<string, string>(StringComparer.Ordinal);
         foreach (var client in configured.Clients.IsDefault ? [] : configured.Clients)
@@ -39,6 +42,8 @@ public sealed class LibraryHostCredentials : IHostAccessTokenVerifier, IRegister
             if (client is null)
                 throw new ArgumentException("A desktop credential reference is missing.");
             AddReference(clients, client.InstanceId, client.Reference);
+            if (client.CanManageRegistrations)
+                operators.Add(client.InstanceId);
         }
         foreach (var receiver in configured.Receivers.IsDefault ? [] : configured.Receivers)
         {
@@ -48,7 +53,7 @@ public sealed class LibraryHostCredentials : IHostAccessTokenVerifier, IRegister
         }
         foreach (var sender in configured.Senders.IsDefault ? [] : configured.Senders)
         {
-            if (sender is null || string.IsNullOrWhiteSpace(sender.SyncthingDeviceId) || !IsReference(sender.Reference) ||
+            if (sender is null || string.IsNullOrWhiteSpace(sender.SyncthingDeviceId) || !OperatingSystemCredentialLookup.IsReference(sender.Reference) ||
                 !senders.TryAdd(sender.SyncthingDeviceId, sender.Reference))
                 throw new ArgumentException("Host sender credential references must be valid and unique.");
         }
@@ -64,14 +69,14 @@ public sealed class LibraryHostCredentials : IHostAccessTokenVerifier, IRegister
                 throw new ArgumentException("Each configured PC mirror needs sender and receiver credential references.");
         }
 
-        var fingerprints = new Dictionary<string, Guid>(StringComparer.Ordinal);
+        var fingerprints = new Dictionary<string, AuthenticatedHostInstance>(StringComparer.Ordinal);
         foreach (var (instance, reference) in clients)
         {
             token.ThrowIfCancellationRequested();
             var secret = await vault.ReadAsync(reference, token).ConfigureAwait(false);
-            if (!IsToken(secret))
+            if (!OperatingSystemCredentialLookup.IsBearerToken(secret))
                 throw new InvalidOperationException("A configured desktop credential is missing or malformed.");
-            if (!fingerprints.TryAdd(Fingerprint(secret!), instance))
+            if (!fingerprints.TryAdd(Fingerprint(secret!), new(host.LibraryId, instance, operators.Contains(instance))))
                 throw new InvalidOperationException("Configured desktops must have distinct credentials.");
         }
         return new(host.LibraryId, vault, fingerprints, receivers, senders);
@@ -81,8 +86,8 @@ public sealed class LibraryHostCredentials : IHostAccessTokenVerifier, IRegister
     public ValueTask<AuthenticatedHostInstance?> VerifyAsync(string bearerToken, CancellationToken cancellationToken)
     {
         cancellationToken.ThrowIfCancellationRequested();
-        return ValueTask.FromResult(IsToken(bearerToken) && clientFingerprints.TryGetValue(Fingerprint(bearerToken), out var instance)
-            ? new AuthenticatedHostInstance(libraryId, instance) : null);
+        return ValueTask.FromResult(OperatingSystemCredentialLookup.IsBearerToken(bearerToken)
+            ? clientFingerprints.GetValueOrDefault(Fingerprint(bearerToken)) : null);
     }
 
     /// <inheritdoc />
@@ -98,20 +103,14 @@ public sealed class LibraryHostCredentials : IHostAccessTokenVerifier, IRegister
         if (requestedLibrary != libraryId || reference is null)
             return null;
         var credential = await vault.ReadAsync(reference, token).ConfigureAwait(false);
-        return IsToken(credential) ? credential : null;
+        return OperatingSystemCredentialLookup.IsBearerToken(credential) ? credential : null;
     }
 
     private static void AddReference(Dictionary<Guid, string> entries, Guid id, string reference)
     {
-        if (id == Guid.Empty || !IsReference(reference) || !entries.TryAdd(id, reference))
+        if (id == Guid.Empty || !OperatingSystemCredentialLookup.IsReference(reference) || !entries.TryAdd(id, reference))
             throw new ArgumentException("Host credential references must use valid and unique instance IDs.");
     }
-
-    internal static bool IsReference(string? reference) => reference is { Length: > 0 and <= 256 } &&
-        char.IsAsciiLetterOrDigit(reference[0]) && reference.All(character => char.IsAsciiLetterOrDigit(character) || "-._/:".Contains(character));
-
-    private static bool IsToken(string? token) => token is { Length: > 0 and <= 2048 } &&
-        token.All(character => char.IsAsciiLetterOrDigit(character) || "-._~+/=".Contains(character));
 
     private static string Fingerprint(string token)
     {

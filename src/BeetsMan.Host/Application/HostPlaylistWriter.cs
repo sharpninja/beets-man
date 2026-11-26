@@ -36,6 +36,8 @@ public sealed class HostPlaylistWriter(IHostPlaylistUnitOfWork writes)
         SavedHostPlaylist playlist;
         if (command.PlaylistId is { } playlistId)
         {
+            if (repositories.Publications.IsPlaylistReserved(libraryId, playlistId))
+                return new HostOutcome<PlaylistSaveResponse>.Rejected("playlist-reserved-by-batch", Conflict: true);
             var current = repositories.Playlists.Find(libraryId, playlistId);
             if (current is null || current.Revision != command.ExpectedRevision)
                 return new HostOutcome<PlaylistSaveResponse>.Rejected("stale-saved-playlist", current?.Revision, Conflict: true);
@@ -55,7 +57,8 @@ public sealed class HostPlaylistWriter(IHostPlaylistUnitOfWork writes)
         return new HostOutcome<PlaylistSaveResponse>.Success(receipt);
     }
 
-    private static bool IsValid(PlaylistSaveRequest command) =>
+    /// <summary>Checks the playlist intent for FR-RECORDS-001#ac-replicate and FR-LIBRARY-002#ac-batch-commit.</summary>
+    internal static bool IsValid(PlaylistSaveRequest command) =>
         command.OperationId != Guid.Empty && command.Source is { SourceId: var source } && source != Guid.Empty &&
         Enum.IsDefined(command.Source.Kind) && !string.IsNullOrWhiteSpace(command.Name) && !command.Entries.IsDefault &&
         (command.PlaylistId is { } playlistId ? playlistId != Guid.Empty && command.ExpectedRevision is > 0 : !command.ExpectedRevision.HasValue) &&

@@ -778,7 +778,8 @@
         "FR-PLAYER-001#ac-transport",
         "FR-PLAYER-001#ac-mix",
         "FR-PLAYER-001#ac-fade",
-        "FR-PLAYER-001#ac-modes"
+        "FR-PLAYER-001#ac-modes",
+        "FR-PLAYER-001#ac-queue-autosave"
       ],
       "tests": [
         "TEST-PLAYER-001",
@@ -786,12 +787,15 @@
       ],
       "controls": {
         "SCR13.C01": "Reorder",
-        "SCR13.C02": "Remove"
+        "SCR13.C02": "Remove",
+        "SCR13.C03": "Auto-save playlist"
       },
       "states": {
         "SCR13.S0": "Ready",
         "SCR13.STB04-2": "The upcoming order changes while Harbor Lights continues.",
-        "SCR13.STB04-9": "The elapsed time, thumb, and played portion update together while the queue stays visible."
+        "SCR13.STB04-9": "The elapsed time, thumb, and played portion update together. Evening Queue and its off switch stay visible.",
+        "SCR13.STB04-10": "Queue shows the saved track order and the Auto-save playlist switch, initially off.",
+        "SCR13.STB04-11": "Auto-save is on for subsequent changes to Evening Queue."
       },
       "control_specs": {
         "SCR13.C01": {
@@ -801,6 +805,10 @@
         "SCR13.C02": {
           "kind": "action",
           "behavior": "Remove"
+        },
+        "SCR13.C03": {
+          "kind": "action",
+          "behavior": "Toggle auto-save for subsequent queue edits while a saved playlist backs the queue."
         }
       },
       "state_specs": {
@@ -813,9 +821,19 @@
           "step_id": "STB04-2"
         },
         "SCR13.STB04-9": {
-          "description": "The elapsed time, thumb, and played portion update together while the queue stays visible.",
+          "description": "The elapsed time, thumb, and played portion update together. Evening Queue and its off switch stay visible.",
           "asset": "docs/design/frames/STB04/09-shared-player-track-seek.svg",
           "step_id": "STB04-9"
+        },
+        "SCR13.STB04-10": {
+          "description": "Queue shows the saved track order and the Auto-save playlist switch, initially off.",
+          "asset": "docs/design/frames/STB04/10-playlist-queue-loaded.svg",
+          "step_id": "STB04-10"
+        },
+        "SCR13.STB04-11": {
+          "description": "Auto-save is on for subsequent changes to Evening Queue.",
+          "asset": "docs/design/frames/STB04/11-playlist-queue-auto-save-enabled.svg",
+          "step_id": "STB04-11"
         }
       }
     },
@@ -3666,7 +3684,8 @@
         "FR-PLAYER-001#ac-transport",
         "FR-PLAYER-001#ac-mix",
         "FR-PLAYER-001#ac-fade",
-        "FR-PLAYER-001#ac-modes"
+        "FR-PLAYER-001#ac-modes",
+        "FR-PLAYER-001#ac-queue-autosave"
       ],
       "tests": [
         "TEST-PLAYER-001",
@@ -3698,7 +3717,7 @@
           "next_success": "STB04-3",
           "next_by_path": {
             "Queue, mix, and change presentation": "STB04-3",
-            "Seek from the shared player": "STB04-9"
+            "Seek from the shared player": "STB04-10"
           }
         },
         {
@@ -3786,7 +3805,33 @@
           "asset": "docs/design/frames/STB04/09-shared-player-track-seek.svg",
           "actor": "Listener",
           "action": "Drag the shared player’s seek thumb to 2:45",
-          "result": "The elapsed time, thumb, and played portion update together while the queue stays visible.",
+          "result": "The elapsed time, thumb, and played portion update together. Evening Queue and its off switch stay visible.",
+          "next_success": "STB04-11",
+          "next_by_path": {
+            "Seek from the shared player": "STB04-11"
+          }
+        },
+        {
+          "step_id": "STB04-10",
+          "screen_id": "SCR13",
+          "state_id": "SCR13.STB04-10",
+          "asset": "docs/design/frames/STB04/10-playlist-queue-loaded.svg",
+          "actor": "Listener",
+          "action": "Load Evening Queue from Saved playlists",
+          "result": "Queue shows the saved track order and the Auto-save playlist switch, initially off.",
+          "next_success": "STB04-9",
+          "next_by_path": {
+            "Seek from the shared player": "STB04-9"
+          }
+        },
+        {
+          "step_id": "STB04-11",
+          "screen_id": "SCR13",
+          "state_id": "SCR13.STB04-11",
+          "asset": "docs/design/frames/STB04/11-playlist-queue-auto-save-enabled.svg",
+          "actor": "Listener",
+          "action": "Turn on Auto-save playlist",
+          "result": "Auto-save is on for subsequent changes to Evening Queue.",
           "next_success": "END",
           "next_by_path": {
             "Seek from the shared player": "END"
@@ -3812,7 +3857,9 @@
           "steps": [
             "STB04-1",
             "STB04-2",
-            "STB04-9"
+            "STB04-10",
+            "STB04-9",
+            "STB04-11"
           ]
         }
       ]

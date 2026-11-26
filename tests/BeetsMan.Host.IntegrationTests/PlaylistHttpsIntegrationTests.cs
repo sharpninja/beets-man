@@ -7,10 +7,12 @@ using System.Net.Security;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
+using BeetsMan.Desktop.Adapters.Configuration;
 using BeetsMan.Desktop.Adapters.Host;
 using BeetsMan.Desktop.Adapters.Persistence;
 using BeetsMan.Desktop.Application.Dispatch;
 using BeetsMan.Desktop.Application.Playback;
+using BeetsMan.Desktop.Bootstrap;
 using BeetsMan.Desktop.Presentation;
 using BeetsMan.Host.Adapters.Persistence;
 using BeetsMan.Host.Adapters.Syncthing;
@@ -464,6 +466,7 @@ public sealed partial class PlaylistHttpsIntegrationTests : IDisposable
 
     /// <summary>Starts the shared host from configuration and sends two independent Android exports through its real workers.</summary>
     /// <remarks>2026-11-24: Bind the FR-FILESYNC-001#ac-layouts and ac-safety startup assertions for TEST-FILESYNC-002.</remarks>
+    /// <remarks>2026-11-25: Observe the registered workspace following the published transfer and stopping its reads for FR-FILESYNC-001#ac-safety.</remarks>
     [Fact]
     public async Task HostStartupComposesIndependentAndroidExportsAndRestoresTheirReceipts()
     {
@@ -499,12 +502,14 @@ public sealed partial class PlaylistHttpsIntegrationTests : IDisposable
         string[] profiles;
         bool started;
         int unauthorized;
+        bool idle, followed, stoppedAtTerminal, cleared, cancelled, alerted;
         await using (var host = Startable(settings))
         {
             await host.StartAsync(Token);
             var address = new Uri(host.Urls.Single());
             started = address.Scheme == Uri.UriSchemeHttps;
-            using var client = new HttpClient(CreateClientHandler(certificate)) { BaseAddress = address };
+            using var tracking = new TransferReadTrackingHandler(CreateClientHandler(certificate));
+            using var client = new HttpClient(tracking) { BaseAddress = address };
             using var missing = await client.GetAsync(DeviceExportQueryRoutes.LayoutsPath(library, first.DeviceId), Token);
             unauthorized = (int)missing.StatusCode;
             var context = new RequestContext(Guid.NewGuid(), instance);
@@ -512,11 +517,37 @@ public sealed partial class PlaylistHttpsIntegrationTests : IDisposable
             var exports = new HttpDevicePlaylistExportHost(client, address, library, access);
             var layouts = await exports.ReadLayoutsAsync(new(first.DeviceId), context, Token);
             profiles = [.. DesktopValue(layouts).Profiles.Select(profile => profile.ProfileId)];
-            var routes = new DesktopSync.DeviceExportTransferHandlers(exports).Register(new DesktopSync.DeviceExportCommandHandlers(exports)
-                .Register(new RequestDispatcher.Builder().RegisterCommand(new DesktopSync.StagePlaylistForDeviceHandler(exports)))).Build();
+            await using var desktop = new DesktopStartup(JsonBootstrapFile.ResolveDefaults(Path.Combine(root, "desktop"), music), [],
+                library, instance, host: new(address, client, access), presentationScheduler: new InlineScheduler());
+            var models = Assert.IsType<DesktopPresentation>(DesktopValue(await desktop.StartAsync(Token)).Presentation);
+            var notification = new TaskCompletionSource<DesktopAlert>(TaskCreationOptions.RunContinuationsAsynchronously);
+            models.Alerts.Raised += alert => notification.TrySetResult(alert);
+            var complete = new TaskCompletionSource<DesktopSync.MediaTransferState>(TaskCreationOptions.RunContinuationsAsynchronously);
+            models.Sync.PropertyChanged += (_, change) =>
+            {
+                if (change.PropertyName == nameof(MediaSyncViewModel.Transfer) && models.Sync.Transfer is { Phase: DesktopSync.TransferPhase.Complete } transfer)
+                    complete.TrySetResult(transfer);
+            };
+            await models.Sync.LoadCommand.ExecuteAsync(first.DeviceId);
+            idle = tracking.Reads == 0 && models.Sync.Transfer is null;
             firstReceipt = await PublishAsync(first, "First", "musicolet", 2);
+            firstComplete = await complete.Task.WaitAsync(TimeSpan.FromSeconds(12), Token);
+            followed = firstComplete.TransferId == firstReceipt.TransferId && tracking.Reads > 0 && !models.Sync.IsInteractionBlocked;
+            var delivered = await notification.Task.WaitAsync(TimeSpan.FromSeconds(5), Token);
+            alerted = delivered.Kind == DesktopAlertKind.SyncCompleted && delivered.SubjectId == firstComplete.TransferId;
+            var reads = tracking.Reads;
+            await Task.Delay(TimeSpan.FromMilliseconds(1250), Token);
+            stoppedAtTerminal = tracking.Reads == reads;
+
+            await models.Sync.LoadCommand.ExecuteAsync(second.DeviceId);
+            cleared = models.Sync.Transfer is null;
+            tracking.HoldNextRead();
             secondReceipt = await PublishAsync(second, "Second", "poweramp", 3);
-            firstComplete = await WaitForReceiverAsync(firstReceipt.TransferId!.Value);
+            await tracking.Entered.Task.WaitAsync(TimeSpan.FromSeconds(8), Token);
+            DesktopValue(await desktop.StopAsync(Token));
+            var closedReads = tracking.Reads;
+            await models.Sync.InspectTransferCommand.ExecuteAsync(secondReceipt.TransferId!.Value);
+            cancelled = tracking.Cancelled.Task.IsCompletedSuccessfully && !models.Sync.IsActive && tracking.Reads == closedReads;
             secondComplete = await WaitForReceiverAsync(secondReceipt.TransferId!.Value);
             await host.StopAsync(Token);
 
@@ -527,23 +558,25 @@ public sealed partial class PlaylistHttpsIntegrationTests : IDisposable
                 Assert.Equal(HttpStatusCode.OK, result.StatusCode);
                 var saved = await result.Content.ReadFromJsonAsync<PlaylistSaveResponse>(Token);
                 Assert.NotNull(saved);
-                var plan = DesktopValue(await routes.SendAsync(new DesktopSync.StagePlaylistForDevice(saved.PlaylistId, target.DeviceId, profile,
-                    profileRevision, null, null), new(context, Guid.NewGuid()), Token));
-                var preview = DesktopValue(await routes.SendAsync(new DesktopSync.PrepareDeviceExportPreview(target.DeviceId, profile, profileRevision,
-                    plan.PlanId, plan.PlanRevision), new(context, Guid.NewGuid()), Token));
+                Assert.Equal(target.DeviceId, models.Sync.SelectedPeerId);
+                var layout = models.DeviceExport.Layouts!.Profiles.Single(item => item.ProfileId == profile && item.Revision == profileRevision);
+                await models.DeviceExport.SelectStagingProfileCommand.ExecuteAsync(layout);
+                await models.SyncList.DropSavedPlaylistCommand.ExecuteAsync(saved.PlaylistId);
+                Assert.Null(models.SyncList.Failure);
+                await models.DeviceExport.PreviewCommand.ExecuteAsync(new LayoutPreviewInput(layout));
+                var preview = Assert.IsType<DesktopSync.DeviceExportPreview>(models.DeviceExport.PreviewResult);
                 Assert.Empty(preview.BlockingIssues);
-                var publication = DesktopValue(await routes.SendAsync(new DesktopSync.PublishDeviceExport(preview.Plan.PlanId!.Value,
-                    preview.Plan.PlanRevision!.Value), new(context, Guid.NewGuid()), Token));
-                return Assert.IsType<DesktopSync.DeviceExportSubmission.Published>(publication).Receipt;
+                await models.DeviceExport.PublishCommand.ExecuteAsync(null);
+                return Assert.IsType<DesktopSync.ExportPublicationReceipt>(models.DeviceExport.Publication);
             }
 
             async Task<DesktopSync.MediaTransferState> WaitForReceiverAsync(Guid transfer)
             {
-                var current = DesktopValue(await routes.QueryAsync(new DesktopSync.GetMediaTransfer(transfer), context, Token));
+                var current = DesktopValue(await exports.ReadTransferAsync(new(transfer), context, Token));
                 for (var attempt = 0; attempt < 100 && current.Phase is DesktopSync.TransferPhase.Queued or DesktopSync.TransferPhase.Running; attempt++)
                 {
                     await Task.Delay(100, Token);
-                    current = DesktopValue(await routes.QueryAsync(new DesktopSync.GetMediaTransfer(transfer), context, Token));
+                    current = DesktopValue(await exports.ReadTransferAsync(new(transfer), context, Token));
                 }
                 Assert.True(current.Phase == DesktopSync.TransferPhase.Complete, $"Transfer {current.TransferId} reached {current.Phase} with {current.FailureCode}.");
                 return current;
@@ -571,7 +604,7 @@ public sealed partial class PlaylistHttpsIntegrationTests : IDisposable
             !File.Exists(Path.Combine(exportA, secondFile)), !File.Exists(Path.Combine(exportB, firstFile)), [.. syncthing.Scanned.Order(StringComparer.Ordinal)],
             firstComplete.Phase == DesktopSync.TransferPhase.Complete && secondComplete.Phase == DesktopSync.TransferPhase.Complete &&
             firstComplete.ShareId != secondComplete.ShareId && firstComplete.BytesTransferred > 0 && secondComplete.BytesTransferred > 0,
-            unauthorized, storeReopened, overlapRejected));
+            unauthorized, storeReopened, overlapRejected, idle, followed, stoppedAtTerminal, cleared, cancelled, alerted));
 
         WebApplication Startable(LibraryHostOptions options)
         {
@@ -999,6 +1032,8 @@ public sealed partial class PlaylistHttpsIntegrationTests : IDisposable
         return host;
     }
 
+    /// <summary>Creates a caller-owned loopback certificate for the host HTTPS fixtures.</summary>
+    /// <remarks>2026-11-26: Supply a Schannel-compatible key for TEST-BEETS-002 and TEST-RECORDS-002, preserving the exact certificate pin.</remarks>
     private static X509Certificate2 CreateCertificate()
     {
         using var key = RSA.Create(2048);
@@ -1006,7 +1041,22 @@ public sealed partial class PlaylistHttpsIntegrationTests : IDisposable
         var names = new SubjectAlternativeNameBuilder();
         names.AddIpAddress(IPAddress.Loopback);
         request.CertificateExtensions.Add(names.Build());
-        return request.CreateSelfSigned(DateTimeOffset.UtcNow.AddMinutes(-1), DateTimeOffset.UtcNow.AddHours(1));
+        var certificate = request.CreateSelfSigned(DateTimeOffset.UtcNow.AddMinutes(-1), DateTimeOffset.UtcNow.AddHours(1));
+        if (!OperatingSystem.IsWindows())
+            return certificate;
+
+        using (certificate)
+        {
+            var bundle = certificate.Export(X509ContentType.Pkcs12);
+            try
+            {
+                return X509CertificateLoader.LoadPkcs12(bundle, null, X509KeyStorageFlags.UserKeySet);
+            }
+            finally
+            {
+                CryptographicOperations.ZeroMemory(bundle);
+            }
+        }
     }
 
     private static HttpClientHandler CreateClientHandler(X509Certificate2 certificate) => new()
@@ -1203,6 +1253,37 @@ public sealed partial class PlaylistHttpsIntegrationTests : IDisposable
             (peer == "sender" || peer == folder) && Authorized(peer, context);
 
         private static bool Authorized(string peer, HttpContext context) => context.Request.Headers.Authorization == $"Bearer fixture-sync-{peer}";
+    }
+
+    /// <summary>Observes actual transfer reads and holds one until workspace shutdown cancels it.</summary>
+    /// <remarks>2026-11-25: Prove the lifetime and selected scope of FR-FILESYNC-001#ac-safety transfer reads.</remarks>
+    private sealed class TransferReadTrackingHandler(HttpMessageHandler inner) : DelegatingHandler(inner)
+    {
+        private int reads;
+        private int holdNext;
+        internal int Reads => Volatile.Read(ref reads);
+        internal TaskCompletionSource Entered { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        internal TaskCompletionSource Cancelled { get; } = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        internal void HoldNextRead() => Interlocked.Exchange(ref holdNext, 1);
+
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
+        {
+            if (request.Method == HttpMethod.Get && request.RequestUri?.AbsolutePath.Contains("/device-exports/transfers/", StringComparison.Ordinal) == true)
+            {
+                Interlocked.Increment(ref reads);
+                if (Interlocked.Exchange(ref holdNext, 0) != 0)
+                {
+                    Entered.TrySetResult();
+                    try { await Task.Delay(Timeout.InfiniteTimeSpan, token); }
+                    catch (OperationCanceledException) when (token.IsCancellationRequested)
+                    {
+                        Cancelled.TrySetResult();
+                        throw;
+                    }
+                }
+            }
+            return await base.SendAsync(request, token);
+        }
     }
 
     private sealed class TransferSender : IDeviceExportSenderScanner

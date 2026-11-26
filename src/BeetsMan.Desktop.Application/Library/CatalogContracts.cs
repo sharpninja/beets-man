@@ -20,9 +20,10 @@ public sealed record CatalogSort(CatalogSortKey Key, bool Descending = false);
 public enum TrackAvailability { Unknown, Downloaded, Pending, Unavailable }
 
 /// <summary>Represents one stable catalog record and its presentation metadata.</summary>
+/// <remarks>2026-11-24: Expose the effective track path separately from physical playback availability for FR-LIBRARY-002#ac-batch-local and ac-batch-revert.</remarks>
 public sealed record CatalogRow(Guid Id, string Title, ImmutableArray<Guid> TrackIds, string? Artist = null,
     string? Album = null, string? Genre = null, int? TrackNumber = null, int? Rating = null, TimeSpan? Duration = null,
-    TrackAvailability Availability = TrackAvailability.Unknown);
+    TrackAvailability Availability = TrackAvailability.Unknown, string? RelativePath = null);
 
 /// <summary>Contains one coherent page of catalog records.</summary>
 public sealed record CatalogPage(CatalogCategory Category, CatalogFilter Filter, CatalogSort Sort, long Revision,
@@ -42,3 +43,7 @@ public sealed record GetTrackAvailability(ImmutableArray<Guid> TrackIds) : IQuer
 
 /// <summary>Updates one track's favorite at its expected revision.</summary>
 public sealed record SetFavorite(Guid TrackId, bool IsFavorite, long ExpectedRevision) : ICommand<FavoriteState>;
+
+/// <summary>Reads a shared favorite with any pending local edit applied.</summary>
+/// <remarks>2026-11-25: Surface offline favorite state for FR-RECORDS-001#ac-offline.</remarks>
+public sealed record GetFavorite(Guid TrackId) : IQuery<FavoriteState>;

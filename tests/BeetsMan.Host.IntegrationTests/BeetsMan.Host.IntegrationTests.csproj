@@ -12,8 +12,49 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" PrivateAssets="all" />
     <ProjectReference Include="../../src/BeetsMan.Host/BeetsMan.Host.csproj" />
     <ProjectReference Include="../../src/BeetsMan.Desktop/BeetsMan.Desktop.csproj" />
+    <!-- 2026-11-26: Keep C4 and production mapping inputs in the portable TEST-RECORDS-002 binary for TR-RECORDS-ARCH-001#ac-litedb-c4-entities. -->
+    <EmbeddedResource Include="../../docs/architecture/litedb-entities.dsl" LogicalName="LiteDbParity.Model" />
+    <EmbeddedResource Include="LiteDbC4Mappings.txt" LogicalName="LiteDbParity.Mappings" />
+    <EmbeddedResource Include="LiteDbC4Relationships.txt" LogicalName="LiteDbParity.Relationships" />
+    <EmbeddedResource Include="../../src/BeetsMan.Desktop/Adapters/Persistence/LiteDb*.cs" LogicalName="LiteDbParity.Desktop.%(Filename)" />
+    <EmbeddedResource Include="../../src/BeetsMan.Host/Adapters/Persistence/LiteDb*.cs" LogicalName="LiteDbParity.Host.%(Filename)" />
     <Compile Include="../Shared/HostPlaylistAssertions.cs" Link="HostPlaylistAssertions.cs" />
+    <Compile Include="../Shared/DesktopRegistrationAssertions.cs" Link="DesktopRegistrationAssertions.cs" />
+    <Compile Include="../Shared/DesktopActivityAssertions.cs" Link="DesktopActivityAssertions.cs" />
+    <Compile Include="../Shared/BeetsLibrarySetupAssertions.cs" Link="BeetsLibrarySetupAssertions.cs" />
+    <Compile Include="../Shared/BeetsConfigurationAssertions.cs" Link="BeetsConfigurationAssertions.cs" />
+    <Compile Include="../Shared/ImportDefaultsEntryAssertions.cs" Link="ImportDefaultsEntryAssertions.cs" />
     <Compile Include="../Shared/PlaylistHttpAssertions.cs" Link="PlaylistHttpAssertions.cs" />
+    <Compile Include="../Shared/PlaylistReconnectAssertions.cs" Link="PlaylistReconnectAssertions.cs" />
     <Compile Include="../Shared/DevicePlaylistStageAssertions.cs" Link="DevicePlaylistStageAssertions.cs" />
+    <Compile Include="../Shared/ImportUploadAssertions.cs" Link="ImportUploadAssertions.cs" />
+    <Compile Include="../Shared/GuidedImportReviewAssertions.cs" Link="GuidedImportReviewAssertions.cs" />
+    <Compile Include="../Shared/ImportPublicationAssertions.cs" Link="ImportPublicationAssertions.cs" />
+    <Compile Include="../Shared/ImportWorkerAssertions.cs" Link="ImportWorkerAssertions.cs" />
+    <Compile Include="../Shared/ImportMatchDiscoveryAssertions.cs" Link="ImportMatchDiscoveryAssertions.cs" />
+    <Compile Include="../Shared/ImportMatchApplyAssertions.cs" Link="ImportMatchApplyAssertions.cs" />
+    <Compile Include="../Shared/DesktopImportAssertions.cs" Link="DesktopImportAssertions.cs" />
+    <Compile Include="../Shared/TrackTagAdmissionAssertions.cs" Link="TrackTagAdmissionAssertions.cs" />
+    <Compile Include="../Shared/TrackTagExecutionAssertions.cs" Link="TrackTagExecutionAssertions.cs" />
+    <Compile Include="../Shared/LibraryMaintenanceAdmissionAssertions.cs" Link="LibraryMaintenanceAdmissionAssertions.cs" />
+    <!-- 2026-11-24: Bind desktop maintenance assertions to authenticated host and local staging for FR-LIBRARY-002#ac-batch-local. -->
+    <Compile Include="../Shared/DesktopMaintenanceAssertions.cs" Link="DesktopMaintenanceAssertions.cs" />
+    <!-- 2026-11-24: Bind native catalog-only maintenance recovery to the host integration lane. -->
+    <Compile Include="../Shared/CatalogRemovalExecutionAssertions.cs" Link="CatalogRemovalExecutionAssertions.cs" />
+    <Compile Include="../Shared/CatalogReplicationAssertions.cs" Link="CatalogReplicationAssertions.cs" />
+    <Compile Include="../Shared/CatalogSnapshotAssertions.cs" Link="CatalogSnapshotAssertions.cs" />
+    <Compile Include="../Shared/ApprovedBatchPublicationAssertions.cs" Link="ApprovedBatchPublicationAssertions.cs" />
+    <Compile Include="../Shared/RegisteredDesktopBatchAssertions.cs" Link="RegisteredDesktopBatchAssertions.cs" />
+    <Compile Include="../Shared/ApprovedBatchImportAssertions.cs" Link="ApprovedBatchImportAssertions.cs" />
+    <Compile Include="../Shared/MixedNativeBatchAssertions.cs" Link="MixedNativeBatchAssertions.cs" />
+    <Compile Include="../Shared/OrganizationExecutionAssertions.cs" Link="OrganizationExecutionAssertions.cs" />
+    <Compile Include="../Shared/BatchOrganizationAssertions.cs" Link="BatchOrganizationAssertions.cs" />
+    <Compile Include="../Shared/AudioRemovalExecutionAssertions.cs" Link="AudioRemovalExecutionAssertions.cs" />
+    <Compile Include="../Shared/BatchAudioRemovalAssertions.cs" Link="BatchAudioRemovalAssertions.cs" />
+    <Compile Include="../Shared/BatchImportReviewAssertions.cs" Link="BatchImportReviewAssertions.cs" />
+    <Compile Include="../Shared/BatchImportExecutionAssertions.cs" Link="BatchImportExecutionAssertions.cs" />
+    <Compile Include="../Shared/BatchWithdrawalAssertions.cs" Link="BatchWithdrawalAssertions.cs" />
+    <Compile Include="../Shared/LibraryRecordReplicationAssertions.cs" Link="LibraryRecordReplicationAssertions.cs" />
+    <Compile Include="../Shared/LibraryRecordOutboxAssertions.cs" Link="LibraryRecordOutboxAssertions.cs" />
   </ItemGroup>
 </Project>

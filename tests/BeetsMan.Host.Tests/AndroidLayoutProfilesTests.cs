@@ -8,7 +8,7 @@ namespace BeetsMan.Host.Tests;
 
 /// <summary>Verifies bundled and operator-provided layouts through the actual host parser and planner.</summary>
 /// <remarks>2026-11-24: Bind TEST-FILESYNC-001 to FR-FILESYNC-001#ac-layouts, ac-safety and ac-playlist-drop.</remarks>
-public sealed class AndroidLayoutProfilesTests
+public sealed partial class FILESYNCAcceptanceTests
 {
     private const string AlternateLayout = """
         id: poweramp-pls
@@ -20,6 +20,8 @@ public sealed class AndroidLayoutProfilesTests
         playlistPathTemplate: 'Lists/{playlistName}.{playlistFormat}'
         """;
 
+    /// <summary>Validates the default album layout and an independent alternate playlist format.</summary>
+    /// <remarks>2026-11-26: Run the named TEST-FILESYNC-001 layout case for FR-FILESYNC-001#ac-layouts.</remarks>
     [Fact]
     public void Layouts_MatchesContract()
     {

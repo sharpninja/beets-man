@@ -86,7 +86,8 @@ Run with an independent correct fake and reject a deliberate incorrect outcome f
 
 ### TEST-FILESYNC-002
 
-Use two PC replicas and physical Android with Syncthing-Fork and Musicolet. Verify arrival from all modes, share isolation, playlist order, restart recovery and deletion propagation.
+Use two PC replicas and an Android device or the approved Google Play-enabled Android emulator with Syncthing-Fork. Verify authenticated arrival from all four desktop modes, share isolation, restart recovery and deletion propagation.
+For the pre-UI checkpoint, inspect the documented Musicolet M3U8 structure, relative paths, exact playlist order and missing-audio staging, and verify the actual receiver transfer by file digest. The arrival-mode integration cases use controlled events through the application composition. Record the separate UI acceptance evidence when screens are implemented.
 
 
 
@@ -170,7 +171,7 @@ Run with an independent correct fake and reject a deliberate incorrect outcome f
 ### TEST-RECORDS-002
 
 Restart live host and replicas around commit and acknowledgment, revoke an instance, and prove catch-up after expiry.
-Planned persistence verification (TR-RECORDS-ARCH-001#ac-litedb-repositories, TR-RECORDS-ARCH-001#ac-litedb-c4-entities): Use separate disposable LiteDB files to verify rollback across collections, replay receipt lookup after reopen and atomic page/checkpoint writes. Validate the Structurizr model and compare desktop and host entity keys, fields, and collection inventories to their repository mappings.
+Repository and C4 verification (TR-RECORDS-ARCH-001#ac-litedb-repositories, TR-RECORDS-ARCH-001#ac-litedb-c4-entities): Use separate disposable LiteDB files to verify rollback across collections, replay receipt lookup after reopening, and atomic page and checkpoint writes. Validate the Structurizr model. LiteDbC4EntityParityTests.DesktopAndHostMappingsMatchDocumentedKeysFieldsAndRelationships compares collection inventories, keys, scoped mappings, compatibility rules and relationships. Verify first-run schema one, rejection and preservation of unsupported newer schemas, and schema-one reads that omit WasPlaying or IsDirect.
 
 
 

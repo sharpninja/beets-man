@@ -8,19 +8,25 @@ namespace BeetsMan.Host.Adapters.Persistence;
 
 /// <summary>Owns the host playlist and publication repositories on a single database lane.</summary>
 /// <remarks>2026-11-24: Map the host LiteDB entities for TR-RECORDS-ARCH-001#ac-litedb-repositories and ac-litedb-c4-entities.</remarks>
+/// <remarks>2026-11-25: Use the host's injected activity clock for FR-RECORDS-001#ac-register.</remarks>
 public sealed partial class LiteDbHostPlaylistStore : IHostPlaylistUnitOfWork, IHostDevicePlaylistStore, IHostDeviceExportSources, IHostDeviceSyncListStore,
     IHostExportPlaylistLookup,
     IHostDeviceExportQueryStore, IDeviceExportPublicationJournal, IDeviceExportPreviewStore, IDeviceExportScanStore,
     IDeviceExportReceiverStore, IDeviceExportTransferStore, IDisposable
 {
     private readonly LiteDatabase database;
+    private readonly TimeProvider activityClock;
     private readonly SemaphoreSlim lane = new(1, 1);
     private bool disposed;
 
-    private LiteDbHostPlaylistStore(LiteDatabase database) => this.database = database;
+    private LiteDbHostPlaylistStore(LiteDatabase database, TimeProvider activityClock)
+    {
+        this.database = database;
+        this.activityClock = activityClock;
+    }
 
     /// <summary>Opens one validated host-local database and initializes a new host schema when allowed.</summary>
-    public static LiteDbHostPlaylistStore Open(string databasePath, bool allowCreate)
+    public static LiteDbHostPlaylistStore Open(string databasePath, bool allowCreate, TimeProvider? activityClock = null)
     {
         if (!Path.IsPathFullyQualified(databasePath))
             throw new ArgumentException("The host database path must be absolute.", nameof(databasePath));
@@ -49,10 +55,17 @@ public sealed partial class LiteDbHostPlaylistStore : IHostPlaylistUnitOfWork, I
             database.GetCollection<BsonDocument>("registered_instances").EnsureIndex("LibraryId");
             database.GetCollection<BsonDocument>("notification_deliveries").EnsureIndex("RecipientInstanceId");
             database.GetCollection<BsonDocument>("notification_deliveries").EnsureIndex("LibraryId");
+            // 2026-11-24: Discard a superseded capture by recipient for FR-RECORDS-001#ac-replicate.
+            database.GetCollection<BsonDocument>(CatalogSnapshotRows).EnsureIndex("Owner");
+            // 2026-11-24: Bind distinct approvals and ordered journal entries for FR-LIBRARY-002#ac-batch-commit.
+            database.GetCollection<BsonDocument>(ApprovedBatchPublications).EnsureIndex("BatchKey", unique: true);
+            database.GetCollection<BsonDocument>(ApprovedBatchEntries).EnsureIndex("PublicationKey");
+            // 2026-11-24: Read the exact completed transfers for FR-LIBRARY-002#ac-batch-commit.
+            database.GetCollection<BsonDocument>(ApprovedBatchImportParts).EnsureIndex("PublicationKey");
             EnsureDeviceExportIndexes(database);
             EnsurePublicationIndexes(database);
             EnsureExportScanIndexes(database);
-            return new(database);
+            return new(database, activityClock ?? TimeProvider.System);
         }
         catch
         {
@@ -166,6 +179,41 @@ public sealed partial class LiteDbHostPlaylistStore : IHostPlaylistUnitOfWork, I
     };
 
     private static string FeedId(Guid libraryId, long revision) => $"{libraryId:N}/{revision.ToString(CultureInfo.InvariantCulture)}";
+
+    /// <summary>Reads the mutable feed head inside the active host transaction.</summary>
+    /// <remarks>2026-11-24: Share one revision feed across playlist and import publication for FR-RECORDS-001#ac-replicate.</remarks>
+    private static BsonDocument ReadFeedHead(ILiteDatabase db, Guid libraryId) =>
+        db.GetCollection<BsonDocument>("revision_heads").FindById(libraryId) ??
+        new BsonDocument { ["_id"] = libraryId, ["CurrentRevision"] = 0L, ["MinRetainedRevision"] = 0L };
+
+    private static BsonDocument FeedUpsert(string kind, BsonDocument payload) => new()
+        { ["Version"] = 1, ["Kind"] = kind, ["Operation"] = "Upsert", ["Payload"] = payload };
+
+    /// <summary>Appends a revision and the current active delivery recipients in the owning transaction.</summary>
+    private static void AppendFeed(ILiteDatabase db, BsonDocument head, long revision, HostOperationKey origin, BsonArray updates)
+    {
+        var libraryId = head["_id"].AsGuid;
+        head["CurrentRevision"] = revision;
+        db.GetCollection<BsonDocument>("revision_heads").Upsert(head);
+        var key = FeedId(libraryId, revision);
+        db.GetCollection<BsonDocument>("revision_changes").Insert(new BsonDocument
+        {
+            ["_id"] = key, ["LibraryId"] = libraryId, ["Revision"] = revision, ["OriginInstanceId"] = origin.OriginInstanceId,
+            ["OperationId"] = origin.OperationId, ["Changes"] = updates
+        });
+        var recipients = db.GetCollection<BsonDocument>("registered_instances").Find(Query.EQ("LibraryId", libraryId))
+            .Where(row => Text(row, "Status") == "Active").Select(row => row["_id"].AsGuid)
+            .Where(id => id != origin.OriginInstanceId).ToArray();
+        var deliveries = db.GetCollection<BsonDocument>("notification_deliveries");
+        foreach (var recipient in recipients)
+        {
+            deliveries.Insert(new BsonDocument
+            {
+                ["_id"] = $"{key}/{recipient:N}", ["LibraryId"] = libraryId, ["RecipientInstanceId"] = recipient,
+                ["Revision"] = revision, ["Status"] = "Pending"
+            });
+        }
+    }
     private static string OperationId(HostOperationKey key) => $"{key.OriginInstanceId:N}/{key.OperationId:N}";
 
     private static bool IsActiveInstance(ILiteCollection<BsonDocument> instances, Guid libraryId, Guid instanceId) =>
@@ -179,9 +227,6 @@ public sealed partial class LiteDbHostPlaylistStore : IHostPlaylistUnitOfWork, I
         private readonly ILiteCollection<BsonDocument> playlists = database.GetCollection<BsonDocument>("saved_playlists");
         private readonly ILiteCollection<BsonDocument> operations = database.GetCollection<BsonDocument>("operation_receipts");
         private readonly ILiteCollection<BsonDocument> instances = database.GetCollection<BsonDocument>("registered_instances");
-        private readonly ILiteCollection<BsonDocument> heads = database.GetCollection<BsonDocument>("revision_heads");
-        private readonly ILiteCollection<BsonDocument> changes = database.GetCollection<BsonDocument>("revision_changes");
-        private readonly ILiteCollection<BsonDocument> deliveries = database.GetCollection<BsonDocument>("notification_deliveries");
         private bool open = true;
 
         public ISavedHostPlaylistRepository Playlists => this;
@@ -240,31 +285,15 @@ public sealed partial class LiteDbHostPlaylistStore : IHostPlaylistUnitOfWork, I
             });
         }
 
+        /// <inheritdoc />
+        public bool IsPlaylistReserved(Guid libraryId, Guid playlistId) => LiteDbHostPlaylistStore.IsPlaylistReserved(database, libraryId, playlistId);
+
         public long Append(SavedHostPlaylist playlist, HostOperationKey origin)
         {
             Check();
-            var library = playlist.LibraryId;
-            var head = heads.FindById(library) ?? new BsonDocument { ["_id"] = library, ["CurrentRevision"] = 0L, ["MinRetainedRevision"] = 0L };
+            var head = ReadFeedHead(database, playlist.LibraryId);
             var revision = checked(head["CurrentRevision"].AsInt64 + 1);
-            head["CurrentRevision"] = revision;
-            heads.Upsert(head);
-            changes.Insert(new BsonDocument
-            {
-                ["_id"] = FeedId(library, revision), ["LibraryId"] = library, ["Revision"] = revision,
-                ["OriginInstanceId"] = origin.OriginInstanceId, ["OperationId"] = origin.OperationId,
-                ["Changes"] = new BsonArray(new BsonDocument { ["Version"] = 1, ["Kind"] = "Playlist", ["Operation"] = "Upsert", ["Payload"] = WritePlaylist(playlist) })
-            });
-            var recipients = instances.Find(Query.EQ("LibraryId", library))
-                .Where(row => row["Status"].AsString == "Active")
-                .Select(row => row["_id"].AsGuid).Where(id => id != origin.OriginInstanceId).ToArray();
-            foreach (var recipient in recipients)
-            {
-                deliveries.Insert(new BsonDocument
-                {
-                    ["_id"] = $"{FeedId(library, revision)}/{recipient:N}", ["LibraryId"] = library, ["RecipientInstanceId"] = recipient,
-                    ["Revision"] = revision, ["Status"] = "Pending"
-                });
-            }
+            AppendFeed(database, head, revision, origin, new BsonArray(FeedUpsert("Playlist", WritePlaylist(playlist))));
             return revision;
         }
 

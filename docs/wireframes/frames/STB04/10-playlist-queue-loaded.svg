@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="690" viewBox="0 0 1120 690" role="img" aria-labelledby="title" data-screen-id="SCR13" data-state-id="SCR13.STB04-10" data-storyboard-id="STB04" data-step-id="STB04-10">
+  <title id="title">Queue — Evening Queue loaded with auto-save off</title>
+  <g font-family="Liberation Sans,sans-serif">
+    <use href="../../shared/queue.svg#evening-queue" />
+    <use href="../../shared/transport.svg#track-seek" />
+    <use href="../../shared/queue.svg#auto-save-off" />
+  </g>
+</svg>

@@ -1,8 +1,13 @@
 # Beets Man
 
-Beets Man is a desktop music player and library manager designed around a beets library. This .NET 10 checkpoint includes a runnable library host and the desktop application, presentation, and audio layers. The desktop screens are represented by reviewable wireframes.
+Beets Man is a desktop music player and library manager designed around a beets library. The verified .NET 10 pre-UI checkpoint includes a runnable library host, desktop application services, CommunityToolkit.Mvvm ViewModels and commands, and audio adapters. The screen designs are available as reviewable wireframes.
 
-Implemented workflows include catalog browsing, queue and playlist editing, playback and seeking, and authenticated media sync. The host offers Syncthing shares to registered PCs and Android devices. Staging a saved playlist produces the selected player's playlist format and stages only the audio missing from that device. Guided beets import and tag editing have CQRS and ViewModel contracts and are awaiting host workflow implementation.
+- Browse a local LiteDB catalog, edit playlists and queues, seek during playback, and opt in to resume a playlist after restart.
+- Batch library edits locally, review the staged changes, and commit them for peer synchronization or revert the batch.
+- Run guided imports with existing tags or an approved MusicBrainz match, edit track tags, and recover interrupted host jobs.
+- Mirror media to registered PCs and stage Android playlists in the selected player's format with only the audio missing from the device.
+
+The full pre-UI suites passed 377 tests on Linux and 374 on Windows. The [verification readback](docs/stage-0/readback.md#independent-review-remediation) records the test runs, native Syncthing transfer, and independent review. Screen implementation and Stage 0 design approval are separate checkpoints.
 
 ## Review the design
 
@@ -21,11 +26,12 @@ asset-review --asset-root docs/design
 
 ## Build the implementation checkpoint
 
-From the repository root with .NET 10 and PowerShell installed, compile the projects and run the isolated test suite through Nuke.
+From the repository root with .NET 10 and PowerShell installed, compile the projects and run the unit and integration suites through Nuke.
 
 ```powershell
 pwsh -NoProfile -NonInteractive -File ./build.ps1 Compile
 pwsh -NoProfile -NonInteractive -File ./build.ps1 Test
+pwsh -NoProfile -NonInteractive -File ./build.ps1 MigrationIntegrationTests
 ```
 
 Configure the host's local storage, TLS listener, and OS credential references before starting it. The [library host configuration guide](docs/architecture/code-structure.md#standalone-host) documents the launch command and the Android and PC share settings. The [UI command catalog](docs/architecture/ui-commands.md) maps desktop commands to their CQRS requests and results.

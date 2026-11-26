@@ -15,13 +15,18 @@ public enum PluginWorkerStatus { Stopped, Starting, Ready, Failed }
 public enum PluginContributionKind { Action, Panel, Visualization }
 
 /// <summary>Describes a validated contribution owned by one installed worker.</summary>
-public sealed record PluginContribution(string ContributionId, PluginContributionKind Kind);
+/// <remarks>2026-11-25: Pin optional host action grants to the admitted manifest for FR-PLUGINS-001#ac-visualize.</remarks>
+public sealed record PluginContribution(string ContributionId, PluginContributionKind Kind, string? HostAction = null, PluginPanelDefinition? Panel = null);
 
 /// <summary>Describes one installed version and its negotiated contributions.</summary>
-public sealed record PluginInfo(string PluginId, string Version, PluginTrust Trust, bool Enabled, PluginWorkerStatus Worker, ImmutableArray<PluginContribution> Contributions, string? FailureCode = null);
+/// <remarks>2026-11-25: Make package compatibility visible before trust or activation for FR-PLUGINS-001#ac-manage.</remarks>
+public sealed record PluginInfo(string PluginId, string Version, PluginTrust Trust, bool Enabled, PluginWorkerStatus Worker,
+    ImmutableArray<PluginContribution> Contributions, string? FailureCode = null, bool Compatible = true, Guid? ActivationId = null,
+    ImmutableArray<string> Visualizations = default);
 
 /// <summary>Returns the current revision of the local plugin registry.</summary>
-public sealed record PluginState(long Revision, ImmutableArray<PluginInfo> Plugins);
+/// <remarks>2026-11-25: Include runtime revisions and recovery suppression for FR-PLUGINS-001#ac-recovery.</remarks>
+public sealed record PluginState(long Revision, ImmutableArray<PluginInfo> Plugins, bool RecoveryMode = false);
 
 /// <summary>Reads local registry or plugin version status.</summary>
 public sealed record GetPluginState(string? PluginId = null, string? Version = null) : IQuery<PluginState>;
@@ -40,6 +45,3 @@ public sealed record RemovePlugin(string PluginId, string Version) : ICommand<Pl
 
 /// <summary>Restarts the identified trusted worker.</summary>
 public sealed record RestartPluginWorker(string PluginId, string Version) : ICommand<PluginState>;
-
-/// <summary>Selects an available visualization for an active session.</summary>
-public sealed record SelectVisualization(Guid SessionId, string ContributionId) : ICommand<PlaybackState>;

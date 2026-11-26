@@ -1,11 +1,13 @@
 using System.Xml.Linq;
 using Nuke.Common;
+using Nuke.Common.IO;
 using Nuke.Common.Tools.DotNet;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 /// <summary>Runs isolated and integration tests and retains per-project TRX results.</summary>
 /// <remarks>2026-11-24: Establish the mock and production test gates for TEST-DISPATCH-001.</remarks>
 /// <remarks>2026-11-24: Accept dedicated host test groups for TEST-RECORDS-001 and TEST-RECORDS-002.</remarks>
+/// <remarks>2026-11-26: Build Windows artifacts separately from native execution for TEST-SETTINGS-002 and TEST-BEETS-002.</remarks>
 internal sealed class Build : NukeBuild
 {
     private const string TestProject = "BeetsMan.Desktop.Tests";
@@ -19,10 +21,33 @@ internal sealed class Build : NukeBuild
     [Parameter("Test evidence directory identifier")]
     private readonly string? testRunId = null;
 
+    [Parameter("Artifact directory for the Windows x64 build", Name = "windows-artifacts")]
+    private readonly string? windowsArtifacts = null;
+
+    [Parameter("Directory containing each prebuilt test project output", Name = "test-binaries")]
+    private readonly string? testBinaries = null;
+
     public static int Main() => Execute<Build>(build => build.Test);
 
     private Target Compile => _ => _.Executes(() =>
         DotNetBuild(settings => settings.SetProjectFile(RootDirectory / "BeetsMan.slnx")));
+
+    /// <summary>Builds the Windows x64 test runner, test projects and their application dependencies.</summary>
+    private Target CompileWindows => _ => _.Executes(() =>
+    {
+        var artifacts = windowsArtifacts ?? throw new ArgumentException("Specify --windows-artifacts for the Windows output.");
+        var projects = new[]
+        {
+            RootDirectory / "build" / "BeetsMan.Build.csproj",
+            TestProjectFile(TestProject), TestProjectFile(HostTestProject),
+            TestProjectFile(IntegrationProject), TestProjectFile(HostIntegrationProject)
+        };
+        foreach (var project in projects)
+        {
+            DotNetBuild(settings => settings.SetProjectFile(project)
+                .SetRuntime("win-x64").SetSelfContained(false).SetArtifactsPath(artifacts));
+        }
+    });
 
     private Target Test => _ => _.Executes(() =>
     {
@@ -61,14 +86,20 @@ internal sealed class Build : NukeBuild
         if (runId.Length == 0 || runId.Any(character => !char.IsAsciiLetterOrDigit(character) && character is not '-' and not '_'))
             throw new ArgumentException("Test run IDs use letters, digits, hyphens and underscores.");
 
-        var project = RootDirectory / "tests" / testProject / $"{testProject}.csproj";
+        var project = testBinaries is null ? TestProjectFile(testProject) :
+            (AbsolutePath)Path.GetFullPath(testBinaries) / testProject / $"{testProject}.dll";
+        if (!File.Exists(project))
+            throw new FileNotFoundException("The test project or its prebuilt assembly is missing.", project);
         var results = RootDirectory / "TestResults" / runId / lane / testProject;
-        var filter = classes is null ? null : string.Join('|', classes.Select(name => $"FullyQualifiedName~.{name}."));
+        // 2026-11-25: Keep the TEST-SETTINGS-002 user32 probe on its native host without skipping in the other platform's gate.
+        var platformFilter = OperatingSystem.IsWindows() ? "Platform!=Linux" : "Platform!=Windows";
+        var filter = classes is null ? platformFilter :
+            $"({string.Join('|', classes.Select(name => $"FullyQualifiedName~.{name}."))})&{platformFilter}";
         DotNetTest(settings =>
         {
             var configured = settings.SetProjectFile(project).SetResultsDirectory(results)
                 .AddLoggers($"trx;LogFileName={testProject}.trx");
-            return filter is null ? configured : configured.SetFilter(filter);
+            return configured.SetFilter(filter);
         });
 
         var receipt = XDocument.Load(results / $"{testProject}.trx");
@@ -85,4 +116,6 @@ internal sealed class Build : NukeBuild
         if (classes?.Any(name => !testedClasses.Contains(name)) == true)
             throw new InvalidOperationException("At least one requested test class did not execute.");
     }
+
+    private AbsolutePath TestProjectFile(string name) => RootDirectory / "tests" / name / $"{name}.csproj";
 }

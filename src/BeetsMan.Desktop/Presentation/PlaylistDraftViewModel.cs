@@ -7,6 +7,8 @@ namespace BeetsMan.Desktop.Presentation;
 
 /// <summary>Owns ordered playlist edits and retains user input through validation or conflicts.</summary>
 /// <remarks>2026-11-24: Bind the catalog playlist workflow and preserve offline drafts for FR-LIBRARY-001#ac-browse and FR-RECORDS-001#ac-offline.</remarks>
+/// <remarks>2026-11-24: Preserve the authoritative backing revision when staging a local save for FR-LIBRARY-002#ac-batch-local.</remarks>
+/// <remarks>2026-11-25: Present the accepted stage and clear its receipt at batch resolution for FR-LIBRARY-002#ac-batch-review and ac-batch-revert.</remarks>
 public sealed partial class PlaylistDraftViewModel(PresentationServices services, Guid ownerId, PlaybackPresentation playback)
     : PresentationViewModel(services, ownerId)
 {
@@ -14,6 +16,7 @@ public sealed partial class PlaylistDraftViewModel(PresentationServices services
     private PlaylistSavedReceipt? saved;
 
     [ObservableProperty] private string name = string.Empty;
+    [ObservableProperty] private LibraryBatchStageReceipt? stagedSave;
 
     /// <summary>Gets the authoritative draft and entry order.</summary>
     public PlaylistDraft? Draft => draft;
@@ -60,6 +63,12 @@ public sealed partial class PlaylistDraftViewModel(PresentationServices services
         {
             if (draft is { } current && current.DraftId == result.DraftId)
             {
+                StagedSave = result.LocalBatch;
+                if (result.LocalBatch is { } stage)
+                {
+                    Services.PresentBatchStage(stage);
+                    return;
+                }
                 var committed = current with
                 {
                     BasePlaylist = new(result.PlaylistId, result.Revision), Name = submittedName,
@@ -69,6 +78,13 @@ public sealed partial class PlaylistDraftViewModel(PresentationServices services
                 SetProperty(ref saved, result, nameof(Saved));
             }
         }, token, result => result.DraftId == captured.DraftId && draft?.DraftId == result.DraftId, retryInvalid: true);
+    }
+
+    /// <summary>Clears feedback for a resolved batch while keeping the operator's editable draft.</summary>
+    internal void ReceiveBatchMode(LibraryBatchMode mode)
+    {
+        if (StagedSave is { } stage && mode.Revision > stage.Version.Revision && stage.Version.BatchId != mode.BatchId)
+            StagedSave = null;
     }
 
     protected override void OnWriteAvailabilityChanged()
@@ -98,6 +114,7 @@ public sealed partial class PlaylistDraftViewModel(PresentationServices services
         {
             Name = next.Name;
             SetProperty(ref saved, null, nameof(Saved));
+            StagedSave = null;
         }
         else if (Name == draft.Name)
         {

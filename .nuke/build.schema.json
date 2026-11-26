@@ -25,6 +25,7 @@
       "type": "string",
       "enum": [
         "Compile",
+        "CompileWindows",
         "MigrationIntegrationTests",
         "Test",
         "TestGroups"
@@ -101,6 +102,10 @@
   "allOf": [
     {
       "properties": {
+        "test-binaries": {
+          "type": "string",
+          "description": "Directory containing each prebuilt test project output"
+        },
         "test-groups": {
           "type": "array",
           "description": "Selected projects and test classes",
@@ -111,6 +116,10 @@
         "testRunId": {
           "type": "string",
           "description": "Test evidence directory identifier"
+        },
+        "windows-artifacts": {
+          "type": "string",
+          "description": "Artifact directory for the Windows x64 build"
         }
       }
     },

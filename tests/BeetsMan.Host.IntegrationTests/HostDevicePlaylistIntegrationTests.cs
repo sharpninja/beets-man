@@ -544,6 +544,74 @@ public sealed class HostDevicePlaylistIntegrationTests : IDisposable
         Assert.Equal(Convert.ToHexString(SHA256.HashData(System.Text.Encoding.UTF8.GetBytes(actualContent))), playlistRow["ContentIdentity"].AsString);
     }
 
+    /// <summary>Reopens a staged v1 dependency with no IsDirect field, then removes its playlist while preserving an explicit track selection.</summary>
+    /// <remarks>2026-11-26: Check the older export entry shape for TR-RECORDS-ARCH-001#ac-litedb-c4-entities and FR-FILESYNC-001#ac-safety.</remarks>
+    internal async Task VerifyMissingIsDirectRemainsPlaylistDependency()
+    {
+        Seed();
+        SeedTracks();
+        var resolver = new FixtureResolver(Receiver, trackA, trackB);
+        var direct = new DirectTrackFixture(trackB);
+        DeviceExportPlan staged;
+        using (var store = LiteDbHostPlaylistStore.Open(DatabasePath, false))
+        {
+            var playlist = await CreatePlaylistAsync(store);
+            var dropped = Value(await CreateStager(store, resolver).StageAsync(library, Caller,
+                new(origin, Guid.NewGuid(), playlist.PlaylistId, device, "musicolet", 2, null, null), Token));
+            staged = Value(await new HostDeviceSyncListEditor(store, direct).StageTracksAsync(library, Caller,
+                new(origin, Guid.NewGuid(), [trackB], device, "musicolet", 2, dropped.Plan.PlanId, dropped.Plan.PlanRevision), Token)).Plan;
+        }
+
+        using (var raw = new LiteDatabase(DatabasePath))
+        {
+            var audio = raw.GetCollection<BsonDocument>("device_export_entries").Find(Query.EQ("SourceKind", "Audio")).ToArray();
+            Assert.Equal(2, audio.Length);
+            Assert.False(Assert.Single(audio, row => row["SourceEntityId"].AsGuid == trackA).ContainsKey("IsDirect"));
+            Assert.True(Assert.Single(audio, row => row["SourceEntityId"].AsGuid == trackB)["IsDirect"].AsBoolean);
+        }
+
+        var planId = staged.PlanId!.Value;
+        var revision = staged.PlanRevision!.Value;
+        var lookup = new DeviceExportPlanLookup(device, planId, null, null);
+        Guid survivingEntry;
+        using (var reopened = LiteDbHostPlaylistStore.Open(DatabasePath, false))
+        {
+            var saved = Value(await new HostDeviceExportReader(reopened, []).ReadPlanAsync(library, Caller, lookup, Token));
+            var playlist = Assert.Single(saved.Entries.OfType<ExportEntry.Playlist>());
+            var audio = saved.Entries.OfType<ExportEntry.Audio>().ToArray();
+            Assert.False(Assert.Single(audio, entry => entry.TrackId == trackA).IsDirect);
+            var retained = Assert.Single(audio, entry => entry.TrackId == trackB);
+            Assert.True(retained.IsDirect);
+            survivingEntry = retained.EntryId;
+
+            var edited = Value(await new HostDeviceSyncListEditor(reopened, direct).RemoveAsync(library, Caller,
+                new(origin, Guid.NewGuid(), planId, [playlist.EntryId], revision), Token));
+            Assert.Equal(revision + 1, edited.Plan.PlanRevision);
+            Assert.Equal(retained, Assert.Single(edited.Plan.Entries));
+        }
+
+        using var verified = LiteDbHostPlaylistStore.Open(DatabasePath, false);
+        var persisted = Value(await new HostDeviceExportReader(verified, []).ReadPlanAsync(library, Caller, lookup, Token));
+        var remaining = Assert.IsType<ExportEntry.Audio>(Assert.Single(persisted.Entries));
+        Assert.Equal(survivingEntry, remaining.EntryId);
+        Assert.Equal(trackB, remaining.TrackId);
+        Assert.True(remaining.IsDirect);
+        Assert.Empty(Directory.EnumerateFileSystemEntries(ActiveShare));
+    }
+
+    /// <summary>Reports the same existing device destination used by the playlist's second track.</summary>
+    private sealed class DirectTrackFixture(Guid track) : IHostDirectTrackResolver
+    {
+        /// <inheritdoc />
+        public Task<HostOutcome<ImmutableArray<ResolvedPlaylistTrack>>> ResolveTracksAsync(DevicePlaylistSources sources,
+            StageDeviceTracksRequest request, DeviceExportPlan? plan, CancellationToken token)
+        {
+            Assert.Equal(track, Assert.Single(request.OrderedTrackIds));
+            return Task.FromResult<HostOutcome<ImmutableArray<ResolvedPlaylistTrack>>>(
+                new HostOutcome<ImmutableArray<ResolvedPlaylistTrack>>.Success([new(track, "Music/B.flac", true, false)]));
+        }
+    }
+
     private HostDevicePlaylistStager CreateStager(LiteDbHostPlaylistStore store, IHostDevicePlaylistResolver resolver) =>
         new(store, resolver, new([new M3u8PlaylistFormatter()]), new FileStagedPlaylistContent(PrivateStage));
 

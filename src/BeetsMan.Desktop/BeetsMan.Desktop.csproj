@@ -6,8 +6,13 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <!-- 2026-11-25: Resolve registration credentials from the shared OS lookup for FR-RECORDS-001#ac-register. -->
+    <Compile Include="../Shared/OperatingSystemCredentialLookup.cs" Link="Adapters/Host/OperatingSystemCredentialLookup.cs" />
+    <!-- 2026-11-25: Bind the Win32 API seam in the TEST-SETTINGS-002 harness without exporting it to callers. -->
+    <InternalsVisibleTo Include="BeetsMan.Desktop.IntegrationTests" />
     <ProjectReference Include="../BeetsMan.Desktop.Application/BeetsMan.Desktop.Application.csproj" />
     <ProjectReference Include="../BeetsMan.Host.Contracts/BeetsMan.Host.Contracts.csproj" />
+    <ProjectReference Include="../BeetsMan.Plugin.Protocol/BeetsMan.Plugin.Protocol.csproj" />
     <PackageReference Include="Avalonia" Version="12.1.5" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
     <PackageReference Include="LiteDB" Version="5.0.21" />
@@ -16,5 +21,9 @@
     <!-- 2026-11-24: Native deck and decoder adapters for TR-PLAYER-ARCH-001. -->
     <PackageReference Include="SoundFlow" Version="1.4.2" />
     <PackageReference Include="SoundFlow.Codecs.FFMpeg" Version="1.4.0" />
+    <!-- 2026-11-25: Use the Linux GlobalShortcuts D-Bus portal for TEST-SETTINGS-002. -->
+    <PackageReference Include="Tmds.DBus.Protocol" Version="0.92.0" />
+    <!-- 2026-11-25: Read and write versioned local CLI data for TR-CLI-ARCH-001. -->
+    <PackageReference Include="YamlDotNet" Version="18.1.0" />
   </ItemGroup>
 </Project>

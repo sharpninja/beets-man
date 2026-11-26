@@ -10,6 +10,24 @@ namespace BeetsMan.Desktop.Tests;
 /// <remarks>2026-11-24: Prove TEST-PLAYER-001 for FR-PLAYER-001#ac-queue-autosave before binding the real queue store.</remarks>
 public sealed class QueueAutoSaveMockTests
 {
+    /// <summary>Rejects missing names, mismatched playlist identities, and incorrect switch availability.</summary>
+    /// <remarks>2026-11-25: Prove the presentation assertions for FR-PLAYER-001#ac-queue-autosave before binding them.</remarks>
+    [Fact]
+    public void BackingReceiptDistinguishesTheLoadedPlaylistFromAnUnbackedQueue()
+    {
+        var empty = new QueueBackingReport(null, null, false, false);
+        var loaded = new QueueBackingReport(new(Guid.NewGuid(), 7), "Fixture", true, false);
+        var switched = loaded with { AutoSave = true };
+
+        QueueAutoSaveAssertions.VerifyBacking(empty, new(null, null, false, false));
+        QueueAutoSaveAssertions.VerifyBacking(loaded, new(loaded.Playlist, "Fixture", true, false));
+        QueueAutoSaveAssertions.VerifyBacking(switched, new(loaded.Playlist, "Fixture", true, true));
+        Assert.ThrowsAny<XunitException>(() => QueueAutoSaveAssertions.VerifyBacking(empty, empty with { CanToggle = true }));
+        Assert.ThrowsAny<XunitException>(() => QueueAutoSaveAssertions.VerifyBacking(loaded, loaded with { Name = null }));
+        Assert.ThrowsAny<XunitException>(() => QueueAutoSaveAssertions.VerifyBacking(loaded, loaded with { Playlist = new(Guid.NewGuid(), 7) }));
+        Assert.ThrowsAny<XunitException>(() => QueueAutoSaveAssertions.VerifyBacking(switched, loaded));
+    }
+
     [Fact]
     public void ReceiptsDistinguishLocalEditsFromCommittedPlaylistWrites()
     {

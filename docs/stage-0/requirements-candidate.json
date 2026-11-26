@@ -545,7 +545,7 @@
       "kind": "test",
       "id": "TEST-RECORDS-002",
       "title": "Windows/Linux integration: Sync catalog, listening records and defaults",
-      "description": "Restart live host and replicas around commit and acknowledgment, revoke an instance, and prove catch-up after expiry.\nPlanned persistence verification (TR-RECORDS-ARCH-001#ac-litedb-repositories, TR-RECORDS-ARCH-001#ac-litedb-c4-entities): Use separate disposable LiteDB files to verify rollback across collections, replay receipt lookup after reopen and atomic page/checkpoint writes. Validate the Structurizr model and compare desktop and host entity keys, fields, and collection inventories to their repository mappings.",
+      "description": "Restart live host and replicas around commit and acknowledgment, revoke an instance, and prove catch-up after expiry.\nRepository and C4 verification (TR-RECORDS-ARCH-001#ac-litedb-repositories, TR-RECORDS-ARCH-001#ac-litedb-c4-entities): Use separate disposable LiteDB files to verify rollback across collections, replay receipt lookup after reopening, and atomic page and checkpoint writes. Validate the Structurizr model. LiteDbC4EntityParityTests.DesktopAndHostMappingsMatchDocumentedKeysFieldsAndRelationships compares collection inventories, keys, scoped mappings, compatibility rules and relationships. Verify first-run schema one, rejection and preservation of unsupported newer schemas, and schema-one reads that omit WasPlaying or IsDirect.",
       "priority": "high",
       "area": "RECORDS"
     },
@@ -605,7 +605,7 @@
       "kind": "test",
       "id": "TEST-FILESYNC-002",
       "title": "Windows/Linux integration: Mirror media to PCs and Android",
-      "description": "Use two PC replicas and physical Android with Syncthing-Fork and Musicolet. Verify arrival from all modes, share isolation, playlist order, restart recovery and deletion propagation.",
+      "description": "Use two PC replicas and an Android device or the approved Google Play-enabled Android emulator with Syncthing-Fork. Verify authenticated arrival from all four desktop modes, share isolation, restart recovery and deletion propagation.\nFor the pre-UI checkpoint, inspect the documented Musicolet M3U8 structure, relative paths, exact playlist order and missing-audio staging, and verify the actual receiver transfer by file digest. The arrival-mode integration cases use controlled events through the application composition. Record the separate UI acceptance evidence when screens are implemented.",
       "priority": "high",
       "area": "FILESYNC"
     }

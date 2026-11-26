@@ -16,7 +16,8 @@ public enum DeckId { A, B }
 public enum TransportStatus { Stopped, Playing, Paused }
 
 /// <summary>Identifies an explicit transport request.</summary>
-public enum TransportAction { Play, Pause, Next, Previous, Stop }
+/// <remarks>2026-11-25: Resolve toggle atomically in the playback lane for FR-SETTINGS-001#ac-shortcuts.</remarks>
+public enum TransportAction { Play, Pause, Next, Previous, Stop, TogglePlayPause }
 
 /// <summary>Determines whether enqueueing starts playback of the selection.</summary>
 public enum EnqueueMode { Append, PlayNow }
@@ -25,7 +26,8 @@ public enum EnqueueMode { Append, PlayNow }
 public enum RepeatMode { Off, All, One }
 
 /// <summary>Distinguishes queue-only edits from the outcome of a requested playlist save.</summary>
-public enum QueueSaveStatus { NotRequested, Saved, Pending, Conflict, Failed }
+/// <remarks>2026-11-24: Distinguish a local batch stage for FR-LIBRARY-002#ac-batch-local.</remarks>
+public enum QueueSaveStatus { NotRequested, Saved, Pending, Conflict, Failed, StagedInBatch }
 
 /// <summary>Contains one occurrence of a track in the active queue.</summary>
 public sealed record QueueEntry(Guid EntryId, Guid TrackId);
@@ -33,21 +35,32 @@ public sealed record QueueEntry(Guid EntryId, Guid TrackId);
 /// <summary>Captures queue order, revision, and its optional playlist backing.</summary>
 public sealed record QueueSnapshot(long QueueRevision, ImmutableArray<QueueEntry> Entries, bool AutoSave, PlaylistVersion? BackingPlaylist = null,
     QueueSaveStatus SaveStatus = QueueSaveStatus.NotRequested, PlaylistSavedReceipt? SaveReceipt = null,
-    bool Shuffle = false, RepeatMode Repeat = RepeatMode.Off);
+    bool Shuffle = false, RepeatMode Repeat = RepeatMode.Off, LibraryBatchStageReceipt? BatchSave = null)
+{
+    /// <summary>Gets the name captured when the queue was bound to its saved playlist.</summary>
+    /// <remarks>2026-11-25: Expose the playlist shown beside the STB04 auto-save switch for FR-PLAYER-001#ac-queue-autosave.</remarks>
+    public string? BackingPlaylistName { get; init; }
+}
 
 /// <summary>Contains the state of a specific deck.</summary>
 public sealed record DeckState(DeckId DeckId, Guid? TrackId, TimeSpan Position, TimeSpan? Duration,
     TransportStatus Status, bool Ready, double Gain, string? ErrorCode = null);
 
+/// <summary>Identifies a failed native or configured playback engine attempt for the specified track.</summary>
+/// <remarks>2026-11-25: Supply the playback alert for FR-SETTINGS-001#ac-precedence and FR-PLAYER-001#ac-transport.</remarks>
+public sealed record PlaybackEngineFailure(Guid SessionId, Guid TrackId, string StrategyId, string Code);
+
 /// <summary>Contains master output and fade settings reported by the playback owner.</summary>
 public sealed record MasterOutput(double Gain, double CrossfaderPosition, bool AutoFadeEnabled, bool FadeActive,
-    ImmutableArray<double> EqualizerBands, bool EqualizerBypassed);
+    ImmutableArray<double> EqualizerBands, bool EqualizerBypassed, string? FadeErrorCode = null);
 
 /// <summary>Contains the shared immutable state for all presentations of a playback session.</summary>
 /// <remarks>2026-11-24: Carry the selected queue occurrence for FR-PLAYER-001#ac-transport, including repeated tracks.</remarks>
+/// <remarks>2026-11-25: Expose the active engine and exact local profile identity for FR-CLI-001#ac-switch.</remarks>
 public sealed record PlaybackState(Guid SessionId, long Revision, QueueSnapshot Queue, PlaybackCapabilities Capabilities,
     TransportStatus Status, Guid? ActiveTrackId = null, TimeSpan Position = default, TimeSpan? Duration = null,
-    ImmutableArray<DeckState> Decks = default, MasterOutput? Output = null, Guid? ActiveQueueEntryId = null);
+    ImmutableArray<DeckState> Decks = default, MasterOutput? Output = null, Guid? ActiveQueueEntryId = null,
+    string StrategyId = PlaybackStrategyIds.SoundFlow, Guid? StrategyProfileId = null);
 
 /// <summary>Describes one scoped edit of preserve-order queue entries.</summary>
 public abstract record QueueEdit
@@ -82,6 +95,17 @@ public abstract record QueuePlaybackEdit
 
 /// <summary>Reads the active playback session.</summary>
 public sealed record GetPlaybackState(Guid SessionId) : IQuery<PlaybackState>;
+
+/// <summary>Initializes an already configured playback session using the desktop restart preference.</summary>
+/// <remarks>2026-11-25: Resume eligible audio from the startup command for FR-PLAYER-001#ac-resume-playback-after-restart.</remarks>
+public sealed record InitializePlayback(Guid SessionId) : ICommand<PlaybackState>;
+
+/// <summary>Advances automatic transitions from the observed playback clock.</summary>
+/// <remarks>2026-11-25: Separate fade progress from read-only queries for FR-PLAYER-001#ac-fade.</remarks>
+public sealed record AdvancePlayback(Guid SessionId) : ICommand<PlaybackState>;
+
+/// <summary>Checks the live primary position and saves it before normal desktop shutdown.</summary>
+public sealed record SavePlaybackForRestart(Guid SessionId) : ICommand<PlaybackState>;
 
 /// <summary>Adds ordered tracks to a playback session.</summary>
 public sealed record EnqueueTracks(Guid SessionId, ImmutableArray<Guid> OrderedTrackIds, EnqueueMode Mode) : ICommand<PlaybackState>;

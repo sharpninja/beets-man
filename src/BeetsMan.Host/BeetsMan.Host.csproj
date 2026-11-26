@@ -7,10 +7,14 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <!-- 2026-11-25: Share the private OS credential lookup with desktop enrollment for FR-RECORDS-001#ac-register. -->
+    <Compile Include="../Shared/OperatingSystemCredentialLookup.cs" Link="Bootstrap/OperatingSystemCredentialLookup.cs" />
     <ProjectReference Include="../BeetsMan.Host.Contracts/BeetsMan.Host.Contracts.csproj" />
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="LiteDB" Version="5.0.21" />
     <PackageReference Include="YamlDotNet" Version="18.1.0" />
     <EmbeddedResource Include="AndroidLayouts/*.yaml" />
+    <!-- 2026-11-24: Bind the internal album-review worker seam for FR-BEETS-001#ac-import and TEST-BEETS-002. -->
+    <InternalsVisibleTo Include="BeetsMan.Host.IntegrationTests" />
   </ItemGroup>
 </Project>

@@ -8,8 +8,10 @@ namespace BeetsMan.Host.Adapters.Syncthing;
 
 /// <summary>Loads and validates operator-provided or bundled Android layout profiles.</summary>
 /// <remarks>2026-11-24: Read versioned YAML profiles without executing input for FR-FILESYNC-001#ac-layouts and ac-safety.</remarks>
+/// <remarks>2026-11-25: Share the YAML length bound with host startup for FR-FILESYNC-001#ac-layouts.</remarks>
 public sealed class AndroidLayoutProfiles(IEnumerable<IExportPlaylistFormatter> formatters)
 {
+    internal const int MaximumYamlLength = 16_384;
     private static readonly HashSet<string> Fields = new(StringComparer.Ordinal)
     {
         "id", "player", "templateVersion", "suggestedRoot", "audioPathTemplate", "playlistFormat", "playlistPathTemplate"
@@ -25,7 +27,7 @@ public sealed class AndroidLayoutProfiles(IEnumerable<IExportPlaylistFormatter> 
     /// <summary>Parses one layout and rejects invalid paths, unsupported formats, and ambiguous YAML.</summary>
     public HostOutcome<AndroidLayoutProfile> Parse(string yaml)
     {
-        if (yaml.Length is 0 or > 16384)
+        if (yaml.Length is 0 or > MaximumYamlLength)
             return Invalid("invalid-device-layout-yaml");
 
         Dictionary<string, string> document;

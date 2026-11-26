@@ -25,8 +25,9 @@ public interface IPlaylistPublicationHost
 
 /// <summary>Coordinates local playlist drafts and replayable, revision-checked host saves.</summary>
 /// <remarks>2026-11-24: Bind the Library and playlist workflow and preserve pending saves under FR-RECORDS-001#ac-offline.</remarks>
+/// <remarks>2026-11-24: Route named playlist saves through FR-LIBRARY-002#ac-batch-local and ac-batch-revert.</remarks>
 public sealed class PlaylistWorkspaceHandlers(IPlaylistDraftReader reader, IWriteUnitOfWork<IPlaylistDraftWriteRepositories> writes,
-    IPublishedPlaylistReader catalog, IPlaylistPublicationHost host, Guid localOrigin) :
+    IPublishedPlaylistReader catalog, IPlaylistPublicationHost host, Guid localOrigin, LibraryBatchHandlers? batches = null) :
     IQueryHandler<GetPlaylistDraft, PlaylistDraft>, ICommandHandler<CreatePlaylistDraft, PlaylistDraft>,
     ICommandHandler<EditPlaylistDraft, PlaylistDraft>, ICommandHandler<SavePlaylist, PlaylistSavedReceipt>
 {
@@ -117,9 +118,31 @@ public sealed class PlaylistWorkspaceHandlers(IPlaylistDraftReader reader, IWrit
         catch (OperationCanceledException) when (token.IsCancellationRequested) { return new Outcome<PlaylistSavedReceipt>.Cancelled(); }
         try
         {
-            return await StageAndPublishAsync(command, context.Request, identity, token).ConfigureAwait(false);
+            if (batches is null)
+                return await StageAndPublishAsync(command, context.Request, identity, token).ConfigureAwait(false);
+            var scoped = new CommandContext(context.Request with { OriginInstanceId = identity.OriginInstanceId }, identity.OperationId);
+            return await batches.RouteMutationAsync<LibraryBatchChange.Playlist, PlaylistSavedReceipt>(scoped,
+                ct => StageAndPublishAsync(command, context.Request, identity, ct), ct => PrepareBatchSaveAsync(command, ct),
+                pending => pending.QueueSource is null && pending.DraftId == command.DraftId && pending.DraftRevision == command.ExpectedDraftRevision &&
+                    pending.BasePlaylist?.Revision == command.ExpectedPlaylistRevision && pending.Name == command.Name,
+                (pending, receipt) => new(pending.DraftId, pending.BasePlaylist?.PlaylistId ?? Guid.Empty, pending.BasePlaylist?.Revision ?? 0,
+                    pending.DraftRevision, LocalBatch: receipt), token).ConfigureAwait(false);
         }
         finally { lane.Release(); }
+    }
+
+    private async Task<Outcome<LibraryBatchChange.Playlist>> PrepareBatchSaveAsync(SavePlaylist command, CancellationToken token)
+    {
+        var read = await reader.ReadDraftAsync(command.DraftId, token).ConfigureAwait(false);
+        if (read is not Outcome<PlaylistDraft?>.Success { Value: var draft })
+            return CopyFailure<PlaylistDraft?, LibraryBatchChange.Playlist>(read);
+        if (draft is null)
+            return Invalid<LibraryBatchChange.Playlist>("playlist-draft-not-found");
+        if (draft.Revision != command.ExpectedDraftRevision)
+            return new Outcome<LibraryBatchChange.Playlist>.Conflict("stale-playlist-draft", draft.Revision);
+        if (draft.BasePlaylist?.Revision != command.ExpectedPlaylistRevision)
+            return new Outcome<LibraryBatchChange.Playlist>.Conflict("stale-saved-playlist", draft.BasePlaylist?.Revision);
+        return new Outcome<LibraryBatchChange.Playlist>.Success(new(draft.DraftId, draft.Revision, draft.BasePlaylist, command.Name, draft.Entries));
     }
 
     private async Task<Outcome<PlaylistSavedReceipt>> StageAndPublishAsync(SavePlaylist command, RequestContext request,
@@ -129,7 +152,58 @@ public sealed class PlaylistWorkspaceHandlers(IPlaylistDraftReader reader, IWrit
         if (staged is not Outcome<PendingPlaylistSave>.Success success)
             return CopyFailure<PendingPlaylistSave, PlaylistSavedReceipt>(staged);
 
-        var pending = success.Value;
+        return await PublishPendingAsync(success.Value, request, token).ConfigureAwait(false);
+    }
+
+    /// <summary>Replays durable named saves for the registered origin after connectivity is restored.</summary>
+    /// <remarks>2026-11-25: Reuse the pinned payload and defer direct sends during FR-LIBRARY-002#ac-batch-local for FR-RECORDS-001#ac-offline.</remarks>
+    public async Task ReplayPendingSavesAsync(RequestContext request, CancellationToken token)
+    {
+        if (request.OriginInstanceId != localOrigin || localOrigin == Guid.Empty)
+            return;
+        var pending = await reader.ReadPendingDraftSavesAsync(localOrigin, token).ConfigureAwait(false);
+        if (pending is not Outcome<ImmutableArray<PendingPlaylistSave>>.Success { Value: var saves })
+            return;
+
+        foreach (var draft in saves.GroupBy(save => save.DraftId))
+        {
+            var lane = publishingByDraft.GetOrAdd(draft.Key, static _ => new SemaphoreSlim(1, 1));
+            await lane.WaitAsync(token).ConfigureAwait(false);
+            try
+            {
+                foreach (var save in draft)
+                {
+                    token.ThrowIfCancellationRequested();
+                    var replayed = batches is null
+                        ? await ReplayAsync(save.Key, request, token).ConfigureAwait(false)
+                        : await batches.ReplayDirectAsync(request, ct => ReplayAsync(save.Key, request, ct), token).ConfigureAwait(false);
+                    if (replayed is Outcome<bool>.Success { Value: false })
+                        return;
+                    if (replayed is not Outcome<bool>.Success)
+                        break;
+                }
+            }
+            finally { lane.Release(); }
+        }
+    }
+
+    private async Task<Outcome<bool>> ReplayAsync(OperationKey key, RequestContext request, CancellationToken token)
+    {
+        var current = await writes.ExecuteAsync<PendingPlaylistSave?>(
+            repositories => new Outcome<PendingPlaylistSave?>.Success(repositories.Operations.Find(key)), token).ConfigureAwait(false);
+        if (current is not Outcome<PendingPlaylistSave?>.Success available)
+            return CopyFailure<PendingPlaylistSave?, bool>(current);
+        if (available.Value is not { QueueSource: null, Status: PendingPlaylistSaveStatus.Pending } pending)
+            return new Outcome<bool>.Success(true);
+
+        var result = await PublishPendingAsync(pending, request, token).ConfigureAwait(false);
+        return result is Outcome<PlaylistSavedReceipt>.Success or Outcome<PlaylistSavedReceipt>.Conflict or Outcome<PlaylistSavedReceipt>.Invalid
+            ? new Outcome<bool>.Success(true)
+            : CopyFailure<PlaylistSavedReceipt, bool>(result);
+    }
+
+    private async Task<Outcome<PlaylistSavedReceipt>> PublishPendingAsync(PendingPlaylistSave pending, RequestContext request, CancellationToken token)
+    {
         if (pending.Receipt is { } committed)
             return new Outcome<PlaylistSavedReceipt>.Success(committed);
         if (pending.Status == PendingPlaylistSaveStatus.Conflicted)

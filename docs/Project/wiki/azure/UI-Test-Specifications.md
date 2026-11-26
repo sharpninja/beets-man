@@ -2,6 +2,12 @@
 
 Candidate mapping and test specifications. See [Stage 0 status](../../stage-0/README.md) for QBrain and review evidence. The first isolated presentation gate exercises independent mock fixtures and deliberate negative controls. macOS is an authored-only validation lane.
 
+## Desktop UI automation
+
+Use [SharpNinja.Avalonia.RemoteControl](https://github.com/sharpninja/Avalonia.RemoteControl) from the desktop integration tests. Find each control by its Avalonia `AutomationId` in the current tree snapshot, then use the returned node ID for `InvokeClick` or another supported control action. Assert the resulting command effect and the updated control state. Keep raw keyboard and mouse forwarding disabled. The test host listens on an ephemeral loopback port and requires a fresh bearer token for each run.
+
+Run the driver smoke test with `./build.ps1 TestGroups --test-groups 'BeetsMan.Desktop.IntegrationTests:RemoteControlIntegrationTests' --test-run-id remotecontrol-smoke`. It uses `Avalonia.Headless` and a fixture window. For tests that require X11 on Wayland, check both `/tmp/.X11-unix/X177` and `/tmp/.X177-lock` before choosing `:177`, or choose another unused number. Use `xvfb-run -n 177` with that checked number so `DISPLAY` is scoped to the run.
+
 ## TEST-CONFIG-001 · Configure this desktop
 
 - Requirement: `FR-CONFIG-001`; technical obligation: `TR-CONFIG-ARCH-001`; actor: Desktop operator.
@@ -24,10 +30,11 @@ Candidate mapping and test specifications. See [Stage 0 status](../../stage-0/RE
   - `DISPATCHAcceptanceTests.Routing_MatchesContract` (`FR-DISPATCH-001#ac-routing`): Each app action submits exactly one typed Unit of Work to its handler; real validation failures and cancellation produce a typed result.
   - `DISPATCHAcceptanceTests.Update_MatchesContract` (`FR-DISPATCH-001#ac-update`): A result does not change bound UI state until a dispatcher callback applies it; a stale result cannot replace a newer view.
   - `DISPATCHAcceptanceTests.Responsive_MatchesContract` (`FR-DISPATCH-001#ac-responsive`): A long import does not block commands for UI navigation. Commands writing the same state do not expose partially applied changes.
-  - Planned logical blocking test (`FR-DISPATCH-001#ac-wait-pointer`): Hold startup on a controlled operation, verify the owning scope requests the system wait pointer, and verify that completion, failure, cancellation, and owner replacement clear the override. Independent background work keeps the scope interactive.
+  - `DISPATCHAcceptanceTests.WaitPointer_MatchesContract` and `ScopeReplacement_DropsOutstandingProjection` (`FR-DISPATCH-001#ac-wait-pointer`): A pending startup command blocks its owner. Success, failure, cancellation, and owner replacement clear the flag.
 - Timing: await the typed outcome or run the queued dispatcher callback; use a controllable clock for time-dependent cases.
 - Negative control: replace the relevant fake response with an incorrect outcome and require this case's assertion to reject it.
 - Integration `TEST-DISPATCH-002`: Exercise an actual Avalonia window, dispatcher, focus, modal draft and bound collection changes with background callbacks. Clean up only case-owned files, workers, and shares.
+- `RemoteControlIntegrationTests.BlockingCommandOwnsWaitCursor` (`FR-DISPATCH-001#ac-wait-pointer`): The headless fixture binds the bootstrap ViewModel to the standard Avalonia wait cursor. RemoteControl can still invoke a separate control while startup is pending. Success, failure, cancellation, and owner replacement each restore the default cursor.
 - [Storyboard paths](coverage.md#stb02-execute-a-desktop-action)
 
 ## TEST-LIBRARY-001 · Browse the music catalog

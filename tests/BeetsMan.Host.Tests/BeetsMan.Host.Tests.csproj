@@ -14,5 +14,36 @@
     <Compile Include="../Shared/HostPlaylistAssertions.cs" Link="HostPlaylistAssertions.cs" />
     <Compile Include="../Shared/PlaylistHttpAssertions.cs" Link="PlaylistHttpAssertions.cs" />
     <Compile Include="../Shared/DevicePlaylistStageAssertions.cs" Link="DevicePlaylistStageAssertions.cs" />
+    <Compile Include="../Shared/ImportUploadAssertions.cs" Link="ImportUploadAssertions.cs" />
+    <Compile Include="../Shared/GuidedImportReviewAssertions.cs" Link="GuidedImportReviewAssertions.cs" />
+    <Compile Include="../Shared/ImportPublicationAssertions.cs" Link="ImportPublicationAssertions.cs" />
+    <Compile Include="../Shared/ImportWorkerAssertions.cs" Link="ImportWorkerAssertions.cs" />
+    <Compile Include="../Shared/ImportMatchDiscoveryAssertions.cs" Link="ImportMatchDiscoveryAssertions.cs" />
+    <Compile Include="../Shared/ImportMatchApplyAssertions.cs" Link="ImportMatchApplyAssertions.cs" />
+    <Compile Include="../Shared/TrackTagAdmissionAssertions.cs" Link="TrackTagAdmissionAssertions.cs" />
+    <Compile Include="../Shared/TrackTagExecutionAssertions.cs" Link="TrackTagExecutionAssertions.cs" />
+    <Compile Include="../Shared/LibraryMaintenanceAdmissionAssertions.cs" Link="LibraryMaintenanceAdmissionAssertions.cs" />
+    <!-- 2026-11-24: Verify catalog-only execution and recovery for FR-BEETS-001#ac-edit and ac-recover. -->
+    <Compile Include="../Shared/CatalogRemovalExecutionAssertions.cs" Link="CatalogRemovalExecutionAssertions.cs" />
+    <!-- 2026-11-24: Verify incremental catalog replication and acknowledgement for FR-RECORDS-001. -->
+    <Compile Include="../Shared/CatalogReplicationAssertions.cs" Link="CatalogReplicationAssertions.cs" />
+    <Compile Include="../Shared/CatalogSnapshotAssertions.cs" Link="CatalogSnapshotAssertions.cs" />
+    <Compile Include="../Shared/ApprovedBatchPublicationAssertions.cs" Link="ApprovedBatchPublicationAssertions.cs" />
+    <Compile Include="../Shared/ApprovedBatchImportAssertions.cs" Link="ApprovedBatchImportAssertions.cs" />
+    <Compile Include="../Shared/MixedNativeBatchAssertions.cs" Link="MixedNativeBatchAssertions.cs" />
+    <Compile Include="../Shared/OrganizationExecutionAssertions.cs" Link="OrganizationExecutionAssertions.cs" />
+    <Compile Include="../Shared/BatchOrganizationAssertions.cs" Link="BatchOrganizationAssertions.cs" />
+    <Compile Include="../Shared/AudioRemovalExecutionAssertions.cs" Link="AudioRemovalExecutionAssertions.cs" />
+    <Compile Include="../Shared/BatchAudioRemovalAssertions.cs" Link="BatchAudioRemovalAssertions.cs" />
+    <Compile Include="../Shared/BatchImportReviewAssertions.cs" Link="BatchImportReviewAssertions.cs" />
+    <Compile Include="../Shared/BatchImportExecutionAssertions.cs" Link="BatchImportExecutionAssertions.cs" />
+    <Compile Include="../Shared/BatchWithdrawalAssertions.cs" Link="BatchWithdrawalAssertions.cs" />
+    <Compile Include="../Shared/LibraryRecordReplicationAssertions.cs" Link="LibraryRecordReplicationAssertions.cs" />
+    <Compile Include="../Shared/LibraryRecordOutboxAssertions.cs" Link="LibraryRecordOutboxAssertions.cs" />
+    <Compile Include="../Shared/DesktopRegistrationAssertions.cs" Link="DesktopRegistrationAssertions.cs" />
+    <Compile Include="../Shared/DesktopActivityAssertions.cs" Link="DesktopActivityAssertions.cs" />
+    <Compile Include="../Shared/BeetsLibrarySetupAssertions.cs" Link="BeetsLibrarySetupAssertions.cs" />
+    <Compile Include="../Shared/BeetsConfigurationAssertions.cs" Link="BeetsConfigurationAssertions.cs" />
+    <Compile Include="../Shared/ImportDefaultsEntryAssertions.cs" Link="ImportDefaultsEntryAssertions.cs" />
   </ItemGroup>
 </Project>

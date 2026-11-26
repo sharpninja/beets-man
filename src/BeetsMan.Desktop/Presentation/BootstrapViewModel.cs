@@ -82,7 +82,9 @@ public sealed partial class BootstrapViewModel(PresentationServices services, Gu
 
 /// <summary>Projects structured, redacted logs and the platform log-folder handoff.</summary>
 /// <remarks>2026-11-24: Bind diagnostics for FR-CONFIG-001#ac-logs.</remarks>
-public sealed partial class DiagnosticsViewModel(PresentationServices services, Guid ownerId) : PresentationViewModel(services, ownerId)
+/// <remarks>2026-11-25: Enable only the diagnostics query in the repair scope for FR-CONFIG-001#ac-logs.</remarks>
+public sealed partial class DiagnosticsViewModel(PresentationServices services, Guid ownerId, bool canOpenLogFolder = true)
+    : PresentationViewModel(services, ownerId)
 {
     [ObservableProperty] private DiagnosticsFilter filter = new();
     [ObservableProperty] private DiagnosticsPage? page;
@@ -99,7 +101,12 @@ public sealed partial class DiagnosticsViewModel(PresentationServices services, 
         return LoadAsync(null, token);
     }
 
-    [RelayCommand]
-    private Task OpenLogFolderAsync(CancellationToken token) =>
-        WriteAsync(new OpenLogFolder(), result => LogFolder = result, token);
+    [RelayCommand(CanExecute = nameof(CanOpenLogFolder))]
+    private Task OpenLogFolderAsync(CancellationToken token) => CanOpenLogFolder()
+        ? WriteAsync(new OpenLogFolder(), result => LogFolder = result, token)
+        : Task.CompletedTask;
+
+    protected override void OnWriteAvailabilityChanged() => OpenLogFolderCommand.NotifyCanExecuteChanged();
+
+    private bool CanOpenLogFolder() => canOpenLogFolder && CanWrite;
 }

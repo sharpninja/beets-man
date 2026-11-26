@@ -9,6 +9,7 @@ namespace BeetsMan.Desktop.Adapters.Persistence;
 
 /// <summary>Owns one desktop LiteDB file and the atomic draft and pending-operation repositories.</summary>
 /// <remarks>2026-11-24: Bind TR-RECORDS-ARCH-001#ac-litedb-repositories and ac-litedb-c4-entities to the desktop collection names.</remarks>
+/// <remarks>2026-11-26: Validate the StoreSchema identity defined by TR-RECORDS-ARCH-001#ac-litedb-c4-entities.</remarks>
 public sealed partial class LiteDbDesktopPlaylistStore : IPlaylistDraftReader, IWriteUnitOfWork<IPlaylistDraftWriteRepositories>, IDisposable
 {
     private readonly LiteDatabase database;
@@ -25,6 +26,7 @@ public sealed partial class LiteDbDesktopPlaylistStore : IPlaylistDraftReader, I
     public Guid StoreId { get; }
 
     /// <summary>Opens an already validated absolute local path, optionally creating the new desktop store.</summary>
+    /// <remarks>2026-11-26: Reject malformed or unsupported schema identities for FR-CONFIG-001#ac-repair before opening repositories.</remarks>
     public static LiteDbDesktopPlaylistStore Open(string databasePath, bool allowCreate)
     {
         if (!Path.IsPathFullyQualified(databasePath))
@@ -48,11 +50,25 @@ public sealed partial class LiteDbDesktopPlaylistStore : IPlaylistDraftReader, I
                 schema = new BsonDocument { ["_id"] = "store", ["StoreId"] = Guid.NewGuid(), ["StoreRole"] = "Desktop", ["SchemaVersion"] = 1 };
                 schemas.Insert(schema);
             }
-            if (schema["StoreRole"].AsString != "Desktop" || schema["SchemaVersion"].AsInt32 != 1 || schema["StoreId"].AsGuid == Guid.Empty)
+            if (!schema["StoreRole"].IsString || schema["StoreRole"].AsString != "Desktop" ||
+                !schema["SchemaVersion"].IsInt32 || schema["SchemaVersion"].AsInt32 != 1 ||
+                !schema["StoreId"].IsGuid || schema["StoreId"].AsGuid == Guid.Empty)
                 throw new InvalidDataException("The database role or schema version is not supported by this desktop.");
 
             LiteDbCatalogReader.EnsureIndexes(database);
             database.GetCollection<BsonDocument>("pending_operations").EnsureIndex("QueueSessionId");
+            // 2026-11-25: Scan pending rows for FR-RECORDS-001#ac-offline without reading retained receipts.
+            database.GetCollection<BsonDocument>("pending_operations").EnsureIndex("State");
+            // 2026-11-25: Read the local listener outbox by its owner and record for FR-RECORDS-001#ac-offline.
+            database.GetCollection<BsonDocument>("pending_operations").EnsureIndex("ListenerScope");
+            database.GetCollection<BsonDocument>("pending_operations").EnsureIndex("ListenerRecordKey");
+            database.GetCollection<BsonDocument>("listening_records").EnsureIndex("LibraryId");
+            // 2026-11-24: Support complete ordered batch review for FR-LIBRARY-002#ac-batch-review.
+            database.GetCollection<BsonDocument>(BatchEntries).EnsureIndex("BatchKey");
+            // 2026-11-24: Locate orphaned private import claims by scope for FR-LIBRARY-002#ac-batch-revert.
+            database.GetCollection<BsonDocument>(BatchImportCopies).EnsureIndex("ScopeKey");
+            // 2026-11-24: Discard private recovery rows by owner for FR-RECORDS-001#ac-replicate.
+            database.GetCollection<BsonDocument>(CatalogSnapshotStageRows).EnsureIndex("Owner");
             return new LiteDbDesktopPlaylistStore(database, schema["StoreId"].AsGuid);
         }
         catch
@@ -65,6 +81,16 @@ public sealed partial class LiteDbDesktopPlaylistStore : IPlaylistDraftReader, I
     /// <inheritdoc />
     public Task<Outcome<PlaylistDraft?>> ReadDraftAsync(Guid draftId, CancellationToken cancellationToken) =>
         OnLaneAsync<PlaylistDraft?>(() => new Outcome<PlaylistDraft?>.Success(new Drafts(database).Find(draftId)), cancellationToken);
+
+    /// <summary>Lists pending named saves for one origin without reading queue or listener payloads.</summary>
+    /// <remarks>2026-11-25: Recover existing rows through the repository for FR-RECORDS-001#ac-offline.</remarks>
+    public Task<Outcome<ImmutableArray<PendingPlaylistSave>>> ReadPendingDraftSavesAsync(Guid originInstanceId, CancellationToken cancellationToken) =>
+        ReadAsync<ImmutableArray<PendingPlaylistSave>>(db => new Outcome<ImmutableArray<PendingPlaylistSave>>.Success(
+            [.. db.GetCollection<BsonDocument>("pending_operations").Find(Query.EQ("State", nameof(PendingPlaylistSaveStatus.Pending)))
+                .Where(row => row["OriginInstanceId"].IsGuid && row["OriginInstanceId"].AsGuid == originInstanceId &&
+                    row["CommandType"].AsString == nameof(SavePlaylist) && row["DraftId"].IsGuid && row["QueueSessionId"].IsNull)
+                .Select(ReadOperation).OrderBy(save => save.DraftId).ThenBy(save => save.DraftRevision).ThenBy(save => save.Key.OperationId)]),
+            cancellationToken);
 
     /// <summary>Runs a projection read on the same store lane as writes.</summary>
     /// <remarks>2026-11-24: Read one consistent catalog revision for FR-LIBRARY-001#ac-browse and ac-offline.</remarks>
@@ -208,7 +234,7 @@ public sealed partial class LiteDbDesktopPlaylistStore : IPlaylistDraftReader, I
         public PendingPlaylistSave? Find(OperationKey key)
         {
             check();
-            return collection.FindById(OperationId(key)) is { } row ? ReadOperation(row) : null;
+            return collection.FindById(OperationId(key)) is { } row && row["CommandType"].AsString == nameof(SavePlaylist) ? ReadOperation(row) : null;
         }
 
         public void Add(PendingPlaylistSave operation)

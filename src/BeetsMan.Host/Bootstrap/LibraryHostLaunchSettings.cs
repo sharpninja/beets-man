@@ -7,7 +7,8 @@ namespace BeetsMan.Host.Bootstrap;
 public sealed record LibraryHostListener(string Address, int Port, string CertificateThumbprint);
 
 /// <summary>Associates a registered desktop with its bearer credential reference.</summary>
-public sealed record HostClientCredential(Guid InstanceId, string Reference);
+/// <remarks>2026-11-25: Mark the provisioned Operator credentials explicitly for FR-RECORDS-001#ac-register.</remarks>
+public sealed record HostClientCredential(Guid InstanceId, string Reference, bool CanManageRegistrations = false);
 
 /// <summary>Associates a registered receiver with its Syncthing API credential reference.</summary>
 public sealed record HostReceiverCredential(Guid DeviceId, string Reference);

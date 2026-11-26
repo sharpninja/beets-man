@@ -17,13 +17,20 @@ public abstract record PreferenceValue
 }
 
 /// <summary>Returns the effective setting and its editable revision.</summary>
-public sealed record EffectivePreference(string Key, PreferenceValue Value, PreferenceSource Source, long Revision, bool CanEditLocal, bool CanEditShared);
+/// <remarks>2026-11-25: Preserve the inherited shared value while a local theme is applied for FR-SETTINGS-001#ac-precedence.</remarks>
+public sealed record EffectivePreference(string Key, PreferenceValue Value, PreferenceSource Source, long Revision, bool CanEditLocal, bool CanEditShared)
+{
+    /// <summary>Gets the cached host value when the library has a shared default for this key.</summary>
+    public PreferenceValue? SharedDefault { get; init; }
+}
 
 /// <summary>Returns one settings category and its local and host revisions.</summary>
 public sealed record PreferenceCategorySnapshot(string CategoryId, long Revision, long? HostRevision, ImmutableArray<EffectivePreference> Preferences);
 
 /// <summary>Describes local keys to reset and the values they will inherit.</summary>
-public sealed record PreferenceResetPlan(Guid PlanId, string CategoryId, long Revision, ImmutableArray<EffectivePreference> Inherited);
+/// <remarks>2026-11-25: Capture both values and revisions shown in the STB07 reset review for FR-SETTINGS-001.</remarks>
+public sealed record PreferenceResetPlan(Guid PlanId, string CategoryId, long Revision, ImmutableArray<EffectivePreference> Inherited,
+    ImmutableArray<EffectivePreference> Local = default, long? HostRevision = null);
 
 /// <summary>Reads one preference by its registered key.</summary>
 public sealed record GetPreference(string Key) : IQuery<EffectivePreference>;
@@ -50,13 +57,16 @@ public sealed record GetPreferenceResetPlan(string CategoryId) : IQuery<Preferen
 public sealed record ResetLocalPreferences(Guid PlanId, long ExpectedRevision) : ICommand<PreferenceCategorySnapshot>;
 
 /// <summary>Identifies a registered shortcut action and gesture.</summary>
-public sealed record ShortcutBinding(string ActionId, string Scope, string Gesture);
+/// <remarks>2026-11-25: Carry the portal's actual trigger description for FR-SETTINGS-001#ac-shortcuts.</remarks>
+public sealed record ShortcutBinding(string ActionId, string Scope, string Gesture, string? SystemTriggerDescription = null);
 
 /// <summary>Returns contextual shortcuts and actual system registration.</summary>
-public sealed record ShortcutSnapshot(string Scope, long Revision, ImmutableArray<ShortcutBinding> Bindings, bool GlobalPlaybackKeysEnabled, ShortcutBinding? WinningBinding = null);
+/// <remarks>2026-11-25: Keep local binding revisions and actual platform registration independent for FR-SETTINGS-001#ac-shortcuts.</remarks>
+public sealed record ShortcutSnapshot(string Scope, long Revision, ImmutableArray<ShortcutBinding> Bindings, bool GlobalPlaybackKeysEnabled,
+    ShortcutBinding? WinningBinding = null, long SystemRevision = 0, ImmutableArray<ShortcutBinding> RegisteredSystemBindings = default);
 
 /// <summary>Reads shortcut bindings for a scope.</summary>
-public sealed record GetShortcutBindings(string Scope) : IQuery<ShortcutSnapshot>;
+public sealed record GetShortcutBindings(string Scope, string? Gesture = null) : IQuery<ShortcutSnapshot>;
 
 /// <summary>Assigns a captured gesture in the given scope.</summary>
 public sealed record AssignShortcut(string ActionId, string Scope, string Gesture, long ExpectedRevision) : ICommand<ShortcutSnapshot>;
@@ -65,4 +75,12 @@ public sealed record AssignShortcut(string ActionId, string Scope, string Gestur
 public sealed record ResetShortcuts(string Scope, long ExpectedRevision) : ICommand<ShortcutSnapshot>;
 
 /// <summary>Requests opt-in platform registration for supported playback actions.</summary>
-public sealed record SetGlobalPlaybackShortcuts(bool Enabled, ImmutableArray<ShortcutBinding> RequestedBindings, long ExpectedRevision) : ICommand<ShortcutSnapshot>;
+public sealed record SetGlobalPlaybackShortcuts(bool Enabled, ImmutableArray<ShortcutBinding> RequestedBindings, long ExpectedRevision,
+    string Scope = ShortcutScopes.All) : ICommand<ShortcutSnapshot>;
+
+/// <summary>Resolves a gesture against the active dialog and then the supplied active views in precedence order.</summary>
+/// <remarks>2026-11-25: Resolve the winning local binding for FR-SETTINGS-001#ac-shortcuts.</remarks>
+public sealed record ResolveContextualShortcut(ImmutableArray<string> ActiveScopes, string Gesture) : IQuery<ShortcutResolution>;
+
+/// <summary>Returns the binding that owns the gesture in the active context, if one is assigned.</summary>
+public sealed record ShortcutResolution(long Revision, ShortcutBinding? Binding);

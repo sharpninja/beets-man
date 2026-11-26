@@ -32,6 +32,8 @@ public sealed class DesktopBootstrapEnvironment(IEnumerable<string> sharedRoots)
     public Task<ValidationIssue?> ValidateDatabaseAsync(string absolutePath, bool allowCreate, CancellationToken cancellationToken) =>
         Task.Run<ValidationIssue?>(() => Verify(absolutePath, allowCreate), cancellationToken);
 
+    /// <summary>Translates a rejected LiteDB schema into a repair issue for the selected path.</summary>
+    /// <remarks>2026-11-26: Keep unsupported database versions out of the workspace for FR-CONFIG-001#ac-repair.</remarks>
     private ValidationIssue? Verify(string path, bool allowCreate)
     {
         if (IsShared(path))
@@ -40,6 +42,10 @@ public sealed class DesktopBootstrapEnvironment(IEnumerable<string> sharedRoots)
         {
             using var store = LiteDbDesktopPlaylistStore.Open(path, allowCreate);
             return null;
+        }
+        catch (InvalidDataException)
+        {
+            return new("unsupported-desktop-database-schema", nameof(BootstrapSettings.DatabasePath));
         }
         catch (Exception exception) when (exception is LiteException or IOException or UnauthorizedAccessException)
         {

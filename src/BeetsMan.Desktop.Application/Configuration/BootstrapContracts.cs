@@ -36,7 +36,9 @@ public sealed record SaveBootstrapSettings(BootstrapSettings Settings, long Expe
 public sealed record DiagnosticsFilter(string? Category = null, Guid? CorrelationId = null, string? PluginId = null);
 
 /// <summary>Contains a redacted structured diagnostics entry.</summary>
-public sealed record DiagnosticEntry(DateTimeOffset OccurredAt, string Level, string Category, string Code, Guid? CorrelationId, string? PluginId);
+/// <remarks>2026-11-25: Identify the exact plugin version for FR-PLUGINS-001#ac-recovery.</remarks>
+public sealed record DiagnosticEntry(DateTimeOffset OccurredAt, string Level, string Category, string Code, Guid? CorrelationId, string? PluginId,
+    string? PluginVersion = null);
 
 /// <summary>Returns a page of redacted diagnostics.</summary>
 public sealed record DiagnosticsPage(DiagnosticsFilter Filter, ImmutableArray<DiagnosticEntry> Entries, string? NextPage);

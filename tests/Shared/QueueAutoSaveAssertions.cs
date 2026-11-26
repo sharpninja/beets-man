@@ -1,4 +1,5 @@
 using System.Collections.Immutable;
+using BeetsMan.Desktop.Application.Library;
 using BeetsMan.Desktop.Application.Playback;
 using Xunit;
 
@@ -8,6 +9,10 @@ namespace BeetsMan.Desktop.Tests;
 /// <remarks>2026-11-24: TEST-PLAYER-001 for FR-PLAYER-001#ac-queue-autosave, with FR-RECORDS-001#ac-offline replay coverage.</remarks>
 internal static class QueueAutoSaveAssertions
 {
+    /// <summary>Matches the loaded playlist name and switch state at the queue presentation boundary.</summary>
+    /// <remarks>2026-11-25: Check the STB04 binding for TEST-PLAYER-001 and FR-PLAYER-001#ac-queue-autosave.</remarks>
+    public static void VerifyBacking(QueueBackingReport expected, QueueBackingReport observed) => Assert.Equal(expected, observed);
+
     public static void Verify(ImmutableArray<Guid> before, QueueSnapshot enabledEdit, QueueSnapshot disabledEdit,
         ImmutableArray<Guid> hostOrder, int logicalHostWrites)
     {
@@ -34,3 +39,7 @@ internal static class QueueAutoSaveAssertions
         Assert.Equal(queue.Entries.Select(entry => entry.EntryId), hostEntries);
     }
 }
+
+/// <summary>Captures the identity, display name, and switch returned by the queue presentation.</summary>
+/// <remarks>2026-11-25: Share the TEST-PLAYER-001 observation with the independent queue fixture.</remarks>
+internal sealed record QueueBackingReport(PlaylistVersion? Playlist, string? Name, bool CanToggle, bool AutoSave);

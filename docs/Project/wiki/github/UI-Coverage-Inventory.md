@@ -166,7 +166,7 @@ Use case `UC-LIBRARY-001` · `FR-LIBRARY-001#ac-browse`, `FR-LIBRARY-001#ac-offl
 
 ### STB04 Play and mix music
 
-Use case `UC-PLAYER-001` · `FR-PLAYER-001#ac-transport`, `FR-PLAYER-001#ac-mix`, `FR-PLAYER-001#ac-fade`, `FR-PLAYER-001#ac-modes` · `TEST-PLAYER-001`, `TEST-PLAYER-002`
+Use case `UC-PLAYER-001` · `FR-PLAYER-001#ac-transport`, `FR-PLAYER-001#ac-mix`, `FR-PLAYER-001#ac-fade`, `FR-PLAYER-001#ac-modes`, `FR-PLAYER-001#ac-queue-autosave` · `TEST-PLAYER-001`, `TEST-PLAYER-002`
 
 **Queue, mix, and change presentation**
 
@@ -183,7 +183,9 @@ Use case `UC-PLAYER-001` · `FR-PLAYER-001#ac-transport`, `FR-PLAYER-001#ac-mix`
 
 - [STB04-1 · SCR12](../../design/frames/STB04/01-transport-playing.svg) — Start Harbor Lights. Now Playing displays active transport and the next track.
 - [STB04-2 · SCR13](../../design/frames/STB04/02-queue-reordered.svg) — Move Low Current ahead of Night Crossing. The upcoming order changes while Harbor Lights continues.
-- [STB04-9 · SCR13](../../design/frames/STB04/09-shared-player-track-seek.svg) — Drag the shared player’s seek thumb to 2:45. The elapsed time, thumb, and played portion update together while the queue stays visible.
+- [STB04-10 · SCR13](../../design/frames/STB04/10-playlist-queue-loaded.svg) — Load Evening Queue from Saved playlists. Queue shows the saved track order and the Auto-save playlist switch, initially off.
+- [STB04-9 · SCR13](../../design/frames/STB04/09-shared-player-track-seek.svg) — Drag the shared player's seek thumb to 2:45. The elapsed time, thumb, and played portion update together. Evening Queue and its off switch stay visible.
+- [STB04-11 · SCR13](../../design/frames/STB04/11-playlist-queue-auto-save-enabled.svg) — Turn on Auto-save playlist. Subsequent queue edits are eligible for auto-save to Evening Queue. Turning it off returns to STB04-9.
 
 ### STB05 Use an external playback strategy
 

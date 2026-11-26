@@ -5,6 +5,18 @@ namespace BeetsMan.Host.Tests;
 /// <summary>Captures the saved plan and playback-order evidence for the test fixtures.</summary>
 internal sealed record StageObservation(Guid PlanId, long Revision, string[] OrderedReferences, string[] StagedAudio, string PlaylistContent);
 
+/// <summary>Observes playlist drops through the registered desktop workspace and configured host.</summary>
+/// <remarks>2026-11-25: Verify FR-FILESYNC-001#ac-layouts and ac-playlist-drop across two playlist formats.</remarks>
+internal sealed record ComposedDropObservation(string[] ProfileFormats, string[] AudioNames, string[] TrackOrder,
+    string M3u8, string Pls, string[] FullyPresentEntries, bool RepeatKeepsEntryIds, bool DeviceUnchanged, bool RejectedDuplicateLayout,
+    bool DropDisabledWithoutPeer, bool SelectedPeerLoadedActiveProfile, bool ExplicitProfileWasScoped, bool PreviewKeptStagedPlan,
+    bool LeavingPeerClearedSelection, bool ReturningPeerRestoredDefaultPlan, bool OwnersStopped);
+
+/// <summary>Observes the authenticated Android monitor as part of the desktop workspace lifetime.</summary>
+/// <remarks>2026-11-25: Verify automatic arrival, scope and shutdown for FR-FILESYNC-001#ac-arrival.</remarks>
+internal sealed record ComposedAndroidArrivalObservation(bool BaselineSilent, bool ReusedPresentation, int MaximumPollsInFlight,
+    bool SelectedLivePhone, bool DraftPreserved, bool PlaybackPreserved, bool StopCancelledLongPoll, bool DeactivatedViewModels);
+
 /// <summary>Captures device staging access checks and operation identity at the transport boundary.</summary>
 internal sealed record StageTransportObservation(int MissingCredentialStatus, int WrongLibraryStatus, Guid OperationId,
     Guid DeviceId, string ProfileId, long ProfileRevision, long PlanRevision, int ChangedIntentStatus);
@@ -80,7 +92,8 @@ internal sealed record ExportTransferTransportObservation(Guid TransferId, Guid 
 /// <remarks>2026-11-24: Validate the shared host composition for FR-FILESYNC-001#ac-layouts and ac-safety.</remarks>
 internal sealed record HostStartupObservation(bool Started, string[] AvailableProfiles, string FirstShareFile, string SecondShareFile,
     bool FirstShareIsolated, bool SecondShareIsolated, string[] ScannedFolders, bool TransfersCompleted,
-    int UnauthorizedStatus, bool StoreReopened, bool OverlapRejected);
+    int UnauthorizedStatus, bool StoreReopened, bool OverlapRejected, bool IdleBeforePublication, bool PublicationTrackedReceiver,
+    bool TerminalTransferStoppedPolling, bool PeerChangeClearedTransfer, bool ShutdownCancelledTransferRead, bool VerifiedCompletionRaisedAlert);
 
 /// <summary>Observes standalone launcher configuration and OS credential roles.</summary>
 /// <remarks>2026-11-24: Verify host launch isolation for FR-RECORDS-001#ac-register and FR-FILESYNC-001#ac-safety.</remarks>
@@ -140,6 +153,40 @@ internal sealed record AndroidAcceptanceContinuity(long Awaiting, long Ready, lo
 /// <remarks>2026-11-24: Share TEST-FILESYNC-001/002 assertions for FR-FILESYNC-001#ac-playlist-drop and ac-safety.</remarks>
 internal static class StageAssertions
 {
+    /// <summary>Checks that the desktop owns one live monitor and stops it before leaving the presentation scope.</summary>
+    public static void VerifyComposedAndroidArrival(ComposedAndroidArrivalObservation actual)
+    {
+        Assert.True(actual.BaselineSilent);
+        Assert.True(actual.ReusedPresentation);
+        Assert.Equal(1, actual.MaximumPollsInFlight);
+        Assert.True(actual.SelectedLivePhone);
+        Assert.True(actual.DraftPreserved);
+        Assert.True(actual.PlaybackPreserved);
+        Assert.True(actual.StopCancelledLongPoll);
+        Assert.True(actual.DeactivatedViewModels);
+    }
+
+    /// <summary>Checks the configured formats, any staged audio, and the actual generated playlist bytes.</summary>
+    public static void VerifyComposedDrop(ComposedDropObservation actual)
+    {
+        Assert.Equal(["musicolet:m3u8", "car-player:pls"], actual.ProfileFormats);
+        Assert.Equal(["missing.flac", "missing.flac"], actual.AudioNames);
+        Assert.Equal(["present.flac", "missing.flac", "present.flac"], actual.TrackOrder);
+        Assert.Equal("#EXTM3U\n../Unknown Artist/Unknown Album/present.flac\n../Unknown Artist/Unknown Album/missing.flac\n../Unknown Artist/Unknown Album/present.flac\n", actual.M3u8);
+        Assert.Equal("[playlist]\nFile1=../Unknown Artist/Unknown Album/present.flac\nFile2=../Unknown Artist/Unknown Album/missing.flac\nFile3=../Unknown Artist/Unknown Album/present.flac\nNumberOfEntries=3\nVersion=2\n", actual.Pls);
+        Assert.Equal(["Complete.pls"], actual.FullyPresentEntries);
+        Assert.True(actual.RepeatKeepsEntryIds);
+        Assert.True(actual.DeviceUnchanged);
+        Assert.True(actual.RejectedDuplicateLayout);
+        Assert.True(actual.DropDisabledWithoutPeer);
+        Assert.True(actual.SelectedPeerLoadedActiveProfile);
+        Assert.True(actual.ExplicitProfileWasScoped);
+        Assert.True(actual.PreviewKeptStagedPlan);
+        Assert.True(actual.LeavingPeerClearedSelection);
+        Assert.True(actual.ReturningPeerRestoredDefaultPlan);
+        Assert.True(actual.OwnersStopped);
+    }
+
     /// <summary>Checks the approved folder and status independently of the native provider.</summary>
     public static void VerifyAndroidAcceptance(AndroidAcceptanceObservation actual)
     {
@@ -305,6 +352,12 @@ internal static class StageAssertions
         Assert.Equal(401, actual.UnauthorizedStatus);
         Assert.True(actual.StoreReopened);
         Assert.True(actual.OverlapRejected);
+        Assert.True(actual.IdleBeforePublication);
+        Assert.True(actual.PublicationTrackedReceiver);
+        Assert.True(actual.TerminalTransferStoppedPolling);
+        Assert.True(actual.PeerChangeClearedTransfer);
+        Assert.True(actual.ShutdownCancelledTransferRead);
+        Assert.True(actual.VerifiedCompletionRaisedAlert);
     }
 
     /// <summary>Checks the exact projected transfer, explicit retry and receiver progress.</summary>

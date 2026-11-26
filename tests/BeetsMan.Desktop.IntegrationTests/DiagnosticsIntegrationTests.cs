@@ -10,16 +10,17 @@ namespace BeetsMan.Desktop.IntegrationTests;
 
 /// <summary>Applies diagnostics acceptance assertions to the filtered logger and real files.</summary>
 /// <remarks>2026-11-24: Bind TEST-CONFIG-001 and TEST-CONFIG-002 for FR-CONFIG-001#ac-logs.</remarks>
-public sealed class DiagnosticsIntegrationTests : IDisposable
+/// <remarks>2026-11-26: Supply the named production logs case for FR-CONFIG-001#ac-logs.</remarks>
+public sealed partial class CONFIGAcceptanceTests
 {
-    private readonly string root = Path.Combine(Path.GetTempPath(), $"beets-man-diagnostics-{Guid.NewGuid():N}");
     private readonly AdjustableClock clock = new();
-    private BootstrapSettings Defaults => JsonBootstrapFile.ResolveDefaults(root, Path.Combine(root, "Music"));
 
+    /// <summary>Verifies filters, redaction, rate limits and the emitted rolling log.</summary>
     [Fact]
-    public async Task FiltersRedactsAndRateLimitsEventsThroughTheCqrsQuery()
+    public async Task Logs_MatchesContract()
     {
-        using var provider = new DiagnosticsLoggerProvider(Defaults, clock, eventsPerSecond: 4);
+        var settings = Defaults();
+        using var provider = new DiagnosticsLoggerProvider(settings, clock, eventsPerSecond: 4);
         DiagnosticsAssertions.EmitEvents(input => Emit(provider, input), () => clock.Advance(TimeSpan.FromSeconds(1)));
         var token = TestContext.Current.CancellationToken;
         var context = new RequestContext(Guid.NewGuid(), null);
@@ -30,14 +31,14 @@ public sealed class DiagnosticsIntegrationTests : IDisposable
         var filtered = Assert.IsType<Outcome<DiagnosticsPage>.Success>(await provider.HandleAsync(
             new(new("beetsman", DiagnosticsAssertions.Correlation, DiagnosticsAssertions.PluginId)), context, token));
         Assert.Equal("12", Assert.Single(filtered.Value.Entries).Code);
-        var files = Directory.GetFiles(Defaults.RollingLog!.Directory);
+        var files = Directory.GetFiles(settings.RollingLog!.Directory);
         DiagnosticsAssertions.VerifyRedaction(File.ReadAllText(Assert.Single(files)));
     }
 
     [Fact]
     public void RollingFilesKeepTheLatestSegmentsAcrossRestart()
     {
-        var settings = Defaults;
+        var settings = Defaults();
         settings = settings with { RollingLog = settings.RollingLog! with { RetainedFileCount = 2 } };
         var directory = settings.RollingLog.Directory;
         Directory.CreateDirectory(directory);
@@ -63,13 +64,6 @@ public sealed class DiagnosticsIntegrationTests : IDisposable
         using var diagnosticScope = logger.BeginScope(new DiagnosticScope(input.CorrelationId, input.Plugin));
         logger.Log(Enum.Parse<LogLevel>(input.Level), new EventId(input.EventId, DiagnosticsAssertions.PrivateTitle), DiagnosticsAssertions.CliArgument,
             new InvalidOperationException(DiagnosticsAssertions.PrivateTitle), static (_, _) => throw new InvalidOperationException("A private formatter was executed."));
-    }
-
-    /// <inheritdoc />
-    public void Dispose()
-    {
-        if (Directory.Exists(root))
-            Directory.Delete(root, recursive: true);
     }
 
     private sealed class AdjustableClock : TimeProvider

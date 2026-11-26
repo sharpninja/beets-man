@@ -9,6 +9,7 @@ namespace BeetsMan.Desktop.Adapters.Configuration;
 
 /// <summary>Persists the typed bootstrap settings while retaining unrelated JSON keys.</summary>
 /// <remarks>2026-11-24: Implement the per-user appsettings behavior for FR-CONFIG-001#ac-defaults, ac-overrides and ac-repair.</remarks>
+/// <remarks>2026-11-26: Trace explicit overrides and unknown-key retention to FR-CONFIG-001#ac-overrides.</remarks>
 public sealed class JsonBootstrapFile(BootstrapSettings defaults) : IBootstrapFile
 {
     private const string Missing = "missing";

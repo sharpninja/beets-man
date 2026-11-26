@@ -91,6 +91,28 @@ public sealed class DISPATCHAcceptanceTests
         PresentationAssertions.VerifyLatestSearch(new(before, after, viewModel.Page?.Filter.Text));
     }
 
+    /// <summary>Rejects a read overtaken by an offline write at the same host revision.</summary>
+    /// <remarks>2026-11-25: Preserve FR-RECORDS-001#ac-offline and FR-DISPATCH-001#ac-update.</remarks>
+    [Fact]
+    public async Task LateFavoriteReadCannotReplacePendingEditAtTheSameHostRevision()
+    {
+        var dispatcher = new RecordingDispatcher();
+        var scheduler = new QueuedScheduler();
+        var late = Reply<FavoriteState>();
+        var track = Guid.NewGuid();
+        dispatcher.Read<GetFavorite, FavoriteState>(_ => late.Task);
+        dispatcher.Write<SetFavorite, FavoriteState>(_ => Success(new FavoriteState(track, true, 4, true)));
+        using var viewModel = new LibraryViewModel(new(dispatcher, scheduler), Guid.NewGuid(), new(Guid.NewGuid()));
+        var read = viewModel.InspectFavoriteCommand.ExecuteAsync(track);
+        var write = viewModel.SetFavoriteCommand.ExecuteAsync(new FavoriteEdit(track, true, 4));
+        await scheduler.ApplyNextAsync(stop);
+        await write;
+        late.SetResult(new Outcome<FavoriteState>.Success(new(track, false, 4, false)));
+        await scheduler.ApplyNextAsync(stop);
+        await read;
+        Assert.Equal(new FavoriteState(track, true, 4, true), viewModel.Favorites[track]);
+    }
+
     [Fact]
     public async Task Responsive_MatchesContract()
     {
@@ -210,6 +232,9 @@ public sealed class DISPATCHAcceptanceTests
         Assert.Null(editor.Saved);
     }
 
+    /// <summary>Matches every Toolkit command property to its documented binding and validates declared CQRS results.</summary>
+    /// <remarks>2026-11-25: Include the panel routes and visualization result for FR-PLUGINS-001#ac-visualize and FR-DISPATCH-001#ac-routing.</remarks>
+    /// <remarks>2026-11-25: Require complete coverage of synchronous and asynchronous bindings for FR-DISPATCH-001#ac-routing.</remarks>
     [Fact]
     public void CommandCatalog_MatchesToolkitBindings()
     {
@@ -221,21 +246,42 @@ public sealed class DISPATCHAcceptanceTests
         var bindings = new HashSet<string>(StringComparer.Ordinal);
         var contracts = typeof(IRequestDispatcher).Assembly.GetExportedTypes().Where(type => !type.IsNested)
             .ToDictionary(type => type.Name, StringComparer.Ordinal);
+        const string routePattern = @"\b(?<kind>[CQ]) `(?<request>\w+)\([^`]*\)` → `(?<result>\w+)`";
         foreach (Match row in Regex.Matches(catalog, @"(?m)^- \*\*(?<owner>\w+)\.(?<names>.*?)\*\* · (?<mapping>.*)$"))
         {
             string owner = row.Groups["owner"].Value + "ViewModel";
             Assert.True(owners.TryGetValue(owner, out var type), $"Missing ViewModel {owner}.");
-            Assert.True(typeof(PresentationViewModel).IsAssignableFrom(type));
-            foreach (Match name in Regex.Matches(row.Groups["names"].Value, @"`(?<name>\w+)`"))
+            var text = row.Groups["mapping"].Value;
+            var local = text.StartsWith("Local. ", StringComparison.Ordinal);
+            var replay = text.StartsWith("Replay. ", StringComparison.Ordinal);
+            var names = Regex.Matches(row.Groups["names"].Value, @"`(?<name>\w+)`");
+            Assert.NotEmpty(names);
+            foreach (Match name in names)
             {
                 var propertyName = name.Groups["name"].Value + "Command";
                 var property = type.GetProperty(propertyName);
                 Assert.True(property is not null, $"Missing {owner}.{propertyName}.");
-                Assert.True(typeof(IAsyncRelayCommand).IsAssignableFrom(property.PropertyType), $"{owner}.{propertyName} is not a Toolkit command.");
+                Assert.True(typeof(IRelayCommand).IsAssignableFrom(property.PropertyType), $"{owner}.{propertyName} is not a Toolkit command.");
+                Assert.True(typeof(IAsyncRelayCommand).IsAssignableFrom(property.PropertyType) != local,
+                    $"{owner}.{propertyName} has the wrong local or asynchronous binding kind.");
                 Assert.True(bindings.Add($"{owner}.{propertyName}"));
             }
-            var mapping = Regex.Match(row.Groups["mapping"].Value, @"^(?<kind>[CQ]) `(?<request>\w+)\(.*?\)` → `(?<result>\w+)`\.");
-            if (mapping.Success)
+            var mappings = Regex.Matches(text, routePattern);
+            if (replay)
+            {
+                Assert.Equal("ActionErrorViewModel", owner);
+                Assert.Equal("Retry", Assert.Single(names).Groups["name"].Value);
+                Assert.Empty(mappings);
+                continue;
+            }
+
+            if (!local)
+            {
+                Assert.NotEmpty(mappings);
+                Assert.Equal(0, mappings[0].Index);
+            }
+            Assert.Equal(local ? 0 : text.Count(character => character == '→'), mappings.Count);
+            foreach (Match mapping in mappings)
             {
                 var request = mapping.Groups["request"].Value;
                 var result = mapping.Groups["result"].Value;
@@ -245,7 +291,10 @@ public sealed class DISPATCHAcceptanceTests
                 Assert.True(definition.MakeGenericType(resultType).IsAssignableFrom(requestType), $"Incorrect result type for {request}.");
             }
         }
-        Assert.Equal(140, bindings.Count);
+        var generated = owners.Values.SelectMany(type => type.GetProperties()
+            .Where(property => typeof(IRelayCommand).IsAssignableFrom(property.PropertyType))
+            .Select(property => $"{type.Name}.{property.Name}"));
+        Assert.Equal(generated.Order(StringComparer.Ordinal), bindings.Order(StringComparer.Ordinal));
     }
 
     private static CatalogPage Catalog(string term, long revision) => new(CatalogCategory.Search, new CatalogFilter(Text: term),

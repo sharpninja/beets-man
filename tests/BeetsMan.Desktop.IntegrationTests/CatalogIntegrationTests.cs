@@ -10,7 +10,8 @@ namespace BeetsMan.Desktop.IntegrationTests;
 
 /// <summary>Checks the library catalog against a populated LiteDB projection and real offline files.</summary>
 /// <remarks>2026-11-24: Bind TEST-LIBRARY-001/002 for FR-LIBRARY-001#ac-browse and ac-offline.</remarks>
-public sealed class CatalogIntegrationTests : IDisposable
+/// <remarks>2026-11-26: Trace real local media resolution and pending files to FR-LIBRARY-001#ac-offline.</remarks>
+public sealed partial class LIBRARYAcceptanceTests : IDisposable
 {
     private static readonly Guid Library = Guid.Parse("60000000-0000-0000-0000-000000000001");
     private static readonly Guid OtherLibrary = Guid.Parse("60000000-0000-0000-0000-000000000002");
@@ -20,8 +21,10 @@ public sealed class CatalogIntegrationTests : IDisposable
     private CancellationToken Token => TestContext.Current.CancellationToken;
     private readonly RequestContext context = new(Guid.NewGuid(), null);
 
+    /// <summary>Returns the matching artists, albums, track, playlist and search pages from the scoped repository.</summary>
+    /// <remarks>2026-11-26: Bind the named production browse case for FR-LIBRARY-001#ac-browse.</remarks>
     [Fact]
-    public async Task BrowsesAllOfflineCategoriesAndResolvesOnlyOwnedDownloadedMedia()
+    public async Task Browse_MatchesContract()
     {
         Seed();
         using var store = LiteDbDesktopPlaylistStore.Open(DatabasePath, allowCreate: false);
@@ -30,6 +33,19 @@ public sealed class CatalogIntegrationTests : IDisposable
         foreach (var query in Queries)
             pages.Add(Assert.IsType<Outcome<CatalogPage>.Success>(await reader.HandleAsync(query, context, Token)).Value);
         VerifyPages(pages.ToImmutable());
+        var playlist = Assert.IsType<Outcome<PublishedPlaylist>.Success>(await reader.ReadAsync(Playlist, Token)).Value;
+        Assert.Equal(3, playlist.Version.Revision);
+        Assert.Equal([Pending, Downloaded, Downloaded], playlist.Entries.Select(entry => entry.TrackId));
+    }
+
+    /// <summary>Resolves downloaded media from the private music root and excludes pending and foreign files.</summary>
+    /// <remarks>2026-11-26: Bind the named production offline case for FR-LIBRARY-001#ac-offline.</remarks>
+    [Fact]
+    public async Task Offline_MatchesContract()
+    {
+        Seed();
+        using var store = LiteDbDesktopPlaylistStore.Open(DatabasePath, allowCreate: false);
+        var reader = new LiteDbCatalogReader(store, Library, Music, () => true);
         var statuses = await reader.HandleAsync(new GetTrackAvailability([Downloaded, Pending]), context, Token);
         VerifyAvailability(Assert.IsType<Outcome<TrackAvailabilitySnapshot>.Success>(statuses).Value);
 
@@ -40,9 +56,6 @@ public sealed class CatalogIntegrationTests : IDisposable
         Assert.Equal((TrackAvailability.Pending, (string?)null), pending);
         var foreign = Assert.IsType<Outcome<(TrackAvailability, string?)>.Success>(await reader.ResolveTrackAsync(OtherLibrary, Token)).Value;
         Assert.Equal((TrackAvailability.Unknown, (string?)null), foreign);
-        var playlist = Assert.IsType<Outcome<PublishedPlaylist>.Success>(await reader.ReadAsync(Playlist, Token)).Value;
-        Assert.Equal(3, playlist.Version.Revision);
-        Assert.Equal([Pending, Downloaded, Downloaded], playlist.Entries.Select(entry => entry.TrackId));
     }
 
     [Fact]

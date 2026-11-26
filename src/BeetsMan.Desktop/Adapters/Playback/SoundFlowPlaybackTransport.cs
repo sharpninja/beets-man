@@ -7,7 +7,8 @@ namespace BeetsMan.Desktop.Adapters.Playback;
 
 /// <summary>Resolves the requested catalog track and sends transport to the SoundFlow decks.</summary>
 /// <remarks>2026-11-24: Bind cached media to the native backend for FR-PLAYER-001#ac-transport and FR-LIBRARY-001#ac-offline.</remarks>
-public sealed class SoundFlowPlaybackTransport(LiteDbCatalogReader catalog, SoundFlowDecks decks) : IPlaybackTransportTarget
+/// <remarks>2026-11-25: Share the native application adapter with mixer and EQ commands for FR-PLAYER-001#ac-mix.</remarks>
+public sealed class SoundFlowPlaybackTransport(LiteDbCatalogReader catalog, SoundFlowDecks decks) : IPlaybackTransportTarget, IPlaybackMixTarget
 {
     /// <inheritdoc />
     public async Task<Outcome<DeckState>> ChangeAsync(DeckId deck, Guid trackId, TimeSpan? startPosition, TransportStatus status,
@@ -37,4 +38,8 @@ public sealed class SoundFlowPlaybackTransport(LiteDbCatalogReader catalog, Soun
     /// <inheritdoc />
     public Task<Outcome<DeckState>> ReadAsync(DeckId deck, Guid trackId, CancellationToken cancellationToken) =>
         decks.ReadAsync(deck, trackId, cancellationToken);
+
+    /// <inheritdoc />
+    public Task<Outcome<bool>> ApplyMixAsync(PlaybackMixSettings settings, bool abandonAutomaticFade, CancellationToken cancellationToken) =>
+        decks.ApplyMixAsync(settings, abandonAutomaticFade, cancellationToken);
 }

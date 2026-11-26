@@ -1,0 +1,7 @@
+# 2026-11-25: Identify the installed Linux app for FR-SETTINGS-001#ac-shortcuts and TEST-SETTINGS-002.
+[Desktop Entry]
+Type=Application
+Name=Beets Man
+Exec=BeetsMan.Desktop
+Terminal=false
+Categories=AudioVideo;Audio;Player;

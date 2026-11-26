@@ -5,4 +5,8 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
+  <ItemGroup>
+    <!-- 2026-11-24: Share the checked versioned catalog feed contract for FR-RECORDS-001#ac-replicate. -->
+    <ProjectReference Include="../BeetsMan.Host.Contracts/BeetsMan.Host.Contracts.csproj" />
+  </ItemGroup>
 </Project>

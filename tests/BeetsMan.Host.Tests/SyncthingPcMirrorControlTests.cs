@@ -10,11 +10,12 @@ namespace BeetsMan.Host.Tests;
 
 /// <summary>Checks the production PC mirror control against an independent Syncthing REST fixture.</summary>
 /// <remarks>2026-11-24: Bind the mock-proven STB10 mirror tests for FR-FILESYNC-001#ac-mirror.</remarks>
-public sealed class SyncthingPcMirrorControlTests
+public sealed partial class FILESYNCAcceptanceTests
 {
     /// <summary>Verifies full-library scope, pause progress, resume and safe controls for multiple PCs.</summary>
+    /// <remarks>2026-11-26: Run the named TEST-FILESYNC-001 mirror case for FR-FILESYNC-001#ac-mirror.</remarks>
     [Fact]
-    public async Task ReadsAndChangesOnlyTheRegisteredReceivingMirror()
+    public async Task Mirror_MatchesContract()
     {
         var token = TestContext.Current.CancellationToken;
         var library = Guid.NewGuid();
@@ -57,8 +58,6 @@ public sealed class SyncthingPcMirrorControlTests
             otherBefore == otherAfter && otherAfter.FilesReceived == 43 && scanned == resumed,
             wrongIdentity.Code, wrongScope.Code, pending.Phase.ToString()));
     }
-
-    private static T Value<T>(HostOutcome<T> result) => Assert.IsType<HostOutcome<T>.Success>(result).Value;
 
     private sealed class MirrorCredentials(Guid library, Guid studio, Guid travel) : IRegisteredSyncthingTokenProvider, IHostSenderTokenProvider
     {

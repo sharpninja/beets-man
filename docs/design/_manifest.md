@@ -142,7 +142,7 @@ The [UI coverage inventory](../testing/ui/coverage.md) describes the actions and
 - `frames/STB04/01-transport-playing.svg` {#stb04-1}
   - Next: stb04-2
 - `frames/STB04/02-queue-reordered.svg` {#stb04-2}
-  - Branch: Drag the shared seek thumb to 2:45 -> stb04-9
+  - Branch: Load Evening Queue from Saved playlists -> stb04-10
   - Branch: Continue to the mixer -> stb04-3
 - `frames/STB04/03-two-decks-cued.svg` {#stb04-3}
   - Next: stb04-4
@@ -156,6 +156,11 @@ The [UI coverage inventory](../testing/ui/coverage.md) describes the actions and
   - Next: stb04-8
 - `frames/STB04/08-visualization-restored.svg` {#stb04-8}
 - `frames/STB04/09-shared-player-track-seek.svg` {#stb04-9}
+  - Branch: Turn on Auto-save playlist -> stb04-11
+- `frames/STB04/10-playlist-queue-loaded.svg` {#stb04-10}
+  - Branch: Drag the shared seek thumb to 2:45 -> stb04-9
+- `frames/STB04/11-playlist-queue-auto-save-enabled.svg` {#stb04-11}
+  - Loop: Turn off Auto-save playlist -> stb04-9
 
 ### Sequence: STB05 Validate and activate the CLI engine
 

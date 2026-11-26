@@ -23,10 +23,14 @@ public sealed record QueuePlaylistSaveSource(Guid SessionId, long QueueRevision,
     bool ExpectedRevisionPinned);
 
 /// <summary>Reads local playlist drafts outside the writer callback.</summary>
+/// <remarks>2026-11-25: Read recoverable named saves for FR-RECORDS-001#ac-offline.</remarks>
 public interface IPlaylistDraftReader
 {
     /// <summary>Reads one detached draft snapshot by its stable identifier.</summary>
     Task<Outcome<PlaylistDraft?>> ReadDraftAsync(Guid draftId, CancellationToken cancellationToken);
+
+    /// <summary>Reads one origin's pending named saves in draft revision order.</summary>
+    Task<Outcome<ImmutableArray<PendingPlaylistSave>>> ReadPendingDraftSavesAsync(Guid originInstanceId, CancellationToken cancellationToken);
 }
 
 /// <summary>Accesses ordered local draft state inside a write transaction.</summary>

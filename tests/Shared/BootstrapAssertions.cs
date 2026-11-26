@@ -20,4 +20,17 @@ internal static class BootstrapAssertions
         Assert.Equal(database, state.Proposed?.DatabasePath);
         Assert.NotEqual(Guid.Empty, state.CreationProposal?.ProposalId ?? Guid.Empty);
     }
+
+    /// <summary>Checks that an unsupported schema stops startup with a database-specific repair result.</summary>
+    /// <remarks>2026-11-26: Preserve the user's file and selected path for FR-CONFIG-001#ac-repair.</remarks>
+    public static void VerifySchemaRepair(BootstrapState state, string database)
+    {
+        Assert.Equal(BootstrapStatus.RepairRequired, state.Status);
+        Assert.Null(state.Effective);
+        Assert.Null(state.CreationProposal);
+        Assert.Equal(database, state.Proposed?.DatabasePath);
+        var issue = Assert.Single(state.Issues);
+        Assert.Equal("unsupported-desktop-database-schema", issue.Code);
+        Assert.Equal(nameof(BootstrapSettings.DatabasePath), issue.Field);
+    }
 }

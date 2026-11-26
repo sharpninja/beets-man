@@ -97,15 +97,19 @@ public abstract class PresentationViewModel : ObservableObject, IDisposable
 
     protected void ClearFailure() => Failure = null;
 
-    protected Task ReadAsync<TResult>(IQuery<TResult> request, string slot, Action<TResult> apply,
-        CancellationToken token, Predicate<TResult>? accepts = null) =>
-        ReadAttemptAsync(request, slot, apply, token, accepts);
+    /// <summary>Projects a scoped query and optionally preserves the feedback from the initiating action.</summary>
+    /// <remarks>2026-11-25: Refresh batch state without dismissing an uncertain commit for FR-LIBRARY-002#ac-batch-commit.</remarks>
+    /// <remarks>2026-11-26: Confirm whether the result was applied for FR-FILESYNC-001#ac-arrival.</remarks>
+    protected Task<bool> ReadAsync<TResult>(IQuery<TResult> request, string slot, Action<TResult> apply,
+        CancellationToken token, Predicate<TResult>? accepts = null, bool preserveFailure = false) =>
+        ReadAttemptAsync(request, slot, apply, token, accepts, preserveFailure);
 
     /// <summary>Dispatches a scoped write, optionally reusing the identity of an earlier uncertain attempt.</summary>
     /// <remarks>2026-11-24: Preserve transfer retry identity for FR-FILESYNC-001#ac-safety.</remarks>
     protected Task WriteAsync<TResult>(ICommand<TResult> request, Action<TResult> apply, CancellationToken token,
-        Predicate<TResult>? accepts = null, bool retryInvalid = false, bool blocksInteraction = false, Guid? writeOwner = null, Guid? operationId = null) =>
-        WriteAttemptAsync(request, operationId ?? Guid.NewGuid(), apply, token, accepts, retryInvalid, blocksInteraction, writeOwner ?? WriteOwner);
+        Predicate<TResult>? accepts = null, bool retryInvalid = false, bool blocksInteraction = false, Guid? writeOwner = null,
+        Guid? operationId = null, Func<Task>? afterResult = null) => WriteAttemptAsync(request, operationId ?? Guid.NewGuid(), apply, token, accepts,
+            retryInvalid, blocksInteraction, writeOwner ?? WriteOwner, afterResult);
 
     protected Task PostAsync(PresentationScope scope, Action apply) =>
         Services.Scheduler.PostAsync(() =>
@@ -114,29 +118,38 @@ public abstract class PresentationViewModel : ObservableObject, IDisposable
                 apply();
         }, CancellationToken.None);
 
-    protected async Task DispatchEventAsync<TResult>(ICommand<TResult> request, Action<TResult> apply,
+    /// <summary>Dispatches an application event and confirms that its owner applied the result.</summary>
+    /// <remarks>2026-11-26: Keep typed failures or expired projections pending for FR-FILESYNC-001#ac-arrival.</remarks>
+    protected async Task<bool> DispatchEventAsync<TResult>(ICommand<TResult> request, Action<TResult> apply,
         Predicate<TResult> accepts, CancellationToken token)
     {
         if (!active || token.IsCancellationRequested)
-            return;
+            return false;
         var context = Services.NewRequest();
         var stamp = new RequestStamp(Scope, context.CorrelationId, ++sequence);
         var operationId = Guid.NewGuid();
         using var linked = CancellationTokenSource.CreateLinkedTokenSource(lifetime.Token, token);
         var result = await ObserveCancellationAsync(ct => Services.Dispatcher.SendAsync(request,
             new(context, operationId), ct), linked.Token).ConfigureAwait(false);
+        var applied = false;
         await PostAsync(stamp.Scope, () =>
         {
             if (result is Outcome<TResult>.Success success && accepts(success.Value))
+            {
                 apply(success.Value);
+                applied = true;
+            }
         }).ConfigureAwait(false);
+        return applied;
     }
 
-    private async Task ReadAttemptAsync<TResult>(IQuery<TResult> request, string slot, Action<TResult> apply,
-        CancellationToken token, Predicate<TResult>? accepts)
+    /// <summary>Applies a query only while its slot and owner remain current and reports whether it was accepted.</summary>
+    /// <remarks>2026-11-26: Confirm destination projection for FR-FILESYNC-001#ac-arrival without changing scoped failure feedback.</remarks>
+    private async Task<bool> ReadAttemptAsync<TResult>(IQuery<TResult> request, string slot, Action<TResult> apply,
+        CancellationToken token, Predicate<TResult>? accepts, bool preserveFailure)
     {
         if (!active || token.IsCancellationRequested)
-            return;
+            return false;
 
         var context = Services.NewRequest();
         var stamp = new RequestStamp(Scope, context.CorrelationId, ++sequence);
@@ -146,17 +159,31 @@ public abstract class PresentationViewModel : ObservableObject, IDisposable
         var result = await ObserveCancellationAsync(
             ct => Services.Dispatcher.QueryAsync(request, context, ct), linked.Token).ConfigureAwait(false);
 
+        var applied = false;
         await PostAsync(stamp.Scope, () =>
         {
             if (latestQueries.GetValueOrDefault(slot) != stamp.Sequence)
                 return;
-            ApplyOutcome(result, stamp, apply, accepts, retryInvalid: false, ct =>
-                IsCurrent(stamp, slot) ? ReadAttemptAsync(request, slot, apply, ct, accepts) : Task.CompletedTask);
+            if (preserveFailure)
+            {
+                if (result is Outcome<TResult>.Success { Value: var value } && accepts?.Invoke(value) != false)
+                    ApplyCurrent(value);
+                return;
+            }
+            ApplyOutcome(result, stamp, ApplyCurrent, accepts, retryInvalid: false, ct =>
+                IsCurrent(stamp, slot) ? ReadAttemptAsync(request, slot, apply, ct, accepts, preserveFailure: false) : Task.CompletedTask);
         }).ConfigureAwait(false);
+        return applied;
+
+        void ApplyCurrent(TResult value)
+        {
+            apply(value);
+            applied = true;
+        }
     }
 
     private async Task WriteAttemptAsync<TResult>(ICommand<TResult> request, Guid operationId, Action<TResult> apply,
-        CancellationToken token, Predicate<TResult>? accepts, bool retryInvalid, bool blocksInteraction, Guid writeOwner)
+        CancellationToken token, Predicate<TResult>? accepts, bool retryInvalid, bool blocksInteraction, Guid writeOwner, Func<Task>? afterResult)
     {
         if (!active || token.IsCancellationRequested || !Services.TryEnterWrite(writeOwner))
             return;
@@ -175,6 +202,7 @@ public abstract class PresentationViewModel : ObservableObject, IDisposable
         }
         finally
         {
+            Task followUp = Task.CompletedTask;
             await Services.Scheduler.PostAsync(() =>
             {
                 try
@@ -182,7 +210,7 @@ public abstract class PresentationViewModel : ObservableObject, IDisposable
                     if (result is not null && active && Scope == stamp.Scope)
                         ApplyOutcome(result, stamp, apply, accepts, retryInvalid, ct =>
                             active && Scope == stamp.Scope && Failure?.Stamp == stamp
-                                ? WriteAttemptAsync(request, operationId, apply, ct, accepts, retryInvalid, blocksInteraction, writeOwner)
+                                ? WriteAttemptAsync(request, operationId, apply, ct, accepts, retryInvalid, blocksInteraction, writeOwner, afterResult)
                                 : Task.CompletedTask);
                 }
                 finally
@@ -191,7 +219,10 @@ public abstract class PresentationViewModel : ObservableObject, IDisposable
                         IsInteractionBlocked = false;
                     Services.LeaveWrite(writeOwner);
                 }
+                if (afterResult is not null && result is not null && active && Scope == stamp.Scope)
+                    followUp = afterResult();
             }, CancellationToken.None).ConfigureAwait(false);
+            await followUp.ConfigureAwait(false);
         }
     }
 

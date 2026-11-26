@@ -7,16 +7,56 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <!-- 2026-11-24: Drive the Avalonia test window for TEST-DISPATCH-002 without system input. -->
+    <PackageReference Include="Avalonia.Headless" Version="12.1.5" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.80.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
+    <PackageReference Include="SharpNinja.Avalonia.RemoteControl.Server" Version="0.8.0" />
     <PackageReference Include="xunit.v3" Version="3.2.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" PrivateAssets="all" />
     <ProjectReference Include="../../src/BeetsMan.Desktop/BeetsMan.Desktop.csproj" />
+    <ProjectReference Include="../Fixtures/BeetsMan.Plugin.WorkerFixture/BeetsMan.Plugin.WorkerFixture.csproj" />
     <Compile Include="../Shared/TransactionAssertions.cs" Link="TransactionAssertions.cs" />
     <Compile Include="../Shared/PlaylistWorkspaceAssertions.cs" Link="PlaylistWorkspaceAssertions.cs" />
     <Compile Include="../Shared/BootstrapAssertions.cs" Link="BootstrapAssertions.cs" />
+    <Compile Include="../Shared/DesktopStartupAssertions.cs" Link="DesktopStartupAssertions.cs" />
+    <Compile Include="../Shared/RecoveryDiagnosticsAssertions.cs" Link="RecoveryDiagnosticsAssertions.cs" />
+    <Compile Include="../Shared/LibraryWorkspacePresentationAssertions.cs" Link="LibraryWorkspacePresentationAssertions.cs" />
+    <Compile Include="../Shared/DesktopSetupPresentationAssertions.cs" Link="DesktopSetupPresentationAssertions.cs" />
     <Compile Include="../Shared/DiagnosticsAssertions.cs" Link="DiagnosticsAssertions.cs" />
+    <Compile Include="../Shared/LogFolderAssertions.cs" Link="LogFolderAssertions.cs" />
     <Compile Include="../Shared/CatalogAssertions.cs" Link="CatalogAssertions.cs" />
     <Compile Include="../Shared/PlaybackCheckpointAssertions.cs" Link="PlaybackCheckpointAssertions.cs" />
+    <Compile Include="../Shared/PlaybackHistoryAssertions.cs" Link="PlaybackHistoryAssertions.cs" />
+    <Compile Include="../Shared/PlaybackRestartAssertions.cs" Link="PlaybackRestartAssertions.cs" />
+    <Compile Include="../Shared/PlaybackMixAssertions.cs" Link="PlaybackMixAssertions.cs" />
+    <Compile Include="../Shared/AutomaticFadeAssertions.cs" Link="AutomaticFadeAssertions.cs" />
     <Compile Include="../Shared/QueueAutoSaveAssertions.cs" Link="QueueAutoSaveAssertions.cs" />
+    <Compile Include="../Shared/CliProfileAssertions.cs" Link="CliProfileAssertions.cs" />
+    <Compile Include="../Shared/CliRuntimeAssertions.cs" Link="CliRuntimeAssertions.cs" />
+    <Compile Include="../Shared/PlaybackSwitchAssertions.cs" Link="PlaybackSwitchAssertions.cs" />
+    <Compile Include="../Shared/PluginRegistryAssertions.cs" Link="PluginRegistryAssertions.cs" />
+    <Compile Include="../Shared/PluginWorkerAssertions.cs" Link="PluginWorkerAssertions.cs" />
+    <Compile Include="../Shared/PluginActionAssertions.cs" Link="PluginActionAssertions.cs" />
+    <Compile Include="../Shared/PluginPanelAssertions.cs" Link="PluginPanelAssertions.cs" />
+    <Compile Include="../Shared/AudioVisualizationAssertions.cs" Link="AudioVisualizationAssertions.cs" />
+    <Compile Include="../Shared/VisualizationWorkerAssertions.cs" Link="VisualizationWorkerAssertions.cs" />
+    <Compile Include="../Shared/ShortcutAssertions.cs" Link="ShortcutAssertions.cs" />
+    <Compile Include="../Shared/SystemHotkeyAssertions.cs" Link="SystemHotkeyAssertions.cs" />
+    <Compile Include="../Shared/PortalShortcutAssertions.cs" Link="PortalShortcutAssertions.cs" />
+    <Compile Include="../Shared/PreferenceResetAssertions.cs" Link="PreferenceResetAssertions.cs" />
+    <Compile Include="../Shared/DesktopAlertAssertions.cs" Link="DesktopAlertAssertions.cs" />
+    <Compile Include="../Shared/AppearancePreferenceAssertions.cs" Link="AppearancePreferenceAssertions.cs" />
+    <Compile Include="../Shared/LibraryBatchLifecycleAssertions.cs" Link="LibraryBatchLifecycleAssertions.cs" />
+    <Compile Include="../Shared/LibraryBatchMutationAssertions.cs" Link="LibraryBatchMutationAssertions.cs" />
+    <Compile Include="../Shared/LibraryBatchQueueAssertions.cs" Link="LibraryBatchQueueAssertions.cs" />
+    <Compile Include="../Shared/BatchQueueCommitAssertions.cs" Link="BatchQueueCommitAssertions.cs" />
+    <Compile Include="../Shared/LibraryBatchImportAssertions.cs" Link="LibraryBatchImportAssertions.cs" />
+    <!-- 2026-11-24: Bind TEST-LIBRARY-004 to staged catalog maintenance in the real desktop store. -->
+    <Compile Include="../Shared/LocalMaintenanceCatalogAssertions.cs" Link="LocalMaintenanceCatalogAssertions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- 2026-11-25: Run the local controlled worker for TEST-CLI-002. -->
+    <None Update="Fixtures/CliPlaybackFixture.ps1" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

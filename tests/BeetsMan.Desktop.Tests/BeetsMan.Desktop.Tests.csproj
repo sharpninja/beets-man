@@ -7,6 +7,16 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="../Shared/LibraryBatchLifecycleAssertions.cs" Link="LibraryBatchLifecycleAssertions.cs" />
+    <Compile Include="../Shared/LibraryBatchMutationAssertions.cs" Link="LibraryBatchMutationAssertions.cs" />
+    <Compile Include="../Shared/LibraryBatchQueueAssertions.cs" Link="LibraryBatchQueueAssertions.cs" />
+    <Compile Include="../Shared/BatchQueueCommitAssertions.cs" Link="BatchQueueCommitAssertions.cs" />
+    <Compile Include="../Shared/LibraryBatchImportAssertions.cs" Link="LibraryBatchImportAssertions.cs" />
+    <Compile Include="../Shared/LibraryBatchPresentationAssertions.cs" Link="LibraryBatchPresentationAssertions.cs" />
+    <!-- 2026-11-24: Verify FR-BEETS-001#ac-edit and FR-LIBRARY-002#ac-batch-local before routing maintenance. -->
+    <Compile Include="../Shared/DesktopMaintenanceAssertions.cs" Link="DesktopMaintenanceAssertions.cs" />
+    <!-- 2026-11-24: Verify working-catalog and revert assertions for FR-LIBRARY-002#ac-batch-local and ac-batch-revert. -->
+    <Compile Include="../Shared/LocalMaintenanceCatalogAssertions.cs" Link="LocalMaintenanceCatalogAssertions.cs" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.10.1" />
     <PackageReference Include="xunit.v3" Version="3.2.2" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.1.5" PrivateAssets="all" />
@@ -17,11 +27,38 @@
     <Compile Include="../Shared/TransactionAssertions.cs" Link="TransactionAssertions.cs" />
     <Compile Include="../Shared/PlaylistWorkspaceAssertions.cs" Link="PlaylistWorkspaceAssertions.cs" />
     <Compile Include="../Shared/BootstrapAssertions.cs" Link="BootstrapAssertions.cs" />
+    <Compile Include="../Shared/DesktopStartupAssertions.cs" Link="DesktopStartupAssertions.cs" />
+    <Compile Include="../Shared/RecoveryDiagnosticsAssertions.cs" Link="RecoveryDiagnosticsAssertions.cs" />
+    <Compile Include="../Shared/LibraryWorkspacePresentationAssertions.cs" Link="LibraryWorkspacePresentationAssertions.cs" />
+    <Compile Include="../Shared/DesktopSetupPresentationAssertions.cs" Link="DesktopSetupPresentationAssertions.cs" />
+    <Compile Include="../Shared/RegisteredDesktopBatchAssertions.cs" Link="RegisteredDesktopBatchAssertions.cs" />
     <Compile Include="../Shared/DiagnosticsAssertions.cs" Link="DiagnosticsAssertions.cs" />
+    <Compile Include="../Shared/LogFolderAssertions.cs" Link="LogFolderAssertions.cs" />
     <Compile Include="../Shared/CatalogAssertions.cs" Link="CatalogAssertions.cs" />
     <Compile Include="../Shared/PlaybackCheckpointAssertions.cs" Link="PlaybackCheckpointAssertions.cs" />
+    <Compile Include="../Shared/PlaybackHistoryAssertions.cs" Link="PlaybackHistoryAssertions.cs" />
+    <Compile Include="../Shared/PlaybackRestartAssertions.cs" Link="PlaybackRestartAssertions.cs" />
+    <Compile Include="../Shared/PlaybackMixAssertions.cs" Link="PlaybackMixAssertions.cs" />
+    <Compile Include="../Shared/AutomaticFadeAssertions.cs" Link="AutomaticFadeAssertions.cs" />
     <Compile Include="../Shared/PlaybackSeekAssertions.cs" Link="PlaybackSeekAssertions.cs" />
     <Compile Include="../Shared/QueueAutoSaveAssertions.cs" Link="QueueAutoSaveAssertions.cs" />
+    <Compile Include="../Shared/PlaylistReconnectAssertions.cs" Link="PlaylistReconnectAssertions.cs" />
+    <Compile Include="../Shared/CliProfileAssertions.cs" Link="CliProfileAssertions.cs" />
+    <Compile Include="../Shared/CliRuntimeAssertions.cs" Link="CliRuntimeAssertions.cs" />
+    <Compile Include="../Shared/PlaybackSwitchAssertions.cs" Link="PlaybackSwitchAssertions.cs" />
+    <Compile Include="../Shared/PluginRegistryAssertions.cs" Link="PluginRegistryAssertions.cs" />
+    <Compile Include="../Shared/PluginWorkerAssertions.cs" Link="PluginWorkerAssertions.cs" />
+    <Compile Include="../Shared/PluginActionAssertions.cs" Link="PluginActionAssertions.cs" />
+    <Compile Include="../Shared/PluginPanelAssertions.cs" Link="PluginPanelAssertions.cs" />
+    <Compile Include="../Shared/AudioVisualizationAssertions.cs" Link="AudioVisualizationAssertions.cs" />
+    <Compile Include="../Shared/VisualizationWorkerAssertions.cs" Link="VisualizationWorkerAssertions.cs" />
+    <Compile Include="../Shared/ShortcutAssertions.cs" Link="ShortcutAssertions.cs" />
+    <Compile Include="../Shared/SystemHotkeyAssertions.cs" Link="SystemHotkeyAssertions.cs" />
+    <Compile Include="../Shared/PortalShortcutAssertions.cs" Link="PortalShortcutAssertions.cs" />
+    <Compile Include="../Shared/PreferenceResetAssertions.cs" Link="PreferenceResetAssertions.cs" />
+    <Compile Include="../Shared/DesktopAlertAssertions.cs" Link="DesktopAlertAssertions.cs" />
+    <Compile Include="../Shared/AppearancePreferenceAssertions.cs" Link="AppearancePreferenceAssertions.cs" />
+    <Compile Include="../Shared/DesktopImportAssertions.cs" Link="DesktopImportAssertions.cs" />
     <None Include="../../docs/architecture/ui-commands.md" Link="ui-commands.md" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

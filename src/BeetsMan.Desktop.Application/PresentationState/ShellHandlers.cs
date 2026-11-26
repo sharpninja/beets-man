@@ -12,7 +12,8 @@ public interface IAndroidConnectionRegistry
 
 /// <summary>Serializes process-local shell mutations and preserves playback and modal ownership.</summary>
 /// <remarks>2026-11-24: Implement FR-PLAYER-001#ac-modes, FR-FILESYNC-001#ac-arrival and FR-DISPATCH-001#ac-responsive.</remarks>
-public sealed class ShellHandlers(ShellState initial, IAndroidConnectionRegistry connections) :
+/// <remarks>2026-11-25: Treat an unattached Android feed as inactive for FR-FILESYNC-001#ac-arrival.</remarks>
+public sealed class ShellHandlers(ShellState initial, IAndroidConnectionRegistry? connections) :
     ICommandHandler<NavigateWorkspace, ShellState>, ICommandHandler<OpenOverlay, ShellState>,
     ICommandHandler<CloseOverlay, ShellState>, ICommandHandler<ChangePresentation, ShellState>,
     ICommandHandler<ApplyAndroidPeerArrival, ShellState>
@@ -69,7 +70,7 @@ public sealed class ShellHandlers(ShellState initial, IAndroidConnectionRegistry
         {
             if (command.PeerId == Guid.Empty || command.ConnectionGeneration < 0 ||
                 acceptedGenerations.TryGetValue(command.PeerId, out var generation) && command.ConnectionGeneration <= generation ||
-                !connections.IsLiveRegisteredConnection(command.PeerId, command.ConnectionGeneration))
+                connections?.IsLiveRegisteredConnection(command.PeerId, command.ConnectionGeneration) != true)
                 return new Outcome<ShellState>.Success(current);
 
             acceptedGenerations[command.PeerId] = command.ConnectionGeneration;

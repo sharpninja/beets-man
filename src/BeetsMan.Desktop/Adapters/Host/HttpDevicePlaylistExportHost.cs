@@ -1,7 +1,5 @@
 using System.Globalization;
-using System.Net;
 using System.Net.Http.Json;
-using System.Text.Json;
 using BeetsMan.Desktop.Application.Dispatch;
 using BeetsMan.Desktop.Application.MediaSync;
 using Wire = BeetsMan.Host.Contracts.V1;
@@ -164,37 +162,10 @@ public sealed partial class HttpDevicePlaylistExportHost(HttpClient client, Uri 
             checkpoint.BytesVerified, checkpoint.TotalBytes, checkpoint.FailureCode, checkpoint.Retryable);
     }
 
-    private async Task<Outcome<TResult>> SendAsync<TWire, TResult>(HttpRequestMessage request, Guid origin, string operation,
-        string mismatchCode, Func<TWire, TResult?> project, CancellationToken token) where TWire : class where TResult : class
-    {
-        using var message = request;
-        var requested = message.RequestUri;
-        try
-        {
-            var credential = await credentials.GetTokenAsync(libraryId, origin, token).ConfigureAwait(false);
-            if (string.IsNullOrWhiteSpace(credential))
-                return new Outcome<TResult>.DependencyFailure($"{operation}-credentials-unavailable", true);
-            message.Headers.Authorization = new("Bearer", credential);
-            using var response = await client.SendAsync(message, HttpCompletionOption.ResponseHeadersRead, token).ConfigureAwait(false);
-            if (response.RequestMessage?.RequestUri != requested)
-                return new Outcome<TResult>.DependencyFailure($"{operation}-endpoint-changed", false);
-            if (!response.IsSuccessStatusCode)
-                return await ReadFailureAsync<TResult>(response, operation, token).ConfigureAwait(false);
-            var result = await response.Content.ReadFromJsonAsync<TWire>(token).ConfigureAwait(false);
-            return result is not null && project(result) is { } value ? new Outcome<TResult>.Success(value) :
-                new Outcome<TResult>.DependencyFailure(mismatchCode, true);
-        }
-        catch (OperationCanceledException) when (token.IsCancellationRequested) { return new Outcome<TResult>.Cancelled(); }
-        catch (OperationCanceledException) { return new Outcome<TResult>.DependencyFailure($"{operation}-host-timeout", true); }
-        catch (Exception exception) when (exception is HttpRequestException or IOException)
-        {
-            return new Outcome<TResult>.DependencyFailure($"{operation}-host-unreachable", true);
-        }
-        catch (Exception exception) when (exception is JsonException or NotSupportedException)
-        {
-            return new Outcome<TResult>.DependencyFailure($"invalid-{operation}-response", true);
-        }
-    }
+    /// <summary>Preserves the typed export result over the shared authenticated host transport.</summary>
+    private Task<Outcome<TResult>> SendAsync<TWire, TResult>(HttpRequestMessage request, Guid origin, string operation,
+        string mismatchCode, Func<TWire, TResult?> project, CancellationToken token) where TWire : class where TResult : class =>
+        RegisteredHostEndpoint.SendAsync(client, credentials, libraryId, request, origin, operation, mismatchCode, project, token);
 
     private static DeviceLayoutsSnapshot? MapLayouts(Guid deviceId, Wire.DeviceLayoutChoices choices)
     {
@@ -301,25 +272,6 @@ public sealed partial class HttpDevicePlaylistExportHost(HttpClient client, Uri 
         Wire.ExportAudioStatus.Unavailable => ExportAudioStatus.Unavailable,
         _ => throw new InvalidOperationException("Unexpected device export audio status.")
     };
-
-    private static async Task<Outcome<TResult>> ReadFailureAsync<TResult>(HttpResponseMessage response, string operation, CancellationToken cancellationToken)
-    {
-        if (response.StatusCode is HttpStatusCode.Unauthorized or HttpStatusCode.Forbidden)
-            return Invalid<TResult>($"{operation}-access-denied");
-        if (response.StatusCode is HttpStatusCode.BadRequest or HttpStatusCode.Conflict)
-        {
-            var problem = await response.Content.ReadFromJsonAsync<Wire.StageDevicePlaylistProblem>(cancellationToken).ConfigureAwait(false);
-            if (problem?.Code is not { Length: > 0 and <= 100 } code)
-                return new Outcome<TResult>.DependencyFailure($"invalid-{operation}-response", true);
-            return response.StatusCode == HttpStatusCode.Conflict ? new Outcome<TResult>.Conflict(code, problem.ActualRevision) : Invalid<TResult>(code);
-        }
-        if (response.StatusCode == HttpStatusCode.ServiceUnavailable && response.Content.Headers.ContentType?.MediaType == "application/json" &&
-            await response.Content.ReadFromJsonAsync<Wire.StageDevicePlaylistProblem>(cancellationToken).ConfigureAwait(false) is
-                { Code.Length: > 0 and <= 100 } unavailable)
-            return new Outcome<TResult>.DependencyFailure(unavailable.Code, true);
-        return new Outcome<TResult>.DependencyFailure($"{operation}-host-request-failed",
-            (int)response.StatusCode >= 500 || response.StatusCode is HttpStatusCode.RequestTimeout or HttpStatusCode.TooManyRequests);
-    }
 
     private static Outcome<TResult> Invalid<TResult>(string code) => new Outcome<TResult>.Invalid([new(code)]);
 }

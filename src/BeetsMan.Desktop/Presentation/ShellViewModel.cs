@@ -5,9 +5,10 @@ namespace BeetsMan.Desktop.Presentation;
 
 /// <summary>Owns window navigation, modal ownership, and the current playback presentation.</summary>
 /// <remarks>2026-11-24: Bind FR-PLAYER-001#ac-modes and FR-FILESYNC-001#ac-arrival to scoped CQRS commands.</remarks>
-public sealed partial class ShellViewModel(PresentationServices services, Guid windowId) : PresentationViewModel(services, windowId)
+/// <remarks>2026-11-25: Project the owning startup snapshot before the first live arrival for FR-FILESYNC-001#ac-arrival.</remarks>
+public sealed partial class ShellViewModel(PresentationServices services, Guid windowId, ShellState? initialState = null) : PresentationViewModel(services, windowId)
 {
-    private ShellState? state;
+    private ShellState? state = initialState;
 
     /// <summary>Gets the last authoritative shell snapshot.</summary>
     public ShellState? State => state;
@@ -34,12 +35,14 @@ public sealed partial class ShellViewModel(PresentationServices services, Guid w
     private Task CloseDialogAsync(Guid overlayId, CancellationToken token) => CloseAsync(overlayId, OverlayCloseReason.Close, token);
 
     /// <summary>Applies a live, registered Android arrival supplied by the application event adapter.</summary>
-    public async Task OnAndroidPeerArrivalAsync(Guid peerId, long generation, CancellationToken token = default)
+    /// <remarks>2026-11-26: Confirm the shell accepted the result for FR-FILESYNC-001#ac-arrival.</remarks>
+    public async Task<bool> OnAndroidPeerArrivalAsync(Guid peerId, long generation, CancellationToken token = default)
     {
-        Task attempt = Task.CompletedTask;
+        var attempt = Task.FromResult(false);
         var scope = Scope;
-        await PostAsync(scope, () => attempt = DispatchEventAsync(new ApplyAndroidPeerArrival(WindowId, peerId, generation), Apply, Accepts, token));
-        await attempt;
+        await PostAsync(scope, () => attempt = DispatchEventAsync(new ApplyAndroidPeerArrival(WindowId, peerId, generation), Apply, Accepts, token))
+            .ConfigureAwait(false);
+        return await attempt.ConfigureAwait(false);
     }
 
     internal Task OpenOverlayAsync(Guid ownerId, OverlayIntent intent, CancellationToken token) =>

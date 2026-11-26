@@ -1,5 +1,6 @@
 using System.Collections.Immutable;
 using BeetsMan.Desktop.Application.Dispatch;
+using BeetsMan.Host.Contracts.V1;
 
 namespace BeetsMan.Desktop.Application.Replication;
 
@@ -8,10 +9,22 @@ namespace BeetsMan.Desktop.Application.Replication;
 public sealed record RegistrationDraft(string Name, Uri Host, Guid CredentialSelectionToken);
 
 /// <summary>Describes one registered instance visible to an authorized user.</summary>
-public sealed record RegisteredInstance(Guid InstanceId, string Name, bool Revoked);
+/// <remarks>2026-11-25: Project the host assigned role for FR-RECORDS-001#ac-register.</remarks>
+/// <remarks>2026-11-25: Project the optional host Last seen observation for FR-RECORDS-001#ac-register.</remarks>
+public sealed record RegisteredInstance(Guid InstanceId, string Name, bool Revoked)
+{
+    public DesktopRegistrationRole Role { get; init; }
+
+    /// <summary>Gets the most recent retained authenticated activity reported by the host.</summary>
+    public DateTimeOffset? LastSeenUtc { get; init; }
+}
 
 /// <summary>Returns the registry for one library at a consistent revision.</summary>
-public sealed record RegisteredInstancesSnapshot(Guid LibraryId, long Revision, ImmutableArray<RegisteredInstance> Instances);
+/// <remarks>2026-11-25: Project the current caller's Operator permission for FR-RECORDS-001#ac-register.</remarks>
+public sealed record RegisteredInstancesSnapshot(Guid LibraryId, long Revision, ImmutableArray<RegisteredInstance> Instances)
+{
+    public bool CanManage { get; init; }
+}
 
 /// <summary>Identifies the accepted registration.</summary>
 public sealed record RegistrationReceipt(Guid LibraryId, RegisteredInstance Instance, long Revision);
@@ -45,6 +58,10 @@ public sealed record GetReplicationStatus(Guid LibraryId, Guid InstanceId) : IQu
 
 /// <summary>Resumes delivery or starts a replacement snapshot.</summary>
 public sealed record ResumeReplication(Guid LibraryId, Guid InstanceId, ReplicaRecoveryMode RecoveryMode, long ExpectedCursor) : ICommand<ReplicationState>;
+
+/// <summary>Refreshes one registered replica from its durable cursor without initiating a snapshot.</summary>
+/// <remarks>2026-11-25: Drive independent automatic delivery for FR-RECORDS-001#ac-replicate and ac-notify.</remarks>
+public sealed record RefreshReplication(Guid LibraryId, Guid InstanceId) : ICommand<ReplicationState>;
 
 /// <summary>Resolves one recorded conflict against the displayed version.</summary>
 public sealed record ResolveReplicaConflict(Guid ConflictId, ReplicaResolution Resolution, long ExpectedHostRevision) : ICommand<ReplicaConflictReceipt>;

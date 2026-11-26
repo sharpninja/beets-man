@@ -1,4 +1,5 @@
 using BeetsMan.Desktop.Application.Dispatch;
+using BeetsMan.Desktop.Application.Library;
 
 namespace BeetsMan.Desktop.Presentation;
 
@@ -28,6 +29,16 @@ public sealed class PresentationServices(IRequestDispatcher dispatcher, IUiSched
     public IUiScheduler Scheduler { get; } = scheduler;
 
     internal event Action<Guid>? WriteChanged;
+    internal event Action<LibraryBatchMode>? BatchModeChanged;
+    internal event Action<LibraryBatchStageReceipt>? BatchStageAccepted;
+
+    /// <summary>Shares the latest projected batch mode with library command owners on the UI thread.</summary>
+    /// <remarks>2026-11-25: Keep the offline mutation controls aligned with FR-LIBRARY-002#ac-batch-local.</remarks>
+    internal void PresentBatchMode(LibraryBatchMode mode) => BatchModeChanged?.Invoke(mode);
+
+    /// <summary>Shares the accepted stage position and revision with the workspace batch owner on the scheduler.</summary>
+    /// <remarks>2026-11-25: Enable current review immediately after a local stage for FR-LIBRARY-002#ac-batch-review.</remarks>
+    internal void PresentBatchStage(LibraryBatchStageReceipt stage) => BatchStageAccepted?.Invoke(stage);
 
     internal RequestContext NewRequest() => new(Guid.NewGuid(), originInstanceId);
     internal bool HasWrite(Guid owner) => writes.Contains(owner);

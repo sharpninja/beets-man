@@ -1,0 +1,294 @@
+# TEST-RECORDS-002 / TR-RECORDS-ARCH-001#ac-litedb-c4-entities
+# map: entity | repository | inclusive anchor | exclusive anchor | exact BSON assignments in that scope
+# code: entity | repository | inclusive anchor | exclusive anchor | key, type, or compatibility expression
+# key and rule: entity | empty source columns | documented storage key or compatibility rule
+
+key|desktopArtist||||ArtistId (Guid)
+key|desktopAlbum||||AlbumId (Guid)
+key|desktopTrack||||TrackId (Guid)
+key|desktopPlaylist||||PlaylistId (Guid)
+key|desktopListening||||stable PlayId or derived library and track Guid for favorites
+key|desktopSharedPreference||||Guid derived from library and preference key
+key|desktopDraft||||DraftId (Guid)
+key|desktopPlayback||||SessionId (Guid)
+key|desktopOverride||||PreferenceKey (string)
+key|desktopShortcuts||||singleton 'local'
+key|desktopPluginRegistry||||singleton 'local'
+key|desktopOperation||||(OriginInstanceId, OperationId)
+key|desktopBatchMode||||(LibraryId, OriginInstanceId)
+key|desktopBatchEntry||||(LibraryId, OriginInstanceId, BatchId, Position)
+key|desktopBatchReceipt||||(LibraryId, OriginInstanceId, OperationId)
+key|desktopBatchImportCopy||||(LibraryId, OriginInstanceId, OperationId)
+key|desktopCheckpoint||||(LibraryId, Feed) for catalog; (LibraryId, OriginInstanceId, listener-outbox) for operation order
+key|desktopSnapshot||||(LibraryId, InstanceId)
+key|desktopSnapshotRow||||(LibraryId, InstanceId, Offset)
+key|desktopSchema||||singleton 'store'
+key|hostArtist||||ArtistId (Guid)
+key|hostAlbum||||AlbumId (Guid)
+key|hostTrack||||TrackId (Guid)
+key|hostPlaylist||||PlaylistId (Guid)
+key|hostListening||||stable PlayId or derived library and track Guid for favorites
+key|hostPreference||||Guid derived from library and preference key
+key|hostInstance||||InstanceId (Guid)
+key|hostDesktopRegistryHead||||LibraryId (Guid)
+key|hostBeetsSetup||||LibraryId (Guid)
+key|hostJob||||JobId (Guid)
+key|hostMaintenancePlan||||PlanId (Guid)
+key|hostBatchPublication||||(OriginInstanceId, OperationId)
+key|hostBatchEntry||||(PublicationKey, Position)
+key|hostBatchImportPart||||(PublicationKey, Position, Index)
+key|hostImportUpload||||(LibraryId, OriginInstanceId, UploadId)
+key|hostReceipt||||(OriginInstanceId, OperationId)
+key|hostRevision||||LibraryId (Guid)
+key|hostChange||||(LibraryId, Revision)
+key|hostDelivery||||(LibraryId, Revision, RecipientInstanceId)
+key|hostSnapshot||||(LibraryId, RecipientInstanceId)
+key|hostSnapshotRow||||(LibraryId, RecipientInstanceId, Offset)
+key|hostExport||||ExportId (Guid)
+key|hostExportEntry||||(ExportId, hash(PathKey))
+key|hostExportManifest||||(LibraryId, DeviceId, hash(ShareId))
+key|hostExportOwnedFile||||(ManifestKey, hash(PathKey))
+key|hostExportJournal||||PublicationId (Guid)
+key|hostExportJournalItem||||(PublicationId, Kind, Ordinal)
+key|hostExportScan||||TransferId (the PublicationId, Guid)
+key|hostExportScanItem||||(TransferId, hash(Path))
+key|hostPcMirrorState||||LibraryId (Guid)
+key|hostSchema||||singleton 'store'
+
+rule|desktopTrack||||An omitted override inherits the album value and an explicit null clears it.
+rule|desktopPlayback||||WasPlaying: Boolean, absent on older checkpoints and then read as false.
+rule|desktopOverride||||Null retains the local revision after an override is cleared.
+rule|desktopSharedPreference||||Live records contain exactly one of DurationTicks: Int64, Flag: Boolean, or Text: string.
+rule|hostTrack||||An omitted override inherits the album value and an explicit null clears it.
+rule|hostPreference||||Live records contain exactly one of DurationTicks: Int64, Flag: Boolean, or Text: string.
+rule|hostInstance||||LastSeenUtcTicks: optional Int64, updated separately from the registry revision.
+rule|hostJob||||NativeAttempted: Boolean?, default false.
+rule|hostExportEntry||||An absent IsDirect is false and the audio remains a playlist dependency.
+rule|hostExportManifest||||ProfileId and ProfileRevision, optional on legacy manifests.
+rule|hostExportScanItem||||ContentIdentity: SHA-256 of the requested file, or null for removal.
+
+map|desktopArtist|LiteDbCatalogReplica|var row = new BsonDocument|if (retainedRecord)|_id LibraryId SourceRevision
+map|desktopArtist|LiteDbCatalogReplica|case ReplicaArtist artist:|case ReplicaAlbum album:|Name SortName
+code|desktopArtist|LiteDbCatalogReplica|var row = new BsonDocument|if (retainedRecord)|["_id"] = change.RecordId
+map|desktopAlbum|LiteDbCatalogReplica|var row = new BsonDocument|if (retainedRecord)|_id LibraryId SourceRevision
+map|desktopAlbum|LiteDbCatalogReplica|case ReplicaAlbum album:|case ReplicaTrack track:|Title SortTitle AlbumArtistId
+code|desktopAlbum|LiteDbCatalogReplica|var row = new BsonDocument|if (retainedRecord)|["_id"] = change.RecordId
+code|desktopAlbum|LiteDbCatalogReplica|case ReplicaAlbum album:|case ReplicaTrack track:|["AlbumArtistId"] = Ref(album.AlbumArtistId)
+map|desktopTrack|LiteDbCatalogReplica|var row = new BsonDocument|if (retainedRecord)|_id LibraryId SourceRevision
+map|desktopTrack|LiteDbCatalogReplica|case ReplicaTrack track:|case ReplicaPlaylist playlist:|Title SortTitle RelativePath ArtistId AlbumId Genre TrackNumber DiscNumber Year Rating DurationTicks TagAlbum TagAlbumArtist
+code|desktopTrack|LiteDbCatalogReplica|var row = new BsonDocument|if (retainedRecord)|["_id"] = change.RecordId
+code|desktopTrack|LiteDbCatalogReplica|case ReplicaTrack track:|case ReplicaPlaylist playlist:|if (track.HasAlbumTag) row["TagAlbum"] = track.AlbumTag
+code|desktopTrack|LiteDbCatalogReplica|case ReplicaTrack track:|case ReplicaPlaylist playlist:|if (track.HasAlbumArtistTag) row["TagAlbumArtist"] = track.AlbumArtistTag
+code|desktopTrack|LiteDbCatalogReplica|static BsonValue Ref(Guid?|private ILiteCollection|value is { } id ? new BsonValue(id) : BsonValue.Null
+code|desktopTrack|LiteDbCatalogReplica|static BsonValue Number(int?|private ILiteCollection|value is { } number ? new BsonValue(number) : BsonValue.Null
+code|desktopTrack|LiteDbCatalogReader|var album = row["AlbumId"]|void Add(string name|row.ContainsKey("TagAlbum") ? ReadText(row, "TagAlbum") : album is null ? null : ReadText(album, "Title")
+code|desktopTrack|LiteDbCatalogReader|var album = row["AlbumId"]|void Add(string name|row.ContainsKey("TagAlbumArtist") ? ReadText(row, "TagAlbumArtist") :
+map|desktopPlaylist|LiteDbCatalogReplica|var row = new BsonDocument|if (retainedRecord)|_id LibraryId SourceRevision
+map|desktopPlaylist|LiteDbCatalogReplica|case ReplicaPlaylist playlist:|case ReplicaFavorite favorite:|Name PlaylistRevision Entries EntryId TrackId
+code|desktopPlaylist|LiteDbCatalogReplica|var row = new BsonDocument|if (retainedRecord)|["_id"] = change.RecordId
+map|desktopListening|LiteDbCatalogReplica|var row = new BsonDocument|switch (change.Entity)|_id LibraryId SourceRevision Kind Deleted
+map|desktopListening|LiteDbCatalogReplica|case ReplicaFavorite favorite:|case ReplicaSharedDefault setting:|TrackId ListenerId PlayedAtUtcTicks
+code|desktopListening|LiteDbCatalogReplica|var row = new BsonDocument|switch (change.Entity)|["_id"] = change.RecordId
+code|desktopListening|LiteDbLibraryRecordOutbox|LibraryRecordIdentity.Favorite(scope.LibraryId, track)|var local|CatalogProjectionTable(CatalogEntityKind.Favorite).FindById(id)
+map|desktopSharedPreference|LiteDbCatalogReplica|var row = new BsonDocument|switch (change.Entity)|_id LibraryId SourceRevision Kind Deleted
+map|desktopSharedPreference|LiteDbCatalogReplica|case ReplicaSharedDefault setting:|table.Upsert(row);|PreferenceKey RegistryVersion DurationTicks Flag Text
+code|desktopSharedPreference|LiteDbCatalogReplica|var row = new BsonDocument|switch (change.Entity)|["_id"] = change.RecordId
+code|desktopSharedPreference|LiteDbPlaybackPreferences|IDesktopPreferenceStore.CacheSharedPreferenceAsync|private Outcome<StoredPreferences> ReadPreferences|LibraryRecordIdentity.SharedDefault(library, value.Key)
+code|desktopSharedPreference|LiteDbPlaybackPreferences|var value = (sharedRow["DurationTicks"], sharedRow["Flag"], sharedRow["Text"]) switch|shared = DecodePreference(value)|({ IsInt64: true } duration, { IsNull: true }, { IsNull: true }) => duration
+code|desktopSharedPreference|LiteDbPlaybackPreferences|var value = (sharedRow["DurationTicks"], sharedRow["Flag"], sharedRow["Text"]) switch|shared = DecodePreference(value)|({ IsNull: true }, { IsBoolean: true } flag, { IsNull: true }) => flag
+code|desktopSharedPreference|LiteDbPlaybackPreferences|var value = (sharedRow["DurationTicks"], sharedRow["Flag"], sharedRow["Text"]) switch|shared = DecodePreference(value)|({ IsNull: true }, { IsNull: true }, { IsString: true } text) => text
+map|desktopDraft|LiteDbDesktopPlaylistStore|private static BsonDocument WriteDraft|private static PlaylistDraft ReadDraft|_id PlaylistId ExpectedHostRevision DraftRevision ProposedName Entries
+map|desktopDraft|LiteDbDesktopPlaylistStore|private static BsonArray WriteEntries|private static ImmutableArray<PlaylistEntry> ReadEntries|EntryId TrackId
+code|desktopDraft|LiteDbDesktopPlaylistStore|private static BsonDocument WriteDraft|private static PlaylistDraft ReadDraft|["_id"] = draft.DraftId
+code|desktopDraft|LiteDbDesktopPlaylistStore|private static BsonDocument WriteDraft|private static PlaylistDraft ReadDraft|["PlaylistId"] = draft.BasePlaylist is { } saved ? saved.PlaylistId : BsonValue.Null
+code|desktopDraft|LiteDbDesktopPlaylistStore|private static BsonDocument WriteDraft|private static PlaylistDraft ReadDraft|["ExpectedHostRevision"] = draft.BasePlaylist is { } version ? version.Revision : BsonValue.Null
+map|desktopPlayback|LiteDbPlaybackCheckpoints|private static BsonDocument WriteCheckpoint|private static PlaybackCheckpoint ReadCheckpoint|_id CheckpointRevision QueueRevision PositionTicks ActiveEntryId Shuffle Repeat WasPlaying ActivePlay PlayId TrackId QueueEntryId PlaylistBacking PlaylistId Revision Name LastSave StagedSave OperationId BatchId Position Queue EntryId
+code|desktopPlayback|LiteDbPlaybackCheckpoints|private static BsonDocument WriteCheckpoint|private static PlaybackCheckpoint ReadCheckpoint|["_id"] = checkpoint.SessionId
+code|desktopPlayback|LiteDbPlaybackCheckpoints|private static BsonDocument WriteCheckpoint|private static PlaybackCheckpoint ReadCheckpoint|["ActiveEntryId"] = checkpoint.ActiveEntryId is { } active ? active : BsonValue.Null
+code|desktopPlayback|LiteDbPlaybackCheckpoints|private static PlaybackCheckpoint ReadCheckpoint|private static PlaybackPlayOccurrence ReadActivePlay|row["WasPlaying"].IsBoolean && row["WasPlaying"].AsBoolean
+code|desktopPlayback|LiteDbPlaybackCheckpoints|private static PlaybackCheckpoint ReadCheckpoint|private static PlaybackPlayOccurrence ReadActivePlay|row["PlaylistBacking"].IsDocument ? ReadQueueBinding(row["PlaylistBacking"].AsDocument) : null
+code|desktopPlayback|LiteDbPlaybackCheckpoints|private static PlaybackCheckpoint ReadCheckpoint|private static PlaybackPlayOccurrence ReadActivePlay|row["ActivePlay"].IsDocument ? ReadActivePlay(row["ActivePlay"].AsDocument) : null
+map|desktopOverride|LiteDbPlaybackPreferences|overrides.Upsert(new BsonDocument|return ReadPreferences(library, category);|_id RegistryVersion LocalRevision Value
+code|desktopOverride|LiteDbPlaybackPreferences|overrides.Upsert(new BsonDocument|return ReadPreferences(library, category);|["_id"] = change.Key
+code|desktopOverride|LiteDbPlaybackPreferences|var value = change.Value switch|overrides.Upsert(new BsonDocument|_ => BsonValue.Null
+map|desktopShortcuts|LiteDbShortcuts|var rows = new BsonArray|return|_id RegistryVersion Revision Overrides ActionId Scope Gesture
+code|desktopShortcuts|LiteDbShortcuts|var rows = new BsonArray|return|["_id"] = "local"
+map|desktopPluginRegistry|LiteDbPluginRegistry|database.GetCollection<BsonDocument>(PluginRegistry).Upsert|return new Outcome<PluginRegistrySnapshot>|_id Revision Versions
+map|desktopPluginRegistry|LiteDbPluginRegistry|private static BsonDocument WriteVersion|private static InstalledPluginPackage ReadVersion|PluginId Version MinimumProtocol MaximumProtocol EntryPoint ArchiveSha256 Trust Enabled Contributions
+map|desktopPluginRegistry|LiteDbPluginRegistry|private static BsonDocument WriteContribution|private static PluginContribution ReadContribution|Id Kind HostAction Panel Title ActionId Fields Label Required MaximumLength
+code|desktopPluginRegistry|LiteDbPluginRegistry|database.GetCollection<BsonDocument>(PluginRegistry).Upsert|return new Outcome<PluginRegistrySnapshot>|["_id"] = LocalPluginRegistry
+code|desktopPluginRegistry|LiteDbPluginRegistry|private const string LocalPluginRegistry|public Task<Outcome<PluginRegistrySnapshot>> ReadPluginsAsync|LocalPluginRegistry = "local"
+code|desktopPluginRegistry|LiteDbPluginRegistry|private static PluginContribution ReadContribution||item["Panel"].IsDocument ? item["Panel"].AsDocument : null
+map|desktopOperation|LiteDbDesktopPlaylistStore|private static BsonDocument WriteOperation|private static PendingPlaylistSave ReadOperation|_id OriginInstanceId OperationId CommandType State DraftId QueueSessionId ExpectedRevision Payload Version DraftRevision PlaylistId Name Entries CommittedPlaylistId CommittedRevision CommittedDraftRevision QueueSource QueueRevision IntentHash Predecessor ExpectedRevisionPinned ConflictCode ActualHostRevision Issues Code Field
+map|desktopOperation|LiteDbLibraryRecordOutbox|private BsonDocument NewListenerOperation|private long NextListenerOrder|_id LibraryId OriginInstanceId ListenerScope ListenerRecordKey OperationId RecordId CommandType State Payload OriginalPayload Order
+map|desktopOperation|LiteDbLibraryRecordOutbox|var next = NewListenerOperation|PendingRecords().Insert(next)|Predecessor
+map|desktopOperation|LiteDbLibraryRecordOutbox|row["Payload"] = SerializeIntent(intent);|operations.Update(row)|Payload RevisionPinned
+map|desktopOperation|LiteDbLibraryRecordOutbox|row["ReceiptRevision"] =|PendingRecords().Update(row)|ReceiptRevision State
+map|desktopOperation|LiteDbLibraryRecordConflicts|BsonDocument accepted;|operations.Update(row)|_id LibraryId OriginInstanceId OperationId CommandType State ResolutionIntent ResolutionOperationId
+code|desktopOperation|LiteDbDesktopPlaylistStore|private static BsonDocument WriteOperation|private static PendingPlaylistSave ReadOperation|["_id"] = OperationId(operation.Key)
+code|desktopOperation|LiteDbDesktopPlaylistStore|private static string OperationId|private static BsonDocument WriteOperation|$"{key.OriginInstanceId:N}/{key.OperationId:N}"
+code|desktopOperation|LiteDbLibraryRecordOutbox|private BsonDocument NewListenerOperation|private long NextListenerOrder|["_id"] = ListenerKey(scope, operation)
+code|desktopOperation|LiteDbLibraryRecordOutbox|private static string ListenerKey|private static string ListenerScope|OperationId(new(scope.OriginInstanceId, operation))
+map|desktopBatchMode|LiteDbLibraryBatchStore|public void Save(LibraryBatchScope|public ImmutableArray<LibraryBatchEntry> ReadEntries|_id LibraryId OriginInstanceId Payload
+code|desktopBatchMode|LiteDbLibraryBatchStore|public void Save(LibraryBatchScope|public ImmutableArray<LibraryBatchEntry> ReadEntries|["_id"] = ScopeKey(scope)
+code|desktopBatchMode|LiteDbLibraryBatchStore|private static string ScopeKey|private static string ScopedKey|$"{scope.LibraryId:N}/{scope.OriginInstanceId:N}"
+map|desktopBatchEntry|LiteDbLibraryBatchStore|public void AddStage|public void RecordCommit|_id BatchKey OperationId Position Payload
+code|desktopBatchEntry|LiteDbLibraryBatchStore|public void AddStage|public void RecordCommit|["_id"] = EntryKey(batchKey, entry.Position)
+code|desktopBatchEntry|LiteDbLibraryBatchStore|public void AddStage|public void RecordCommit|var batchKey = ScopedKey(scope, stage.Receipt.Version.BatchId)
+code|desktopBatchEntry|LiteDbLibraryBatchStore|private static string EntryKey||$"{key}/{position}"
+map|desktopBatchReceipt|LiteDbLibraryBatchStore|private void WriteReceipt<T>|private T? Find<T>|_id Kind LibraryId OriginInstanceId OperationId Payload
+code|desktopBatchReceipt|LiteDbLibraryBatchStore|private void WriteReceipt<T>|private T? Find<T>|["_id"] = ScopedKey(scope, operationId)
+code|desktopBatchReceipt|LiteDbLibraryBatchStore|private static string ScopedKey|private static string EntryKey|$"{ScopeKey(scope)}/{id:N}"
+map|desktopBatchImportCopy|LiteDbLibraryBatchStore|public void ClaimImportCopies|public ImmutableArray<Guid> ImportCopyClaims|_id ScopeKey OperationId
+code|desktopBatchImportCopy|LiteDbLibraryBatchStore|public void ClaimImportCopies|public ImmutableArray<Guid> ImportCopyClaims|["_id"] = ScopedKey(scope, operationId)
+map|desktopCheckpoint|LiteDbCatalogReplica|checkpoint ??= new BsonDocument|return ReadReplicaState|_id LibraryId Feed OriginInstanceId AppliedRevision SnapshotRequired LastSnapshotId
+map|desktopCheckpoint|LiteDbLibraryRecordOutbox|private long NextListenerOrder|private void SaveListenerConflict|_id LibraryId OriginInstanceId Feed LastOrder
+code|desktopCheckpoint|LiteDbCatalogReplica|checkpoint ??= new BsonDocument|return ReadReplicaState|["_id"] = $"{library:N}/catalog"
+code|desktopCheckpoint|LiteDbCatalogReplica|checkpoint ??= new BsonDocument|return ReadReplicaState|if (snapshotId is { } replacement) checkpoint["LastSnapshotId"] = replacement
+code|desktopCheckpoint|LiteDbLibraryRecordOutbox|private long NextListenerOrder|private void SaveListenerConflict|["_id"] = key
+code|desktopCheckpoint|LiteDbLibraryRecordOutbox|private long NextListenerOrder|private void SaveListenerConflict|$"{ListenerScope(scope)}/listener-outbox"
+map|desktopSnapshot|LiteDbCatalogSnapshotReplica|stage = new BsonDocument|var received =|_id SnapshotId UpperRevision ExpectedCursor TotalCount ReceivedCount
+code|desktopSnapshot|LiteDbCatalogSnapshotReplica|stage = new BsonDocument|var received =|["_id"] = owner
+code|desktopSnapshot|LiteDbCatalogSnapshotReplica|var owner =|var stage =|$"{library:N}/{instance:N}"
+map|desktopSnapshotRow|LiteDbCatalogSnapshotReplica|rows.Insert(new BsonDocument|received = Math.Max|_id Owner Payload
+code|desktopSnapshotRow|LiteDbCatalogSnapshotReplica|rows.Insert(new BsonDocument|received = Math.Max|["_id"] = key
+code|desktopSnapshotRow|LiteDbCatalogSnapshotReplica|var position = page.Offset + index|rows.Insert(new BsonDocument|var key = SnapshotStagePosition(owner, position)
+map|desktopSchema|LiteDbDesktopPlaylistStore|schema = new BsonDocument|schemas.Insert(schema)|_id StoreId StoreRole SchemaVersion
+code|desktopSchema|LiteDbDesktopPlaylistStore|schema = new BsonDocument|schemas.Insert(schema)|["_id"] = "store"
+code|desktopSchema|LiteDbDesktopPlaylistStore|schema = new BsonDocument|schemas.Insert(schema)|["StoreRole"] = "Desktop", ["SchemaVersion"] = 1
+
+map|hostArtist|LiteDbImportPublication|private static BsonDocument NewCatalogRow|private static void WriteCatalogChange|_id LibraryId
+map|hostArtist|LiteDbImportPublication|artist = NewCatalogRow(library);|ids.Add(name|Name SortName
+map|hostArtist|LiteDbImportPublication|private static void WriteCatalogChange||Revision
+code|hostArtist|LiteDbImportPublication|private static BsonDocument NewCatalogRow|private static void WriteCatalogChange|["_id"] = Guid.NewGuid()
+map|hostAlbum|LiteDbImportPublication|private static BsonDocument NewCatalogRow|private static void WriteCatalogChange|_id LibraryId
+map|hostAlbum|LiteDbImportPublication|var album = existingAlbums.SingleOrDefault()|var tracks = database|BeetsAlbumId Title SortTitle AlbumArtistId
+map|hostAlbum|LiteDbImportPublication|private static void WriteCatalogChange||Revision
+code|hostAlbum|LiteDbImportPublication|private static BsonDocument NewCatalogRow|private static void WriteCatalogChange|["_id"] = Guid.NewGuid()
+code|hostAlbum|LiteDbImportPublication|BsonValue ArtistId(string? name)|private static bool TryResolveImportTrack|? new BsonValue(id) : BsonValue.Null
+map|hostTrack|LiteDbImportPublication|private static BsonDocument NewCatalogRow|private static void WriteCatalogChange|_id LibraryId
+map|hostTrack|LiteDbImportPublication|track["BeetsTrackId"] = observedTrack|WriteCatalogChange(tracks|BeetsTrackId AlbumId ArtistId RelativePath Title Genre TrackNumber DiscNumber Year DurationTicks
+map|hostTrack|LiteDbImportPublication|private static void WriteCatalogChange||Revision
+code|hostTrack|LiteDbImportPublication|private static BsonDocument NewCatalogRow|private static void WriteCatalogChange|["_id"] = Guid.NewGuid()
+code|hostTrack|LiteDbImportPublication|track["BeetsTrackId"] = observedTrack|WriteCatalogChange(tracks|["DurationTicks"] = observedTrack.DurationTicks is long ticks ? new BsonValue(ticks) : BsonValue.Null
+code|hostTrack|LiteDbTrackTagWork|private bool ApplyTagProjection|private static string? Normalize|SetText("album", "TagAlbum"); SetText("albumartist", "TagAlbumArtist");
+code|hostTrack|LiteDbTrackTagWork|private bool ApplyTagProjection|private static string? Normalize|track[field] = Normalize(value) is { } text ? new BsonValue(text) : BsonValue.Null
+code|hostTrack|LiteDbCatalogReplication|new ReplicaTrack(title, path|CatalogEntityKind.Playlist|Text(row, "SortTitle")
+code|hostTrack|LiteDbCatalogReplication|new ReplicaTrack(title, path|CatalogEntityKind.Playlist|Number("Rating")
+map|hostPlaylist|LiteDbHostPlaylistStore|private static BsonDocument WritePlaylist|private static|_id LibraryId Revision Name Entries EntryId TrackId
+code|hostPlaylist|LiteDbHostPlaylistStore|private static BsonDocument WritePlaylist|private static|["_id"] = playlist.PlaylistId
+map|hostListening|LiteDbLibraryRecords|var row = payload ?? new BsonDocument|table.Upsert(row)|_id Deleted LibraryId Kind Revision
+map|hostListening|LiteDbLibraryRecords|LibraryRecordIntent.Favorite favorite =>|LibraryRecordIntent.SharedDefault setting =>|TrackId ListenerId PlayedAtUtcTicks
+code|hostListening|LiteDbLibraryRecords|var row = payload ?? new BsonDocument|table.Upsert(row)|["_id"] = id
+code|hostListening|LiteDbLibraryRecords|LibraryRecordIntent.Favorite favorite =>|LibraryRecordIntent.SharedDefault setting =>|LibraryRecordIdentity.Favorite(library, favorite.TrackId)
+code|hostListening|LiteDbLibraryRecords|LibraryRecordIntent.Play play =>|LibraryRecordIntent.SharedDefault setting =>|play.PlayId
+map|hostPreference|LiteDbLibraryRecords|var row = payload ?? new BsonDocument|table.Upsert(row)|_id Deleted LibraryId Kind Revision
+map|hostPreference|LiteDbLibraryRecords|private static BsonDocument? DescribeSharedPreference|private static bool IsLibraryRecordDeleted|PreferenceKey RegistryVersion DurationTicks Flag Text
+code|hostPreference|LiteDbLibraryRecords|var row = payload ?? new BsonDocument|table.Upsert(row)|["_id"] = id
+code|hostPreference|LiteDbLibraryRecords|LibraryRecordIntent.SharedDefault setting =>|private static BsonDocument? DescribeSharedPreference|LibraryRecordIdentity.SharedDefault(library, setting.Key)
+map|hostInstance|LiteDbDesktopRegistration|row ??= new BsonDocument|instances.Upsert(row)|_id LibraryId Role Status Name AccessRole
+map|hostInstance|LiteDbMediaPairing|var export = scope.Peer["AndroidExport"]|store.database.GetCollection<BsonDocument>("registered_instances").Update(scope.Peer)|AndroidExport Revision ShareId ReceiverEndpoint CaseSensitivePaths InitialProfileId InitialProfileRevision ReceiverRoot ApprovedSenderId ReceiverAcceptedAtOffer
+map|hostInstance|LiteDbPcMirrors|export["ReceiverSharePhase"] =|instances.Update(row)|ReceiverSharePhase ReceiverFailureCode
+code|hostInstance|LiteDbDesktopRegistration|row ??= new BsonDocument|instances.Upsert(row)|["_id"] = caller.InstanceId
+code|hostInstance|LiteDbDesktopRegistration|private static long? ReadLastSeenTicks|private static HostOutcome<T> RegistryConflict|row[LastSeenField] is { IsInt64: true }
+code|hostInstance|LiteDbMediaPairing|scope.Peer["PendingMediaPairing"] =|store.database.GetCollection<BsonDocument>("registered_instances").Update(scope.Peer)|scope.Peer["PendingMediaPairing"] = scope.Key
+code|hostInstance|LiteDbHostDevicePlaylistStore|private RegisteredAndroidExport? ReadRegisteredAndroidExport|private RegisteredAndroidExport ReadStoredExportTarget|Text(row, "SyncthingDeviceId")
+map|hostDesktopRegistryHead|LiteDbDesktopRegistration|private long AdvanceDesktopRegistry|private static bool IsDesktopRegistration|_id Revision
+code|hostDesktopRegistryHead|LiteDbDesktopRegistration|private long AdvanceDesktopRegistry|private static bool IsDesktopRegistration|["_id"] = library
+map|hostBeetsSetup|LiteDbBeetsLibrarySetup|private BsonDocument BeetsSetupRow|private static BeetsSetupLease? PendingBeetsSetup|_id Revision
+map|hostBeetsSetup|LiteDbBeetsLibrarySetup|row["Pending"] = JsonSerializer.Serialize(lease);|database.GetCollection<BsonDocument>(BeetsSetupTable).Upsert(row)|Pending
+map|hostBeetsSetup|LiteDbBeetsConfiguration|row["Revision"] = result.Revision;|database.GetCollection<BsonDocument>(BeetsSetupTable).Upsert(row)|Revision Configuration
+code|hostBeetsSetup|LiteDbBeetsLibrarySetup|private BsonDocument BeetsSetupRow|private static BeetsSetupLease? PendingBeetsSetup|["_id"] = library
+map|hostJob|LiteDbImportIntake|database.GetCollection<BsonDocument>(LibraryJobs).Insert|row["JobId"] =|_id LibraryId OriginInstanceId OperationId Kind Status UploadId Revision
+map|hostJob|LiteDbTrackTags|jobs.Insert(new BsonDocument|receipts.Insert|_id LibraryId OriginInstanceId OperationId Kind Status Revision TrackId ExpectedTrackRevision BeetsTrackId RelativePath TagChanges TagBaseline
+map|hostJob|LiteDbLibraryMaintenance|database.GetCollection<BsonDocument>(LibraryJobs).Insert|row["JobId"] =|_id LibraryId OriginInstanceId OperationId Kind Status Revision MaintenancePlanId MaintenanceMode ExpectedRevision AudioDeletionApproved
+map|hostJob|LiteDbImportReview|job["ApprovedChoice"] =|receipts.Insert|ApprovedChoice OperationId ReviewItemId ReviewRevision Decision ProviderKey NativeMatch Status Revision
+map|hostJob|LiteDbImportReview|job["Review"] =|jobs.Update(job)|Review Status Revision
+map|hostJob|LiteDbGuidedImportWork|row["NativeAttempted"] = true;|jobs.Update(row)|NativeAttempted NativePreparation
+map|hostJob|LiteDbOrganizationWork|row["Status"] = nameof(ImportJobPhase.Running);|jobs.Update(row)|OrganizationCopies Status NativeAttempted Revision
+map|hostJob|LiteDbTrackTagWork|private static void SaveLibraryJobFailure|private bool ApplyTagProjection|FailedFromPhase Status FailureCode Retryable Revision NativeAttempted
+code|hostJob|LiteDbImportIntake|database.GetCollection<BsonDocument>(LibraryJobs).Insert|row["JobId"] =|["_id"] = jobId
+code|hostJob|LiteDbTrackTags|jobs.Insert(new BsonDocument|receipts.Insert|["_id"] = result.JobId
+code|hostJob|LiteDbLibraryMaintenance|database.GetCollection<BsonDocument>(LibraryJobs).Insert|row["JobId"] =|["_id"] = result.JobId
+code|hostJob|LiteDbImportPublication|job["PublicationFingerprint"] =|jobs.Update(job)|job["PublicationFingerprint"] = fingerprint
+code|hostJob|LiteDbTrackTagWork|row["PublishedRevision"] =|jobs.Update(row)|["PublishedRevision"] = Math.Max(revision, work.TrackRevision)
+code|hostJob|LiteDbGuidedImportWork|private static bool WasNativeAttempted|private static BsonDocument? FindCurrentImportWork|job["NativeAttempted"].IsBoolean && job["NativeAttempted"].AsBoolean
+map|hostMaintenancePlan|LiteDbLibraryMaintenance|var row = new BsonDocument|database.GetCollection<BsonDocument>(MaintenancePlans).Insert(row)|_id LibraryId OriginInstanceId Plan Targets AudioFiles
+map|hostMaintenancePlan|LiteDbLibraryMaintenance|row["JobId"] =|receipts.Insert|JobId
+map|hostMaintenancePlan|LiteDbApprovedLibraryBatches|row["BatchOperationId"] =|plans.Update(row)|BatchOperationId
+code|hostMaintenancePlan|LiteDbLibraryMaintenance|var row = new BsonDocument|database.GetCollection<BsonDocument>(MaintenancePlans).Insert(row)|["_id"] = plan.PlanId
+code|hostMaintenancePlan|LiteDbLibraryMaintenance|private static ImmutableArray<AudioRemovalFile> ReadAudioRemovalFiles|private HostOutcome<ImmutableArray<MaintenanceTrack>> RecheckMaintenance|row["AudioFiles"].IsString
+map|hostBatchPublication|LiteDbApprovedLibraryBatches|journals.Insert(new BsonDocument|var rows =|_id BatchKey LibraryId OriginInstanceId OperationId BatchId BatchRevision ReviewId Phase EntryCount ImportPartCount Status
+map|hostBatchPublication|LiteDbNativeBatchWork|row["NextPosition"] = 1;|SaveBatchPhase(row|NextPosition EntryAttempted LockedPlaylists
+code|hostBatchPublication|LiteDbApprovedLibraryBatches|journals.Insert(new BsonDocument|var rows =|["_id"] = operation
+code|hostBatchPublication|LiteDbApprovedLibraryBatches|var operation = OperationId|var rows =|OperationId(new(caller.InstanceId, request.OperationId))
+code|hostBatchPublication|LiteDbApprovedBatchWithdrawal|private static string BatchKey||$"{library:N}/{origin:N}/{batch:N}"
+map|hostBatchEntry|LiteDbApprovedLibraryBatches|var row = new BsonDocument|rows.Insert(row)|_id PublicationKey Position EntryOperationId Kind Payload TagTarget
+map|hostBatchEntry|LiteDbApprovedBatchImportReviews|entry["ImportReview"] =|entries.Update(entry)|ImportReview ImportReviewRevision
+map|hostBatchEntry|LiteDbApprovedBatchImportReviews|entry["ImportChoice"] =|entries.Update(entry)|ImportChoice ImportReviewRevision
+map|hostBatchEntry|LiteDbNativeBatchWork|journal["PreparedImport"] =|entries.Update(journal)|PreparedImport
+code|hostBatchEntry|LiteDbNativeBatchWork|private NativeBatchEntry ReadNativeBatchEntry|private NativeBatchImport? ReadNativeBatchImport|row["OrganizationCopies"].IsString ? ReadStored<OrganizationCopy[]>(row["OrganizationCopies"]).ToImmutableArray() : []
+code|hostBatchEntry|LiteDbNativeBatchWork|private NativeBatchEntry ReadNativeBatchEntry|private NativeBatchImport? ReadNativeBatchImport|row["TaggedFile"].IsString ? ReadStored<OrganizationFileStamp>(row["TaggedFile"]) : null
+code|hostBatchEntry|LiteDbNativeBatchWork|private NativeBatchImport? ReadNativeBatchImport|private bool|row["ObservedImport"].IsString ? ReadStored<ReconciledImportAlbum>(row["ObservedImport"]) : null
+code|hostBatchEntry|LiteDbApprovedLibraryBatches|var row = new BsonDocument|rows.Insert(row)|["_id"] = string.Create(CultureInfo.InvariantCulture, $"{operation}/{entry.Position}")
+map|hostBatchImportPart|LiteDbApprovedBatchImports|table.Insert(new BsonDocument|return new HostOutcome<ApprovedBatchImportPartReceipt>.Success|_id PublicationKey Position Index Receipt
+code|hostBatchImportPart|LiteDbApprovedBatchImports|table.Insert(new BsonDocument|return new HostOutcome<ApprovedBatchImportPartReceipt>.Success|["_id"] = part
+code|hostBatchImportPart|LiteDbApprovedBatchImports|var key = OperationId|table.Insert(new BsonDocument|$"{key}/{receipt.Position}/{receipt.Index}"
+map|hostImportUpload|LiteDbImportIntake|table.Insert(new BsonDocument|return new HostOutcome|_id LibraryId OriginInstanceId UploadId Files
+map|hostImportUpload|LiteDbImportIntake|row["JobId"] =|database.GetCollection<BsonDocument>("operation_receipts").Insert|JobId
+code|hostImportUpload|LiteDbImportIntake|table.Insert(new BsonDocument|return new HostOutcome|["_id"] = key
+code|hostImportUpload|LiteDbImportIntake|private static string UploadKey|private static string ImportIntent|$"{libraryId:N}/{owner:N}/{upload:N}"
+map|hostReceipt|LiteDbDesktopRegistration|receipts.Insert(new BsonDocument|return result;|_id OriginInstanceId OperationId IntentFingerprint Receipt Type Version Result
+map|hostReceipt|LiteDbHostPlaylistStore|public void Add(HostOperationKey|public bool IsPlaylistReserved|_id OriginInstanceId OperationId IntentFingerprint Receipt Type Version SourceKind SourceId PlaylistId PlaylistRevision FeedRevision
+code|hostReceipt|LiteDbDesktopRegistration|receipts.Insert(new BsonDocument|return result;|["_id"] = key
+code|hostReceipt|LiteDbHostPlaylistStore|private static string OperationId|private static bool IsActiveInstance|$"{key.OriginInstanceId:N}/{key.OperationId:N}"
+map|hostRevision|LiteDbHostPlaylistStore|new BsonDocument { ["_id"] = libraryId, ["CurrentRevision"]|private static|_id CurrentRevision MinRetainedRevision
+code|hostRevision|LiteDbHostPlaylistStore|new BsonDocument { ["_id"] = libraryId, ["CurrentRevision"]|private static|["_id"] = libraryId
+map|hostChange|LiteDbHostPlaylistStore|db.GetCollection<BsonDocument>("revision_changes").Insert|var recipients|_id LibraryId Revision OriginInstanceId OperationId Changes
+code|hostChange|LiteDbHostPlaylistStore|db.GetCollection<BsonDocument>("revision_changes").Insert|var recipients|["_id"] = key
+code|hostChange|LiteDbHostPlaylistStore|private static string FeedId|private static BsonDocument ReadFeedHead|$"{libraryId:N}/{revision.ToString(CultureInfo.InvariantCulture)}"
+map|hostDelivery|LiteDbHostPlaylistStore|deliveries.Insert(new BsonDocument|private static string OperationId|_id LibraryId RecipientInstanceId Revision Status
+code|hostDelivery|LiteDbHostPlaylistStore|deliveries.Insert(new BsonDocument|private static string OperationId|["_id"] = $"{key}/{recipient:N}"
+map|hostSnapshot|LiteDbCatalogSnapshots|var header = new BsonDocument|headers.Upsert(header)|_id LibraryId RecipientInstanceId SnapshotId ExpectedCursor UpperRevision TotalCount
+code|hostSnapshot|LiteDbCatalogSnapshots|var header = new BsonDocument|headers.Upsert(header)|["_id"] = owner
+code|hostSnapshot|LiteDbCatalogSnapshots|private static string SnapshotOwner|private static string SnapshotPosition|$"{library:N}/{recipient:N}"
+map|hostSnapshotRow|LiteDbCatalogSnapshots|rows.Insert(new BsonDocument|total = checked(total + 1);|_id Owner Payload
+code|hostSnapshotRow|LiteDbCatalogSnapshots|rows.Insert(new BsonDocument|total = checked(total + 1);|["_id"] = SnapshotPosition(owner, total)
+code|hostSnapshotRow|LiteDbCatalogSnapshots|private static string SnapshotPosition||$"{owner}/{offset}"
+map|hostExport|LiteDbHostDevicePlaylistStore|database.GetCollection<BsonDocument>(DeviceExportCollection).Upsert|WriteEntries(id|_id LibraryId ScopeKey DeviceId ShareId ProfileId ProfileVersion ManifestRevision CaseSensitivePaths PublicationState
+code|hostExport|LiteDbHostDevicePlaylistStore|database.GetCollection<BsonDocument>(DeviceExportCollection).Upsert|WriteEntries(id|["_id"] = id
+code|hostExport|LiteDbHostDevicePlaylistStore|private static string ScopeKey|private static string HashKey|$"{library:N}/{device:N}/{HashKey(profile)}"
+map|hostExport|LiteDbDeviceExportPreviewStore|current.Row["ManifestRevision"] =|database.GetCollection<BsonDocument>(DeviceExportCollection).Update|ManifestRevision PreparedPreviewIdentity
+code|hostExport|LiteDbDeviceExportPreviewStore|ReadPreviewDigestAsync|private HostOutcome<string?> ReadPreviewReceipt|Text(current.Row, "PreparedPreviewIdentity")
+map|hostExportEntry|LiteDbHostDevicePlaylistStore|private void WriteEntries|private static string ScopeKey|_id ExportId PathKey EntryId RelativePath Ordinal SourceKind SourceEntityId AudioStatus IsDirect Format ContentIdentity Tracks TrackId Destination
+code|hostExportEntry|LiteDbHostDevicePlaylistStore|private void WriteEntries|private static string ScopeKey|["_id"] = key
+code|hostExportEntry|LiteDbHostDevicePlaylistStore|private void WriteEntries|private static string ScopeKey|$"{exportId:N}/{HashKey(pathKey)}"
+code|hostExportEntry|LiteDbHostDevicePlaylistStore|private void WriteEntries|private static string ScopeKey|if (audio.IsDirect) row["IsDirect"] = true
+code|hostExportEntry|LiteDbHostDevicePlaylistStore|private static ExportEntry ReadEntry|private ImmutableDictionary<Guid, string> ReadPlaylistDigests|row["IsDirect"].IsBoolean && row["IsDirect"].AsBoolean
+map|hostExportManifest|LiteDbDeviceExportPublicationJournal|database.GetCollection<BsonDocument>(ExportManifestCollection).Upsert|var plans =|_id LibraryId DeviceId ShareId Revision PublicationId ProfileId ProfileRevision
+code|hostExportManifest|LiteDbDeviceExportPublicationJournal|database.GetCollection<BsonDocument>(ExportManifestCollection).Upsert|var plans =|["_id"] = scope
+code|hostExportManifest|LiteDbDeviceExportPublicationJournal|private static string ManifestKey|private static string PublicationFingerprint|$"{target.LibraryId:N}/{target.DeviceId:N}/{HashKey(target.ShareId)}"
+code|hostExportManifest|LiteDbHostDevicePlaylistStore|private (DeviceLayoutAssignment? Profile, bool HasPublished) ReadExportAssignment|var legacy =|manifest["ProfileRevision"].IsNumber && manifest["ProfileRevision"].AsInt64 > 0
+code|hostExportManifest|LiteDbHostDevicePlaylistStore|var legacy =|return (legacy is|Text(row, "PublicationState") == "Published"
+map|hostExportOwnedFile|LiteDbDeviceExportPublicationJournal|private void WriteOwnedFiles|private static void EnsurePublicationIndexes|_id ManifestKey PathKey RelativePath SourceKind SourceEntityId ContentIdentity
+code|hostExportOwnedFile|LiteDbDeviceExportPublicationJournal|private void WriteOwnedFiles|private static void EnsurePublicationIndexes|["_id"] = $"{key}/{HashKey(pathKey)}"
+map|hostExportJournal|LiteDbDeviceExportPublicationJournal|var document = new BsonDocument|database.GetCollection<BsonDocument>("operation_receipts").Insert|_id ManifestKey LibraryId DeviceId PlanId PlanRevision ProfileId ProfileRevision ManifestRevision OriginInstanceId OperationId Destination NextStep StepCount OwnedFileCount LayoutEntryCount NextProfileId NextProfileRevision
+code|hostExportJournal|LiteDbDeviceExportPublicationJournal|var document = new BsonDocument|database.GetCollection<BsonDocument>("operation_receipts").Insert|["_id"] = publication
+code|hostExportJournal|LiteDbDeviceExportPublicationJournal|var document = new BsonDocument|database.GetCollection<BsonDocument>("operation_receipts").Insert|["Destination"] = JsonSerializer.Serialize(target)
+map|hostExportJournalItem|LiteDbDeviceExportPublicationJournal|private void WriteJournalItems<T>|private ImmutableArray<T> ReadJournalItems<T>|_id PublicationId Ordinal Kind Payload
+code|hostExportJournalItem|LiteDbDeviceExportPublicationJournal|private void WriteJournalItems<T>|private ImmutableArray<T> ReadJournalItems<T>|["_id"] = $"{publication:N}/{kind}/{index.ToString(CultureInfo.InvariantCulture)}"
+map|hostExportScan|LiteDbDeviceExportScans|database.GetCollection<BsonDocument>(ExportScanCollection).Insert|return publication.PublicationId|_id LibraryId ManifestKey PlanId PlanRevision ManifestRevision Destination State Attempts Revision DueUtcTicks ItemCount
+map|hostExportScan|LiteDbDeviceExportScans|row["LeaseId"] = lease;|table.Update(row)|LeaseId LeaseUntilUtcTicks Revision
+map|hostExportScan|LiteDbDeviceExportScans|private static void UpdateScan|private DeviceExportScanCheckpoint ReadScan|State FailureCode DueUtcTicks Revision
+map|hostExportScan|LiteDbDeviceExportArrival|row["BytesVerified"] =|UpdateScan(table|BytesVerified TotalBytes
+code|hostExportScan|LiteDbDeviceExportScans|database.GetCollection<BsonDocument>(ExportScanCollection).Insert|return publication.PublicationId|["_id"] = publication.PublicationId
+map|hostExportScanItem|LiteDbDeviceExportArrival|private void WriteTransferItems|private void SaveTransferProofs|_id TransferId Path ContentIdentity
+map|hostExportScanItem|LiteDbDeviceExportArrival|private void SaveTransferProofs|private IEnumerable<BsonDocument> ReadTransferItems|Bytes Version
+code|hostExportScanItem|LiteDbDeviceExportArrival|private void WriteTransferItems|private void SaveTransferProofs|["_id"] = TransferItemId(id, path)
+code|hostExportScanItem|LiteDbDeviceExportArrival|private static string TransferItemId||$"{id:N}/{HashKey(path)}"
+code|hostExportScanItem|LiteDbDeviceExportArrival|private void WriteTransferItems|private void SaveTransferProofs|["ContentIdentity"] = identity is null ? BsonValue.Null : new BsonValue(identity)
+map|hostPcMirrorState|LiteDbPcMirrors|store.database.GetCollection<BsonDocument>(PcMirrorStateCollection).Upsert|private|_id Revision Observations
+code|hostPcMirrorState|LiteDbPcMirrors|store.database.GetCollection<BsonDocument>(PcMirrorStateCollection).Upsert|private|["_id"] = libraryId
+map|hostSchema|LiteDbHostPlaylistStore|schema = new()|schemas.Insert(schema)|_id StoreId StoreRole SchemaVersion
+code|hostSchema|LiteDbHostPlaylistStore|schema = new()|schemas.Insert(schema)|["_id"] = "store"
+code|hostSchema|LiteDbHostPlaylistStore|schema = new()|schemas.Insert(schema)|["StoreRole"] = "Host", ["SchemaVersion"] = 1

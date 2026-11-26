@@ -12,12 +12,33 @@ namespace BeetsMan.Desktop.Adapters.Playback;
 
 /// <summary>Owns the two local SoundFlow players attached to the supplied audio mixer.</summary>
 /// <remarks>2026-11-24: Bind FR-PLAYER-001#ac-transport and ac-mix to SoundFlow, MiniAudio, and FFmpeg under TR-PLAYER-ARCH-001.</remarks>
-public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat format, Action abandonAutomaticFade)
-    : IPlaybackSeekTarget, IDisposable
+/// <remarks>2026-11-25: Apply independent deck gain, linear manual crossfade, and master EQ for FR-PLAYER-001#ac-mix.</remarks>
+public sealed class SoundFlowDecks : IPlaybackSeekTarget, IPlaybackMixTarget, IDisposable
 {
     private readonly object gate = new();
     private readonly Dictionary<DeckId, LoadedDeck> decks = [];
+    private readonly AudioEngine engine;
+    private readonly Mixer mixer;
+    private readonly AudioFormat format;
+    private readonly Action abandonAutomaticFade;
+    private PlaybackMixSettings mix = PlaybackMixSettings.Default;
+    private SoundFlowMasterEqualizer? equalizer;
     private bool disposed;
+
+    /// <summary>Creates a mixer graph and applies optional controls before a deck starts.</summary>
+    public SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat format, Action abandonAutomaticFade, PlaybackMixSettings? initialMix = null)
+    {
+        this.engine = engine;
+        this.mixer = mixer;
+        this.format = format;
+        this.abandonAutomaticFade = abandonAutomaticFade;
+        if (initialMix is not null)
+        {
+            if (!initialMix.IsValid())
+                throw new ArgumentException("Invalid initial audio mix.", nameof(initialMix));
+            ConfigureMix(initialMix);
+        }
+    }
 
     /// <summary>Creates the MiniAudio engine with the application's required FFmpeg codec extension.</summary>
     public static MiniAudioEngine CreateEngine()
@@ -45,7 +66,7 @@ public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat 
     /// <remarks>2026-11-24: Prepare an incoming track before touching the outgoing track for FR-PLAYER-001#ac-transport and ac-fade.</remarks>
     public Task<Outcome<DeckState>> PrepareAsync(DeckId deck, Guid trackId, string localPath, TimeSpan position,
         TransportStatus status, CancellationToken token) =>
-        InvokeAsync(() =>
+        InvokeAsync<DeckState>(() =>
         {
             if (!Enum.IsDefined(deck) || !Enum.IsDefined(status) || trackId == Guid.Empty || !Path.IsPathFullyQualified(localPath) || position < TimeSpan.Zero)
                 return new Outcome<DeckState>.Invalid([new("invalid-deck-source")]);
@@ -53,6 +74,7 @@ public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat 
             var installed = false;
             try
             {
+                player.Volume = BlendedGain(deck, mix);
                 if (position > TimeSpan.Zero)
                 {
                     var resumePosition = player.Duration > 0 && position.TotalSeconds > player.Duration
@@ -91,7 +113,7 @@ public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat 
 
     /// <summary>Applies transport to the captured track occupying an already prepared deck.</summary>
     public Task<Outcome<DeckState>> ChangeStatusAsync(DeckId deck, Guid? expectedTrackId, TransportStatus status, CancellationToken token) =>
-        InvokeAsync(() =>
+        InvokeAsync<DeckState>(() =>
         {
             if (!decks.TryGetValue(deck, out var loaded))
                 return new Outcome<DeckState>.Invalid([new("deck-not-prepared")]);
@@ -112,7 +134,7 @@ public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat 
 
     /// <inheritdoc />
     public Task<Outcome<DeckState>> SeekAsync(DeckId deck, Guid trackId, TimeSpan position, CancellationToken cancellationToken) =>
-        InvokeAsync(() =>
+        InvokeAsync<DeckState>(() =>
         {
             if (!decks.TryGetValue(deck, out var loaded) || loaded.TrackId != trackId)
                 return new Outcome<DeckState>.Conflict("seek-track-changed", null);
@@ -127,9 +149,21 @@ public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat 
     /// <summary>Reads the current native position while keeping the requested deck identity stable.</summary>
     /// <remarks>2026-11-24: Expose current native transport time for FR-PLAYER-001#ac-transport.</remarks>
     public Task<Outcome<DeckState>> ReadAsync(DeckId deck, Guid trackId, CancellationToken cancellationToken) =>
-        InvokeAsync(() => decks.TryGetValue(deck, out var loaded) && loaded.TrackId == trackId
+        InvokeAsync<DeckState>(() => decks.TryGetValue(deck, out var loaded) && loaded.TrackId == trackId
             ? new Outcome<DeckState>.Success(Snapshot(deck, loaded))
             : new Outcome<DeckState>.Conflict("transport-track-changed", null), cancellationToken);
+
+    /// <inheritdoc />
+    public Task<Outcome<bool>> ApplyMixAsync(PlaybackMixSettings settings, bool abandonFade, CancellationToken token) =>
+        InvokeAsync<bool>(() =>
+        {
+            if (!settings.IsValid())
+                return new Outcome<bool>.Invalid([new("invalid-audio-mix")]);
+            if (abandonFade)
+                abandonAutomaticFade();
+            ConfigureMix(settings);
+            return new Outcome<bool>.Success(true);
+        }, token);
 
     /// <inheritdoc />
     public void Dispose()
@@ -141,11 +175,13 @@ public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat 
             foreach (var deck in decks.Values)
                 ClosePlayer(deck.Player);
             decks.Clear();
+            if (equalizer is not null)
+                mixer.RemoveModifier(equalizer);
             disposed = true;
         }
     }
 
-    private async Task<Outcome<DeckState>> InvokeAsync(Func<Outcome<DeckState>> operation, CancellationToken token)
+    private async Task<Outcome<TResult>> InvokeAsync<TResult>(Func<Outcome<TResult>> operation, CancellationToken token)
     {
         try
         {
@@ -161,11 +197,11 @@ public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat 
         }
         catch (OperationCanceledException) when (token.IsCancellationRequested)
         {
-            return new Outcome<DeckState>.Cancelled();
+            return new Outcome<TResult>.Cancelled();
         }
         catch (Exception exception) when (exception is IOException or UnauthorizedAccessException or NotSupportedException or InvalidOperationException)
         {
-            return new Outcome<DeckState>.DependencyFailure("audio-backend-error", false);
+            return new Outcome<TResult>.DependencyFailure("audio-backend-error", false);
         }
     }
 
@@ -191,7 +227,30 @@ public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat 
         player.Dispose();
     }
 
-    private static DeckState Snapshot(DeckId deck, LoadedDeck loaded)
+    private void ConfigureMix(PlaybackMixSettings settings)
+    {
+        if (mix.EqualizerBypassed != settings.EqualizerBypassed || !mix.EqualizerBands.SequenceEqual(settings.EqualizerBands))
+        {
+            if (equalizer is null)
+            {
+                equalizer = new(format);
+                mixer.AddModifier(equalizer);
+            }
+            equalizer.Configure(settings.EqualizerBands, settings.EqualizerBypassed);
+        }
+        mixer.Volume = (float)settings.MasterGain;
+        foreach (var (deck, loaded) in decks)
+            loaded.Player.Volume = BlendedGain(deck, settings);
+        mix = settings;
+    }
+
+    private static float BlendedGain(DeckId deck, PlaybackMixSettings settings)
+    {
+        var blend = deck == DeckId.A ? 1 - settings.CrossfaderPosition : settings.CrossfaderPosition;
+        return (float)(settings.DeckGain(deck) * blend);
+    }
+
+    private DeckState Snapshot(DeckId deck, LoadedDeck loaded)
     {
         var player = loaded.Player;
         var status = player.State switch
@@ -204,7 +263,7 @@ public sealed class SoundFlowDecks(AudioEngine engine, Mixer mixer, AudioFormat 
         var position = float.IsFinite(player.Time) && player.Time > 0 ? TimeSpan.FromSeconds(player.Time) : TimeSpan.Zero;
         if (duration is { } end && position > end)
             position = end;
-        return new(deck, loaded.TrackId, position, duration, status, true, player.Volume);
+        return new(deck, loaded.TrackId, position, duration, status, true, mix.DeckGain(deck));
     }
 
     private sealed record LoadedDeck(Guid TrackId, SoundPlayer Player);

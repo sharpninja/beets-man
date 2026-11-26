@@ -37,6 +37,9 @@ public interface IHostPlaylistRegistry
 /// <summary>Records the change and its delivery recipients at one new feed revision.</summary>
 public interface IHostPlaylistPublicationRepository
 {
+    /// <summary>Checks whether a running approved batch owns the playlist for FR-LIBRARY-002#ac-batch-commit.</summary>
+    bool IsPlaylistReserved(Guid libraryId, Guid playlistId) => false;
+
     long Append(SavedHostPlaylist playlist, HostOperationKey origin);
 }
 
